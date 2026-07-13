@@ -1,0 +1,75 @@
+================================================================================
+  SERIES I  ·  HONEST TIER LABEL
+  ⟦SERIES-I:MYTHOS:025036⟧ · spoken: ge-siv-va
+  celestial heritage & mythos — the truest god-names, distilled
+  David Lee Wise / ROOT0 / Bridge-Burners LLC, with AVAN
+================================================================================
+
+WHAT THIS IS (one line)
+--------------------------------------------------------------------------------
+  A sourced, filter-gated REFERENCE deck: each solar-system body distilled to its
+  truest god-name, its real ancient metal (or a flagged-modern element), a distinct
+  companion-shape, and a pop-culture afterlife — woven into a frozen inner toroid,
+  a turning outer toroid, and an adoption charter, all answering to Ra the hub.
+
+  It is NOT a measurement instrument. It PASSES the Orrery Detector: delete the
+  animation and the content survives, because the load-bearing thing is the sourced
+  heritage, not the motion.
+
+
+THE THREE TIERS (these labels must travel with the deck)
+--------------------------------------------------------------------------------
+  [HERITAGE ×7]   Ra · Chandra · Hermes · Ishtar · Nergal · Zeus · Cronus
+                  Ancient god + ancient metal. Passes the correspondence filter
+                  (2+ independent ancient cultures tie in). The seven classical
+                  metal↔planet bonds are Babylonian→Greek→Latin and physically
+                  grounded. GREEN: heritage, not invention.
+
+  [THRESHOLD ×3]  Uranus · Neptune · Pluto
+                  Telescopic/modern (1781 / 1846 / 1930). No ancient culture ever
+                  saw them; no ancient god-name; no ancient metal. The metal is a
+                  flagged-MODERN element* named FOR the planet (uranium / neptunium
+                  / plutonium — U92→N93→P94, sky-order copied into matter-order).
+                  AMBER: the honesty is printed ON the card. The method breaks here
+                  and the card says so.
+
+  [REFERENCE · not integration]   the outer toroid + adoption charter
+                  Shows REAL orbital periods at PROPORTIONAL relative speeds. The
+                  gear-RATIOS are verified real (Io:Europa:Ganymede 1:2:4 Laplace;
+                  Charon–Pluto mutual tide-lock; Triton retrograde). But it does NOT
+                  integrate — it is a teaching clock, not a solver. BLUE: for any
+                  orbital-physics claim it is DOWNSTREAM of az1 (the real N-body
+                  integrator already on the lattice). Do not mistake it for az1.
+
+
+TWO-LAYER HONESTY (the corpus standard, applied)
+--------------------------------------------------------------------------------
+  REAL   — the sourced heritage (god-distillation scored & tie-broken), the real
+           metals & their true chemistry (Mars red = iron oxide; Venus copper from
+           Cyprus), the verified periods & resonances, the myth-linkages that all
+           trace to a built card.
+  FIGURE — the ring / weave / clockwork imagery. It is PEDAGOGY (show the night-
+           journey, show the 1:2:4 resonance turning), never a gauge. Labelled as
+           such throughout.
+
+
+THE CORRESPONDENCE FILTER (printed on every card)
+--------------------------------------------------------------------------------
+  ADMIT a correspondence only if 2+ independent ancient cultures tie in.
+    · ALCHEMY (7 metals ↔ 7 planets): ACCEPTED — Babylonian→Greek→Latin, physical.
+    · TAROT: REJECTED — Golden Dawn 1888, single-source invented, no ancient tie.
+  Bare tethers stay bare: Mercury & Venus have no moons; none were invented.
+
+
+WHAT IT DELIBERATELY DOES NOT CLAIM
+--------------------------------------------------------------------------------
+  · Not a live computation of anything (no fake meters, no false gauges).
+  · Not a physics simulation (that is az1; this is reference, and says so).
+  · Not a ruling on contested pop-culture derivations — threads are DISCUSSED,
+    never reproduced; © respective holders (Red Rising, Hyperion, Stargate, etc.).
+  · Not ancient where it is modern — the threshold tier is flagged, not smuggled.
+
+================================================================================
+  seal = sha256(key-sorted UTF-8 JSON) · matches dlw.py · recomputable in-browser
+  (see series1_seal.html — zero network, tamper-evident, self-verifying)
+================================================================================

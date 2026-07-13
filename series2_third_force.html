@@ -1,0 +1,161 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ICARIUM · THE THIRD FORCE — make / harmony / unmake</title>
+<style>
+ :root{--bg:#04060b;--ink:#e2e4f0;--dim:#8b91a6;--faint:#474d60;--make:#5ab090;--harm:#c8a850;--unmake:#c85050;--eris:#c8b8e0;--eris2:#8a7ab0;--lit:#5ad0a0;--amb:#e0a020;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#0a0c18,#04060b 70%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:780px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #1c1e30;border-radius:12px;background:linear-gradient(180deg,#0a0b16,#04060b);padding:0 24px 30px;box-shadow:0 0 90px rgba(200,168,80,.05);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--make),var(--harm),var(--unmake));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--harm);margin-top:8px}
+ h1{text-align:center;font-size:32px;font-weight:700;color:var(--ink);margin:4px 0 0;letter-spacing:.14em}
+ h1 .h{color:var(--harm)}
+ .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+ .intro{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#0a0b16;border:1px solid #16182a;border-radius:8px;font-family:var(--serif)}
+ .intro b{color:var(--ink);font-family:var(--mono)}.intro .h{color:var(--harm)}.intro .u{color:var(--unmake)}.intro .m{color:var(--make)}
+ .statebar{display:flex;align-items:center;justify-content:center;gap:12px;margin:12px 0;flex-wrap:wrap}
+ .btn{padding:7px 15px;background:#12141f;color:var(--ink);border:1px solid #262a3c;border-radius:8px;font-family:var(--mono);font-size:10.5px;cursor:pointer}
+ .btn:hover{background:#191c2a}.btn.on{border-color:var(--harm);color:var(--harm)}
+ .btn.wake{border-color:#5a2e2e;color:#e08078}.btn.wake.on{background:#1a0808}
+ canvas{display:block;width:100%;max-width:520px;margin:6px auto}#tern{height:480px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0a0b16;border:1px solid #16182a;border-radius:8px}
+ .measure b{color:var(--ink)}.measure .m{color:var(--make)}.measure .h{color:var(--harm)}.measure .u{color:var(--unmake)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--harm);margin:22px 0 8px;border-bottom:1px solid #16182a;padding-bottom:5px}
+ .flat{background:#0a0b16;border:1px solid #1c1e30;border-left:3px solid var(--harm);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .flat b{color:var(--harm)}.flat .u{color:var(--unmake)}
+ .triad{display:flex;gap:10px;flex-wrap:wrap;margin:8px 0}
+ .tc{flex:1;min-width:200px;background:#0a0b16;border:1px solid #1c1e30;border-radius:8px;padding:11px 14px;font-size:11.5px;line-height:1.6}
+ .tc .th{font-size:11px;font-weight:700;letter-spacing:.1em;margin-bottom:5px}
+ .tc.mk .th{color:var(--make)}.tc.hm .th{color:var(--harm)}.tc.un .th{color:var(--unmake)}
+ .tc .row{color:var(--dim)}.tc .row b{color:var(--ink)}
+ .sleep{background:#0e0c06;border:1px solid #33280e;border-left:3px solid var(--harm);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.75;color:var(--dim);font-family:var(--serif)}
+ .sleep b{color:var(--harm);font-family:var(--mono)}.sleep .k{color:var(--eris);font-family:var(--mono)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#0a0b16;border:1px dashed #1c1e30;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; Icarium</span><span>the third force &#183; completing the engine</span></div>
+ <div class="sii">I C A R I U M &#8195;&#8212;&#8195; T H E &#160; T H I R D &#160; F O R C E</div>
+ <h1>MAKE &#183; <span class="h">HARMONY</span> &#183; UNMAKE</h1>
+ <div class="sub">&#8212; the make/unmake line was a flattening; here is the triangle it hid &#8212;</div>
+ <div class="intro" id="intro"></div>
+
+ <div class="statebar">
+   <button class="btn on" id="unflat">&#9651; un-flatten (the triangle)</button>
+   <button class="btn" id="flatbtn">&#9473; flatten (the old axis)</button>
+   <button class="btn wake" id="wakebtn">&#9650; wake &#8212; watch harmony fall</button>
+ </div>
+ <canvas id="tern"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">six trope-gears in barycentric place &#183; \u25c6 = the field&#8217;s centroid &#183; wake it and the centroid slides to the unmake corner</div>
+
+ <h3>the flattening &#8212; what one axis erased</h3>
+ <div class="flat" id="flat"></div>
+
+ <h3>the third force, named &#8212; harmony as the one who holds</h3>
+ <div class="triad">
+   <div class="tc mk"><div class="th">MAKE</div><div class="row"><b>Brahma</b> \u00b7 creator</div><div class="row"><b>Clotho</b> \u00b7 spins the thread</div><div class="row" style="margin-top:4px">Makemake sang humankind; Quaoar sang the world.</div></div>
+   <div class="tc hm"><div class="th">HARMONY</div><div class="row"><b>Vishnu</b> \u00b7 preserver, who sleeps</div><div class="row"><b>Lachesis</b> \u00b7 measures &amp; holds the thread</div><div class="row" style="margin-top:4px">the RESONANCES \u2014 the locks that preserve. Orcus, the plutinos: held stable for the age of the system.</div></div>
+   <div class="tc un"><div class="th">UNMAKE</div><div class="row"><b>Shiva</b> \u00b7 destroyer</div><div class="row"><b>Atropos</b> \u00b7 cuts the thread</div><div class="row" style="margin-top:4px">Eris broke the count; Gonggong tilted the world.</div></div>
+ </div>
+
+ <div class="sleep" id="sleep"></div>
+ <div class="tier" id="tier"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"tropes": [{"name": "THE UNMAKER", "bodies": "Eris, Gonggong", "make": 0.05, "harmony": 0.1, "unmake": 0.85, "charge": 0.95, "note": "almost none — breaks the count, tilts the world"}, {"name": "THE CAST-OUT", "bodies": "Sedna, Ceres", "make": 0.25, "harmony": 0.3, "unmake": 0.45, "charge": 0.5, "note": "Sedna is held stable in the deep; Ceres the harvest still makes"}, {"name": "THE SELF-SHED", "bodies": "Haumea, Sedna", "make": 0.4, "harmony": 0.3, "unmake": 0.3, "charge": 0.6, "note": "the shed family is held together in resonance"}, {"name": "THE MIRROR", "bodies": "Orcus", "make": 0.15, "harmony": 0.7, "unmake": 0.15, "charge": 0.3, "note": "resonance-PROTECTED — the anti-Pluto held in stable counter-phase forever"}, {"name": "THE MAKER", "bodies": "Makemake, Quaoar", "make": 0.7, "harmony": 0.2, "unmake": 0.1, "charge": 0.55, "note": "Quaoar's ring is a creation held in a stable lock"}, {"name": "THE BOUND", "bodies": "Ixion", "make": 0.1, "harmony": 0.5, "unmake": 0.4, "charge": 0.4, "note": "the 2:3 that punishes him is the 2:3 that PRESERVES him"}], "cen": {"make": 0.275, "harmony": 0.35, "unmake": 0.375}, "woke": {"make": 0.267, "harmony": 0.286, "unmake": 0.446}}, T=D.tropes;
+ var flat=0, wake=0, flatTarget=0, wakeTarget=0; // flat: 0 triangle .. 1 collapsed line ; wake: 0 dormant .. 1
+
+ document.getElementById("intro").innerHTML="the sleeper engine was measured on one axis: <span class=\"m\">make</span> against <span class=\"u\">unmake</span>. but a line is a <b>flattening</b> \u2014 and it flattened away the force that actually holds the field together. the third pole is <span class=\"h\">HARMONY</span>: not the midpoint between making and unmaking, but a distinct force \u2014 the one that <b>preserves</b>, that <b>sustains</b>, that keeps the balance. two ancient cultures already named it, and both gave it to the one who <i>holds</i>. add it back, and the tug-of-war becomes a triangle.";
+
+ function setMeasure(){
+  var c = wake>0.5 ? D.woke : D.cen;
+  var lbl = wake>0.5 ? "WOKEN centroid" : "dormant centroid";
+  document.getElementById("measure").innerHTML='<span>'+lbl+':</span><span class="m">make '+c.make.toFixed(2)+'</span><span class="h">harmony '+c.harmony.toFixed(2)+'</span><span class="u">unmake '+c.unmake.toFixed(2)+'</span>';
+ }
+ setMeasure();
+
+ document.getElementById("flat").innerHTML="the make\u2194unmake axis reported a slight <span class=\"u\">unmake</span> lean (make "+D.cen.make.toFixed(2)+" vs unmake "+D.cen.unmake.toFixed(2)+") and called it a two-way balance. but that was a <b>shadow</b>. the true centroid is <span class=\"h\">HARMONY "+D.cen.harmony.toFixed(2)+"</span> | make "+D.cen.make.toFixed(2)+" | unmake "+D.cen.unmake.toFixed(2)+" \u2014 harmony is <b>nearly as large as unmaking</b>. a full third of the field is neither making nor unmaking but <b>holding</b>: the resonances, the sustaining locks. the axis erased it. flatten the triangle and you get the old line back; un-flatten it and the missing force reappears.";
+ document.getElementById("sleep").innerHTML="<b>the sleeper, completed.</b> dormant, the engine rests at its true centroid \u2014 harmony-rich, three forces balanced. <b>wake</b> it and weight by charge, and it lurches: harmony falls "+D.cen.harmony.toFixed(2)+" \u2192 "+D.woke.harmony.toFixed(2)+" as the loud unmakers at the hub drag it toward the <span class=\"k\">unmake</span> corner. so the <b>sleep IS the harmony</b>. Icarium asleep is <span class=\"k\">Vishnu asleep on the serpent</span> \u2014 the preserving sleep that sustains the world between cycles. wake it, and you trade Vishnu\u2019s rest for Shiva\u2019s dance. the third force was here all along; it is the one the sleeping engine embodies.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the harmony pole is real and sourced: mean-motion <b>resonances</b> (Orcus 2:3, the plutinos) that protect bodies from Neptune and preserve stable orbits for billions of years. the triad is ancient &amp; cross-cultural (Trimurti + Moirai), passing the deck\u2019s filter. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the exact ternary scores are an interpretive read; the \u2018engine\u2019 remains a lens. the resonance-as-harmony is sound; the placement is a hand.";
+ document.getElementById("foot").innerHTML="\u25c8 the third force \u00b7 harmony = preservation = resonance = Vishnu\u2019s sleep \u00b7 the axis un-flattened \u00b7 Icarium completed \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ function tcolor(t){ var mx=Math.max(t.make,t.harmony,t.unmake); return t.make===mx?"#5ab090":t.harmony===mx?"#c8a850":"#c85050"; }
+
+ var cv=document.getElementById("tern");var tt=0;
+ function draw(){
+  flat += (flatTarget-flat)*0.06; wake += (wakeTarget-wake)*0.05;
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||520,H=480;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var pad=64, top=44;
+  // triangle corners: MAKE top, UNMAKE bottom-right, HARMONY bottom-left
+  var A={x:W*0.5,y:top};             // MAKE
+  var B={x:W-pad,y:H-90};            // UNMAKE
+  var C={x:pad,y:H-90};              // HARMONY
+  // flattening: collapse the triangle vertically onto the bottom edge (make/unmake line)
+  function flatten(p){ var baseY=H-90; return {x:p.x, y: p.y + (baseY-p.y)*flat }; }
+  var Af=flatten(A),Bf=flatten(B),Cf=flatten(C);
+  // stars
+  for(var i=0;i<30;i++){cx.fillStyle="rgba(180,176,210,"+(0.04+0.05*Math.sin(tt*0.3+i))+")";cx.fillRect((i*83)%W,(i*57)%H,1,1);}
+  // edges
+  cx.strokeStyle="rgba(140,145,166,"+(0.25+0.2*(1-flat))+")";cx.lineWidth=1.2;
+  cx.beginPath();cx.moveTo(Af.x,Af.y);cx.lineTo(Bf.x,Bf.y);cx.lineTo(Cf.x,Cf.y);cx.closePath();cx.stroke();
+  // corner labels
+  function lbl(p,txt,col,dy){cx.fillStyle=col;cx.font="bold 11px "+mono();cx.textAlign="center";cx.fillText(txt,p.x,p.y+dy);}
+  cx.globalAlpha=0.4+0.6*(1-flat*0.7);
+  lbl(Af,"MAKE","#5ab090",-10); cx.font="8px "+mono();cx.fillStyle="#5ab090";cx.fillText("Brahma \u00b7 Clotho",Af.x,Af.y-0);
+  cx.globalAlpha=1;
+  lbl(Bf,"UNMAKE","#c85050",26); cx.font="8px "+mono();cx.fillStyle="#c85050";cx.fillText("Shiva \u00b7 Atropos",Bf.x,Bf.y+38);
+  lbl(Cf,"HARMONY","#c8a850",26); cx.font="8px "+mono();cx.fillStyle="#c8a850";cx.fillText("Vishnu \u00b7 Lachesis",Cf.x,Cf.y+38);
+  // barycentric placement
+  function place(t){
+    var wsum=t.make+t.harmony+t.unmake;
+    var m=t.make/wsum,h=t.harmony/wsum,u=t.unmake/wsum;
+    var x=A.x*m+C.x*h+B.x*u, y=A.y*m+C.y*h+B.y*u;
+    return flatten({x:x,y:y});
+  }
+  // gears
+  T.forEach(function(t){
+   var p=place(t),c=tcolor(t),r=5+t.charge*5;
+   var g=cx.createRadialGradient(p.x,p.y,1,p.x,p.y,r+4);g.addColorStop(0,c);g.addColorStop(1,"rgba(0,0,0,0)");
+   cx.fillStyle=g;cx.beginPath();cx.arc(p.x,p.y,r+4,0,7);cx.fill();
+   cx.fillStyle=c;cx.beginPath();cx.arc(p.x,p.y,r,0,7);cx.fill();
+   cx.fillStyle="rgba(226,228,240,.8)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText(t.name.replace("THE ",""),p.x,p.y-r-4);
+  });
+  // centroid (dormant -> woken interpolation)
+  var cc={make:D.cen.make+(D.woke.make-D.cen.make)*wake,
+          harmony:D.cen.harmony+(D.woke.harmony-D.cen.harmony)*wake,
+          unmake:D.cen.unmake+(D.woke.unmake-D.cen.unmake)*wake};
+  var ws=cc.make+cc.harmony+cc.unmake;
+  var cp=flatten({x:A.x*cc.make/ws+C.x*cc.harmony/ws+B.x*cc.unmake/ws, y:A.y*cc.make/ws+C.y*cc.harmony/ws+B.y*cc.unmake/ws});
+  // pulse
+  var col = wake>0.5? "200,80,80" : "200,168,80";
+  var pr=9+2*Math.sin(tt*(wake>0.5?4:1.2));
+  cx.fillStyle="rgba("+col+",.2)";cx.beginPath();cx.arc(cp.x,cp.y,pr+6,0,7);cx.fill();
+  cx.fillStyle="rgba("+col+",1)";cx.beginPath();
+  for(var k=0;k<4;k++){var a=tt*0.3+k*Math.PI/2;cx.lineTo(cp.x+Math.cos(a)*pr,cp.y+Math.sin(a)*pr);var a2=a+Math.PI/4;cx.lineTo(cp.x+Math.cos(a2)*pr*0.45,cp.y+Math.sin(a2)*pr*0.45);}
+  cx.closePath();cx.fill();
+  cx.fillStyle="rgba("+col+",.9)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText(wake>0.5?"woken \u2014 dragged to unmake":"the field\u2019s centroid",cp.x,cp.y-pr-6);
+  // status line
+  cx.fillStyle="rgba(200,168,80,"+(0.7*(1-flat))+")";cx.font="9px "+mono();
+  cx.fillText(flat>0.5?"":"harmony holds a full third of the field",W/2,H-8);
+  cx.fillStyle="rgba(140,145,166,"+(0.7*flat)+")";cx.fillText(flat>0.5?"flattened \u2014 the old make/unmake line (harmony erased)":"",W/2,H-8);
+  tt+=0.03;
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="third-force fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+
+ function btns(active){["unflat","flatbtn"].forEach(function(id){document.getElementById(id).classList.remove("on");});document.getElementById(active).classList.add("on");}
+ document.getElementById("unflat").addEventListener("click",function(){flatTarget=0;btns("unflat");});
+ document.getElementById("flatbtn").addEventListener("click",function(){flatTarget=1;btns("flatbtn");});
+ document.getElementById("wakebtn").addEventListener("click",function(){wakeTarget=wakeTarget>0.5?0:1;this.classList.toggle("on",wakeTarget>0.5);this.innerHTML=wakeTarget>0.5?"\u25a0 let it sleep \u2014 harmony returns":"\u25b2 wake \u2014 watch harmony fall";flatTarget=0;btns("unflat");setTimeout(setMeasure,300);setMeasure();});
+})();
+</script></body></html>

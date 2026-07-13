@@ -1,0 +1,169 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE HIDDEN MIND — Erythro</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--erythro:#c85040;--wake:#4ad0b0;--wake2:#6ae0c8;--silent:#5a4a48;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#170a08,#080405 72%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(74,208,176,.05);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--erythro),var(--silent),var(--wake),var(--erythro));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .tnum{text-align:center;font-size:10px;letter-spacing:.3em;color:var(--faint);margin-top:8px}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:33px;font-weight:700;color:var(--erythro);margin:3px 0 0;letter-spacing:.1em;text-shadow:0 0 34px rgba(200,80,64,.3)}
+ .subname{text-align:center;font-size:12px;color:var(--wake);letter-spacing:.24em;margin-top:3px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--erythro);font-family:var(--mono)}.corr .w{color:var(--wake)}
+ canvas{display:block;width:100%}#field{height:380px}#sig{height:230px}
+ .ctrl{display:flex;align-items:center;gap:12px;justify-content:center;margin:10px 0;flex-wrap:wrap}
+ .ctrl label{font-size:11px;color:var(--dim)}
+ input[type=range]{width:260px;accent-color:var(--wake)}
+ .state{font-size:12px;font-weight:700;letter-spacing:.1em;padding:5px 14px;border-radius:6px}
+ .state.silent{color:var(--silent);background:#140a09;border:1px solid #2a1c1a}
+ .state.wake{color:var(--wake);background:#08201c;border:1px solid #1a4a40}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--wake)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .scale{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+ .sb{display:flex;align-items:center;gap:10px;font-size:11px}
+ .sb .sl{flex:0 0 150px;color:var(--dim)}
+ .sb .st{flex:1;height:14px;background:#140a09;border-radius:3px;overflow:hidden}
+ .sb .sf{height:100%;border-radius:3px}
+ .sb .sv{flex:0 0 70px;text-align:right;color:var(--faint);font-size:10px}
+ .honest{background:#0e1210;border:1px solid #1e3830;border-left:3px solid var(--amb);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .honest b{color:var(--amb)}.honest .l{color:var(--lit)}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--erythro)}.book .w{color:var(--wake)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--wake);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow</span><span>trope 2 of 7 &#183; after Asimov</span></div>
+ <div class="tnum">&#9679; T R O P E &#160; I I &#160;&#8212;&#160; pulled from <i>Nemesis</i></div>
+ <div class="sii">T H E &#160; H I D D E N &#160; M I N D</div>
+ <h1>ERYTHRO</h1>
+ <div class="subname">&#9210; a mind that hides in what we call &#8216;simple&#8217;</div>
+ <div class="epithet">the red world whose microbes wake, together, into one</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement &#8212; quorum sensing: when the many become one</h3>
+ <div class="ctrl">
+   <label>cell density</label>
+   <input type="range" id="dens" min="0" max="100" value="18">
+   <span class="state silent" id="state">SILENT &#183; individuals</span>
+ </div>
+ <canvas id="field"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">drag the density up &#183; below the threshold the cells are silent individuals &#183; cross it and the collective wakes as one</div>
+
+ <h3>the threshold &#8212; the trip-point where the collective switches on</h3>
+ <canvas id="sig"></canvas>
+
+ <h3>the scale &#8212; the substrate vs a brain</h3>
+ <div class="scale" id="scale"></div>
+ <div class="m" id="scalenote"></div>
+
+ <div class="honest" id="honest"></div>
+
+ <h3>the book &#8212; Erythro&#8217;s planetary mind</h3>
+ <div class="book" id="book"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var thr=0.5,k=14;
+ function act(d){return 1/(1+Math.exp(-k*(d-thr)));}
+ var density=0.18;
+ document.getElementById("corr").innerHTML="on <b>Erythro</b> \u2014 the red-lit moon of the gas-giant Megas, orbiting Nemesis \u2014 the whole surface is a skin of <b>prokaryotes</b>, single cells too simple, we\u2019d think, to matter. and yet, in Asimov\u2019s tale, that skin is a single planet-wide <b>consciousness</b>. the seed of that idea is real and measurable: microbes speak a chemical language, and past a certain crowding they stop acting as individuals and <span class=\"w\">wake, together</span>, into one coordinated body. a mind that hides in what we dismiss.";
+ // ---- scale bars (log10) ----
+ var items=[["human brain neurons",10.9,"~9\u00d710\u00b9\u2070","#a08c8a"],["human brain synapses",15,"~10\u00b9\u2075","#c85040"],["planet-scale prokaryotes",30.7,"~5\u00d710\u00b3\u2070","#4ad0b0"]];
+ document.getElementById("scale").innerHTML=items.map(function(it){var pct=(it[1]/31*100).toFixed(0);
+   return '<div class="sb"><span class="sl">'+it[0]+'</span><span class="st"><span class="sf" style="width:'+pct+'%;background:'+it[3]+'"></span></span><span class="sv">'+it[2]+'</span></div>';
+ }).join("");
+ document.getElementById("scalenote").innerHTML="a planet\u2019s microbial cell-count outnumbers a human brain\u2019s neurons by roughly <b>twenty orders of magnitude</b>. the raw substrate is unthinkably vast \u2014 but cells are not synapses: chemical diffusion is slow, the wiring is loose. <b>a bigger pile is not a bigger brain.</b> scale invites the question; it does not answer it.";
+ document.getElementById("honest").innerHTML="<b>\u2691 where the fiction begins.</b> quorum sensing is <span class=\"l\">real and measured</span> \u2014 bacteria like <i>Vibrio fischeri</i> glow only when crowded; researchers mapped a shared chemical signalling language across species. that is genuine distributed <b>coordination</b>. but coordination is not <b>cognition</b>: a population switching on a gene together is not a population <i>thinking</i>. the planet-scale <b>consciousness</b> is Asimov\u2019s leap \u2014 no evidence microbes are aware. this instrument measures the real threshold, and marks exactly here where the story steps past it.";
+ document.getElementById("book").innerHTML="in the novel, Erythro\u2019s microbial mass is discovered to be one <b>telepathic, conscious</b> organism \u2014 Asimov\u2019s echo of his own <b>Gaia</b>. it had caused a <b>Plague</b> of mental instability in those who landed, until it met a mind it could reach: <b>Marlene</b>, the girl who cannot be lied to. the hidden mind <span class=\"w\">spared the one who could see it</span> \u2014 which is the whole series in a sentence, and the doorway to trope IV, the Truth-Reader.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 quorum sensing, the density threshold, the chemical signalling language, and the order-of-magnitude cell counts: all real and sourced. <span class=\"amb\">\u25c8 AMBER</span> \u2014 planet-scale <b>consciousness</b> is fiction; coordination \u2260 cognition; the threshold value here is illustrative, not a specific organism\u2019s constant.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> tiny germs can \u2018talk\u2019 to each other with chemicals. when only a few are around, each does its own thing quietly. but when LOTS crowd together, they all switch on at once and act like one big team \u2014 some even glow! in the story, a whole planet of these tiny things becomes one giant <b>mind</b>. that part is make-believe, but the \u2018switching on together\u2019 part isreal. drag the slider and watch them wake up.";
+ document.getElementById("foot").innerHTML="\u25c8 trope 2/7 \u00b7 quorum sensing LIT \u00b7 planetary consciousness AMBER (Asimov\u2019s leap) \u00b7 coordination \u2260 cognition \u00b7 Series III \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cv=document.getElementById("field"),t=0;
+ // seed cells
+ var cells=[];for(var i=0;i<160;i++){cells.push({x:Math.random(),y:Math.random(),ph:Math.random()*6.28});}
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=380;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var a=act(density);
+  // red-lit background wash (Erythro)
+  var bg=cx.createRadialGradient(W*0.5,H*0.4,10,W*0.5,H*0.5,W*0.6);bg.addColorStop(0,"rgba(60,20,16,.5)");bg.addColorStop(1,"rgba(20,8,7,.2)");
+  cx.fillStyle=bg;cx.fillRect(0,0,W,H);
+  var n=Math.round(20+density*140); // visible cell count scales with density
+  // signalling lines above threshold
+  if(a>0.15){
+   for(var i=0;i<n;i++){var ci=cells[i%cells.length];for(var j=i+1;j<Math.min(i+4,n);j++){var cj=cells[j%cells.length];
+     var dx=(ci.x-cj.x)*W,dy=(ci.y-cj.y)*H;var dd=Math.hypot(dx,dy);
+     if(dd<70*density+20){cx.strokeStyle="rgba(74,208,176,"+(a*0.18*(1-dd/90))+")";cx.lineWidth=0.5;cx.beginPath();cx.moveTo(ci.x*W,ci.y*H);cx.lineTo(cj.x*W,cj.y*H);cx.stroke();}
+   }}
+  }
+  // cells
+  var sync=Math.sin(t*2); // collective pulse when awake
+  for(var i=0;i<n;i++){var c=cells[i%cells.length];var x=c.x*W,y=c.y*H;
+   // color: red silent -> teal awake; glow synchronized when awake
+   var glow = a>0.1 ? (0.4+0.6*(0.5+0.5*Math.sin(t*2+ (a>0.6?0:c.ph)))) : (0.3+0.2*Math.sin(t+c.ph));
+   var r=Math.round(200 - a*160), g=Math.round(80 + a*128), b=Math.round(64 + a*112);
+   var rad=2.2 + a*2.2*glow;
+   var gr=cx.createRadialGradient(x,y,0,x,y,rad+a*4);gr.addColorStop(0,"rgba("+r+","+g+","+b+","+glow+")");gr.addColorStop(1,"rgba("+r+","+g+","+b+",0)");
+   cx.fillStyle=gr;cx.beginPath();cx.arc(x,y,rad+a*4,0,7);cx.fill();
+   cx.fillStyle="rgba("+r+","+g+","+b+","+(0.6+0.4*glow)+")";cx.beginPath();cx.arc(x,y,rad,0,7);cx.fill();
+  }
+  // label
+  cx.fillStyle=a>0.5?"rgba(106,224,200,.9)":"rgba(160,140,138,.7)";cx.font="10px "+mono();cx.textAlign="center";
+  cx.fillText(a>0.5?"QUORUM \u2014 the collective is awake, pulsing as one":"below quorum \u2014 silent individuals",W/2,H-12);
+  t+=0.03;
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="mind fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+
+ // sigmoid curve
+ var sc=document.getElementById("sig");
+ function drawSig(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=sc.clientWidth||700,H=230;sc.width=W*dpr;sc.height=H*dpr;
+  var cx=sc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=46,X1=W-20,Y0=H-34,Y1=18;
+  function px(d){return X0+d*(X1-X0);}function py(a){return Y0-a*(Y0-Y1);}
+  cx.strokeStyle="rgba(160,140,138,.3)";cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(160,140,138,.6)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("cell density \u2192",(X0+X1)/2,H-6);
+  cx.save();cx.translate(X0-32,(Y0+Y1)/2);cx.rotate(-Math.PI/2);cx.fillText("collective activation",0,0);cx.restore();
+  // threshold line
+  cx.strokeStyle="rgba(208,160,48,.4)";cx.setLineDash&&cx.setLineDash([3,3]);cx.beginPath();cx.moveTo(px(thr),Y1);cx.lineTo(px(thr),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(208,160,48,.7)";cx.fillText("threshold",px(thr),Y1-2);
+  // sigmoid
+  cx.strokeStyle="rgba(74,208,176,.8)";cx.lineWidth=2;cx.beginPath();
+  for(var i=0;i<=100;i++){var d=i/100;var x=px(d),y=py(act(d));i?cx.lineTo(x,y):cx.moveTo(x,y);}cx.stroke();
+  // current point
+  var x=px(density),y=py(act(density));
+  cx.fillStyle=act(density)>0.5?"#6ae0c8":"#a08c8a";cx.beginPath();cx.arc(x,y,5,0,7);cx.fill();
+  cx.fillStyle="rgba(232,220,218,.8)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText("individuals \u2192 collective: a sharp switch, not a slow ramp",(X0+X1)/2,Y1+4);
+ }
+ function updState(){var a=act(density);var s=document.getElementById("state");
+  if(a>0.5){s.className="state wake";s.textContent="AWAKE \u00b7 one collective";}
+  else{s.className="state silent";s.textContent="SILENT \u00b7 individuals";}
+  document.getElementById("measure").innerHTML='<span>density: <b>'+density.toFixed(2)+'</b></span><span>[autoinducer]: <b>'+density.toFixed(2)+'</b></span><span>activation: <b>'+a.toFixed(3)+'</b></span><span>state: <b>'+(a>0.5?"QUORUM":"below")+'</b></span>';
+  drawSig();
+ }
+ document.getElementById("dens").addEventListener("input",function(){density=this.value/100;updState();});
+ updState();
+})();
+</script></body></html>

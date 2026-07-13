@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · NEMESIS — the shadow-twin</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--nem2:#e0605a;--oort:#5a6a80;--comet:#c8d8e0;--erythro:#c85040;--dead:#a03028;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#1a0a08,#080405 70%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(192,64,56,.06);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,#1a0a08,var(--nem),var(--erythro),#1a0a08);border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .lineage{text-align:center;font-size:10px;letter-spacing:.16em;color:var(--faint);margin-top:8px}
+ .lineage b{color:var(--nem2)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:10px}
+ h1{text-align:center;font-size:46px;font-weight:700;color:var(--nem2);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 40px rgba(224,96,90,.35)}
+ .subname{text-align:center;font-size:12px;color:var(--nem);letter-spacing:.3em;margin-top:2px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--nem2);font-family:var(--mono)}
+ canvas{display:block;width:100%}#deathstar{height:430px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--nem2)}.measure .big{color:var(--comet);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .verdict{background:#0e0a10;border:1px solid #2a2438;border-left:3px solid var(--amb);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .verdict b{color:var(--amb)}.verdict .k{color:var(--comet)}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--erythro)}
+ .queue{display:flex;flex-direction:column;gap:6px}
+ .q{display:flex;gap:10px;align-items:baseline;background:#120809;border:1px solid #2a1614;border-radius:8px;padding:9px 13px}
+ .q .qi{flex:0 0 20px;color:var(--faint);font-size:13px}
+ .q .qn{flex:0 0 150px;color:var(--nem2);font-weight:700;font-size:11px}
+ .q .qx{flex:1;font-size:10.5px;line-height:1.5;color:var(--dim)}
+ .q .qs{flex:0 0 64px;text-align:right;font-size:8.5px;letter-spacing:.05em}
+ .q.anchor{border-color:#5a2a26;background:#160a09}.q.anchor .qs{color:var(--nem2)}
+ .q .qs.queued{color:var(--faint)}
+ .q .qmeas{display:block;color:var(--faint);font-style:italic;margin-top:2px}
+ .bridge{background:#0a0e12;border:1px solid #1e2836;border-left:3px solid var(--oort);border-radius:8px;padding:11px 14px;margin:8px 0;font-size:11.5px;line-height:1.7;color:var(--dim)}
+ .bridge b{color:var(--oort)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--nem);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow &#183; anchor</span><span>after Asimov &#183; &amp; the death-star hunt</span></div>
+ <div class="lineage"><b>RA</b> the giver &#8195;&#8594;&#8195; <b>ERIS</b> the breaker &#8195;&#8594;&#8195; <b>NEMESIS</b> the shadow</div>
+ <div class="sii">S E R I E S &#160; I I I &#8195;&#8212;&#8195; T H E &#160; S H A D O W - T W I N</div>
+ <h1>NEMESIS</h1>
+ <div class="subname">&#9790; the Sun&#8217;s hidden twin &#8212; the death-star that hunts unseen</div>
+ <div class="epithet">a red dwarf star, not a planet &#8212; the shadow of the light we sealed first</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement &#8212; the hunted death-star</h3>
+ <canvas id="deathstar"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">a dim companion on a long orbit dips into the Oort cloud at perihelion &#8594; comet shower &#8594; extinction pulse &#183; every ~26 Myr</div>
+
+ <div class="verdict" id="verdict"></div>
+
+ <h3>the book &#8212; Asimov&#8217;s mirror of the hypothesis</h3>
+ <div class="book" id="book"></div>
+
+ <h3>the tropes, pulled &#8212; the 1:1 build queue</h3>
+ <div class="queue" id="queue"></div>
+
+ <div class="bridge" id="bridge"></div>
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var Q=[["1", "THE SHADOW-TWIN", "Nemesis — the hidden companion star, the death-star", "the hunted death-star: 26-Myr extinction comb + Oort perturbation + WISE non-detection", "THIS ANCHOR"], ["2", "THE HIDDEN MIND", "Erythro — a planet-wide consciousness in 'simple' prokaryotes", "can a distributed microbial world sense/compute? Gaia, quorum-sensing, the hidden signal", "queued"], ["3", "THE RED WORLD", "Erythro — red-lit, tidally locked, one face to Megas forever", "red-dwarf spectrum + tidal locking + the habitability of red-light worlds", "queued"], ["4", "THE TRUTH-READER", "Marlene — who cannot be lied to; she sees the shadow in people", "the information a lie leaks: micro-tells, concealment cost, the witness who reads it", "queued"], ["5", "THE SEED-HOARDER", "Janus Pitt — hides the doom so his people alone survive", "one seed vs many: the survival math of hoarding vs dispersal, the one-basket risk", "queued"], ["6", "THE ONE WHO LEFT", "Crile Fisher — severed his family for a cause; the long return", "separation as a long-period orbit: the years & light-years, the closing gap", "queued"], ["7", "THE LEAP", "the secret exodus + superluminal flight, ending isolation", "near-c (hyper-assistance) vs true FTL: relativistic time vs the instantaneous leap", "queued"]];
+ document.getElementById("corr").innerHTML="the first seed answered to <b>Ra</b>, the giver of light. the second to <b>Eris</b>, the breaker. the third answers to <b>Nemesis</b> \u2014 the <b>shadow</b>: the Sun\u2019s hidden twin, a dim companion star that hunts in the dark. it is drawn from Asimov\u2019s 1989 novel <i>Nemesis</i> (where it is a red dwarf ~2 light-years off, hidden behind dust, bearing down on the Solar System) and from the <b>real</b> hypothesis of the same name \u2014 the \u2018death-star\u2019 blamed for the drumbeat of mass extinctions. the whole series is built on hidden things: a hidden star, a hidden mind, hidden truths, and the girl who cannot be lied to.";
+ document.getElementById("measure").innerHTML='<span>periodicity: <b>~26 Myr</b> (Raup &amp; Sepkoski)</span><span>hypothesized orbit: <b>~1.5 ly</b>, eccentric</span><span>candidate: <b>red / brown dwarf</b></span><span>found by WISE: <span class="big">nothing</span></span>';
+ document.getElementById("verdict").innerHTML="<b>\u2691 the verdict \u2014 a hunted ghost.</b> in 1984 two teams proposed a dim solar companion to explain a ~26-million-year beat in the extinction record: at each perihelion it would plunge through the Oort cloud, fling a <span class=\"k\">comet shower</span> inward, and rain impacts on Earth. it was named <b>Nemesis</b>, the Death Star. then the sky was swept: <b>WISE (2014)</b> ruled out a red-dwarf companion entirely \u2014 the shadow was hunted, and <b>not there</b>. and the twist: the extinction beat, re-measured, is <b>too regular</b> \u2014 a real bound companion\u2019s orbit would be jostled irregular by the galaxy and passing stars. so even if the clock ticks, <b>Nemesis is not the hand on it</b>. the doom may be periodic; the shadow-star is the wrong shadow.";
+ document.getElementById("book").innerHTML="Asimov wrote the hypothesis into fiction. in the novel, <b>Nemesis</b> is a red dwarf only ~2 light-years away \u2014 nearer than Alpha Centauri \u2014 <b>hidden behind a dust cloud</b> until an astronomer finds it, and it is drifting toward the Solar System to pass close in ~5,000 years and unhinge Earth\u2019s orbit. a colony, <b>Rotor</b>, secretly flees to it; there, a moon called <b>Erythro</b> (of the gas-giant <b>Megas</b>) is bathed in red light and holds a planet-wide mind. the book\u2019s Nemesis <b>approaches</b>; the real one <b>hides</b> \u2014 two faces of the same shadow.";
+ document.getElementById("queue").innerHTML=Q.map(function(q){var anchor=q[4]==="THIS ANCHOR";
+   return '<div class="q'+(anchor?' anchor':'')+'"><span class="qi">'+q[0]+'</span><span class="qn">'+q[1]+'</span><span class="qx">'+q[2]+'<span class="qmeas">measure: '+q[3]+'</span></span><span class="qs '+(anchor?'':'queued')+'">'+q[4]+'</span></div>';
+ }).join("");
+ document.getElementById("bridge").innerHTML="<b>the bridge from Series II.</b> the two seeds stitched at Pluto; the second and third stitch at <b>Sedna</b>. her detached orbit (perihelion 76 AU) has no accepted cause \u2014 and a <b>passing star or hidden companion</b> is one of the suspects. the cast-out of the scattered field is the doorway to the shadow. (the discoverer of Eris himself calls Sedna\u2019s orbit the thing that keeps the death-star idea alive.)";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the ~26-Myr extinction periodicity (Raup-Sepkoski; Melott-Bambach), the Oort-perturbation mechanism, the 1984 proposals, and the WISE non-detection: all real and sourced. the book\u2019s plot is stated faithfully. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the Nemesis hypothesis is <b>disfavored</b>, not disproven for the lowest-mass case; the periodicity itself is debated. the trope-mapping is an interpretive read. no book text is reproduced \u2014 only its ideas.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Nemesis is a make-believe (and maybe-real) <b>hidden twin</b> of our Sun \u2014 a dim red star that no one can see, that might swing by every so often and knock space-comets toward Earth. scientists went looking for it with a special sky-camera and <b>couldn\u2019t find it</b>. a famous sci-fi writer, Asimov, wrote a whole book about it. this series pulls all the ideas out of that book and builds one instrument for each \u2014 the star, the thinking planet, the girl who always knows when you\u2019re lying, and more.";
+ document.getElementById("foot").innerHTML="\u25c8 Series III anchor \u00b7 the shadow-twin \u00b7 death-star hunt LIT \u00b7 hypothesis disfavored (AMBER) \u00b7 7 tropes queued for 1:1 \u00b7 stitched to Series II at Sedna \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cv=document.getElementById("deathstar");var t=0;
+ var pulses=[]; // extinction pulses on the strip
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=430;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.40, orbitH=H*0.40;
+  for(var i=0;i<30;i++){cx.fillStyle="rgba(200,150,140,"+(0.03+0.04*Math.sin(t*0.3+i))+")";cx.fillRect((i*97)%W,(i*53)%(H*0.75),1,1);}
+  // Oort cloud shell
+  var oR=Math.min(W,H)*0.32;
+  for(var k=0;k<80;k++){var a=k/80*2*Math.PI+t*0.002;var rr=oR*(0.9+0.2*Math.sin(k*2.7));cx.fillStyle="rgba(90,106,128,"+(0.15+0.1*Math.sin(k+t*0.1))+")";cx.beginPath();cx.arc(CX+Math.cos(a)*rr,CY+Math.sin(a)*rr*0.62,0.8,0,7);cx.fill();}
+  cx.strokeStyle="rgba(90,106,128,.18)";cx.beginPath();cx.ellipse(CX,CY,oR,oR*0.62,0,0,7);cx.stroke();
+  cx.fillStyle="rgba(90,106,128,.5)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("the Oort cloud",CX,CY-oR*0.62-6);
+  // Sun
+  var sg=cx.createRadialGradient(CX,CY,1,CX,CY,9);sg.addColorStop(0,"#fff4d8");sg.addColorStop(.5,"#e8c860");sg.addColorStop(1,"rgba(232,200,96,0)");
+  cx.fillStyle=sg;cx.beginPath();cx.arc(CX,CY,9,0,7);cx.fill();
+  cx.fillStyle="rgba(232,200,96,.7)";cx.font="8px "+mono();cx.fillText("\u2609 Sun",CX,CY+16);
+  // Nemesis eccentric orbit
+  var a=oR*1.15,e=0.7,arg=-0.2;
+  function pt(th){var r=a*(1-e*e)/(1+e*Math.cos(th));return [CX+r*Math.cos(th+arg), CY+r*Math.sin(th+arg)*0.62];}
+  cx.strokeStyle="rgba(192,64,56,.3)";cx.lineWidth=1;cx.beginPath();
+  for(var kk=0;kk<=140;kk++){var th=kk/140*2*Math.PI;var p=pt(th);kk?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);}cx.stroke();
+  // Nemesis body on orbit (Kepler-ish)
+  var M=t*0.25;var E=M;for(var it=0;it<6;it++){E=E-(E-e*Math.sin(E)-M)/(1-e*Math.cos(E));}
+  var th=2*Math.atan2(Math.sqrt(1+e)*Math.sin(E/2),Math.sqrt(1-e)*Math.cos(E/2));
+  var np=pt(th);
+  // perihelion detection -> comet shower + pulse
+  var rNow=Math.hypot(np[0]-CX,(np[1]-CY)/0.62);
+  var atPeri = rNow < oR*0.55;
+  var ng=cx.createRadialGradient(np[0],np[1],1,np[0],np[1],7);ng.addColorStop(0,"#f08078");ng.addColorStop(.6,"#c04038");ng.addColorStop(1,"rgba(192,64,56,0)");
+  cx.fillStyle=ng;cx.beginPath();cx.arc(np[0],np[1],7,0,7);cx.fill();
+  cx.fillStyle="rgba(224,96,90,.9)";cx.font="8px "+mono();cx.fillText("Nemesis?",np[0],np[1]-11);
+  // comet shower when near perihelion
+  if(atPeri){
+   for(var c=0;c<8;c++){var frac=(t*0.5+c*0.13)%1;var x=np[0]+(CX-np[0])*frac,y=np[1]+(CY-np[1])*frac;cx.strokeStyle="rgba(200,216,224,"+((1-frac)*0.6)+")";cx.lineWidth=0.8;cx.beginPath();cx.moveTo(x,y);cx.lineTo(x+(CX-np[0])*0.04,y+(CY-np[1])*0.04);cx.stroke();}
+   if(pulses.length===0 || pulses[pulses.length-1] < t-6) pulses.push(t);
+  }
+  // extinction periodicity strip
+  var SY=H-46, SX0=40, SX1=W-24;
+  cx.strokeStyle="rgba(160,140,140,.3)";cx.beginPath();cx.moveTo(SX0,SY);cx.lineTo(SX1,SY);cx.stroke();
+  cx.fillStyle="rgba(160,140,140,.6)";cx.font="8px "+mono();cx.textAlign="left";cx.fillText("extinction record \u2014 the ~26-Myr beat",SX0,SY-22);
+  cx.textAlign="right";cx.fillText("time \u2192",SX1,SY+16);
+  // 26-Myr comb (ideal) + measured pulses
+  for(var g=0;g<10;g++){var x=SX0+(g+0.5)/10*(SX1-SX0);
+   cx.strokeStyle="rgba(192,64,56,.25)";cx.setLineDash&&cx.setLineDash([2,3]);cx.beginPath();cx.moveTo(x,SY-14);cx.lineTo(x,SY);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+   // extinction pulse bar
+   var h=6+ (g%1?0:0) + (( [7,3,5,9,4,8,6,5,7,4][g])); // varied heights
+   cx.fillStyle=g===3?"rgba(224,96,90,.9)":"rgba(192,64,56,.6)";
+   cx.fillRect(x-2,SY-h,4,h);
+  }
+  cx.fillStyle="rgba(160,140,140,.5)";cx.font="7px "+mono();cx.textAlign="center";
+  cx.fillText("the beat is real; the hand behind it is not the star \u2014 WISE swept the sky and found no twin",W/2,H-8);
+  t+=0.02;
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="nemesis fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

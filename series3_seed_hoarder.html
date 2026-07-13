@@ -1,0 +1,140 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE SEED-HOARDER — Janus Pitt</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--hoard:#d8a850;--disperse:#7ac0a0;--dead:#a03028;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#170a08,#080405 72%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(216,168,80,.05);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,#3a0f0a,var(--hoard),var(--disperse),#3a0f0a);border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .tnum{text-align:center;font-size:10px;letter-spacing:.3em;color:var(--faint);margin-top:8px}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:31px;font-weight:700;color:var(--hoard);margin:3px 0 0;letter-spacing:.1em;text-shadow:0 0 34px rgba(216,168,80,.3)}
+ .subname{text-align:center;font-size:12px;color:var(--disperse);letter-spacing:.24em;margin-top:3px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--hoard);font-family:var(--mono)}.corr .d{color:var(--disperse)}
+ canvas{display:block;width:100%}#surv{height:320px}#strat{height:230px}
+ .ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:center;margin:10px 0;font-size:11px;color:var(--dim)}
+ input[type=range]{width:180px;accent-color:var(--disperse)}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--disperse)}.measure .h{color:var(--hoard)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .invert{background:#160a09;border:1px solid #3a1c18;border-left:3px solid var(--dead);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .invert b{color:var(--dead)}.invert .h{color:var(--hoard)}
+ .steel{background:#0e0c14;border:1px solid #262038;border-left:3px solid var(--dim);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .steel b{color:var(--ink)}.steel .v{color:var(--disperse)}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--hoard)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--disperse);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow</span><span>trope 5 of 7 &#183; after Asimov</span></div>
+ <div class="tnum">&#9679; T R O P E &#160; V &#160;&#8212;&#160; pulled from <i>Nemesis</i></div>
+ <div class="sii">T H E &#160; S E E D - H O A R D E R</div>
+ <h1>JANUS PITT</h1>
+ <div class="subname">&#9880; the one who hides the doom to be the sole heir</div>
+ <div class="epithet">he called it saving humanity; the arithmetic calls it the frailest bet of all</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement &#8212; one basket vs many</h3>
+ <div class="ctrl">
+   <span>per-seed survival s <b id="slab" style="color:var(--disperse)">0.50</b><br><input type="range" id="s" min="5" max="90" value="50"></span>
+   <span>number of seeds N <b id="nlab" style="color:var(--disperse)">1</b><br><input type="range" id="n" min="1" max="20" value="1"></span>
+ </div>
+ <canvas id="surv"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">P(at least one survives) = 1 &#8722; (1&#8722;s)^N &#183; drag N up and watch a single seed become a sure thing</div>
+
+ <h3>the inversion &#8212; the hubris made numeric</h3>
+ <canvas id="strat"></canvas>
+ <div class="invert" id="invert"></div>
+
+ <h3>the steelman &#8212; and the verdict</h3>
+ <div class="steel" id="steel"></div>
+
+ <h3>the book &#8212; the sole heir</h3>
+ <div class="book" id="book"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var s=0.5,N=1;
+ function surv(ss,nn){return 1-Math.pow(1-ss,nn);}
+ document.getElementById("corr").innerHTML="<b>Janus Pitt</b> learns that Nemesis will pass close enough to unhinge Earth \u2014 and tells no one. he wants his colony, Rotor, to be humanity\u2019s <b>one seed</b>: the sole heir, clean, controlled, hidden. he would let Earth face its doom unwarned, and blast any ship that came looking. he believes he is <b>saving</b> humanity by hoarding it. the real measurement is a probability so simple it fits on a line \u2014 and it says the opposite: survival wants <span class=\"d\">many baskets</span>, and he is holding exactly one.";
+ document.getElementById("invert").innerHTML="<b>the hoarder runs the backup argument backwards.</b> the real case for spreading out is: <b>more baskets</b> \u2014 don\u2019t keep humanity on one world. Pitt keeps it on one <span class=\"h\">colony</span>, and worse: by hiding the warning he doesn\u2019t <i>add</i> a basket, he <b>subtracts</b> one \u2014 an un-warned Earth and all its Settlements are baskets left to shatter. warning them would have <i>raised</i> N as Earth dispersed too. his secrecy <b>lowers</b> N. the man who thinks he is the last hope is running the single frailest survival strategy there is.";
+ document.getElementById("steel").innerHTML="<b>the steelman, fairly.</b> Pitt\u2019s case: a single isolated seed avoids Earth\u2019s conflicts and contamination, and can be <b>controlled and optimised</b> in a way a scattered humanity cannot. if you truly believe the rest is doomed and corrupt, one clean seed beats nothing. <b>the verdict:</b> that argument optimises <b>control</b> \u2014 and control trades directly against <span class=\"v\">robustness</span>. N=1 is maximum control and minimum survival; N=many is the reverse. Pitt chose the control axis and <b>named it the survival axis</b>. that renaming is the whole of the hoarder\u2019s hubris.";
+ document.getElementById("book").innerHTML="in the novel, Pitt keeps Nemesis\u2019s threat from Earth so Rotor can be the <b>sole seed</b> of a new, isolated civilisation \u2014 installing detectors to catch any incoming ship, prepared to destroy it. then Earth cracks true superluminal flight on its own, finds Rotor, and the hoard is broken open; his dream dies quietly. the universe did not need a single heir. it never does.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 P(survive)=1\u2212(1\u2212s)^N is exact probability; the founder-effect bottleneck (a lone small colony has low diversity &amp; resilience) is real biology; bet-hedging &amp; the backup argument are real. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the specific s and N values are illustrative; real seeds aren\u2019t perfectly independent; Pitt\u2019s motives are the book\u2019s. the math is a lens on the choice, not a forecast.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> imagine you have one special seed and the world might end. do you plant it in ONE pot and hide it \u2014 or plant lots of seeds in lots of places? if you plant many, it\u2019s almost sure ONE grows. Janus Pitt hid ONE pot and wouldn\u2019t tell anyone else to plant theirs \u2014 he even wanted to be the only one. drag the slider: one seed is a coin-flip; ten seeds is almost certain. more baskets, safer future.";
+ document.getElementById("foot").innerHTML="\u25c8 trope 5/7 \u00b7 survival math LIT \u00b7 s,N illustrative (AMBER) \u00b7 control traded for robustness, and called survival \u00b7 Series III";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ // ---- SURVIVAL CURVE ----
+ var cv=document.getElementById("surv");
+ function drawSurv(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=320;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=46,X1=W-18,Y0=H-36,Y1=20,NMAX=20;
+  function px(nn){return X0+(nn-1)/(NMAX-1)*(X1-X0);}function py(v){return Y0-v*(Y0-Y1);}
+  cx.strokeStyle="rgba(160,140,138,.3)";cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(160,140,138,.6)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("number of independent seeds  N \u2192",(X0+X1)/2,H-6);
+  cx.textAlign="right";[0,0.5,1].forEach(function(v){cx.fillText((v*100)+"%",X0-4,py(v)+3);});
+  // curve
+  cx.strokeStyle="rgba(122,192,160,.9)";cx.lineWidth=2.4;cx.beginPath();
+  for(var nn=1;nn<=NMAX;nn++){var x=px(nn),y=py(surv(s,nn));nn===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();
+  // fill under
+  cx.lineTo(px(NMAX),Y0);cx.lineTo(px(1),Y0);cx.closePath();cx.fillStyle="rgba(122,192,160,.06)";cx.fill();
+  // Pitt's single seed at N=1
+  cx.fillStyle="rgba(216,168,80,1)";cx.beginPath();cx.arc(px(1),py(surv(s,1)),6,0,7);cx.fill();
+  cx.fillStyle="rgba(216,168,80,.95)";cx.font="9px "+mono();cx.textAlign="left";cx.fillText("\u2190 Pitt: one hidden seed = "+(surv(s,1)*100).toFixed(0)+"%",px(1)+8,py(surv(s,1)));
+  // current N marker
+  cx.strokeStyle="rgba(232,220,218,.3)";cx.setLineDash&&cx.setLineDash([2,2]);cx.beginPath();cx.moveTo(px(N),Y1);cx.lineTo(px(N),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(232,220,218,1)";cx.beginPath();cx.arc(px(N),py(surv(s,N)),5,0,7);cx.fill();
+  cx.textAlign="center";cx.fillStyle="rgba(232,220,218,.9)";cx.fillText("N="+N+" \u2192 "+(surv(s,N)*100).toFixed(0)+"%",px(N),py(surv(s,N))-10);
+  cx.fillStyle="rgba(122,192,160,.6)";cx.font="8px "+mono();cx.fillText("robustness climbs fast \u2014 each added basket buys survival the single seed can never have",(X0+X1)/2,Y1-6);
+ }
+ // ---- STRATEGY (control vs robustness) ----
+ var st=document.getElementById("strat");
+ function drawStrat(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=st.clientWidth||700,H=230;st.width=W*dpr;st.height=H*dpr;
+  var cx=st.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  // two seed-fields: hoard (1 seed, gold, walled) vs disperse (many, teal)
+  var LX=W*0.26, RX=W*0.72, CY=H*0.42;
+  cx.fillStyle="rgba(160,140,138,.7)";cx.font="10px "+mono();cx.textAlign="center";
+  cx.fillText("HOARD \u2014 one seed, hidden",LX,26);cx.fillText("DISPERSE \u2014 many seeds",RX,26);
+  // hoard: single gold seed in a wall
+  cx.strokeStyle="rgba(216,168,80,.4)";cx.lineWidth=1;cx.strokeRect(LX-30,CY-30,60,60);
+  var g=cx.createRadialGradient(LX,CY,1,LX,CY,10);g.addColorStop(0,"#f0d080");g.addColorStop(1,"rgba(216,168,80,0)");
+  cx.fillStyle=g;cx.beginPath();cx.arc(LX,CY,10,0,7);cx.fill();
+  cx.fillStyle="#f0d080";cx.beginPath();cx.arc(LX,CY,4,0,7);cx.fill();
+  cx.fillStyle="rgba(216,168,80,.85)";cx.font="9px "+mono();cx.fillText("control: MAX",LX,CY+50);cx.fillText("survival: "+(surv(s,1)*100).toFixed(0)+"%",LX,CY+62);
+  // disperse: many teal seeds
+  for(var i=0;i<12;i++){var a=i/12*6.28,rr=18+ (i%3)*9;var x=RX+Math.cos(a)*rr,y=CY+Math.sin(a)*rr*0.8;
+   cx.fillStyle="rgba(122,192,160,"+(0.5+0.4*(i%2))+")";cx.beginPath();cx.arc(x,y,3,0,7);cx.fill();}
+  cx.fillStyle="rgba(122,192,160,.85)";cx.font="9px "+mono();cx.fillText("control: low",RX,CY+50);cx.fillText("survival: "+(surv(s,12)*100).toFixed(0)+"%",RX,CY+62);
+  // arrow between
+  cx.fillStyle="rgba(160,140,138,.5)";cx.font="8px "+mono();
+  cx.fillText("the hoarder optimises the left axis and calls it the right one",W/2,H-10);
+ }
+ function update(){
+  document.getElementById("slab").textContent=s.toFixed(2);
+  document.getElementById("nlab").textContent=N;
+  document.getElementById("measure").innerHTML='<span class="h">Pitt (N=1): <b style="color:var(--hoard)">'+(surv(s,1)*100).toFixed(0)+'%</b></span><span>at N='+N+': <b>'+(surv(s,N)*100).toFixed(0)+'%</b></span><span>disperse (N=10): <b>'+(surv(s,10)*100).toFixed(0)+'%</b></span>';
+  try{drawSurv();drawStrat();}catch(e){var el=document.getElementById("err");el.style.display="block";el.textContent="hoarder fault: "+(e&&e.message);}
+ }
+ document.getElementById("s").addEventListener("input",function(){s=this.value/100;update();});
+ document.getElementById("n").addEventListener("input",function(){N=+this.value;update();});
+ update();
+})();
+</script></body></html>

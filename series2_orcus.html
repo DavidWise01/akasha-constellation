@@ -1,0 +1,190 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · ORCUS — the anti-Pluto</title>
+<style>
+  :root{--bg:#06070c;--ink:#e2e4ea;--dim:#8a90a2;--faint:#454b5c;--orcus:#9aa6b8;--orcus2:#b8c4d6;--pluto:#c89858;--nep:#5a7ab0;--red:#b0605a;--lit:#7aa0b0;--amb:#c89030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#0c0e18,#06070c 70%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #1a1e30;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#0a0c14,#06070c);padding:0 22px 26px;box-shadow:0 0 70px rgba(154,166,184,.05)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--pluto),var(--orcus),var(--nep),var(--orcus))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--orcus2);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(184,196,214,.3)}
+  .subname{text-align:center;font-size:12px;color:var(--orcus);letter-spacing:.3em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+  .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#0a0c14;border:1px solid #16192a;border-radius:8px;font-family:var(--serif)}
+  .corr b{color:var(--orcus2);font-family:var(--mono)}.corr .pl{color:var(--pluto)}
+  canvas{display:block;width:100%}#reso{height:440px}#mirror{height:250px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .legend{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:10px;color:var(--dim);margin:8px 0}
+  .legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:50%}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0a0c14;border:1px solid #16192a;border-radius:8px}
+  .measure b{color:var(--orcus2)}.measure .big{color:var(--pluto);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--orcus);margin:22px 0 8px;border-bottom:1px solid #141828;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .protect{background:#0a1018;border:1px solid #1a2c44;border-left:3px solid var(--nep);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .protect b{color:var(--nep)}
+  .comp{background:#0a0c14;border:1px solid #1a1e30;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:var(--orcus2)}
+  .comp .cr{font-size:11px;font-style:italic;color:var(--orcus);margin-bottom:4px}
+  .comp .m b{color:var(--orcus2)}
+  .mythmir{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+  .mm{flex:1;min-width:220px;border-radius:8px;padding:12px 15px}
+  .mm.p{background:#14100a;border:1px solid #3a2e18;border-left:3px solid var(--pluto)}
+  .mm.o{background:#0c0e16;border:1px solid #22283a;border-left:3px solid var(--orcus)}
+  .mm .mt{font-size:13px;font-weight:700}.mm.p .mt{color:var(--pluto)}.mm.o .mt{color:var(--orcus2)}
+  .mm .mx{font-size:11.5px;line-height:1.6;color:var(--dim);margin-top:3px}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#0a0c14;border:1px dashed #1a1e30;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#9aa4b8;margin:10px 4px;padding:10px 14px;background:#0a0c14;border:1px solid #16192a;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--orcus);font-style:normal;font-family:var(--mono)}
+  .thread{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8545; &#183; Orcus</span><span>the scattered field &#183; the mirror of the ring-closer</span></div>
+    <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; A N T I - P L U T O</div>
+    <h1>ORCUS</h1>
+    <div class="subname">&#9868; the underworld&#8217;s other face &#8212; Pluto&#8217;s mirror</div>
+    <div class="epithet">same track, opposite phase &#8212; a parallel death-god for a mirror-Pluto</div>
+    <div class="corr" id="corr"></div>
+
+    <h3>the anti-phase &#8212; the measurement: same resonance, opposite end</h3>
+    <canvas id="reso"></canvas>
+    <div class="legend">
+      <span><i class="dot" style="background:#5a7ab0"></i>Neptune</span>
+      <span><i class="dot" style="background:#c89858"></i>Pluto</span>
+      <span><i class="dot" style="background:#b8c4d6"></i>Orcus</span>
+    </div>
+    <div class="measure" id="measure1"></div>
+    <div class="hint">both locked 2:3 to Neptune &#183; watch them stay on opposite ends of near-identical orbits</div>
+
+    <h3>the mirror &#8212; near-twin ellipses, pointed opposite ways</h3>
+    <canvas id="mirror"></canvas>
+    <div class="hint">Orcus vs Pluto orbital elements &#183; same magnitudes, opposite orientation</div>
+
+    <div class="protect" id="protect"></div>
+
+    <h3>the myth mirror &#8212; one underworld, two faces</h3>
+    <div class="mythmir" id="mythmir"></div>
+
+    <h3>the companion &#8212; Vanth, the anti-Charon</h3>
+    <div class="comp" id="comp"></div>
+
+    <div class="tier" id="tier"></div>
+    <div class="eli5" id="eli5"></div>
+    <div class="thread" id="thread"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var D={"o": {"a_o": 39.4, "e_o": 0.227, "i_o": 20.6, "q_o": 30.27, "Q_o": 48.07, "P_o": 247.9, "a_p": 39.48, "e_p": 0.244, "i_p": 17.16, "q_p": 29.66, "Q_p": 49.31, "P_p": 248.0, "P_nep": 164.8}}, O=D.o;
+  document.getElementById("corr").innerHTML="Series I closed at <span class=\"pl\">Pluto</span> \u2014 Hades, the ring-closer, lord of the dead. Orcus is his reflection in the second seed: the <b>same</b> resonant orbit (2 loops for every 3 of Neptune\u2019s), the <b>same</b> size of ellipse and tilt \u2014 but locked forever in the <b>opposite phase</b>, and named for a <b>parallel</b> underworld god, with a Charon-like moon of its own. Brown built the anti-Pluto on purpose: an alternate lord of the dead for a world that is Pluto\u2019s mirror in every line. it even carries an inverted-Pluto symbol.";
+
+  document.getElementById("measure1").innerHTML=
+    '<span>resonance: <b>2:3 with Neptune</b> (2 orbits per 3 of Neptune\u2019s)</span>'+
+    '<span>Orcus period: <b>'+O.P_o+' yr</b> \u00b7 Pluto: <b>'+O.P_p+' yr</b></span>'+
+    '<span>phase: <span class="big">\u2248180\u00b0 opposite</span> \u2014 aphelion when Pluto\u2019s at perihelion</span>';
+
+  document.getElementById("protect").innerHTML="<b>the resonance is a shield, not a threat.</b> Orcus\u2019s perihelion (30.3 AU) reaches inside Neptune\u2019s orbit \u2014 it <i>crosses</i> Neptune\u2019s path. yet the 2:3 lock guarantees the two are <b>never near each other</b>: whenever Orcus dips to that crossing, Neptune is always more than 60\u00b0 away, and over 14,000 years Orcus never comes within 18 AU of it. Pluto is protected the same way, in the mirror phase. two underworld twins, both crossing the sea-god\u2019s road, neither ever caught \u2014 held apart by the very resonance that binds them.";
+
+  document.getElementById("mythmir").innerHTML=
+    '<div class="mm p"><div class="mt">\u2647 PLUTO \u2014 the crown</div><div class="mx">Greek Hades: the <b>ruler</b> of the dead, \u2018the rich one\u2019, lord of the wealth beneath the earth. the underworld\u2019s throne.</div></div>'+
+    '<div class="mm o"><div class="mt">\u2668 ORCUS \u2014 the scourge</div><div class="mx">Etruscan/Roman: the <b>punisher</b> of oath-breakers and the condemned \u2014 the underworld\u2019s harsh, disciplinary face. later, an alternate name for Pluto himself.</div></div>';
+
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">\u2640 Vanth \u2014 the anti-Charon</div><div class="cr">the Etruscan winged death-goddess who guides souls to the underworld</div>'+
+    '<div class="m">Orcus\u2019s large moon (~440\u2013475 km beside Orcus\u2019s ~910 km) \u2014 big relative to its parent, exactly as <b>Charon</b> is to Pluto. and the mirror is exact even in myth: in Etruscan tomb-paintings <b>Vanth stands alongside Charun</b> \u2014 the very figure Greek myth calls Charon. so Orcus\u2192Vanth reflects Pluto\u2192Charon down to the source: two death-guides who already keep company in the old art. Vanth is tidally locked \u2014 \u2018her face turned always toward Orcus\u2019, the guide who never looks away.</div>';
+
+  document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the 2:3 resonance, the near-identical orbital elements, the locked anti-phase, the resonance protection from Neptune, and Vanth\u2019s large size: all measured and settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 Orcus\u2019s formal dwarf-planet status is not yet IAU-designated (widely expected); the hints of crystalline-ice cryovolcanism and surface ammonia are suggestive but not confirmed. the mirror is real; a couple of the surface details are still open.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Orcus is like Pluto\u2019s mirror twin. they go around the Sun on almost exactly the same racetrack, at the same speed \u2014 but always on <b>opposite sides</b>, like two kids on a merry-go-round who are always across from each other. both of their names are gods of the land of the dead. and both have one big moon. so scientists nicknamed Orcus the \u2018anti-Pluto\u2019 \u2014 the same, but flipped.";
+  document.getElementById("thread").innerHTML="\u25c8 on the woven thread, <b>Vanth</b> already hangs as a lawlessness-woman \u2014 the death-psychopomp strand. and Orcus mirrors <b>Pluto</b>, the node that bridges the two seeds. so this card ties the scattered field back to Series I twice: through Vanth\u2019s strand, and through Pluto\u2019s reflection.";
+  document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 resonance &amp; anti-phase LIT \u00b7 dwarf-status &amp; cryovolcanism AMBER \u00b7 the mirror measured, not asserted \u00b7 Series II \u00b7 witness on";
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- THE ANTI-PHASE RESONANCE (top-down animated) ----------
+  var cv=document.getElementById("reso");var t=0;
+  function ellipsePt(a,e,argPeri,theta){
+    var r=a*(1-e*e)/(1+e*Math.cos(theta));
+    var x=r*Math.cos(theta+argPeri), y=r*Math.sin(theta+argPeri);
+    return [x,y,r];
+  }
+  function draw1(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,Hh=440;cv.width=W*dpr;cv.height=Hh*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var CX=W*0.5,CY=Hh*0.5, sc=Math.min(W,Hh)*0.44/50; // AU->px (max ~50 AU)
+    for(var i=0;i<40;i++){cx.fillStyle="rgba(170,182,210,"+(0.04+0.07*Math.sin(t*0.4+i))+")";cx.fillRect((i*97)%W,(i*61)%Hh,1,1);}
+    // Sun
+    var g=cx.createRadialGradient(CX,CY,1,CX,CY,11);g.addColorStop(0,"#fff6d8");g.addColorStop(.5,"#e0c860");g.addColorStop(1,"rgba(224,200,96,0)");
+    cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,11,0,7);cx.fill();
+    // Neptune orbit (circle ~30 AU)
+    cx.strokeStyle="rgba(90,122,176,.35)";cx.lineWidth=1;cx.beginPath();cx.arc(CX,CY,30*sc,0,7);cx.stroke();
+    // Pluto & Orcus ellipses (arg of perihelion opposite: Pluto 0, Orcus ~PI to show anti-alignment)
+    function drawOrbit(a,e,arg,col){cx.strokeStyle=col;cx.lineWidth=1.3;cx.beginPath();
+      for(var k=0;k<=160;k++){var th=k/160*2*Math.PI;var p=ellipsePt(a,e,arg,th);k?cx.lineTo(CX+p[0]*sc,CY+p[1]*sc):cx.moveTo(CX+p[0]*sc,CY+p[1]*sc);}cx.stroke();}
+    var argP=0.4, argO=argP+Math.PI*0.85; // ~120-180 deg apart
+    drawOrbit(O.a_p,O.e_p,argP,"rgba(200,152,88,.5)");
+    drawOrbit(O.a_o,O.e_o,argO,"rgba(184,196,214,.55)");
+    // motion: same period for Pluto & Orcus; Neptune 3/2 faster in resonance
+    // mean anomalies (start Pluto near perihelion, Orcus near aphelion => anti-phase)
+    var Mp=(t*0.25)%(2*Math.PI);
+    var Mo=(t*0.25 + Math.PI)%(2*Math.PI); // half-cycle offset => opposite phase
+    var Mn=(t*0.25*1.5)%(2*Math.PI); // Neptune 1.5x faster
+    function solveKep(M,e){var E=M;for(var i=0;i<6;i++){E=E-(E-e*Math.sin(E)-M)/(1-e*Math.cos(E));}return 2*Math.atan2(Math.sqrt(1+e)*Math.sin(E/2),Math.sqrt(1-e)*Math.cos(E/2));}
+    var thp=solveKep(Mp,O.e_p), tho=solveKep(Mo,O.e_o);
+    var pp=ellipsePt(O.a_p,O.e_p,argP,thp), po=ellipsePt(O.a_o,O.e_o,argO,tho);
+    // Neptune position
+    var nx=CX+30*sc*Math.cos(Mn), ny=CY+30*sc*Math.sin(Mn);
+    // draw bodies
+    cx.fillStyle="#5a7ab0";cx.beginPath();cx.arc(nx,ny,4,0,7);cx.fill();
+    cx.fillStyle="#5a7ab0";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("Neptune",nx,ny-8);
+    var px=CX+pp[0]*sc, py=CY+pp[1]*sc, ox=CX+po[0]*sc, oy=CY+po[1]*sc;
+    // line connecting Pluto-Sun-Orcus to show anti-alignment
+    cx.strokeStyle="rgba(200,200,210,.12)";cx.beginPath();cx.moveTo(px,py);cx.lineTo(ox,oy);cx.stroke();
+    cx.fillStyle="#c89858";cx.beginPath();cx.arc(px,py,5,0,7);cx.fill();
+    cx.fillStyle="#c89858";cx.fillText("Pluto",px,py-8);
+    cx.fillStyle="#b8c4d6";cx.beginPath();cx.arc(ox,oy,5,0,7);cx.fill();
+    cx.fillStyle="#b8c4d6";cx.fillText("Orcus",ox,oy-8);
+    // measure: Orcus-Neptune angular separation (proves protection)
+    var angO=Math.atan2(oy-CY,ox-CX), angN=Math.atan2(ny-CY,nx-CX);
+    var sep=Math.abs(((angO-angN)*180/Math.PI+540)%360-180);
+    var rp=Math.hypot(pp[0],pp[1]), ro=Math.hypot(po[0],po[1]);
+    cx.fillStyle="rgba(226,228,234,.85)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("Pluto @ "+rp.toFixed(0)+" AU   \u00b7   Orcus @ "+ro.toFixed(0)+" AU   \u2014   opposite ends of the same track",CX,Hh-24);
+    cx.fillStyle= sep>60?"rgba(122,192,176,.85)":"rgba(200,150,90,.85)";
+    cx.fillText("Orcus\u2013Neptune separation: "+sep.toFixed(0)+"\u00b0  "+(sep>60?"(safe \u2014 resonance holds them apart)":"(closing... but resonance will swing it back)"),CX,Hh-10);
+  }
+
+  // ---------- THE MIRROR (element bars, Orcus vs Pluto) ----------
+  var cvm=document.getElementById("mirror");
+  function draw2(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cvm.clientWidth||690,Hh=250;cvm.width=W*dpr;cvm.height=Hh*dpr;
+    var cx=cvm.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var rows=[["period (yr)",O.P_o,O.P_p,260],["perihelion (AU)",O.q_o,O.q_p,52],["aphelion (AU)",O.Q_o,O.Q_p,52],["eccentricity",O.e_o,O.e_p,0.3],["inclination (\u00b0)",O.i_o,O.i_p,25]];
+    var midX=W*0.5, y0=30, dy=(Hh-50)/rows.length, barMax=W*0.32;
+    cx.fillStyle="rgba(200,152,88,.9)";cx.font="9px "+mono();cx.textAlign="right";cx.fillText("\u25c0 ORCUS",midX-8,16);
+    cx.fillStyle="rgba(200,152,88,.9)";cx.textAlign="left";cx.fillText("PLUTO \u25b6",midX+8,16);
+    // recolor: orcus left (slate), pluto right (gold)
+    rows.forEach(function(r,i){
+      var y=y0+i*dy+dy*0.5;
+      var wo=r[1]/r[3]*barMax, wp=r[2]/r[3]*barMax;
+      cx.fillStyle="rgba(184,196,214,.7)";cx.fillRect(midX-4-wo,y-6,wo,12);
+      cx.fillStyle="rgba(200,152,88,.7)";cx.fillRect(midX+4,y-6,wp,12);
+      cx.fillStyle="rgba(138,144,162,.9)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText(r[0],midX,y-10);
+      cx.fillStyle="rgba(184,196,214,.9)";cx.textAlign="right";cx.fillText(r[1],midX-6-wo-2,y+3);
+      cx.fillStyle="rgba(200,152,88,.9)";cx.textAlign="left";cx.fillText(r[2],midX+6+wp+2,y+3);
+    });
+    cx.fillStyle="rgba(226,228,234,.8)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("the bars nearly match \u2014 twin ellipses; only the ORIENTATION is flipped",midX,Hh-8);
+  }
+
+  function frame(){try{draw1();draw2();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="orcus fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

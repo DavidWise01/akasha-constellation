@@ -1,0 +1,238 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · ERIS — the breaker</title>
+<style>
+  :root{--bg:#05060d;--ink:#e8e6f0;--dim:#9890b0;--faint:#544c6a;--eris:#d8d0e8;--eris2:#8a7ab0;--gold:#e0c860;--dark:#3a3450;--ice:#b8e0f0;--rock:#a08870;--lit:#5ad0a0;--amb:#e0a020;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#0e0c20,#05060d 66%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #221c3a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#0a0818,#05060d);padding:0 22px 26px;box-shadow:0 0 70px rgba(138,122,176,.09)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--dark),var(--eris2),var(--eris),var(--gold))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--eris2);margin-top:8px}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--eris);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 34px rgba(184,176,216,.4)}
+  .subname{text-align:center;font-size:12px;color:var(--eris2);letter-spacing:.34em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  .frameblock{background:#0c0a1e;border:1px solid #2a2248;border-left:3px solid var(--eris2);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .frameblock .ft{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--eris);font-weight:700;margin-bottom:6px}
+  .frameblock b{color:var(--eris)}.frameblock .ra{color:var(--gold);font-weight:700}
+  canvas{display:block;width:100%}#misfit{height:360px}#tilt3d{height:300px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0a0818;border:1px solid #1e1836;border-radius:8px}
+  .measure b{color:var(--eris)}.measure .big{color:var(--gold);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--eris2);margin:22px 0 8px;border-bottom:1px solid #1c1636;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .tether{background:#12100a;border:1px solid #3a3018;border-left:3px solid var(--gold);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .tether b{color:var(--gold)}
+  .comp{background:#0a0818;border:1px solid #2a2244;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:var(--eris);letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:var(--eris2);margin-bottom:6px}
+  .comp .m b{color:var(--eris)}
+  .chan{background:#081418;border:1px solid #1a3840;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .chan .metal{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+  .chan .mg{font-size:22px;color:var(--ice)}.chan .mn{font-size:14px;font-weight:700;color:var(--ice);letter-spacing:.1em}
+  .chan .grd{font-size:10px;color:#6a9aa8}
+  .chan .warn{font-size:10.5px;color:#8ac0d0;background:#0a1a1e;border:1px dashed #2a5058;border-radius:5px;padding:5px 9px;margin:5px 0}
+  .chan .m b{color:var(--ice)}
+  .sig{background:#100a1a;border:1px solid #2e2044;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .sig .st{font-size:11px;letter-spacing:.12em;color:var(--eris);font-weight:700}
+  .sig .m b{color:var(--eris)}
+  .filter{font-size:10.5px;color:#7a7290;background:#0a0816;border:1px dashed #2a2244;border-radius:6px;padding:8px 12px;margin:10px 0;line-height:1.6}
+  .held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .ainote{font-size:10px;color:#5a5270;text-align:center;font-style:italic;margin-top:8px;line-height:1.6}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8545; &#183; Eris</span><span>the scattered field &#183; card 1 &#183; the anchor</span></div>
+    <div class="sii">S E R I E S &#160; I I &#8195; &#8212; &#8195; T H E &#160; S C A T T E R E D &#160; F I E L D</div>
+    <h1>ERIS</h1>
+    <div class="subname" id="subname"></div>
+    <div class="epithet" id="epithet"></div>
+    <div class="oneline" id="oneline"></div>
+
+    <div class="frameblock" id="frame"></div>
+
+    <h3>the orbit-misfit &#8212; a dwarf planet does not orbit like a planet</h3>
+    <canvas id="misfit"></canvas>
+    <div class="measure" id="measure"></div>
+    <div class="hint">Eris (violet) against the planet envelope (gold) &#183; measured live from real elements</div>
+
+    <h3>the tilt, in three dimensions &#8212; 44&#176; above the planets&#8217; plane</h3>
+    <canvas id="tilt3d"></canvas>
+    <div class="hint">rotating &#183; the flat gold disc = the ecliptic (where planets keep) &#183; violet = Eris&#8217;s tilted ring</div>
+
+    <div class="tether" id="tether"></div>
+
+    <h3>why she is the hub</h3>
+    <div class="m" id="whyhub"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the dark daughter</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the channel &#8212; ice &amp; reflectance (Series II&#8217;s warp)</h3>
+    <div class="chan" id="chan"></div>
+
+    <h3>the significance &#8212; the tenth that unmade the ninth</h3>
+    <div class="sig" id="sig"></div>
+
+    <div class="filter" id="filter"></div>
+    <div class="held" id="held"></div>
+    <div class="ainote" id="ainote"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var D={"series": "II", "body": "ERIS", "subname": "the breaker", "glyph": "⯰", "epithet": "the Discord that Broke the Count — hub of the scattered field", "orbit": {"e": 0.4407, "i": 44.04, "q": 37.91, "Q": 97.65, "a": 67.78, "P": 558.0, "max_pe": 0.206, "max_pi": 7.0, "e_vs_merc": 2.1, "e_vs_earth": 26, "i_vs_merc": 6.3, "planet_e": {"Mercury": 0.206, "Venus": 0.007, "Earth": 0.017, "Mars": 0.093, "Jupiter": 0.048, "Saturn": 0.056, "Uranus": 0.047, "Neptune": 0.01}, "planet_i": {"Mercury": 7.0, "Venus": 3.4, "Earth": 0.0, "Mars": 1.85, "Jupiter": 1.3, "Saturn": 2.5, "Uranus": 0.77, "Neptune": 1.77}}, "one_line": "Series I answered to the giver. this field answers to the breaker — the goddess whose finding un-made the ninth planet and scattered the rest.", "frame": {"title": "◈ SERIES II — THE SCATTERED FIELD (the second seed on the substrate)", "text": "Series I was a FROZEN RING around RA — the light, the giver, ancient gods of the Mediterranean, bound by the 2+-culture filter. this is the SECOND seed, and it inverts every axis. its bodies are the DWARF PLANETS: the demoted and the detached, beyond Neptune, on wild tilted orbits no planet would keep. all found in the MODERN age — so the ancient filter cannot hold them. instead they answer to a different, deliberate rule: the IAU names the edge for CREATION and UNDERWORLD gods from mythologies of the whole WORLD — Inuit, Hawaiian, Rapa Nui, Tongva, Chinese, Hindu, Greek. Series I answered to the giver at the center; Series II answers to the BREAKER, and her name is ERIS."}, "tether": "THE BRIDGE IS PLUTO. Series I closed at Pluto — Hades, the ring-closer, the last of the nine. but Pluto is ALSO the largest of this field: a dwarf planet, a Kuiper body, the first citizen of the scattered realm. Pluto is the shared node — the ninth planet of the first seed AND the doorway to the second. and it was ERIS who pushed him through: her discovery is why Pluto is counted here now, not there. the two seeds are stitched at Pluto, by Eris's hand.", "why_hub": "RA was Series I's hub because everything orbits the light. ERIS is Series II's hub because she MADE THE FIELD. her 2005 discovery — a body 27% MORE massive than Pluto — forced the question: if Pluto is a planet, so is this; the IAU answered 'then neither is', invented the DWARF-PLANET class, and the count fell 9→8. every body in this seed exists as a category because of her. she is not the largest (Pluto's bigger by volume) — she is the CAUSE. the hub of a field of the demoted is the one who demoted them.", "misfit": {"title": "THE ORBIT-MISFIT — the measurement (a dwarf planet does not orbit like a planet)", "e": 0.4407, "i": 44.04, "q": 37.91, "Q": 97.65, "P": 558.0, "e_vs_merc": 2.1, "e_vs_earth": 26, "i_vs_merc": 6.3, "read": "Eris's orbit is more eccentric than ANY planet (2.1× Mercury, the most eccentric; 26× Earth's) and 6.3× more tilted than the most tilted planet (44° vs Mercury's 7°). she swings from 38 AU to 98 AU over 558 years, climbing far above the plane the planets keep. the orbit ITSELF says 'not a planet' — and that misfit is measurable, and it is the essence of the whole field."}, "mythos": {"discord": "ERIS is the Greek goddess of STRIFE and DISCORD — sister and companion of Ares, the spirit that delights in the quarrel. uninvited to the wedding of Peleus and Thetis, she threw among the guests a golden apple inscribed ΚΑΛΛΙΣΤΗ — 'to the fairest'. Hera, Athena, and Aphrodite each claimed it; the Judgment of Paris that followed lit the fuse of the TROJAN WAR. one apple, one word, and the greatest war of myth. she does not fight — she SETS OTHERS fighting.", "finding": "and the planet did exactly that. found January 2005 at Palomar by Mike Brown's team — first nicknamed 'XENA' (its moon 'Gabrielle') — it was briefly hailed as the TENTH PLANET. instead it started the fight: 27% heavier than Pluto, it forced astronomy to decide what a planet even IS. the 2006 IAU vote invented the dwarf-planet class and cast Pluto down. when the discord settled, they named the cause for the cause: ERIS. the apple was thrown; the war was over Pluto's crown.", "mask": "she wears a BRIGHT MASK. albedo 0.96 — among the most reflective bodies known, wrapped in near-uniform white methane-and-nitrogen frost — yet under it she is dense ROCK (2.52 g/cm³). where Pluto shows red tholins, Eris hides hers beneath a clean white coat. the goddess of discord, cloaked in the brightest, most orderly-looking surface in the outer dark. the mask is the tell.", "field": "and she rules a FIELD. beyond her lie the other demoted: CERES the first-cast-down, ORCUS the anti-Pluto, SEDNA the detached, MAKEMAKE and HAUMEA from Pacific myth, QUAOAR, GONGGONG. the scattered disc — bodies flung onto tilted, eccentric paths, never gathered into a ring. Eris is their hub not by mass but by cause: she is why they are a class. the queen of the scattered is the one who scattered the count."}, "companion": {"name": "DYSNOMIA", "glyph": "☾", "role": "the dark daughter — lawlessness, the shadow discord casts", "who": "Eris's only confirmed moon, ~700 km across, discovered 2005. in myth Dysnomia is the DAUGHTER of Eris — the spirit of LAWLESSNESS. (a sly double-name: the discovery team's 'Xena' was played by Lucy LAWLESS.) where Eris is blinding white (albedo 0.96), Dysnomia is nearly BLACK (albedo 0.04) — the darkest shadow beside the brightest body.", "counter": "across Series I the companions were partners, equals, defiers, returners. Eris opens Series II with a new shape: THE OFFSPRING — the moon is not a lover or a rival but the goddess's own CHILD and CONSEQUENCE. discord begets lawlessness; the bright mother casts a dark daughter. the first bond of the new seed is a lineage, not a marriage."}, "channel": {"kind": "ICE / ALBEDO", "grounding": "MODERN — Series II's channel is composition, not metal", "flag": "⚠ no ancient metal — these bodies were unknown to every ancient culture. Series II's alchemical channel is ICE & REFLECTANCE.", "why": "Series I ran a METAL warp (gold→lead, the seven ancient). this field has no ancient metal — so its channel is what these worlds are actually MADE OF: volatile ICES (methane, nitrogen, water) and their ALBEDO. Eris's channel reading: methane+nitrogen frost, albedo 0.96 — the BRIGHT end of the scale, a white mask over rock. the channel still flows; it simply carries reflectance instead of metal. (the moons/comets of Series I rode alchemy as sublimation; this whole field rides ICE.)"}, "filter": "◈ SERIES II CORRESPONDENCE FILTER: not '2+ ancient cultures' (these are modern finds) but the IAU's deliberate convention — name the edge for CREATION & UNDERWORLD deities from world mythologies. Eris passes: Greco-Roman goddess of discord, named FOR the discord she caused. tarot still REJECTED. the honesty is the same; only the rule that fits the bodies has changed.", "significance": {"title": "THE TENTH THAT UNMADE THE NINTH", "irony": "Series I's irony arc ended with Pluto — the beloved outcast, demoted and adored. Series II opens with the one who DID the demoting. Eris was almost the tenth planet; instead she became the reason there are only eight. the object hailed as an addition became the agent of subtraction. the goddess of discord, true to her name, turned a moment of discovery into the biggest reclassification in modern astronomy. she is the hub of this seed because she is its FIRST CAUSE: no Eris, no dwarf-planet field, no Series II.", "note": "(and the naming wrote itself — exactly the correspondence-filter test: the anchor was documented independently BEFORE the tie. she was the goddess of discord for three thousand years; she caused discord in 2006; the name was chosen for that. the rhyme is real, not imposed.)"}, "held": "the field she rules — her subjects, unbuilt as yet: CERES (the first demotion, 1801), ORCUS (the anti-Pluto), SEDNA (the most detached), MAKEMAKE & HAUMEA (Pacific creators), QUAOAR, GONGGONG, IXION, VARUNA. the scattered disc and the Kuiper belt — Series II's cards to come."}, O=D.orbit, M=D.misfit;
+  document.getElementById("subname").textContent="\u2bf0  "+D.subname;
+  document.getElementById("epithet").textContent=D.epithet;
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("frame").innerHTML='<div class="ft">'+D.frame.title+'</div>'+D.frame.text.replace(/RA|ERIS|BREAKER|dwarf planets|SECOND seed/g,function(m){return m==="RA"?'<span class="ra">RA</span>':'<b>'+m+'</b>';});
+  document.getElementById("tether").innerHTML="<b>the tether \u2014 the two seeds are stitched at Pluto.</b> "+D.tether.replace(/PLUTO|ERIS|Pluto/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("whyhub").innerHTML=D.why_hub.replace(/RA|ERIS|MADE THE FIELD|CAUSE/g,function(m){return m==="RA"?'<span style="color:var(--gold);font-weight:700">RA</span>':'<b>'+m+'</b>';});
+  var My=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the discord.</b> '+My.discord+'</div>'+
+    '<div class="m"><b>the finding.</b> '+My.finding+'</div>'+
+    '<div class="m"><b>the bright mask.</b> '+My.mask+'</div>'+
+    '<div class="m"><b>the field.</b> '+My.field+'</div>';
+  var C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>';
+  var Ch=D.channel;
+  document.getElementById("chan").innerHTML=
+    '<div class="metal"><span class="mg">\u2744</span><span class="mn">'+Ch.kind+'</span><span class="grd">'+Ch.grounding+'</span></div>'+
+    '<div class="warn">'+Ch.flag+'</div>'+
+    '<div class="m">'+Ch.why+'</div>';
+  var S=D.significance;
+  document.getElementById("sig").innerHTML='<div class="st">'+S.title+'</div>'+
+    '<div class="m">'+S.irony.replace(/Eris|EIGHT|subtraction/g,function(m){return '<b>'+m+'</b>';})+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#6a6280">'+S.note+'</div>';
+  document.getElementById("filter").innerHTML=D.filter;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("ainote").textContent="(ERIS the name is the science \u2014 chosen 2006 for the discord she caused; Dysnomia her daughter; the ice-channel her real surface. Series II opens where Series I closed \u2014 at Pluto, by Eris's hand.)";
+
+  document.getElementById("measure").innerHTML=
+    '<span>eccentricity: <b>'+O.e.toFixed(3)+'</b> = <span class="big">'+M.e_vs_merc+'\u00d7</span> most eccentric planet</span>'+
+    '<span>inclination: <b>'+O.i.toFixed(1)+'\u00b0</b> = <span class="big">'+M.i_vs_merc+'\u00d7</span> most tilted planet</span>'+
+    '<span>swing: <b>'+O.q+'\u219297 AU</b> over <b>'+O.P+' yr</b></span>'+
+    '<span class="big">OUTSIDE the planet envelope on both axes</span>';
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- ORBIT-MISFIT (2D): Eris ellipse vs planet circle, e & i shown ----------
+  var cv=document.getElementById("misfit");var t=0;
+  var PE=O.planet_e, PI=O.planet_i;
+  function draw2d(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=360;cv.width=W*dpr;cv.height=H*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    // LEFT: the orbit shapes (top view). RIGHT: the e-i scatter (the misfit measure).
+    var midX=W*0.46;
+    // --- left: orbit top-view ---
+    var CX=midX*0.5, CY=H*0.5, sc=2.0; // AU scale
+    // sun
+    cx.fillStyle="#e0c860";cx.beginPath();cx.arc(CX,CY,4,0,7);cx.fill();
+    // planet envelope: a fuzzy inner disc (planets stay near-circular, <30 AU here compressed)
+    cx.strokeStyle="rgba(224,200,96,.35)";cx.lineWidth=1;
+    cx.beginPath();cx.arc(CX,CY,26,0,7);cx.stroke();
+    cx.fillStyle="rgba(224,200,96,.5)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("planets",CX,CY+40);
+    cx.fillText("(near-circular)",CX,CY+50);
+    // Eris ellipse: a=67.8 compressed, e=0.44 -> draw ellipse offset by focus
+    var aPix=64, e=O.e, bPix=aPix*Math.sqrt(1-e*e), cPix=aPix*e;
+    cx.save();cx.translate(CX,CY);
+    cx.strokeStyle="rgba(184,176,216,.7)";cx.lineWidth=1.6;
+    cx.beginPath();cx.ellipse(cPix,0,aPix,bPix,0,0,7);cx.stroke(); // sun at focus (origin)
+    // Eris moving
+    var th=t*0.5; var ex=cPix+aPix*Math.cos(th), ey=bPix*Math.sin(th);
+    cx.fillStyle="#e8e0f8";cx.beginPath();cx.arc(ex,ey,3.5,0,7);cx.fill();
+    cx.restore();
+    cx.fillStyle="rgba(184,176,216,.8)";cx.font="8px "+mono();cx.fillText("\u2bf0 Eris  e="+e.toFixed(2),CX,CY-72);
+    cx.fillStyle="rgba(184,176,216,.5)";cx.fillText("38 \u2192 98 AU",CX+cPix,CY+62);
+    // --- right: the e-i misfit scatter ---
+    var RX0=midX+14, RX1=W-14, RY0=H-40, RY1=24;
+    // axes: x = eccentricity 0..0.5, y = inclination 0..50
+    function px(ecc){return RX0+(ecc/0.5)*(RX1-RX0);}
+    function py(inc){return RY0-(inc/50)*(RY0-RY1);}
+    cx.strokeStyle="rgba(152,144,176,.3)";cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(RX0,RY0);cx.lineTo(RX1,RY0);cx.moveTo(RX0,RY0);cx.lineTo(RX0,RY1);cx.stroke();
+    cx.fillStyle="rgba(152,144,176,.6)";cx.font="8px "+mono();cx.textAlign="center";
+    cx.fillText("eccentricity \u2192",(RX0+RX1)/2,H-24);
+    cx.save();cx.translate(RX0-8,(RY0+RY1)/2);cx.rotate(-Math.PI/2);cx.fillText("inclination \u2192",0,0);cx.restore();
+    // planet envelope box (all planets cluster near origin)
+    var ebx=px(0.206), eby=py(7.0);
+    cx.strokeStyle="rgba(224,200,96,.4)";cx.setLineDash&&cx.setLineDash([3,3]);
+    cx.strokeRect(RX0,eby,ebx-RX0,RY0-eby);cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(224,200,96,.6)";cx.font="7px "+mono();cx.textAlign="left";cx.fillText("planet envelope",RX0+3,eby-3);
+    // plot planets
+    Object.keys(PE).forEach(function(nm){
+      var x=px(PE[nm]),y=py(PI[nm]);
+      cx.fillStyle="rgba(224,200,96,.8)";cx.beginPath();cx.arc(x,y,2.5,0,7);cx.fill();
+    });
+    // Earth marker
+    cx.fillStyle="rgba(120,180,240,.9)";cx.beginPath();cx.arc(px(0.017),py(0),3,0,7);cx.fill();
+    cx.fillStyle="rgba(120,180,240,.7)";cx.font="7px "+mono();cx.fillText("Earth",px(0.017)+5,py(0)+2);
+    // ERIS: far outside
+    var exx=px(O.e), eyy=py(O.i);
+    var pulse=0.5+0.4*Math.sin(t*2);
+    cx.strokeStyle="rgba(184,176,216,"+pulse+")";cx.lineWidth=1;
+    cx.beginPath();cx.arc(exx,eyy,8+3*Math.sin(t*2),0,7);cx.stroke();
+    cx.fillStyle="#d8d0e8";cx.beginPath();cx.arc(exx,eyy,4,0,7);cx.fill();
+    cx.fillStyle="#e8e0f8";cx.font="bold 8px "+mono();cx.textAlign="right";cx.fillText("\u2bf0 Eris",exx-8,eyy);
+    // arrow from envelope to Eris
+    cx.strokeStyle="rgba(216,98,90,.4)";cx.setLineDash&&cx.setLineDash([2,2]);
+    cx.beginPath();cx.moveTo(ebx,eby);cx.lineTo(exx-8,eyy+4);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(216,120,110,.7)";cx.font="7px "+mono();cx.textAlign="center";
+    cx.fillText("far outside \u2014 the misfit is the point",(RX0+RX1)/2,RY1+2);
+  }
+
+  // ---------- 3D TILT: the ecliptic disc + Eris's 44-deg ring ----------
+  var cv3=document.getElementById("tilt3d");var yaw=0.4;
+  function proj(x,y,z,W,H){var cyw=Math.cos(yaw),syw=Math.sin(yaw);var x1=x*cyw-z*syw,z1=x*syw+z*cyw;var p=1.05,cp=Math.cos(p),sp=Math.sin(p);var y2=y*cp-z1*sp,z2=y*sp+z1*cp;var f=260/(6-z2*1.2+2);return[W/2+x1*f,H/2-y2*f,z2];}
+  function draw3d(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv3.clientWidth||690,H=300;cv3.width=W*dpr;cv3.height=H*dpr;
+    var cx=cv3.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);yaw+=0.006;
+    var R=2.3;
+    // ecliptic disc (where planets keep) - flat ring in xz plane
+    cx.strokeStyle="rgba(224,200,96,.35)";cx.lineWidth=1.2;cx.beginPath();
+    for(var a=0;a<=64;a++){var th=a/64*2*Math.PI;var p=proj(R*Math.cos(th),0,R*Math.sin(th),W,H);a?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);}cx.stroke();
+    // fill hint
+    cx.fillStyle="rgba(224,200,96,.06)";cx.beginPath();
+    for(var a=0;a<=64;a++){var th=a/64*2*Math.PI;var p=proj(R*Math.cos(th),0,R*Math.sin(th),W,H);a?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);}cx.fill();
+    // sun
+    var s=proj(0,0,0,W,H);
+    var g=cx.createRadialGradient(s[0],s[1],1,s[0],s[1],14);g.addColorStop(0,"#fff6d8");g.addColorStop(.5,"#e0c860");g.addColorStop(1,"rgba(224,200,96,0)");
+    cx.fillStyle=g;cx.beginPath();cx.arc(s[0],s[1],14,0,7);cx.fill();
+    // Eris ring tilted 44 deg about x-axis, eccentric
+    var inc=44*Math.PI/180, e=O.e;
+    var pts=[];
+    for(var a=0;a<=72;a++){var th=a/72*2*Math.PI;
+      var r=R*(1-e*e)/(1+e*Math.cos(th)); // ellipse in orbital plane
+      var ox=r*Math.cos(th), oz=r*Math.sin(th), oy=0;
+      // tilt about x
+      var ty=oy*Math.cos(inc)-oz*Math.sin(inc), tz=oy*Math.sin(inc)+oz*Math.cos(inc);
+      pts.push(proj(ox,ty,tz,W,H));
+    }
+    cx.strokeStyle="rgba(184,176,216,.8)";cx.lineWidth=1.6;cx.beginPath();
+    pts.forEach(function(p,i){i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);});cx.stroke();
+    // Eris body moving
+    var th=t*0.4%(2*Math.PI); var r=R*(1-e*e)/(1+e*Math.cos(th));
+    var ox=r*Math.cos(th),oz=r*Math.sin(th);
+    var ty=-oz*Math.sin(inc), tz=oz*Math.cos(inc);
+    var ep=proj(ox,ty,tz,W,H);
+    cx.fillStyle="#e8e0f8";cx.beginPath();cx.arc(ep[0],ep[1],4,0,7);cx.fill();
+    // labels
+    cx.fillStyle="rgba(224,200,96,.7)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("ecliptic \u2014 the planets' plane",W/2,H-8);
+    cx.fillStyle="rgba(184,176,216,.85)";cx.fillText("\u2bf0 Eris \u2014 tilted 44\u00b0",W/2,16);
+  }
+
+  function frame(){try{draw2d();draw3d();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="eris fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

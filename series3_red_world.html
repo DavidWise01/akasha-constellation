@@ -1,0 +1,177 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE RED WORLD — Erythro</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--erythro:#c85040;--sun:#e8c860;--red:#d04838;--megas:#8a6a4a;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#170a08,#080405 72%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(200,80,64,.06);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,#3a0f0a,var(--red),var(--erythro),#3a0f0a);border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .tnum{text-align:center;font-size:10px;letter-spacing:.3em;color:var(--faint);margin-top:8px}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:33px;font-weight:700;color:var(--erythro);margin:3px 0 0;letter-spacing:.12em;text-shadow:0 0 34px rgba(208,72,56,.35)}
+ .subname{text-align:center;font-size:12px;color:var(--red);letter-spacing:.24em;margin-top:3px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--erythro);font-family:var(--mono)}
+ canvas{display:block;width:100%}#spec{height:320px}#lock{height:340px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--erythro)}.measure .sun{color:var(--sun)}.measure .rd{color:var(--red)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .common{background:#160a09;border:1px solid #3a1c18;border-left:3px solid var(--red);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .common b{color:var(--red)}
+ .tie{background:#0e0a10;border:1px solid #2a2438;border-left:3px solid #8a7ab0;border-radius:8px;padding:11px 14px;margin:8px 0;font-size:11.5px;line-height:1.7;color:var(--dim)}
+ .tie b{color:#b8a8d0}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--erythro)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--red);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow</span><span>trope 3 of 7 &#183; after Asimov</span></div>
+ <div class="tnum">&#9679; T R O P E &#160; I I I &#160;&#8212;&#160; pulled from <i>Nemesis</i></div>
+ <div class="sii">T H E &#160; R E D &#160; W O R L D</div>
+ <h1>ERYTHRO</h1>
+ <div class="subname">&#9209; a world in perpetual red dusk, one face held to the giant</div>
+ <div class="epithet">the name is the measurement &#8212; &#8216;erythro&#8217; is Greek for red</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement I &#8212; Wien&#8217;s law: why the light is red</h3>
+ <canvas id="spec"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">a star&#8217;s colour is its temperature &#183; the cool red dwarf pours its light into the red &amp; infrared</div>
+
+ <div class="common" id="common"></div>
+
+ <h3>the measurement II &#8212; the tidal lock: one face, forever</h3>
+ <canvas id="lock"></canvas>
+ <div class="hint">Erythro is locked to Megas as our Moon is locked to Earth &#183; red day &amp; night come from orbiting the giant, past its shadow</div>
+ <div class="tie" id="tie"></div>
+
+ <h3>the book &#8212; Asimov&#8217;s red moon</h3>
+ <div class="book" id="book"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ document.getElementById("corr").innerHTML="<b>Erythro</b> is bathed in red because its sun is a red dwarf \u2014 cool, dim, pouring most of its light into the red and infrared. its very name says so: <b>erythro</b> is Greek for <b>red</b>. and it is a <b>held</b> world: tidally locked to the gas-giant Megas, one hemisphere turned to the giant forever. two measurements make the red world real \u2014 the temperature of its light, and the lock of its turning \u2014 and both are ordinary physics, no fiction required.";
+ document.getElementById("measure").innerHTML='<span class="sun">Sun (5772 K): peak <b>502 nm</b>, ~37% visible</span><span class="rd">Nemesis (~3000 K): peak <b>966 nm</b> (near-IR), ~8% visible</span>';
+ document.getElementById("common").innerHTML="<b>and red is the common case.</b> roughly <b>70\u201375% of all stars</b> in the galaxy are red dwarfs \u2014 dim, cool, and astonishingly long-lived (they burn for trillions of years). so if habitable worlds are common at all, then <b>most worlds that exist are red worlds</b>, lit by a small red sun. Erythro isn\u2019t exotic. by the numbers, <b>our</b> bright-yellow daylight is the rare kind. the galaxy is mostly red.";
+ document.getElementById("tie").innerHTML="<b>the lock is old news to this project.</b> tidal friction bleeds a body\u2019s spin until its rotation equals its orbit and one face is held \u2014 the same family of physics that <b>locked the plutinos</b> to Neptune and gave Series II its <b>harmony</b> pole. Orcus held in resonance; the Moon held to Earth; Erythro held to Megas. the red world is a <b>held</b> world \u2014 preservation written into its turning.";
+ document.getElementById("book").innerHTML="in the novel, <b>Erythro</b> is an Earth-sized moon of the gas-giant <b>Megas</b>, with oceans and air, lit red by <b>Nemesis</b>. tidally locked to Megas, it keeps one face to the giant while red day and night sweep it as it orbits \u2014 and Megas periodically <b>eclipses</b> the star. Asimov set a living world on a red-dwarf moon in 1989; six years later the exoplanet era opened (the hot-Jupiter 51 Pegasi b, 1995), and real red-dwarf worlds followed within the decade (Gliese 876 b, 1998). the red world was a good guess.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 Wien\u2019s law &amp; the blackbody spectra, the ~8% vs ~37% visible fractions, tidal locking, and the ~70\u201375% red-dwarf fraction: all real, computed, sourced. <span class=\"amb\">\u25c8 AMBER</span> \u2014 red-dwarf <b>habitability</b> is genuinely debated (M-dwarf flares blast UV/X-ray; close-in worlds tend to lock); \u2018black plants\u2019 under red light is a hypothesis; Erythro\u2019s exact configuration is the book\u2019s.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> hot stars glow blue-white; cooler stars glow red \u2014 just like a stove coil. Erythro\u2019s sun is a cool little <b>red</b> star, so everything there is bathed in red light (that\u2019s what its name means!). and Erythro always keeps one side facing its big planet, the way the Moon always shows us the same face. most stars in the whole galaxy are these little red ones \u2014 so red worlds might be the <b>most ordinary</b> worlds of all.";
+ document.getElementById("foot").innerHTML="\u25c8 trope 3/7 \u00b7 Wien\u2019s law &amp; tidal locking LIT \u00b7 habitability AMBER \u00b7 the galaxy is mostly red \u00b7 Series III \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var h=6.626e-34,c=3e8,kB=1.381e-23;
+ function planck(lamNm,T){var lam=lamNm*1e-9;var x=h*c/(lam*kB*T);return 1.0/Math.pow(lam,5)/(Math.exp(x)-1);}
+ // ---- SPECTRUM ----
+ var cv=document.getElementById("spec");
+ function drawSpec(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=320;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=44,X1=W-18,Y0=H-40,Y1=18, LMIN=200,LMAX=2000;
+  function px(l){return X0+(l-LMIN)/(LMAX-LMIN)*(X1-X0);}
+  function py(v){return Y0-v*(Y0-Y1);}
+  // visible band gradient 400-700
+  var gx0=px(400),gx1=px(700);var grad=cx.createLinearGradient(gx0,0,gx1,0);
+  grad.addColorStop(0,"rgba(120,80,200,.16)");grad.addColorStop(0.35,"rgba(60,160,220,.16)");grad.addColorStop(0.5,"rgba(80,200,120,.16)");grad.addColorStop(0.72,"rgba(230,220,80,.16)");grad.addColorStop(1,"rgba(220,70,60,.16)");
+  cx.fillStyle=grad;cx.fillRect(gx0,Y1,gx1-gx0,Y0-Y1);
+  cx.fillStyle="rgba(200,200,200,.4)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("visible",(gx0+gx1)/2,Y1+8);
+  // IR region label
+  cx.fillStyle="rgba(200,90,70,.35)";cx.fillText("\u2190 near-infrared \u2192",px(1300),Y1+8);
+  // axes
+  cx.strokeStyle="rgba(160,140,138,.3)";cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(160,140,138,.6)";cx.textAlign="center";
+  [400,700,1000,1500,2000].forEach(function(l){cx.fillText(l,px(l),Y0+13);});
+  cx.fillText("wavelength (nm)  \u2014  blue \u2190 \u2192 red \u2192 infrared",(X0+X1)/2,H-6);
+  // curves (normalize each to its own peak)
+  function curve(T,col,lw){
+   var mx=0,vals=[];
+   for(var l=LMIN;l<=LMAX;l+=8){var v=planck(l,T);vals.push([l,v]);if(v>mx)mx=v;}
+   cx.strokeStyle=col;cx.lineWidth=lw;cx.beginPath();
+   vals.forEach(function(p,i){var x=px(p[0]),y=py(p[1]/mx);i?cx.lineTo(x,y):cx.moveTo(x,y);});cx.stroke();
+   // peak marker (Wien)
+   var wp=2.898e6/T;
+   cx.fillStyle=col;cx.beginPath();cx.arc(px(wp),py(1),3.5,0,7);cx.fill();
+   return wp;
+  }
+  var wpSun=curve(5772,"rgba(232,200,96,.9)",2);
+  var wpRD=curve(3000,"rgba(208,72,56,1)",2.4);
+  // peak labels
+  cx.fillStyle="rgba(232,200,96,.9)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Sun \u2609  502 nm",px(wpSun),py(1)-8);
+  cx.fillStyle="rgba(224,96,80,1)";cx.fillText("Nemesis  966 nm",px(wpRD)+6,py(1)-8);
+  cx.fillStyle="rgba(232,220,218,.75)";cx.font="9px "+mono();cx.textAlign="left";
+  cx.fillText("cooler star \u2192 peak slides right, out of visible into the red & IR",X0+6,Y1+40);
+ }
+ drawSpec();window.addEventListener("resize",function(){drawSpec();});
+
+ // ---- TIDAL LOCK ----
+ var lk=document.getElementById("lock"),t=0;
+ function drawLock(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=lk.clientWidth||700,H=340;lk.width=W*dpr;lk.height=H*dpr;
+  var cx=lk.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  for(var i=0;i<24;i++){cx.fillStyle="rgba(200,120,110,"+(0.03+0.04*Math.sin(t*0.3+i))+")";cx.fillRect((i*97)%W,(i*61)%H,1,1);}
+  // Nemesis (red star) far left
+  var nx=40,ny=H*0.5;
+  var ng=cx.createRadialGradient(nx,ny,2,nx,ny,26);ng.addColorStop(0,"#f06850");ng.addColorStop(.5,"#c04038");ng.addColorStop(1,"rgba(192,64,56,0)");
+  cx.fillStyle=ng;cx.beginPath();cx.arc(nx,ny,26,0,7);cx.fill();
+  cx.fillStyle="rgba(224,96,80,.9)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("Nemesis",nx,ny+38);
+  cx.fillStyle="rgba(224,96,80,.5)";cx.fillText("(red dwarf)",nx,ny+48);
+  // Megas (gas giant) center-right
+  var MX=W*0.62,MY=H*0.5,MR=44;
+  var mg=cx.createRadialGradient(MX-14,MY-10,4,MX,MY,MR);mg.addColorStop(0,"#b8946a");mg.addColorStop(1,"#5a4230");
+  cx.fillStyle=mg;cx.beginPath();cx.arc(MX,MY,MR,0,7);cx.fill();
+  // bands
+  cx.save();cx.beginPath();cx.arc(MX,MY,MR,0,7);cx.clip();
+  for(var bnd=-3;bnd<=3;bnd++){cx.fillStyle="rgba(90,66,48,"+(0.3+0.1*Math.sin(bnd))+")";cx.fillRect(MX-MR,MY+bnd*11+t*4%11-11,MR*2,4);}
+  cx.restore();
+  // red-lit crescent on Megas (from Nemesis on the left)
+  cx.save();cx.beginPath();cx.arc(MX,MY,MR,0,7);cx.clip();
+  var lg=cx.createLinearGradient(MX-MR,MY,MX+MR,MY);lg.addColorStop(0,"rgba(224,96,70,.35)");lg.addColorStop(.5,"rgba(0,0,0,0)");
+  cx.fillStyle=lg;cx.fillRect(MX-MR,MY-MR,MR*2,MR*2);cx.restore();
+  cx.fillStyle="rgba(184,148,106,.9)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Megas",MX,MY+MR+14);
+  cx.fillStyle="rgba(184,148,106,.5)";cx.font="8px "+mono();cx.fillText("(gas giant)",MX,MY+MR+24);
+  // Erythro orbits Megas, tidally locked (one face marker always toward Megas)
+  var orb=MR+42, ang=t*0.5;
+  var ex=MX+Math.cos(ang)*orb, ey=MY+Math.sin(ang)*orb*0.7;
+  // eclipse: when Erythro behind Megas (right side, x>MX and close) dim; when between star and... simple day/night by angle to Nemesis
+  var toNem=Math.atan2(ny-ey,nx-ex); // direction to star
+  // Erythro body
+  var ER=11;
+  cx.save();cx.beginPath();cx.arc(ex,ey,ER,0,7);cx.clip();
+  // base red-lit / dark by facing to Nemesis
+  cx.fillStyle="#3a1512";cx.fillRect(ex-ER,ey-ER,ER*2,ER*2);
+  var dg=cx.createLinearGradient(ex+Math.cos(toNem)*ER,ey+Math.sin(toNem)*ER,ex-Math.cos(toNem)*ER,ey-Math.sin(toNem)*ER);
+  dg.addColorStop(0,"rgba(224,110,80,.95)");dg.addColorStop(.5,"rgba(150,60,45,.5)");dg.addColorStop(1,"rgba(40,16,14,.2)");
+  cx.fillStyle=dg;cx.fillRect(ex-ER,ey-ER,ER*2,ER*2);
+  // ocean hint
+  cx.fillStyle="rgba(90,50,60,.4)";cx.beginPath();cx.arc(ex+2,ey+3,4,0,7);cx.fill();
+  cx.restore();
+  cx.strokeStyle="rgba(224,110,80,.4)";cx.lineWidth=0.6;cx.beginPath();cx.arc(ex,ey,ER,0,7);cx.stroke();
+  // the LOCKED face marker: a notch always pointing at Megas
+  var toMeg=Math.atan2(MY-ey,MX-ex);
+  cx.strokeStyle="rgba(255,240,220,.9)";cx.lineWidth=2;cx.beginPath();cx.moveTo(ex,ey);cx.lineTo(ex+Math.cos(toMeg)*ER,ey+Math.sin(toMeg)*ER);cx.stroke();
+  cx.fillStyle="rgba(232,220,218,.85)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("Erythro",ex,ey-ER-4);
+  // orbit path
+  cx.strokeStyle="rgba(184,148,106,.15)";cx.beginPath();cx.ellipse(MX,MY,orb,orb*0.7,0,0,7);cx.stroke();
+  // caption
+  cx.fillStyle="rgba(255,240,220,.7)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText("the white mark is the locked face \u2014 it always points at Megas, no matter where Erythro orbits",W/2,H-12);
+  t+=0.02;
+ }
+ function frame(){try{drawLock();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="redworld fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

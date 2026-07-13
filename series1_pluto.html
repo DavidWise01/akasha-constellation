@@ -1,0 +1,202 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PLUTO — the Dark the Sun Must Cross · Series I</title>
+<style>
+  :root{--bg:#0a0610;--ink:#e8dcf0;--dim:#a890c0;--faint:#5a4470;--pluto:#9a6ac0;--pluto2:#6a4a8a;--gold:#c0a040;--modern:#c0a860;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#1a0e2a,#0a0610 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #2a1a3e;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#140a20,#0a0610);padding:0 22px 26px;box-shadow:0 0 60px rgba(154,106,192,.09)}
+  .topband{height:5px;background:linear-gradient(90deg,#2a1a3e,var(--pluto),var(--gold))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:42px;font-weight:700;color:var(--pluto);margin:6px 0 0;letter-spacing:.18em;text-shadow:0 0 30px rgba(154,106,192,.4)}
+  .subname{text-align:center;font-size:12px;color:var(--pluto2);letter-spacing:.34em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);letter-spacing:.05em;margin-top:3px}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  canvas{display:block;width:100%}#sky{height:340px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .close{background:#160c24;border:1px solid #3a2456;border-left:3px solid var(--gold);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .close .tt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:6px}
+  .close b{color:var(--pluto)}.close .ra{color:var(--gold);font-weight:700}
+  .threshold{background:#140a1e;border:1px solid #33204a;border-left:3px solid var(--modern);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .threshold .tt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--modern);font-weight:700;margin-bottom:6px}
+  .threshold b{color:var(--pluto)}
+  .naming{font-size:11.5px;line-height:1.6;color:var(--faint);font-style:italic;margin:6px 4px}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--pluto2);margin:22px 0 8px;border-bottom:1px solid #241638;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}.m .ra{color:var(--gold);font-weight:700}
+  .comp{background:#120a1e;border:1px solid #33244a;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:#c0a0d8;letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#9078a8;margin-bottom:6px}
+  .comp .m b{color:#c0a0d8}
+  .alch{background:#161206;border:1px solid #3a3018;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+  .alch .mg{font-size:24px;color:var(--modern)}.alch .mn{font-size:15px;font-weight:700;color:var(--modern);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:#a89a5a;letter-spacing:.06em}
+  .alch .warn{font-size:10.5px;color:#d0a040;background:#1a1408;border:1px dashed #6a5420;border-radius:5px;padding:5px 9px;margin:5px 0}
+  .alch .m b{color:var(--modern)}
+  .pop{background:#0e0818;border:1px solid #2a1c42;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.12em;color:var(--pluto);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--pluto)}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .ring-banner{text-align:center;font-size:11px;color:var(--gold);margin-top:16px;padding:10px;border:1px solid #3a2c14;border-radius:8px;background:#140f06;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#3a2c4a;text-align:center;margin-top:8px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Pluto</span><span>heritage &amp; mythos &#183; card 9 of 9 &#183; the close</span></div>
+    <h1>PLUTO</h1>
+    <div class="subname" id="subname"></div>
+    <div class="epithet" id="epithet"></div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; follow the Sun down into the dark &#8212; and watch it rise again</div>
+    <div class="essence" id="essence"></div>
+    <div class="close" id="close"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the one who is both worlds</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the threshold &#8212; modern, and demoted</h3>
+    <div class="threshold" id="threshold"></div>
+    <div class="naming" id="naming"></div>
+
+    <h3>the alchemy &#8212; the atom that completes the trio</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of dark, veined with Ra&#8217;s gold</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="ring-banner" id="ring"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "PLUTO", "name": "PLUTO", "subname": "HADES", "glyph": "\u2647", "epithet": "the Rich One \u2014 the Dark the Sun Must Cross", "col": "#9a6ac0", "col2": "#6a4a8a", "dark": "#3a2a4a", "gold": "#c0a040", "modern": "#c0a860", "essence": "lord of the dead and the buried \u2014 but also 'the Rich One', keeper of all that lies under the ground: the seeds, the metals, the gold, and every soul that goes down. the third brother, who drew the dark lot; the unseen realm the Sun itself must pass through to be reborn.", "one_line": "nine wanderers, and the last is the dark \u2014 the midnight the Sun crosses to rise again. the line closes into a ring.", "the_close": {"title": "\u21ba THE RING CLOSES \u2014 the last card hands back to the first", "text": "this was always going to loop here, and not by design \u2014 by the myth. CARD 1 RA sails through the DUAT, the underworld, EVERY NIGHT: he dies at dusk, battles Apep in the dark hours, and is REBORN at dawn. that underworld is PLUTO'S realm. so RA crosses PLUTO'S kingdom every single night to rise again. the ninth card is not the END of the seed \u2014 it is the MIDNIGHT the first card passes through. the line ~-+( ... )+-~ was never a line. it is a WHEEL: Sun \u2192 Moon \u2192 the wanderers \u2192 the dark \u2192 Sun. Pluto hands the dawn back to Ra."}, "threshold": {"title": "THE THRESHOLD \u2014 modern, honest, and DEMOTED", "text": "like Uranus & Neptune, Pluto is modern: discovered 1930 by CLYDE TOMBAUGH, on photographic plates. no ancient saw it \u2014 NO ancient god-name, NO ancient metal. the filter bites. and Pluto goes further than any card: in 2006 the IAU DEMOTED it to 'dwarf planet'. it is the only body in the seed that was UN-PLANETED \u2014 cast out of the planet-club, exactly as its god was cast down to rule the realm no one else wanted. the demotion is not a flaw to hide; it is the myth completing itself: the lord of the outcast dead, made an outcast."}, "naming": "named 1930 by VENETIA BURNEY, an 11-year-old Oxford schoolgirl who had JUST learned the planets' distances from the Sun in a school nature-walk. she chose Pluto \u2014 the god 'who dwelt where sunlight did not reach', who could turn invisible \u2014 for the coldest, darkest, most sunless world. (and 'PL' honours Percival Lowell, who predicted it: god AND man, like Uranus.) she completed the THREE BROTHERS: Zeus/sky (card6), Poseidon/sea (card9), HADES/underworld (card10). the child who'd just measured the light named the place the light can't go.", "mythos": {"dark": "Hades is lord of the DEAD and the underworld \u2014 not evil, but final: the realm of no return, ruled with cold justice. he wears a helm of INVISIBILITY (the sunless one is also the unseen one); Cerberus guards his gate. the brother who drew the dark lot when the cosmos was split.", "rich": "but his true name PLOUTON means 'the RICH' \u2014 for everything of value comes from UNDER the ground: the seeds that sprout, the metals, the gems, the GOLD. the dark is not empty; it is the treasury. all wealth is buried, and all buried things are his. (\u2192 and note: the Sun's own metal, GOLD (card 1 Ra), is exactly what Pluto hoards. Ra's metal is Pluto's treasure \u2014 the sun's brightness, buried in the dark.)", "persephone": "he took PERSEPHONE to be his queen; her mother Demeter's grief froze the world into WINTER, and her return each year is SPRING. the underworld's queen rises from the dark every year \u2014 and what lifts her is the turning SUN. the dark realm keeps the seasons; the Sun sets them free. even Pluto's marriage is bound to the solar year.", "sunloop": "and so the deepest thread: the Sun DIES into the dark and is REBORN from it, nightly (Ra in the Duat) and yearly (Persephone's return). Pluto's realm is not the Sun's opposite \u2014 it is the Sun's CRUCIBLE, the dark it must pass through to rise. the last god holds the door the first god walks through at dawn.", "demotion": "and the modern coda: in 2006 the god of the outcast dead was himself cast out of the planets. fitting, and a little sad \u2014 the lord of everything that is diminished and sent below, diminished and sent below. (his discoverer Clyde Tombaugh's ashes now ride the New Horizons probe that flew past him in 2015 \u2014 a man carried out to the dark world he found.)"}, "companion": {"name": "PERSEPHONE", "glyph": "\u2640", "role": "Queen of the Dead \u2014 the one who rises from the dark each spring", "who": "Persephone, daughter of Demeter, taken by Hades to be his queen. she eats six pomegranate seeds and so must return to the underworld for part of each year \u2014 half above in the light, half below in the dark. she is the ONLY being who freely crosses between the living world and the dead.", "counter": "across the cards: Rohini REFILLS, Dumuzi SACRIFICED, Ereshkigal the EQUAL, Hera the CONSORT, Rhea the DEFIER, Gaia the ARMORER, Amphitrite the RELUCTANT \u2014 and Persephone is the RETURNER: the queen who is BOTH worlds, dark and light, the living bridge between them. and she is the seed's own loop in a single figure: she goes down into Pluto's dark and comes back up into Ra's light, every year, forever. the companion who IS the ring."}, "alchemy": {"metal": "PLUTONIUM", "glyph": "\u2647", "grounding": "MODERN \u2014 named 1941, FOR this planet (NOT ancient)", "flag": "\u26a0 NOT an ancient heritage-metal. the seven ancient metals ended at Saturn.", "why": "the honest modern parallel completes the pattern: Glenn Seaborg named PLUTONIUM (element 94) for Pluto \u2014 right after neptunium (93, Neptune) and uranium (92, Uranus). three new elements named for three new planets, in the SAME ORDER as the sky. the table finished copying the heavens. and the LOOP is in the metal too: plutonium is STAR-FIRE \u2014 fission is a made sun. the element named for the god of the DARK is the one that holds a SUN inside it. and its RTG batteries power the deep-space probes \u2014 including New Horizons, which carried the Sun's made-fire out to Pluto's cold. a sun, in the dark. the ring, in an atom.", "note": "(the ancient seven-metal system is Babylonian\u2192Greek\u2192Latin & filter-passing. plutonium is flagged MODERN (1941) and included as the honest parallel completing the U/N/P element-trio. the filter stays ON to the very end.)"}, "cube": {"note": "the 27-cell colour-space: Pluto's dark family \u2014 and the loop is IN the cube: underworld violet-grey on one axis, and a VEIN OF RA'S GOLD on the other (the sun's buried metal, the treasure of the dark). (0,0,0) black, (2,2,2) white; the dark and the buried gold, the last card carrying the first card's colour."}, "popculture": {"title": "THE GIRL WHO NAMED IT  &  THE WORLD THAT FELL", "note": "named by a child who'd just measured the sunlight; un-planeted by a committee.", "venetia": "the naming is one of science's loveliest true stories: an 11-year-old, VENETIA BURNEY, fresh from a lesson on the planets' distances from the Sun, said 'I think Pluto would be a good name' \u2014 for the god of the sunless dark. her grandfather (a Bodleian librarian) passed it up the chain; the astronomers voted it in unanimously. a child named the ninth world, and a probe instrument was later named for her.", "demotion": "and the fall: for 76 years Pluto was the ninth planet \u2014 then in 2006, after bigger Kuiper-belt worlds turned up, the IAU demoted it to 'dwarf planet'. it became the century's most beloved underdog: 'make Pluto a planet again', the classroom heartbreak, the god of the outcast dead made the solar system's outcast. even in exile, the most famous 'non-planet' there is.", "dog": "and the running joke: Disney's PLUTO the dog was named (1930) after the new planet \u2014 not the other way round. Venetia herself insisted on it: 'the dog was named after the planet'. the lord of the dead, sharing his name with a cartoon hound.", "irony": "Ra villain, Chandra drug, Hermes mascot, Ishtar descent, Nergal red soil, Zeus king, Cronus Time, Uranus punchline, Neptune proof \u2014 and Pluto? Pluto became the OUTCAST, and then the world's favourite outcast. the god of the diminished dead, diminished \u2014 and loved all the more for it. the last card is the one everyone wants back."}, "ai_note": "(PLUTO the name is the science \u2014 chosen 1930 for the sunless dark; plutonium named for it 1941, completing U-N-P. no ancient face to hold: modern to the end. and fittingly, the last card holds the door the first card \u2014 Ra \u2014 walks through at dawn. the seed is a ring.)", "held": "no ancient held-cards \u2014 no ancient heritage exists. honest alternatives history used: MINERVA & CRONUS (the other 1930 finalists, both rejected). and the true 'held' fact: Pluto = HADES, third of the three brothers, so it holds the underworld-lot of the Zeus/Poseidon/Hades division. the reverse records: the last name was chosen by a child who'd just learned how far the light reaches."};
+  document.getElementById("subname").textContent="\u2647  "+D.subname;
+  document.getElementById("epithet").textContent=D.epithet;
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("close").innerHTML='<div class="tt">'+D.the_close.title+'</div>'+D.the_close.text.replace(/RA|Apep/g,function(m){return '<span class="ra">'+m+'</span>';}).replace(/PLUTO|WHEEL|MIDNIGHT/g,function(m){return '<b>'+m+'</b>';});
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the dark lot.</b> '+M.dark+'</div>'+
+    '<div class="m"><b>the rich one.</b> '+M.rich.replace(/GOLD|Ra/g,function(m){return '<span class="ra">'+m+'</span>';})+'</div>'+
+    '<div class="m"><b>Persephone &amp; the seasons.</b> '+M.persephone.replace(/SUN/g,'<span class="ra">SUN</span>')+'</div>'+
+    '<div class="m"><span class="ra">the sun-loop.</span> '+M.sunloop.replace(/Sun/g,'<span class="ra">Sun</span>')+'</div>'+
+    '<div class="m"><b>the demotion.</b> '+M.demotion+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>';
+  document.getElementById("threshold").innerHTML='<div class="tt">\u25c8 '+D.threshold.title+'</div>'+D.threshold.text.replace(/PLUTO|CLYDE TOMBAUGH|DEMOTED|1930|2006/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("naming").innerHTML="<b>why this name:</b> "+D.naming;
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u2647</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="warn">'+A.flag+'</div>'+
+    '<div class="m">'+A.why.replace(/SUN|sun/g,function(m){return '<span class="ra">'+m+'</span>';})+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#6a5a70">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the girl who named it.</b> '+P.venetia+'</div>'+
+    '<div class="m"><b>the fall.</b> '+P.demotion+'</div>'+
+    '<div class="m"><b>the dog.</b> '+P.dog+'</div>'+
+    '<div class="m"><b>the beloved outcast.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("ring").innerHTML="\u21ba  <b>the seed is a ring.</b>  \u2609 Ra \u00b7 \u263d Chandra \u00b7 \u263f Hermes \u00b7 \u2640 Ishtar \u00b7 \u2642 Nergal \u00b7 \u2643 Zeus \u00b7 \u2644 Cronus \u00b7 \u26e2 Uranus \u00b7 \u2646 Neptune \u00b7 \u2647 Pluto \u2192 <span style='color:#e0c860'>\u2609 Ra</span>  \u2014 the dark hands the dawn back to the Sun.";
+  document.getElementById("flag").textContent="\u25c8 correspondence filter (ON, to the end): NO ancient heritage \u2014 Pluto is telescopic (1930), demoted 2006. plutonium = MODERN (1941), flagged, completing the U-N-P trio. tarot = Golden Dawn 1888 \u2192 REJECTED. honest to the last card.";
+
+  // ============ THE SUN-LOOP visual: the Sun descends into the dark (Pluto) and rises again ============
+  const cv=document.getElementById("sky"); let t=0, step=0;
+  const STEPS=["\u2609 the Sun rides high \u2014 the living day","dusk \u2014 the Sun sinks toward the dark",
+    "\u2647 it enters Pluto's realm \u2014 the underworld night","the deep midnight \u2014 the dark the Sun must cross",
+    "Ra battles Apep in the dark hours","Persephone stirs \u2014 the buried gold, the coming spring",
+    "the first light \u2014 the Sun climbs the far side","\u2609 REBORN at dawn \u2014 the ring closes, back to Ra"];
+  const N=STEPS.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=340;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const CX=W*0.5, CY=H*0.48, R=Math.min(W*0.32,118);
+    // upper half = day (light), lower half = the underworld (dark)
+    const gd=cx.createLinearGradient(0,0,0,CY);gd.addColorStop(0,"#1a1438");gd.addColorStop(1,"#0e0a20");cx.fillStyle=gd;cx.fillRect(0,0,W,CY);
+    const gu=cx.createLinearGradient(0,CY,0,H);gu.addColorStop(0,"#0e0818");gu.addColorStop(1,"#060310");cx.fillStyle=gu;cx.fillRect(0,CY,W,H-CY);
+    // horizon
+    cx.strokeStyle="rgba(154,106,192,.3)";cx.beginPath();cx.moveTo(0,CY);cx.lineTo(W,CY);cx.stroke();
+    cx.fillStyle="rgba(224,200,96,.5)";cx.font="9px "+mono();cx.textAlign="left";cx.fillText("above \u2014 the living day (\u2609 Ra rules)",10,16);
+    cx.fillStyle="rgba(154,106,192,.6)";cx.fillText("below \u2014 the underworld night (\u2647 Pluto rules)",10,H-10);
+    // the circular sun-path (a ring! the day-arc up top, the night-arc below)
+    cx.strokeStyle="rgba(154,106,192,.22)";cx.beginPath();cx.ellipse(CX,CY,R,R*0.82,0,0,7);cx.stroke();
+    // the Sun's position along the ring: start top (noon) -> clockwise down into dark -> up far side -> dawn
+    const frac = step/(N-1);
+    const ang = -Math.PI/2 + frac*2*Math.PI;   // noon at top, going clockwise
+    const sxp = CX+Math.cos(ang)*R, syp = CY+Math.sin(ang)*R*0.82;
+    const inDark = syp>CY;
+    // trail
+    cx.strokeStyle="rgba(224,200,96,.3)";cx.lineWidth=2;cx.beginPath();
+    for(let f=0;f<=frac;f+=0.02){const a=-Math.PI/2+f*2*Math.PI;cx.lineTo(CX+Math.cos(a)*R,CY+Math.sin(a)*R*0.82);}cx.stroke();
+    // Pluto sits at the bottom (midnight point) as the dark lord of the crossing
+    const plx=CX, ply=CY+R*0.82;
+    const pg=cx.createRadialGradient(plx,ply,1,plx,ply,20);pg.addColorStop(0,"#6a4a8a");pg.addColorStop(.6,"#3a2a4a");pg.addColorStop(1,"rgba(0,0,0,0)");
+    cx.fillStyle=pg;cx.beginPath();cx.arc(plx,ply,20,0,7);cx.fill();
+    cx.fillStyle="#9a6ac0";cx.beginPath();cx.arc(plx,ply,7,0,7);cx.fill();
+    cx.fillStyle="#a890c0";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("\u2647 the midnight door",plx,ply+30);
+    // Apep (step4): a serpent coil near the sun in the dark
+    if(step===4){cx.strokeStyle="rgba(198,80,60,.7)";cx.lineWidth=2;cx.beginPath();for(let a=-3;a<=3;a+=0.2){cx.lineTo(sxp+a*12,syp+18+Math.sin(a*1.6+t*3)*6);}cx.stroke();
+      cx.fillStyle="#c65040";cx.font="9px "+mono();cx.fillText("Apep \u2014 the dark's serpent",CX,syp+40);}
+    // Persephone / buried gold (step5): gold flecks rising from the dark
+    if(step===5){for(let s=0;s<7;s++){const yy=ply-((t*20+s*14)%70);cx.fillStyle="rgba(224,200,96,"+(0.6-((ply-yy)/70)*0.5)+")";cx.beginPath();cx.arc(plx-30+s*10,yy,2,0,7);cx.fill();}
+      cx.fillStyle="#c0a040";cx.font="9px "+mono();cx.fillText("\u2640 the buried gold rises \u2014 spring",CX,ply-46);}
+    // THE SUN
+    const sunCol = inDark?"#c08840":"#ffe89a";
+    const gg=cx.createRadialGradient(sxp,syp,1,sxp,syp,26);gg.addColorStop(0,"#fff8e0");gg.addColorStop(.4,sunCol);gg.addColorStop(1,"rgba(0,0,0,0)");
+    cx.fillStyle=gg;cx.beginPath();cx.arc(sxp,syp,26,0,7);cx.fill();
+    cx.fillStyle=inDark?"#e0b860":"#ffe89a";cx.beginPath();cx.arc(sxp,syp,9,0,7);cx.fill();
+    // rays (dimmed in dark)
+    cx.strokeStyle=inDark?"rgba(192,136,64,.5)":"rgba(255,232,154,.8)";cx.lineWidth=1.5;
+    for(let r=0;r<12;r++){const a=r*Math.PI/6+t*0.3;cx.beginPath();cx.moveTo(sxp+Math.cos(a)*12,syp+Math.sin(a)*12);cx.lineTo(sxp+Math.cos(a)*(16+3*Math.sin(t*2+r)),syp+Math.sin(a)*(16+3*Math.sin(t*2+r)));cx.stroke();}
+    cx.fillStyle="#ffe89a";cx.font="8px "+mono();cx.fillText("\u2609",sxp,syp-15);
+    if(step===0){cx.fillStyle="#e0c860";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("\u2609 Ra \u2014 card 1, the giver",CX,CY-R-6);}
+    if(step===N-1){cx.fillStyle="#ffe89a";cx.font="bold 11px "+mono();cx.textAlign="center";cx.fillText("\u2609 reborn \u2014 the dark handed the dawn back to Ra",CX,CY-R-6);}
+    cx.fillStyle="#e8dcf0";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+STEPS[step],CX,H-12);
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="dark fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the ring closed \u2014 Pluto handed the dawn to Ra. click to turn the wheel again.":"step "+(step+1)+" of "+N+" \u2014 following the Sun through the dark";});
+
+  // ---- 27-cell PLUTO cube: dark violet + a vein of Ra's gold ----
+  const DARK=[0.28,0.20,0.34], GOLDV=[0.62,0.48,0.22];
+  function cellCol(i,j,k){var L=(i+j+k)/6,a=i/2,b=k/2,s=a+b;
+    var fam=s>0?[(a*DARK[0]+b*GOLDV[0])/s,(a*DARK[1]+b*GOLDV[1])/s,(a*DARK[2]+b*GOLDV[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.006;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(200,168,120,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#6a4a8a";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

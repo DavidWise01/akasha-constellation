@@ -1,0 +1,209 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · HAUMEA — the children of her body</title>
+<style>
+  :root{--bg:#060a0e;--ink:#e2ecf0;--dim:#8ea6b0;--faint:#48606a;--ice:#bfe6f2;--ice2:#7ec0d8;--body:#d8cbb0;--red:#c0403a;--lit:#7ec0a0;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#0a1620,#060a0e 68%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #16303a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#081218,#060a0e);padding:0 22px 26px;box-shadow:0 0 70px rgba(126,192,216,.07)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--body),var(--ice),var(--ice2),var(--body))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+  h1{text-align:center;font-size:42px;font-weight:700;color:var(--ice);margin:2px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(126,192,216,.4)}
+  .subname{text-align:center;font-size:12px;color:var(--ice2);letter-spacing:.3em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+  .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#081016;border:1px solid #14282e;border-radius:8px;font-family:var(--serif)}
+  .corr b{color:var(--ice);font-family:var(--mono)}
+  canvas{display:block;width:100%}#body3d{height:400px}#family{height:340px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#081016;border:1px solid #14282e;border-radius:8px}
+  .measure b{color:var(--ice)}.measure .big{color:var(--ice2);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ice2);margin:22px 0 8px;border-bottom:1px solid #12262c;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .twist{background:#12100a;border:1px solid #3a3018;border-left:3px solid var(--amb);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .twist .tt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:700;margin-bottom:6px}
+  .twist b{color:#e0c060}
+  .daughters{display:flex;gap:10px;flex-wrap:wrap}
+  .dau{flex:1;min-width:210px;background:#081016;border:1px solid #16303a;border-radius:8px;padding:11px 14px}
+  .dau .dn{font-size:14px;font-weight:700;color:var(--ice)}
+  .dau .dr{font-size:10.5px;font-style:italic;color:var(--ice2);margin-bottom:4px}
+  .dau .m{font-size:11px}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#081016;border:1px dashed #16303a;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#9ec0cc;margin:10px 4px;padding:10px 14px;background:#081016;border:1px solid #14282e;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--ice2);font-style:normal;font-family:var(--mono)}
+  .thread{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8545; &#183; Haumea</span><span>the scattered field &#183; a strand of the woven thread</span></div>
+    <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; C O L L I S I O N &#160; F A M I L Y</div>
+    <h1>HAUMEA</h1>
+    <div class="subname">&#9775; the mother who shed her children</div>
+    <div class="epithet">the goddess of childbirth &#8212; whose body became a family</div>
+    <div class="corr" id="corr"></div>
+
+    <h3>the body &#8212; spun near fission, shedding a ring &amp; two daughters</h3>
+    <canvas id="body3d"></canvas>
+    <div class="measure" id="measure1"></div>
+    <div class="hint">the real triaxial shape, spinning at its true 3.92-hr rate &#183; ring + Hi&#699;iaka + Namaka</div>
+
+    <h3>the family dispersion &#8212; the measurement that proves one event</h3>
+    <canvas id="family"></canvas>
+    <div class="measure" id="measure2"></div>
+    <div class="hint">the Haumeans in velocity space &#183; all water-ice &#183; &#916;v measured against escape velocity</div>
+
+    <div class="twist" id="twist"></div>
+
+    <h3>the two daughters &#8212; born from her body</h3>
+    <div class="daughters" id="daughters"></div>
+
+    <h3>the fission engine</h3>
+    <div class="m" id="fission"></div>
+
+    <div class="tier" id="tier"></div>
+    <div class="eli5" id="eli5"></div>
+    <div class="thread" id="thread"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var D={"h": {"P_rot_hr": 3.92, "axes_km": [1161.0, 852.0, 569.0], "ba": 0.734, "ca": 0.49, "P_breakup_hr": 2.4, "spinup": 1.6, "vesc": 805, "dv_over_vesc": 0.19}, "family": [["Haumea", 0, "the parent — triaxial, spun near fission"], ["Hi'iaka", 30, "daughter / outer moon — hula goddess"], ["Namaka", 45, "daughter / inner moon — water spirit"], ["2002 TX300", 95, "bright water-ice shard"], ["2003 OP32", 110, "water-ice family member"], ["2005 RR43", 120, "water-ice family member"], ["1996 TO66", 130, "the first Haumean noticed"], ["2003 UZ117", 140, "water-ice shard"], ["2003 SQ317", 100, "a near-contact-binary shard"], ["2009 YE7", 125, "water-ice family member"]]}, H=D.h, FAM=D.family;
+  document.getElementById("corr").innerHTML="Haumea is the Hawaiian goddess of <b>childbirth</b> \u2014 her children born from different parts of her <b>body</b>. and the real Haumea is a world that was hit, or spun, so hard it <b>shed pieces of itself</b>: two moons, a ring, and a scattered family of icy shards \u2014 all water-ice, all knocked off the same parent. the IAU named the moons for her daughters <i>because</i> the collision family <b>is</b> children from her body. here the myth and the mechanism are not a rhyme \u2014 they are the <b>same event</b>.";
+
+  document.getElementById("measure1").innerHTML=
+    '<span>rotation: <b>'+H.P_rot_hr+' hr</b> (fastest body >100 km)</span>'+
+    '<span>shape: <b>'+H.axes_km.map(function(x){return Math.round(x*2);}).join(' \u00d7 ')+' km</b></span>'+
+    '<span>axis ratio: <b>b/a='+H.ba+'</b> (a stretched egg, not a sphere)</span>';
+  document.getElementById("measure2").innerHTML=
+    '<span>family \u0394v: <span class="big">&lt;150 m/s</span></span>'+
+    '<span>escape velocity: <b>'+H.vesc+' m/s</b></span>'+
+    '<span>ratio: <span class="big">'+H.dv_over_vesc+'\u00d7 v_esc</span> \u2014 far too gentle for a violent impact</span>';
+
+  document.getElementById("twist").innerHTML='<div class="tt">\u25c8 the honest twist \u2014 the data breaks the tidy story</div>'+
+    'the simple tale is \u201cone giant impact stripped Haumea\u2019s ice mantle, spun her up, and flung out the family.\u201d but the numbers resist it. a violent impact hurls debris at <b>several km/s</b> \u2014 many times escape velocity. the Haumeans drift apart at <b>under 150 m/s</b>, barely a fifth of escape velocity: far too gentle. and the whole family is only <b>~3% of Haumea\u2019s mass</b> \u2014 a mantle-stripping blow should have lost much more. so the collision, the fast spin, and the family are <b>settled fact</b> \u2014 but the exact mechanism (a single impact, vs. a gentler <b>rotational fission</b>, vs. a moon that formed then shattered) is <b>still argued</b>. the low velocity is the fossil, and it points away from the loudest story.';
+
+  document.getElementById("daughters").innerHTML=
+    '<div class="dau"><div class="dn">\u2640 Hi\u02bbiaka</div><div class="dr">the outer, larger daughter \u2014 goddess of hula</div>'+
+    '<div class="m">~310\u2013400 km, 49-day orbit, water ice, spins in 9.8 hr. coplanar with the ring; the steadier child.</div></div>'+
+    '<div class="dau"><div class="dn">\u2640 Namaka</div><div class="dr">the inner, smaller daughter \u2014 a water spirit</div>'+
+    '<div class="m">~170 km, 18-day orbit, tilted ~13\u00b0 and eccentric, heavily perturbed \u2014 the restless child, her orbit not yet settled since the shedding.</div></div>';
+
+  document.getElementById("fission").innerHTML="Haumea spins once every <b>"+H.P_rot_hr+" hours</b> \u2014 the fastest of any body wider than 100 km in the whole solar system. that is only <b>"+H.spinup+"\u00d7</b> slower than the rate at which it would fly apart (break-up at ~"+H.P_breakup_hr+" hr). it spins so fast that its own gravity cannot hold a sphere \u2014 it relaxes into a <b>triaxial ellipsoid</b>, a stretched egg whose long axis is "+ (H.axes_km[0]/H.axes_km[2]).toFixed(1) +"\u00d7 its short one. spin it up half again and it would <b>split in two</b>. Haumea lives at the edge of coming apart \u2014 and that edge is the engine that gave her a ring, two daughters, and a family.";
+
+  document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the fast spin, the triaxial shape, the ring, the two water-ice moons, and the existence of the first-known collisional family: all measured and settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the exact mechanism (single mantle-stripping impact vs. rotational fission vs. a shattered proto-moon) is genuinely debated; the low \u0394v and small family mass argue against the simplest version. no mechanism asserted as fact.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Haumea is named for a goddess whose babies were born from parts of her body. the real Haumea spins SO fast (a whole day is under 4 hours!) that it got squished into an egg shape \u2014 and long ago it flung off little pieces that became two moons, a ring, and a family of icy chunks flying alongside it. the puzzle: the pieces are drifting away really SLOWLY \u2014 too slowly for a big crash. so scientists think she didn\u2019t get smashed so much as <i>spun</i> her children off. the mother made a family out of her own body.";
+  document.getElementById("thread").innerHTML="\u25c8 this is the Haumea strand of the woven thread: on the loom, <b>Haumea \u2192 Hi\u02bbiaka + Namaka</b> is a matriline warp \u2014 mother and daughters. here we zoom into that strand and measure how the daughters were born.";
+  document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 spin/shape/family LIT \u00b7 mechanism AMBER (debated) \u00b7 the twist kept, not smoothed \u00b7 Series II \u00b7 witness on";
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- 3D SPINNING TRIAXIAL HAUMEA + ring + moons ----------
+  var cv=document.getElementById("body3d");var t=0;
+  var ax=H.axes_km[0], ay=H.axes_km[1], az=H.axes_km[2];
+  var sc=0.052; // km -> px
+  function rot(p, ang){ // spin about z (short axis c is polar; spin axis = shortest)
+    var cx=Math.cos(ang), sx=Math.sin(ang);
+    return [p[0]*cx - p[1]*sx, p[0]*sx + p[1]*cx, p[2]];
+  }
+  function view(p){ // tilt for viewing
+    var tilt=0.5, cp=Math.cos(tilt), sp=Math.sin(tilt);
+    var y=p[1]*cp - p[2]*sp, z=p[1]*sp + p[2]*cp;
+    return [p[0], y, z];
+  }
+  function draw3d(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,Hh=400;cv.width=W*dpr;cv.height=Hh*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var CX=W*0.5, CY=Hh*0.46;
+    // starfield
+    for(var i=0;i<36;i++){cx.fillStyle="rgba(180,220,240,"+(0.05+0.08*Math.sin(t*0.4+i))+")";cx.fillRect((i*83)%W,(i*57)%Hh,1,1);}
+    var spin=t*1.4; // fast spin
+    // the ring (radius 2287 km), in equatorial plane (perp to spin axis z)
+    function ringPt(a){var p=[2287*Math.cos(a),2287*Math.sin(a),0];p=view(p);return [CX+p[0]*sc, CY-p[1]*sc, p[2]];}
+    // draw ring back half, body, ring front half (painter)
+    var rback=[],rfront=[];
+    for(var k=0;k<=80;k++){var a=k/80*2*Math.PI;var p=ringPt(a);(p[2]<0?rback:rfront).push(p);}
+    cx.strokeStyle="rgba(190,230,242,.30)";cx.lineWidth=2.5;
+    cx.beginPath();rback.forEach(function(p,i){i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);});cx.stroke();
+    // Haumea body: triaxial ellipsoid as a shaded blob (sample surface points)
+    var pts=[];
+    for(var iu=0;iu<=16;iu++){var u=iu/16*Math.PI;for(var iv=0;iv<24;iv++){var v=iv/24*2*Math.PI;
+      var p=[ax*Math.sin(u)*Math.cos(v), ay*Math.sin(u)*Math.sin(v), az*Math.cos(u)];
+      p=rot(p,spin); p=view(p);
+      pts.push([CX+p[0]*sc, CY-p[1]*sc, p[2], Math.sin(u)*Math.cos(v)]);
+    }}
+    pts.sort(function(a,b){return a[2]-b[2];});
+    pts.forEach(function(p){
+      var lit=0.4+0.6*Math.max(0,(p[2]/(ax*sc))*0.5+0.5);
+      var shade=Math.round(200*lit), sh2=Math.round(230*lit);
+      cx.fillStyle="rgba("+Math.round(216*lit)+","+Math.round(228*lit)+","+Math.round(214*lit)+",0.9)";
+      cx.beginPath();cx.arc(p[0],p[1],3.4,0,7);cx.fill();
+    });
+    // ring front
+    cx.strokeStyle="rgba(190,230,242,.6)";cx.lineWidth=2.5;
+    cx.beginPath();rfront.forEach(function(p,i){i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);});cx.stroke();
+    // moons: Hi'iaka (outer, 49d) & Namaka (inner, 18d, tilted)
+    function moon(radiusKm, period, tiltDeg, phase, col, r, label){
+      var a=phase + t*(2*Math.PI/period);
+      var ti=tiltDeg*Math.PI/180;
+      var p=[radiusKm*Math.cos(a), radiusKm*Math.sin(a)*Math.cos(ti), radiusKm*Math.sin(a)*Math.sin(ti)];
+      p=view(p);
+      var x=CX+p[0]*sc*0.5, y=CY-p[1]*sc*0.5; // moons scaled closer for view
+      cx.fillStyle=col;cx.beginPath();cx.arc(x,y,r,0,7);cx.fill();
+      cx.fillStyle=col;cx.font="8px "+mono();cx.textAlign="center";cx.fillText(label,x,y-r-3);
+      return p[2];
+    }
+    moon(9000,49,0,0.7,"#bfe6f2",4,"Hi\u02bbiaka");
+    moon(5500,18,13,2.0,"#7ec0d8",3,"Namaka");
+    cx.fillStyle="rgba(126,192,216,.7)";cx.font="8px "+mono();cx.textAlign="center";
+    cx.fillText("spinning at 3.92 hr \u2014 the brightness swings as the egg turns edge-on \u2194 broadside",CX,Hh-10);
+    cx.fillStyle="rgba(216,203,176,.8)";cx.font="9px "+mono();cx.fillText("\u25cf ring (2287 km, 3:1 resonance) \u2014 first ever found on a TNO",CX,20);
+  }
+
+  // ---------- 2D FAMILY DISPERSION ----------
+  var cvf=document.getElementById("family");
+  function drawFam(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cvf.clientWidth||690,Hh=340;cvf.width=W*dpr;cvf.height=Hh*dpr;
+    var cx=cvf.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var CX=W*0.42, CY=Hh*0.5;
+    // concentric velocity rings: 150 (family), 805 (escape), and 'impact' several km/s (off-scale marker)
+    var maxV=900, R=Math.min(W*0.34,150);
+    function vr(v){return v/maxV*R;}
+    // escape velocity ring
+    cx.strokeStyle="rgba(126,192,216,.4)";cx.setLineDash&&cx.setLineDash([4,4]);
+    cx.beginPath();cx.arc(CX,CY,vr(805),0,7);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(126,192,216,.7)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("escape velocity 805 m/s",CX,CY-vr(805)-5);
+    // family 150 ring
+    cx.strokeStyle="rgba(191,230,242,.6)";cx.beginPath();cx.arc(CX,CY,vr(150),0,7);cx.stroke();
+    cx.fillStyle="rgba(191,230,242,.8)";cx.fillText("family \u0394v < 150 m/s",CX,CY+vr(150)+12);
+    // centroid = Haumea
+    cx.fillStyle="#d8cbb0";cx.beginPath();cx.arc(CX,CY,5,0,7);cx.fill();
+    cx.fillStyle="#d8cbb0";cx.font="8px "+mono();cx.fillText("Haumea",CX,CY-8);
+    // family members as points within 150
+    FAM.forEach(function(f,i){ if(i===0)return;
+      var dv=f[1], ang=i*2.399 + t*0.1;
+      var x=CX+Math.cos(ang)*vr(dv), y=CY+Math.sin(ang)*vr(dv);
+      cx.fillStyle="#bfe6f2";cx.beginPath();cx.arc(x,y,3,0,7);cx.fill();
+      cx.fillStyle="rgba(158,192,204,.75)";cx.font="7px "+mono();cx.textAlign="left";cx.fillText(f[0],x+5,y+2);
+    });
+    // the 'impact would predict' arrow going way off-scale
+    cx.strokeStyle="rgba(192,64,58,.5)";cx.lineWidth=1.5;
+    cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(CX+R*1.15, CY-R*0.7);cx.stroke();
+    cx.fillStyle="rgba(200,90,84,.85)";cx.font="8px "+mono();cx.textAlign="left";
+    cx.fillText("a violent impact would fling",CX+R*0.5,CY-R*0.55);
+    cx.fillText("debris to HERE \u2192 several km/s",CX+R*0.5,CY-R*0.44);
+    cx.fillText("(off the chart)",CX+R*0.5,CY-R*0.33);
+    // verdict
+    cx.fillStyle="rgba(226,236,240,.9)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("the family clusters INSIDE 150 m/s \u2014 they are one event, and it was gentle",W*0.5,Hh-8);
+  }
+
+  function frame(){try{draw3d();drawFam();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="haumea fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

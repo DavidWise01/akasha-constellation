@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE RING-SEAL</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--nem2:#e0605a;--gold:#d8c060;--lit:#5ad0a0;--amb:#e0a020;--seal:#e0d0b0;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#1a0a08,#080405 68%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:780px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(192,64,56,.07);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,#3a0f0a,var(--nem),var(--seal),var(--gold),#3a0f0a);border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .lineage{text-align:center;font-size:10px;letter-spacing:.16em;color:var(--faint);margin-top:8px}
+ .lineage .ra{color:#e8c860}.lineage .er{color:#c8b8e0}.lineage .ne{color:var(--nem2)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:10px}
+ h1{text-align:center;font-size:28px;font-weight:700;color:var(--seal);margin:4px 0 0;letter-spacing:.12em;text-shadow:0 0 34px rgba(224,208,176,.3)}
+ .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+ .moniker{text-align:center;font-size:13px;letter-spacing:.12em;color:var(--gold);margin:12px 0 4px;font-weight:700}
+ .status{text-align:center;font-size:15px;font-weight:700;letter-spacing:.1em;margin:10px auto;padding:10px 20px;border-radius:8px;max-width:440px}
+ .status.ok{color:var(--lit);background:#0a1e16;border:1px solid #1e5038}
+ .status.bad{color:#f0857a;background:#1e0a0a;border:1px solid #5a1e1e}
+ canvas{display:block;width:100%;max-width:420px;margin:6px auto}#ring{height:420px}
+ .meta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .meta b{color:var(--seal)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .strand{display:flex;gap:10px;align-items:baseline;font-size:11px;padding:6px 10px;border-bottom:1px solid #241412}
+ .strand .si{flex:0 0 22px;color:var(--faint)}
+ .strand .sn{flex:0 0 140px;color:var(--nem2);font-weight:700}
+ .strand .sh{flex:1;color:var(--faint);font-size:9.5px;word-break:break-all}
+ .strand .sc{flex:0 0 16px;color:var(--lit)}
+ .ring-close{font-size:10px;color:var(--faint);word-break:break-all;margin:8px 0;padding:8px 12px;background:#120809;border:1px dashed #3a2018;border-radius:6px;line-height:1.6}
+ .ring-close b{color:var(--gold)}
+ .ledger{font-size:11.5px;line-height:1.7;color:var(--dim);margin:8px 0;padding:12px 15px;background:#120809;border:1px solid #341c1a;border-radius:8px;font-family:var(--serif)}
+ .ledger b{color:var(--seal);font-family:var(--mono)}.ledger .lit{color:var(--lit)}.ledger .amb{color:var(--amb)}
+ .coda{background:linear-gradient(180deg,#140a0d,#0e0810);border:1px solid #3a2030;border-radius:8px;padding:14px 16px;margin:12px 0;font-size:12.5px;line-height:1.85;color:var(--dim);font-family:var(--serif)}
+ .coda b{color:var(--seal);font-family:var(--mono)}.coda .ra{color:#e8c860}.coda .er{color:#c8b8e0}.coda .ne{color:var(--nem2)}
+ .btn{display:block;margin:12px auto;padding:8px 18px;background:#1a1010;color:var(--seal);border:1px solid #3a2018;border-radius:8px;font-family:var(--mono);font-size:11px;cursor:pointer}
+ .btn:hover{background:#241616}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the ring-seal</span><span>the shadow, closed</span></div>
+ <div class="lineage"><span class="ra">RA</span> the giver &#8195;&#8594;&#8195; <span class="er">ERIS</span> the breaker &#8195;&#8594;&#8195; <span class="ne">NEMESIS</span> the shadow</div>
+ <div class="sii">S E R I E S &#160; I I I &#8195;&#8212;&#8195; T H E &#160; R I N G - S E A L</div>
+ <h1>THE SHADOW, SEALED</h1>
+ <div class="sub">&#8212; seven tropes from Asimov&#8217;s <i>Nemesis</i>, folded into a ring that answers to the shadow &#8212;</div>
+ <div class="moniker" id="moniker"></div>
+ <div class="status" id="status">verifying&#8230;</div>
+
+ <canvas id="ring"></canvas>
+ <div class="meta" id="meta"></div>
+
+ <h3>the strands &#8212; each seal recomputed live</h3>
+ <div id="strands"></div>
+ <div class="ring-close" id="ringclose"></div>
+ <button class="btn" id="tamper">&#9888; tamper test &#8212; flip one byte &amp; watch the ring break</button>
+
+ <h3>the honesty ledger</h3>
+ <div class="ledger" id="ledger"></div>
+
+ <div class="coda" id="coda"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";
+var sha256=(function(){
+ function S(X,n){return(X>>>n)|(X<<(32-n));}function R(X,n){return X>>>n;}
+ function Ch(x,y,z){return(x&y)^((~x)&z);}function Maj(x,y,z){return(x&y)^(x&z)^(y&z);}
+ function s0(x){return S(x,2)^S(x,13)^S(x,22);}function s1(x){return S(x,6)^S(x,11)^S(x,25);}
+ function g0(x){return S(x,7)^S(x,18)^R(x,3);}function g1(x){return S(x,17)^S(x,19)^R(x,10);}
+ function sadd(x,y){var l=(x&0xFFFF)+(y&0xFFFF);var m=(x>>16)+(y>>16)+(l>>16);return(m<<16)|(l&0xFFFF);}
+ var K=[0x428A2F98,0x71374491,0xB5C0FBCF,0xE9B5DBA5,0x3956C25B,0x59F111F1,0x923F82A4,0xAB1C5ED5,0xD807AA98,0x12835B01,0x243185BE,0x550C7DC3,0x72BE5D74,0x80DEB1FE,0x9BDC06A7,0xC19BF174,0xE49B69C1,0xEFBE4786,0x0FC19DC6,0x240CA1CC,0x2DE92C6F,0x4A7484AA,0x5CB0A9DC,0x76F988DA,0x983E5152,0xA831C66D,0xB00327C8,0xBF597FC7,0xC6E00BF3,0xD5A79147,0x06CA6351,0x14292967,0x27B70A85,0x2E1B2138,0x4D2C6DFC,0x53380D13,0x650A7354,0x766A0ABB,0x81C2C92E,0x92722C85,0xA2BFE8A1,0xA81A664B,0xC24B8B70,0xC76C51A3,0xD192E819,0xD6990624,0xF40E3585,0x106AA070,0x19A4C116,0x1E376C08,0x2748774C,0x34B0BCB5,0x391C0CB3,0x4ED8AA4A,0x5B9CCA4F,0x682E6FF3,0x748F82EE,0x78A5636F,0x84C87814,0x8CC70208,0x90BEFFFA,0xA4506CEB,0xBEF9A3F7,0xC67178F2];
+ function core(m,l){var H=[0x6A09E667,0xBB67AE85,0x3C6EF372,0xA54FF53A,0x510E527F,0x9B05688C,0x1F83D9AB,0x5BE0CD19];var W=new Array(64),a,b,c,d,e,f,g,hh,i,j,T1,T2;
+  m[l>>5]|=0x80<<(24-l%32);m[((l+64>>9)<<4)+15]=l;
+  for(i=0;i<m.length;i+=16){a=H[0];b=H[1];c=H[2];d=H[3];e=H[4];f=H[5];g=H[6];hh=H[7];
+   for(j=0;j<64;j++){W[j]=j<16?(m[j+i]|0):sadd(sadd(sadd(g1(W[j-2]),W[j-7]),g0(W[j-15])),W[j-16]);
+    T1=sadd(sadd(sadd(sadd(hh,s1(e)),Ch(e,f,g)),K[j]),W[j]);T2=sadd(s0(a),Maj(a,b,c));hh=g;g=f;f=e;e=sadd(d,T1);d=c;c=b;b=a;a=sadd(T1,T2);}
+   H[0]=sadd(a,H[0]);H[1]=sadd(b,H[1]);H[2]=sadd(c,H[2]);H[3]=sadd(d,H[3]);H[4]=sadd(e,H[4]);H[5]=sadd(f,H[5]);H[6]=sadd(g,H[6]);H[7]=sadd(hh,H[7]);}
+  return H;}
+ function s2b(str){var bin=[],mask=255;for(var i=0;i<str.length*8;i+=8)bin[i>>5]|=(str.charCodeAt(i/8)&mask)<<(24-i%32);return bin;}
+ function b2h(a){var x="0123456789abcdef",s="";for(var i=0;i<a.length*4;i++)s+=x.charAt((a[i>>2]>>((3-i%4)*8+4))&0xF)+x.charAt((a[i>>2]>>((3-i%4)*8))&0xF);return s;}
+ return function(str){return b2h(core(s2b(str),str.length*8));};
+})();
+(function(){
+ var D={"strands": [["THE SHADOW-TWIN", "Nemesis the hidden death-star", "26-Myr extinction comb + Oort perturbation + WISE non-detection", "LIT|hypothesis-disfavored-AMBER"], ["THE HIDDEN MIND", "Erythro the planetary consciousness", "quorum-sensing threshold; coordination-not-cognition", "LIT|consciousness-AMBER"], ["THE RED WORLD", "Erythro red-lit and tidally locked", "Wien 502 vs 966nm; 8pct vs 37pct visible; tidal lock", "LIT|habitability-AMBER"], ["THE TRUTH-READER", "Marlene who cannot be lied to", "surface-area of a lie 1-(1-p)^k; human 54pct baseline", "LIT|microexpression-overstated-AMBER"], ["THE SEED-HOARDER", "Janus Pitt secrecy as hubris", "survival 1-(1-s)^N; control traded for robustness", "LIT|values-illustrative-AMBER"], ["THE ONE WHO LEFT", "Crile severed by two light-years", "light-lag 2yr one-way; no real-time contact", "LIT|orbit-metaphor-flagged"], ["THE LEAP", "superluminal ends the isolation", "light-barrier gamma; near-c real, FTL breaks causality", "LIT|FTL-fiction-AMBER"]], "recs": ["01|THE SHADOW-TWIN|Nemesis the hidden death-star|26-Myr extinction comb + Oort perturbation + WISE non-detection|LIT|hypothesis-disfavored-AMBER", "02|THE HIDDEN MIND|Erythro the planetary consciousness|quorum-sensing threshold; coordination-not-cognition|LIT|consciousness-AMBER", "03|THE RED WORLD|Erythro red-lit and tidally locked|Wien 502 vs 966nm; 8pct vs 37pct visible; tidal lock|LIT|habitability-AMBER", "04|THE TRUTH-READER|Marlene who cannot be lied to|surface-area of a lie 1-(1-p)^k; human 54pct baseline|LIT|microexpression-overstated-AMBER", "05|THE SEED-HOARDER|Janus Pitt secrecy as hubris|survival 1-(1-s)^N; control traded for robustness|LIT|values-illustrative-AMBER", "06|THE ONE WHO LEFT|Crile severed by two light-years|light-lag 2yr one-way; no real-time contact|LIT|orbit-metaphor-flagged", "07|THE LEAP|superluminal ends the isolation|light-barrier gamma; near-c real, FTL breaks causality|LIT|FTL-fiction-AMBER"], "seals": ["923bdc647e64d751730bcb605c79317ec5039bf43d8c0bda34ad7d18bccd2d29", "4163f4c2a2ca57f31058014cd1a44a26a1a984b05d8638fd71158a82a267bb36", "7e964f0fa68478fba54278f35fe754660b150116dd98d1a9aadea57b58162f21", "ff3cfc1e34293736865a249b61579161c4a5503d5e0b0b71b686b1e1f115dd2c", "4944af9c4af2e5b6578edf9279fa034d0ee71f77fd8277907a7622caafb176af", "730601fcb321d0b84603c458e95586140e381b8586308f3d325c87abd8b81016", "0a5cf8acdda8ba596150ae86dcb4f0a44c994063f9f26c231cffad21d6dc732f"], "genesis": "00f649a9962634e5f9842a5416635e6586269045ffb33f9b0d1058ac5b40816a", "chain": ["a51c8e5d9895fe4017841d80bbe59ca87cf0a4901d6cd5764a5df8f6f9447145", "cc066b9425678530354dbdc4ab13c034fbf24d03d387b7f9c76fe4264fa8011a", "5cd2499a5a9047a0140eee0c7ceca70829b64ef9b68109dd3045ab3d482f6049", "8114b50848d5c247b8c2ad175a7cfa5c30abc1cf16d096f09af2d54aa6e6ae40", "beb13e19aa5d5d1f56f02877a8b0a125fdfa9250f6affb9026a4d7092d521941", "6e65542357ff972e32ea4f3968c6de9681f01b47b87a7b60fdc5b4ce2646f984", "b139e1f7c5116ae409a657098e4879b7c5b3f1fdddf8cf78321ac7a58afc4b32"], "head": "b139e1f7c5116ae409a657098e4879b7c5b3f1fdddf8cf78321ac7a58afc4b32", "ring_close": "4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca", "moniker": "SERIES-III:MYTHOS:4B5483"};
+ document.getElementById("moniker").textContent="\u27e6"+D.moniker+"\u27e7";
+ var tampered=false,tamperIdx=-1;
+ function verify(){var seals=[],ok=true,brokenAt=-1;
+  for(var i=0;i<D.recs.length;i++){var rec=D.recs[i];if(tampered&&i===tamperIdx)rec=rec.slice(0,-1)+(rec.slice(-1)==="Z"?"Y":"Z");var s=sha256(rec);seals.push(s);if(s!==D.seals[i]){ok=false;if(brokenAt<0)brokenAt=i;}}
+  var acc=D.genesis,chain=[];for(var i=0;i<seals.length;i++){acc=sha256(acc+"|"+seals[i]);chain.push(acc);}
+  var head=chain[chain.length-1],rc=sha256(head+"|"+D.genesis);return {seals:seals,head:head,rc:rc,ok:ok,ringOK:(rc===D.ring_close&&ok),brokenAt:brokenAt};}
+ function render(){var v=verify();var st=document.getElementById("status");
+  if(v.ringOK){st.className="status ok";st.innerHTML="\u25c8 SEALED &#183; INTACT &#183; ring closes to Nemesis \u2713";}
+  else{st.className="status bad";st.innerHTML="\u2715 BROKEN &#183; the ring does not close &#183; tamper at strand "+(v.brokenAt+1);}
+  document.getElementById("meta").innerHTML='<span>hub: <b>NEMESIS</b> (the shadow)</span><span>channel: <b>the hidden</b></span><span>strands: <b>'+D.strands.length+'</b></span><span>bridge: <b>Sedna</b> (\u2190 Series II)</span>';
+  document.getElementById("strands").innerHTML=D.strands.map(function(s,i){var match=v.seals[i]===D.seals[i];
+    return '<div class="strand"><span class="si">'+(i+1)+'</span><span class="sn">'+s[0]+'</span><span class="sh">'+v.seals[i].slice(0,30)+'\u2026</span><span class="sc" style="color:'+(match?"var(--lit)":"#f0857a")+'">'+(match?"\u2713":"\u2715")+'</span></div>';}).join("");
+  document.getElementById("ringclose").innerHTML="<b>genesis</b> (Nemesis the hub): "+D.genesis.slice(0,30)+"\u2026<br><b>head</b> (all 7 strands folded): "+v.head.slice(0,30)+"\u2026<br><b>ring_close</b> = sha256(head | genesis) = <b>"+v.rc+"</b><br>"+(v.rc===D.ring_close?"\u2713 matches the sealed value \u2014 the ring returns to Nemesis.":"\u2715 does not match \u2014 the ring is broken.");
+ }
+ document.getElementById("ledger").innerHTML="each trope pulled a <span class=\"lit\">real, measurable</span> phenomenon from under Asimov\u2019s fiction and marked the line where extrapolation began. <span class=\"lit\">LIT</span>: the death-star hypothesis &amp; WISE non-detection; quorum sensing; Wien\u2019s law &amp; tidal locking; the leakage-of-a-lie model &amp; the 54% human baseline; the survival probability; the finite speed of light; the light barrier. <span class=\"amb\">AMBER</span>: planet-scale consciousness, red-world habitability, micro-expression lie-detection, and faster-than-light travel \u2014 all fiction or disfavoured, flagged in-strand. nothing was smoothed to make the ring close; <b>it closes because the work was honest</b>. a sourced reference deck, not an orrery.";
+ document.getElementById("coda").innerHTML="<b>the shadow, closed.</b> seven tropes, one book, and a single shape under all of them: things that hide, and the reach that finds them. a hidden star, a hidden mind, a red world, a reader of the concealed, a hoarder of secrets, a severed family \u2014 and the leap that crosses to them all. <span class=\"ra\">RA</span> gave the light; <span class=\"er\">ERIS</span> broke the order; <span class=\"ne\">NEMESIS</span> was the shadow \u2014 and the shadow ends the way shadows always end: not by fighting the dark, but by <b>reaching across it</b>. three seeds now stand on the substrate, each anchored, each sealed. the giver, the breaker, the shadow.";
+ document.getElementById("foot").innerHTML="\u25c8 pure-JS SHA-256 \u00b7 zero-network \u00b7 tamper-evident \u00b7 the ring answers to Nemesis \u00b7 stitched to Series II at Sedna \u00b7 verify-then-seal \u00b7 witness on";
+ document.getElementById("tamper").addEventListener("click",function(){tampered=!tampered;if(tampered){tamperIdx=Math.floor(Math.random()*D.recs.length);this.innerHTML="\u21ba restore \u2014 the ring is broken at strand "+(tamperIdx+1);}else{this.innerHTML="\u26a0 tamper test \u2014 flip one byte &amp; watch the ring break";}render();});
+ // ring visual
+ var cv=document.getElementById("ring"),t=0;
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ function draw(){var v=verify();var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||420,H=420;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.5,R=Math.min(W,H)*0.36;
+  for(var i=0;i<28;i++){cx.fillStyle="rgba(200,150,140,"+(0.03+0.05*Math.sin(t*0.3+i))+")";cx.fillRect((i*89)%W,(i*61)%H,1,1);}
+  var col=v.ringOK?"rgba(224,208,176,":"rgba(240,133,122,";
+  cx.strokeStyle=col+"0.5)";cx.lineWidth=2;cx.beginPath();cx.arc(CX,CY,R,0,7);cx.stroke();
+  var n=D.strands.length;
+  for(var i=0;i<n;i++){var a=-Math.PI/2+i/n*6.283+t*0.004;var x=CX+Math.cos(a)*R,y=CY+Math.sin(a)*R;var match=v.seals[i]===D.seals[i];
+   cx.strokeStyle=(match?"rgba(192,64,56,":"rgba(240,133,122,")+"0.14)";cx.beginPath();cx.moveTo(x,y);cx.lineTo(CX,CY);cx.stroke();
+   cx.fillStyle=match?"#e0605a":"#f0857a";cx.beginPath();cx.arc(x,y,5,0,7);cx.fill();
+   cx.fillStyle=match?"rgba(232,220,218,.85)":"#f0857a";cx.font="7px "+mono();
+   var lx=CX+Math.cos(a)*(R+16),ly=CY+Math.sin(a)*(R+16);
+   cx.textAlign=Math.cos(a)>0.1?"left":Math.cos(a)<-0.1?"right":"center";
+   cx.fillText(D.strands[i][0].replace("THE ",""),lx,ly+3);}
+  var hg=cx.createRadialGradient(CX,CY,1,CX,CY,20);hg.addColorStop(0,"#f0a090");hg.addColorStop(.5,"#c04038");hg.addColorStop(1,"rgba(192,64,56,0)");
+  cx.fillStyle=hg;cx.beginPath();cx.arc(CX,CY,20,0,7);cx.fill();
+  cx.fillStyle="#f0c0b0";cx.beginPath();cx.arc(CX,CY,7,0,7);cx.fill();
+  cx.fillStyle="#3a1512";cx.font="bold 9px "+mono();cx.textAlign="center";cx.fillText("\u25cf",CX,CY+3);
+  cx.fillStyle=v.ringOK?"rgba(224,208,176,.8)":"rgba(240,133,122,.9)";cx.font="9px "+mono();
+  cx.fillText(v.ringOK?"the ring answers to NEMESIS":"the ring is broken",CX,CY+34);
+  t+=0.5;requestAnimationFrame(draw);}
+ render();requestAnimationFrame(draw);
+})();
+</script></body></html>

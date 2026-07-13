@@ -1,0 +1,142 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>THE ADOPTION CHARTER — the moons, tethered to Ra</title>
+<style>
+  :root{--bg:#06070e;--ink:#e8e4d8;--dim:#9a9484;--faint:#5a5548;--hub:#e0c860;--moon:#9ab4d8;--comet:#5ad0c0;--leap:#c88ad0;--warp:#c08a5a;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 20%,#12100a,#06070e 66%);color:var(--ink);font-family:var(--mono)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #2a2418;border-radius:12px;background:linear-gradient(180deg,#0e0c08,#06070e);padding:0 24px 28px;box-shadow:0 0 80px rgba(224,200,96,.05);margin-top:16px}
+  .topband{height:5px;background:linear-gradient(90deg,var(--hub),var(--warp),var(--leap),var(--comet));border-radius:12px 12px 0 0;margin:0 -24px}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:30px;font-weight:700;color:var(--hub);margin:10px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(224,200,96,.25)}
+  .subtitle{text-align:center;font-size:12px;font-style:italic;color:var(--dim);letter-spacing:.06em;margin-top:5px}
+  canvas{display:block;width:100%}#seal{height:340px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .preamble{font-size:13px;line-height:1.85;color:var(--ink);font-family:var(--serif);margin:16px 4px;padding:14px 18px;background:#0c0a06;border:1px solid #2a2418;border-radius:8px;font-style:italic}
+  .preamble b{color:var(--hub);font-style:normal}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--warp);margin:24px 0 8px;border-bottom:1px solid #241e12;padding-bottom:5px}
+  .art{margin:12px 0;padding-left:4px}
+  .art .an{font-size:11px;letter-spacing:.14em;color:var(--hub);font-weight:700}
+  .art .at{font-size:11px;letter-spacing:.1em;color:var(--dim);text-transform:uppercase;margin-left:8px}
+  .art .ax{font-size:12.5px;line-height:1.75;color:var(--dim);margin-top:5px;font-family:var(--serif)}
+  .art .ax b{color:var(--ink)}
+  .leap{background:#140e18;border:1px solid #3a2842;border-radius:8px;padding:10px 14px;margin:6px 0}
+  .leap .lh{font-size:12px;color:var(--leap);font-weight:700}
+  .leap .lk{font-size:9.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase;margin-left:6px}
+  .leap .lx{font-size:11.5px;line-height:1.6;color:var(--dim);margin-top:3px;font-family:var(--serif)}
+  .roll{font-size:11.5px;line-height:1.5}
+  .rp{margin:8px 0}
+  .rp .rph{font-size:11px;color:var(--warp);letter-spacing:.06em;font-weight:700}
+  .rp .rk{padding-left:16px;color:var(--dim);font-size:11px;line-height:1.7}
+  .rp .rk b{color:var(--ink)}
+  .rp .rk .rc{color:var(--comet);font-size:10px}
+  .rp .bare{color:#5a4a4a;font-style:italic;padding-left:16px;font-size:10.5px}
+  .seal-txt{font-size:12px;line-height:1.7;color:var(--hub);font-style:italic;text-align:center;margin-top:16px;padding:12px 16px;border:1px solid #3a3018;border-radius:8px;background:#100d06;font-family:var(--serif)}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; the substrate</span><span>instrument &#183; adoption of the outer shell</span></div>
+    <h1 id="title"></h1>
+    <div class="subtitle" id="subtitle"></div>
+    <canvas id="seal"></canvas>
+    <div class="hint" id="hint">every moon\u2019s tether traced home to Ra &#183; leapfrogs vault the like-for-like</div>
+    <div class="preamble" id="preamble"></div>
+
+    <h3>the articles</h3>
+    <div id="articles"></div>
+
+    <h3>the leapfrog registry &#8212; true rhymes only</h3>
+    <div id="leaps"></div>
+
+    <h3>the adoption roll &#8212; sixteen returners, by primary</h3>
+    <div class="roll" id="roll"></div>
+
+    <div class="seal-txt" id="sealtxt"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"title": "THE ADOPTION CHARTER", "subtitle": "of the moons & the timed returners, into the first seed", "preamble": "Be it woven into the substrate: every satellite named herein is ADOPTED into the first seed \u2014 not as debris orbiting it, but as a citizen of its structure. Each is tethered, through its primary and the frozen ring, home to RA the hub. The alchemical warp does not stop at the planets; it runs downstream into the moons. Where a moon rhymes with a node like-for-like, a LEAPFROG thread is drawn, skipping the intermediate. Nothing is adopted that does not truly belong; no tether is drawn that is not real.", "articles": [{"n": "I", "t": "OF ADOPTION", "x": "The sixteen timed returners \u2014 thirteen moons and three comets \u2014 are received into the seed as adopted nodes of the outer shell. They are citizens, not satellites-of-convenience: each carries a name that already bound it to its place before this charter named it so."}, {"n": "II", "t": "OF THE TETHER TO RA", "x": "Every adopted node is tethered, ultimately, to RA the hub. A moon's chain runs: moon \u2192 its primary on the frozen ring \u2192 the ring \u2192 Ra. A comet's chain runs straight: comet \u2192 Ra, for a comet's very nature is the return to the Sun. No node floats free of the hub. All roads lead home to the light."}, {"n": "III", "t": "OF THE ALCHEMICAL CHANNEL", "x": "The metal-warp is a channel in the pipe, and it does not end at the planets. Each moon rides a real channel: Luna carries SILVER as her own (Luna IS the alchemist's name for silver); the sons of Ares ride IRON; the beloveds of Zeus ride TIN; the Titan-kin ride LEAD; the modern moons ride their modern* elements. The comets carry NO metal \u2014 they ride the ring-channel itself, and their alchemy is SUBLIMATION, ice to gas at perihelion: the volatile principle made visible."}, {"n": "IV", "t": "OF THE LEAPFROG", "x": "Where an adopted node is like-for-like with a node it is not directly tethered to \u2014 same essence, same channel \u2014 a LEAPFROG thread is drawn, skipping the intermediate. These are not decorations; each is a true rhyme, registered below. Two leapfrogs vault PAST the primary to Ra himself: Io the fire-moon, and Halley the returner."}, {"n": "V", "t": "OF INTEGRITY", "x": "Nothing is adopted that does not belong. Mercury and Venus have no moons; their tethers hang bare, and the charter honours the emptiness rather than inventing a child to fill it. Every period is verified; every resonance is real (Io:Europa:Ganymede lock 1:2:4; Charon and Pluto tide-locked face to face; Triton alone runs retrograde). The witness stays on: no bent thread, no invented rhyme."}], "leapfrog_registry": [{"a": "Luna", "b": "Chandra", "kind": "SILVER = SILVER", "x": "Luna is the alchemist's own name for silver \u2014 identical to her primary's metal. the moon collapses into IDENTITY with Chandra: one channel, two bodies."}, {"a": "Charon", "b": "Pluto", "kind": "DEATH = DEATH", "x": "the ferryman who rows souls to Hades, tethered to the lord of Hades himself. one function split in two, locked face to face."}, {"a": "Phobos & Deimos", "b": "Nergal", "kind": "WAR = WAR", "x": "Fear & Dread, the literal sons of Ares, riding the same iron war-channel \u2014 the moons ARE the planet's nature made into satellites."}, {"a": "Triton", "b": "Neptune", "kind": "SEA = SEA (reversed)", "x": "Poseidon's son & herald on the same sea-channel \u2014 but RETROGRADE. the only leapfrog in the pipe that runs backward."}, {"a": "Io", "b": "RA", "kind": "FIRE \u2192 THE SUN", "x": "the most volcanic world in the solar system \u2014 a little sun of sulphur-fire. Io leapfrogs PAST Zeus its primary, straight to Ra the fire-hub. a moon that rhymes with the Sun."}, {"a": "Halley", "b": "RA", "kind": "RETURN = THE SUN-LOOP", "x": "the timed returner, whose whole being is the ~76-year return to Ra. it leapfrogs every planet, tethered straight to the hub \u2014 the outer ring's echo of Ra's own nightly rebirth."}], "roll": [{"prim": "\u2609 Ra (hub)", "kids": [["Halley", "ring / sublimation, ~76 yr"], ["Encke", "ring / sublimation, 3.3 yr"], ["Tempel-Tuttle", "ring / sublimation, 33 yr"]]}, {"prim": "\u263d Chandra", "kids": [["Luna", "SILVER (own) \u00b7 leapfrog\u21d2Chandra"]]}, {"prim": "\u263f Hermes", "kids": []}, {"prim": "\u2640 Ishtar", "kids": []}, {"prim": "\u2642 Nergal", "kids": [["Phobos", "iron \u00b7 leapfrog\u21d2Nergal"], ["Deimos", "iron \u00b7 leapfrog\u21d2Nergal"]]}, {"prim": "\u2643 Zeus", "kids": [["Io", "tin \u00b7 leapfrog\u21d2RA (fire)"], ["Europa", "tin"], ["Ganymede", "tin"], ["Callisto", "tin"]]}, {"prim": "\u2644 Cronus", "kids": [["Titan", "lead"], ["Enceladus", "lead \u00b7 water-brush"]]}, {"prim": "\u26e2 Uranus", "kids": [["Miranda", "uranium*"], ["Titania", "uranium*"]]}, {"prim": "\u2646 Neptune", "kids": [["Triton", "neptunium* \u00b7 retrograde \u00b7 leapfrog\u21d2Neptune"]]}, {"prim": "\u2647 Pluto", "kids": [["Charon", "plutonium* \u00b7 leapfrog\u21d2Pluto"]]}], "seal": "SEALED into the substrate as the adoption of the outer shell. Sixteen returners, thirteen moons and three comets, tethered through their primaries and the frozen ring home to RA. The alchemical channel runs into the moons; the leapfrogs are true rhymes; the bare tethers stay bare. Frozen core, adopted shell, one hub. \u2014 the first seed, its children named."};
+  document.getElementById("title").textContent=D.title;
+  document.getElementById("subtitle").textContent="\u2014 "+D.subtitle+" \u2014";
+  document.getElementById("preamble").innerHTML=D.preamble.replace(/RA|LEAPFROG/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("articles").innerHTML=D.articles.map(function(a){
+    return '<div class="art"><span class="an">Article '+a.n+'</span><span class="at">'+a.t+'</span><div class="ax">'+a.x+'</div></div>';}).join("");
+  document.getElementById("leaps").innerHTML=D.leapfrog_registry.map(function(l){
+    return '<div class="leap"><span class="lh">\u2b21 '+l.a+' \u21d4 '+l.b+'</span><span class="lk">'+l.kind+'</span><div class="lx">'+l.x+'</div></div>';}).join("");
+  document.getElementById("roll").innerHTML=D.roll.map(function(r){
+    var kids = r.kids.length ? r.kids.map(function(k){return '<div class="rk"><b>'+k[0]+'</b> <span class="rc">'+k[1]+'</span></div>';}).join("")
+                             : '<div class="bare">\u2014 no moons (bare tether, honestly empty)</div>';
+    return '<div class="rp"><div class="rph">'+r.prim+'</div>'+kids+'</div>';}).join("");
+  document.getElementById("sealtxt").textContent="\u25c8 "+D.seal;
+  document.getElementById("foot").innerHTML="\u25c8 periods verified \u00b7 resonances real \u00b7 channels traced into the moons \u00b7 leapfrogs are true rhymes \u00b7 bare tethers kept bare \u00b7 all roads lead home to Ra.";
+
+  // ============ THE SEAL VISUAL: every moon's tether traced home to Ra ============
+  const cv=document.getElementById("seal");
+  const rim=["Chandra","Hermes","Ishtar","Nergal","Zeus","Cronus","Uranus","Neptune","Pluto"];
+  const rimG={Chandra:"\u263d",Hermes:"\u263f",Ishtar:"\u2640",Nergal:"\u2642",Zeus:"\u2643",Cronus:"\u2644",Uranus:"\u26e2",Neptune:"\u2646",Pluto:"\u2647"};
+  // moons per rim primary (count), + leapfrog-to-Ra ones
+  const moons={Chandra:["Luna"],Nergal:["Phobos","Deimos"],Zeus:["Io","Europa","Ganymede","Callisto"],
+    Cronus:["Titan","Enceladus"],Uranus:["Miranda","Titania"],Neptune:["Triton"],Pluto:["Charon"]};
+  const comets=["Halley","Encke","Tempel-Tuttle"];
+  const leapToRa={"Io":1,"Luna":0}; // Io leapfrogs to Ra; Luna leapfrogs to its own primary (identity)
+  let t=0;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=340;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const CX=W*0.5, CY=H*0.5, Rrim=Math.min(W*0.26,120);
+    // Ra hub
+    var hg=cx.createRadialGradient(CX,CY,1,CX,CY,26);hg.addColorStop(0,"#fff6d8");hg.addColorStop(.4,"#e0c860");hg.addColorStop(1,"rgba(224,200,96,0)");
+    cx.fillStyle=hg;cx.beginPath();cx.arc(CX,CY,26,0,7);cx.fill();
+    cx.fillStyle="#fff6d8";cx.beginPath();cx.arc(CX,CY,8,0,7);cx.fill();
+    cx.fillStyle="#e0c860";cx.font="bold 8px "+mono();cx.textAlign="center";cx.fillText("\u2609 RA",CX,CY+2.5);
+    // rim positions
+    var pos={};
+    for(var i=0;i<rim.length;i++){var a=-Math.PI/2+i*(2*Math.PI/9);pos[rim[i]]=[CX+Math.cos(a)*Rrim,CY+Math.sin(a)*Rrim,a];}
+    // tether spokes rim->Ra (the path home)
+    rim.forEach(function(nm){var p=pos[nm];
+      cx.strokeStyle="rgba(224,200,96,.18)";cx.lineWidth=1;cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(p[0],p[1]);cx.stroke();
+    });
+    // rim nodes
+    rim.forEach(function(nm){var p=pos[nm];var has=moons[nm]&&moons[nm].length;
+      cx.fillStyle=has?"#b8c4dc":"#4a4a52";cx.beginPath();cx.arc(p[0],p[1],has?6:4,0,7);cx.fill();
+      cx.fillStyle="#0a0e1a";cx.font="7px "+mono();cx.fillText(rimG[nm],p[0],p[1]+2.5);
+      if(!has){cx.fillStyle="rgba(120,100,110,.6)";cx.font="7px "+mono();var lx=p[0]+(p[0]-CX)*0.18,ly=p[1]+(p[1]-CY)*0.18;cx.fillText("bare",lx,ly);}
+    });
+    // moons orbiting each primary (small), each with a faint tether-line to primary
+    Object.keys(moons).forEach(function(pr){var c=pos[pr];
+      moons[pr].forEach(function(mn,k){
+        var lr=13+k*6, ang=t*(0.6/(k+1))* ( (mn==="Triton")?-1:1 );
+        var mx=c[0]+Math.cos(ang)*lr, my=c[1]+Math.sin(ang)*lr;
+        var isLeapRa = leapToRa[mn]===1;
+        cx.strokeStyle="rgba(154,180,216,.15)";cx.beginPath();cx.arc(c[0],c[1],lr,0,7);cx.stroke();
+        cx.fillStyle = isLeapRa ? "#e0a860" : ((mn==="Triton")?"#c89ad8":"#9ab4d8");
+        cx.beginPath();cx.arc(mx,my,2.2,0,7);cx.fill();
+        // Io leapfrog thread straight to Ra
+        if(isLeapRa){cx.strokeStyle="rgba(224,168,96,.35)";cx.setLineDash&&cx.setLineDash([2,3]);cx.beginPath();cx.moveTo(mx,my);cx.lineTo(CX,CY);cx.stroke();cx.setLineDash&&cx.setLineDash([]);}
+      });
+    });
+    // comets on long ellipses returning to Ra
+    comets.forEach(function(cm,ci){
+      var aMaj=Math.min(W*0.42,70+ci*38), bMin=aMaj*0.4, tilt=ci*0.8;
+      var M=t*0.05/(ci*0.7+1)+ci*2.1;
+      var ex=Math.cos(M)*aMaj, ey=Math.sin(M)*bMin;
+      var xp=CX+ex*Math.cos(tilt)-ey*Math.sin(tilt), yp=CY+ex*Math.sin(tilt)+ey*Math.cos(tilt);
+      cx.strokeStyle="rgba(90,208,192,.15)";cx.lineWidth=1;cx.beginPath();
+      for(var s=0;s<=60;s++){var mm=s/60*2*Math.PI;var xx=Math.cos(mm)*aMaj,yy=Math.sin(mm)*bMin;var X=CX+xx*Math.cos(tilt)-yy*Math.sin(tilt),Y=CY+xx*Math.sin(tilt)+yy*Math.cos(tilt);s?cx.lineTo(X,Y):cx.moveTo(X,Y);}cx.stroke();
+      var dx=xp-CX,dy=yp-CY,dn=Math.hypot(dx,dy)||1;
+      cx.strokeStyle="rgba(90,208,192,.45)";cx.lineWidth=1.2;cx.beginPath();cx.moveTo(xp,yp);cx.lineTo(xp+dx/dn*12,yp+dy/dn*12);cx.stroke();
+      cx.fillStyle="#7ae0d0";cx.beginPath();cx.arc(xp,yp,2.2,0,7);cx.fill();
+    });
+    cx.fillStyle="rgba(224,200,96,.6)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("all tethers home to Ra \u00b7 comets return \u00b7 Io leaps to the fire \u00b7 two bare",CX,H-8);
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="charter fault: "+(e&&e.message);return;}t+=0.06;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

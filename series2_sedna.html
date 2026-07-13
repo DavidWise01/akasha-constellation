@@ -1,0 +1,183 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · SEDNA — the cast-out</title>
+<style>
+  :root{--bg:#04060c;--ink:#dfe2ea;--dim:#8792a8;--faint:#404a60;--abyss:#16213e;--sedna:#a8503c;--sedna2:#c86848;--cold:#5a86b0;--red:#b0403a;--lit:#6aa0c0;--amb:#c89030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#0a1020,#04060c 70%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #16203a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#070b16,#04060c);padding:0 22px 26px;box-shadow:0 0 70px rgba(90,134,176,.06)}
+  .topband{height:5px;background:linear-gradient(90deg,#0e1830,var(--sedna),var(--cold),#0e1830)}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--sedna2);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(200,104,72,.35)}
+  .subname{text-align:center;font-size:12px;color:var(--sedna);letter-spacing:.3em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+  .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#080c18;border:1px solid #14203a;border-radius:8px;font-family:var(--serif)}
+  .corr b{color:var(--sedna2);font-family:var(--mono)}.corr .cold{color:var(--cold)}
+  canvas{display:block;width:100%}#orbit{height:420px}#detach{height:300px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#080c18;border:1px solid #14203a;border-radius:8px}
+  .measure b{color:var(--sedna2)}.measure .big{color:var(--cold);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--cold);margin:22px 0 8px;border-bottom:1px solid #122038;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .myth{background:#0c0810;border:1px solid #2a1820;border-left:3px solid var(--sedna);border-radius:8px;padding:13px 16px;margin:8px 0;font-size:12.5px;line-height:1.85;color:var(--dim);font-family:var(--serif)}
+  .myth b{color:var(--sedna2);font-family:var(--mono)}.myth .cut{color:var(--red)}
+  .suspects{display:flex;flex-direction:column;gap:7px;margin-top:6px}
+  .susp{background:#080c18;border:1px solid #16203a;border-left:3px solid var(--amb);border-radius:8px;padding:10px 14px}
+  .susp .sn{font-size:13px;font-weight:700;color:var(--amb)}
+  .susp .sx{font-size:11.5px;line-height:1.6;color:var(--dim);margin-top:2px}
+  .rare{background:#0a1220;border:1px solid #1a3050;border-left:3px solid var(--cold);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .rare b{color:var(--cold)}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#080c18;border:1px dashed #16203a;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#94a6c0;margin:10px 4px;padding:10px 14px;background:#080c18;border:1px solid #14203a;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--cold);font-style:normal;font-family:var(--mono)}
+  .thread{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8545; &#183; Sedna</span><span>the scattered field &#183; the prototype sednoid</span></div>
+    <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; C A S T - O U T</div>
+    <h1>SEDNA</h1>
+    <div class="subname">&#10052; the goddess thrown into the frozen deep</div>
+    <div class="epithet">cast out by an unseen hand &#8212; in the myth, and in the sky</div>
+    <div class="corr" id="corr"></div>
+
+    <h3>the orbit &#8212; 11,400 years, almost all of it in the dark</h3>
+    <canvas id="orbit"></canvas>
+    <div class="measure" id="measure1"></div>
+    <div class="hint">Sedna&#8217;s true ellipse against the planets &amp; the heliopause &#183; she returns to the light in 2076</div>
+
+    <h3>the detachment &#8212; the measurement: nothing known could have placed her</h3>
+    <canvas id="detach"></canvas>
+    <div class="measure" id="measure2"></div>
+    <div class="hint">perihelion distance &#183; Neptune&#8217;s reach ends near 38 AU &#183; Sedna sits alone at 76, twice as far out</div>
+
+    <h3>the dark myth &#8212; in full</h3>
+    <div class="myth" id="myth"></div>
+
+    <h3>who cast her out &#8212; the suspects, all unseen</h3>
+    <div class="suspects" id="suspects"></div>
+
+    <div class="rare" id="rare"></div>
+
+    <div class="tier" id="tier"></div>
+    <div class="eli5" id="eli5"></div>
+    <div class="thread" id="thread"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var D={"s": {"peri": 76.19, "aph": 937.0, "a": 506.6, "e": 0.85, "P": 11402, "frac_in": 0.026, "yrs_in": 296, "peri_over_nep": 2.5, "peri_over_wall": 2.0}, "suspects": [["the birth-cluster", "a sibling star, close in the Sun's natal cluster ~4.5 Gyr ago, lifted her perihelion as the cluster dispersed", "AMBER"], ["a passing star", "a lone star's later flyby detached her onto this far orbit", "AMBER"], ["Planet Nine", "a distant unseen ~10 Earth-mass planet shepherds Sedna and the other sednoids", "AMBER"]]}, S=D.s;
+  document.getElementById("corr").innerHTML="Sedna is the Inuit goddess of the sea \u2014 a woman <b>thrown from a boat</b> into the freezing deep, who sank to the bottom and became mistress of everything down there. and Sedna the world is the most <b>detached</b> object we know: cast onto an orbit so far out that <b>nothing known could have placed her there</b>, spending <span class=\"cold\">97% of every orbit</span> in the frozen dark beyond the Sun\u2019s reach. both were cast out into the cold by a hand you cannot see. Brown named her for the goddess of the frigid deep <i>because</i> this was the coldest, most distant place then known.";
+
+  document.getElementById("measure1").innerHTML=
+    '<span>perihelion: <b>'+S.peri+' AU</b> &#183; aphelion: <b>'+S.aph+' AU</b></span>'+
+    '<span>period: <span class="big">'+S.P.toLocaleString()+' yr</span></span>'+
+    '<span>inside the heliopause: <span class="big">'+(S.frac_in*100).toFixed(1)+'%</span> of the orbit (~'+S.yrs_in+' yr)</span>';
+  document.getElementById("measure2").innerHTML=
+    '<span>Sedna perihelion: <span class="big">'+S.peri+' AU</span></span>'+
+    '<span>= <b>'+S.peri_over_nep+'\u00d7</b> Neptune\u2019s orbit</span>'+
+    '<span>= <b>'+S.peri_over_wall+'\u00d7</b> the scattering wall (~38 AU)</span>'+
+    '<span class="big">beyond every known planet\u2019s reach</span>';
+
+  document.getElementById("myth").innerHTML="A young woman lived with her father at the edge of the ice. one day, out in the kayak in deep water \u2014 in some tellings fleeing a cruel marriage, in others to lighten the boat in a storm \u2014 her <b>father cast her into the sea</b>. she caught the side of the boat and held on. and he <span class=\"cut\">cut off her fingers</span>, joint by joint, until she could hold no more. as the severed joints fell into the water they became the <b>seals, the walruses, the whales</b> \u2014 all the creatures of the sea, born from her hands. she sank to the bottom and became <b>Sedna</b>, mistress of the deep, ruler of everything that swims. now she sits at the floor of the frigid ocean; when she is wronged and her hair grows tangled \u2014 she has no fingers to comb it \u2014 she holds the animals back, and a shaman must dive down through the cold to <b>comb her hair and beg her</b> to release them again. a woman betrayed, mutilated, cast into the freezing deep \u2014 who became the deep, and holds the power of return in her ruined hands.";
+
+  document.getElementById("suspects").innerHTML=D.suspects.map(function(s){
+    return '<div class="susp"><span class="sn">'+s[0]+'</span><div class="sx">'+s[1]+'</div></div>';
+  }).join("")+'<div class="m" style="font-size:11px;margin-top:6px">all three are live hypotheses; <b>none is confirmed</b>. the hand that cast her out is unseen \u2014 in the myth, it was her father; in the sky, it is still a mystery. Sedna is a prime clue in the search for <b>Planet Nine</b>.</div>';
+
+  document.getElementById("rare").innerHTML="<b>the rare return.</b> Sedna reaches perihelion in <b>July 2076</b> \u2014 her closest approach to the Sun in ~11,400 years, and a study window that will not open again for over eleven millennia. she returns to the light once, briefly, then is gone into the dark for the length of a human civilization\u2019s entire history, twice over. (the myth keeps time with the physics: the sea-goddess must be <b>appeased to release the animals</b> \u2014 her return is precious, and it is rare.)";
+
+  document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the orbit (perihelion 76 AU, aphelion 937, period ~11,400 yr), the detachment beyond Neptune\u2019s reach, the July 2076 perihelion, the red tholin surface, and her status as the prototype sednoid: all measured and settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 WHO detached her (birth-cluster star vs. passing star vs. Planet Nine) is genuinely unsolved; no perturber confirmed. the mystery is real, not a gap in the telling.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Sedna is named after a sea-goddess from a very old, very sad story: a girl was thrown into the freezing ocean and her fingers became the seals and whales, and she became the queen of the deep. the little world Sedna is like that too \u2014 it lives WAY out in the cold dark, so far that no planet we know could have thrown it there. something we can\u2019t see must have. and once every 11,400 years it swings close to the Sun for a little while \u2014 and that little while is <b>coming in 2076</b>.";
+  document.getElementById("thread").innerHTML="\u25c8 on the woven thread, Sedna is a <b>lawlessness-woman</b> with no daughter-moon \u2014 a lone strand: the betrayed sea-goddess whose severed body became the creatures of the deep. she needs no moon; her children are the whole sea.";
+  document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 orbit &amp; detachment LIT \u00b7 the caster-out AMBER (unsolved) \u00b7 the myth told in full, unsoftened \u00b7 Series II \u00b7 witness on";
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- THE ORBIT (log-ish radial, Sedna's huge ellipse vs inner system) ----------
+  var cv=document.getElementById("orbit");var t=0;
+  function logR(au,maxR){var lo=Math.log10(1),hi=Math.log10(1000);var f=(Math.log10(Math.max(au,1))-lo)/(hi-lo);return 16+f*(maxR-16);}
+  function draw1(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,Hh=420;cv.width=W*dpr;cv.height=Hh*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var CX=W*0.5,CY=Hh*0.52,maxR=Math.min(W,Hh)*0.44;
+    for(var i=0;i<44;i++){cx.fillStyle="rgba(160,180,220,"+(0.05+0.08*Math.sin(t*0.4+i))+")";cx.fillRect((i*89)%W,(i*57)%Hh,1,1);}
+    // reference rings: Neptune 30, heliopause 120, aphelion 937
+    [[30,"Neptune 30 AU","rgba(90,134,176,.3)"],[120,"heliopause 120 AU","rgba(200,168,96,.3)"],[937,"aphelion 937 AU","rgba(168,80,60,.25)"]].forEach(function(z){
+      var r=logR(z[0],maxR);cx.strokeStyle=z[2];cx.setLineDash&&cx.setLineDash([2,4]);cx.beginPath();cx.arc(CX,CY,r,0,7);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+      cx.fillStyle=z[2].replace(",.3)",",.7)").replace(",.25)",",.7)");cx.font="7px "+mono();cx.textAlign="center";cx.fillText(z[1],CX,CY-r-3);
+    });
+    // Sun
+    var g=cx.createRadialGradient(CX,CY,1,CX,CY,12);g.addColorStop(0,"#fff6d8");g.addColorStop(.5,"#e0c860");g.addColorStop(1,"rgba(224,200,96,0)");
+    cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,12,0,7);cx.fill();
+    cx.fillStyle="#e0c860";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("\u2609",CX,CY+2.5);
+    // Sedna's orbit ellipse in log-radial: draw parametric r(theta) mapped through logR
+    var e=S.e, a=S.a;
+    cx.strokeStyle="rgba(200,104,72,.6)";cx.lineWidth=1.6;cx.beginPath();
+    for(var k=0;k<=180;k++){var th=k/180*2*Math.PI;
+      var r=a*(1-e*e)/(1+e*Math.cos(th)); var rr=logR(r,maxR);
+      var x=CX+Math.cos(th)*rr, y=CY+Math.sin(th)*rr*0.82;
+      k?cx.lineTo(x,y):cx.moveTo(x,y);}
+    cx.stroke();
+    // Sedna body moving (slow near aphelion, fast near perihelion — Kepler feel)
+    var M=(t*0.12)%(2*Math.PI);
+    // solve Kepler for E
+    var E=M;for(var it=0;it<6;it++){E=E - (E-e*Math.sin(E)-M)/(1-e*Math.cos(E));}
+    var th=2*Math.atan2(Math.sqrt(1+e)*Math.sin(E/2),Math.sqrt(1-e)*Math.cos(E/2));
+    var r=a*(1-e*Math.cos(E)); var rr=logR(r,maxR);
+    var sx=CX+Math.cos(th)*rr, sy=CY+Math.sin(th)*rr*0.82;
+    cx.fillStyle="#c86848";cx.beginPath();cx.arc(sx,sy,4,0,7);cx.fill();
+    cx.fillStyle="#c86848";cx.font="8px "+mono();cx.fillText("\u2744 Sedna",sx,sy-7);
+    // perihelion marker
+    var pr=logR(S.peri,maxR);
+    cx.fillStyle="rgba(126,192,216,.8)";cx.font="7px "+mono();cx.fillText("perihelion 76 AU \u2014 returns 2076",CX+pr+2,CY+4);
+    cx.fillStyle="rgba(168,80,60,.7)";cx.font="8px "+mono();cx.textAlign="center";
+    cx.fillText("97% of the orbit is out beyond the heliopause \u2014 the frozen dark",CX,Hh-10);
+  }
+
+  // ---------- THE DETACHMENT (perihelion number line) ----------
+  var cvd=document.getElementById("detach");
+  function draw2(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cvd.clientWidth||690,Hh=300;cvd.width=W*dpr;cvd.height=Hh*dpr;
+    var cx=cvd.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,Hh);
+    var x0=50,x1=W-40,baseY=Hh*0.62, maxAU=90;
+    function px(au){return x0+(au/maxAU)*(x1-x0);}
+    // axis
+    cx.strokeStyle="rgba(135,146,168,.4)";cx.lineWidth=1;cx.beginPath();cx.moveTo(x0,baseY);cx.lineTo(x1,baseY);cx.stroke();
+    [0,30,38,50,76].forEach(function(au){var x=px(au);cx.strokeStyle="rgba(135,146,168,.2)";cx.beginPath();cx.moveTo(x,baseY-4);cx.lineTo(x,baseY+4);cx.stroke();
+      cx.fillStyle="rgba(135,146,168,.6)";cx.font="7px "+mono();cx.textAlign="center";cx.fillText(au+" AU",x,baseY+16);});
+    cx.fillStyle="rgba(135,146,168,.7)";cx.font="8px "+mono();cx.fillText("perihelion distance \u2192",(x0+x1)/2,Hh-8);
+    // Neptune
+    cx.fillStyle="#5a86b0";cx.beginPath();cx.arc(px(30),baseY,5,0,7);cx.fill();
+    cx.fillStyle="#5a86b0";cx.font="8px "+mono();cx.fillText("Neptune",px(30),baseY-12);
+    // scattering wall (shaded region up to 38)
+    cx.fillStyle="rgba(90,134,176,.12)";cx.fillRect(px(0),baseY-70,px(38)-px(0),70);
+    cx.fillStyle="rgba(90,134,176,.6)";cx.font="8px "+mono();cx.fillText("Neptune can scatter to here",px(19),baseY-56);
+    cx.fillText("(perihelia stay < ~38 AU)",px(19),baseY-46);
+    // the detachment gap (38..76)
+    cx.strokeStyle="rgba(200,168,96,.4)";cx.setLineDash&&cx.setLineDash([3,3]);cx.beginPath();cx.moveTo(px(38),baseY-30);cx.lineTo(px(76),baseY-30);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(200,168,96,.7)";cx.font="7px "+mono();cx.fillText("the forbidden gap \u2014 no known planet reaches",px(57),baseY-34);
+    // typical scattered objects clustered near 35-38
+    for(var i=0;i<9;i++){var au=33+Math.random()*0+ (i%3)*1.5; au=34+ (i*0.6); if(au>38)au=38-(i-6)*0.5; cx.fillStyle="rgba(120,150,190,.5)";cx.beginPath();cx.arc(px(34+ (i*0.5)),baseY,2,0,7);cx.fill();}
+    // SEDNA far out at 76, alone
+    var sx=px(76);
+    cx.fillStyle="#c86848";cx.beginPath();cx.arc(sx,baseY,6,0,7);cx.fill();
+    cx.fillStyle="#c86848";cx.font="bold 9px "+mono();cx.fillText("\u2744 Sedna \u2014 76 AU",sx,baseY-14);
+    cx.fillStyle="rgba(200,104,72,.7)";cx.font="7px "+mono();cx.fillText("alone, beyond reach",sx,baseY-26);
+    // arrow showing she can't have come from Neptune
+    cx.strokeStyle="rgba(200,104,72,.35)";cx.setLineDash&&cx.setLineDash([2,3]);cx.beginPath();cx.moveTo(px(38),baseY+30);cx.lineTo(sx,baseY+30);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(200,104,72,.7)";cx.font="7px "+mono();cx.fillText("an unseen hand carried her across",px(57),baseY+42);
+    cx.fillStyle="rgba(223,226,234,.85)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("she cannot have come from the known planets \u2014 who cast her out?",(x0+x1)/2,22);
+  }
+
+  function frame(){try{draw1();draw2();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="sedna fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

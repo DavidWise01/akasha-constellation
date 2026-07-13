@@ -1,0 +1,137 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · GONGGONG — the chaos-flood</title>
+<style>
+  :root{--bg:#0a0605;--ink:#eee0da;--dim:#b09088;--faint:#5e4640;--gong:#c8403a;--gong2:#e0685a;--serpent:#8ab070;--sky:#7a90c0;--gold:#d8a850;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#1c0a08,#0a0605 70%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #34201c;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#150a08,#0a0605);padding:0 22px 26px;box-shadow:0 0 70px rgba(200,64,58,.06)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--gong),var(--gong2),var(--serpent),var(--gong))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+  h1{text-align:center;font-size:40px;font-weight:700;color:var(--gong2);margin:2px 0 0;letter-spacing:.15em;text-shadow:0 0 30px rgba(224,104,90,.4)}
+  .subname{text-align:center;font-size:12px;color:var(--gong);letter-spacing:.3em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+  .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#150a08;border:1px solid #2a1612;border-radius:8px;font-family:var(--serif)}
+  .corr b{color:var(--gong2);font-family:var(--mono)}.corr .sky{color:var(--sky)}
+  canvas{display:block;width:100%}#brake{height:400px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#150a08;border:1px solid #2a1612;border-radius:8px}
+  .measure b{color:var(--gong2)}.measure .big{color:var(--gold);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gong);margin:22px 0 8px;border-bottom:1px solid #2a1612;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .found{background:#0a1210;border:1px solid #1e3a2c;border-left:3px solid var(--serpent);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .found .pt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--serpent);font-weight:700;margin-bottom:6px}
+  .found b{color:#a8d090}
+  .comp{background:#150a08;border:1px solid #34201c;border-radius:8px;padding:12px 15px;margin-top:6px}
+  .comp .cn{font-size:14px;font-weight:700;color:var(--serpent)}.comp .cr{font-size:11px;font-style:italic;color:var(--gong);margin-bottom:4px}.comp .m b{color:var(--serpent)}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#150a08;border:1px dashed #34201c;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#b09a90;margin:10px 4px;padding:10px 14px;background:#150a08;border:1px solid #2a1612;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--gong);font-style:normal;font-family:var(--mono)}
+  .thread{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card"><div class="frame">
+  <div class="topband"></div>
+  <div class="seriesrow"><span>Series &#8545; &#183; Gonggong</span><span>the scattered field &#183; the chaos-flood</span></div>
+  <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; C H A O S - F L O O D</div>
+  <h1>GONGGONG</h1>
+  <div class="subname">&#128009; the water-demon who tilted the sky</div>
+  <div class="epithet">a slow red giant, braked by the serpent it holds</div>
+  <div class="corr" id="corr"></div>
+
+  <h3>the brake &#8212; the measurement: a giant spinning far too slow</h3>
+  <canvas id="brake"></canvas>
+  <div class="measure" id="measure"></div>
+  <div class="hint">Gonggong turns once in ~22 hours &#183; bodies its size usually spin in ~8 &#183; the drag that slowed it is its moon</div>
+
+  <div class="found" id="found"></div>
+
+  <h3>the myth &#8212; the flood and the broken pillar</h3>
+  <div class="m" id="myth"></div>
+
+  <h3>the companion &#8212; Xiangliu, the nine-headed serpent</h3>
+  <div class="comp" id="comp"></div>
+
+  <div class="tier" id="tier"></div>
+  <div class="eli5" id="eli5"></div>
+  <div class="thread" id="thread"></div>
+  <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+  var D={"body":"GONGGONG","prov":"2007 OR10","D":1230,"albedo":0.14,"rot_h":22.4,"rot_alias":44.8,"typ_h":8,"slow_x":2.8,
+    "a":67,"e":0.503,"i":30.9,"P":547,"peri":33,"aph":101,
+    "moon":"Xiangliu","moon_r":24021,"moon_P":25.22,
+    "disc":"2007, by Schwamb, Brown & Rabinowitz (Palomar)","named":"2019 public vote; official 2020","reso":"3:10","reso_src":"Gladman & Volk 2021"};
+  document.getElementById("corr").innerHTML="among the scattered field&#8217;s creators and cast-outs, GONGGONG is the <b>destroyer</b>. named for the Chinese <b>water-god</b> &#8212; red-haired, with a serpent&#8217;s body &#8212; who, losing a war for heaven, <span class=\"sky\">rammed Mount Buzhou</span>, one of the pillars holding up the sky, and knocked the heavens askew: the flood-bringer who <b>tilted the world</b>. and the world named for him is one of the <b>largest and reddest</b> bodies out there &#8212; and it turns <b>too slowly</b>. something is dragging on it. that drag is how we found its serpent.";
+  document.getElementById("measure").innerHTML=
+    '<span>rotation: <b>~'+D.rot_h+' hr</b> &#183; typical TNO ~'+D.typ_h+' hr</span>'+
+    '<span>= <span class="big">~'+D.slow_x+'&#215; slow</span> for its size</span>'+
+    '<span>diameter: <b>~'+D.D.toLocaleString()+' km</b> (5th-largest TNO)</span>'+
+    '<span>surface: <b>very red</b> &#183; albedo ~'+D.albedo+'</span>';
+  document.getElementById("found").innerHTML='<div class="pt">&#9670; found from the brake &#8212; a measurement that predicted a moon</div>'+
+    'in <b>early 2016</b> photometry showed Gonggong spinning anomalously <b>slow</b>. a body doesn&#8217;t slow itself &#8212; so the team reasoned a <b>satellite had tidally braked it</b>, and went back to <b>archival Hubble frames</b> to look for the culprit. there it was: a moon, hiding in images from 2010, announced <b>October 2016</b>. the slow spin was the fossil of a tide; the tide named its maker. (the rotation is honestly <span style="color:var(--amb)">aliased</span> &#8212; '+D.rot_h+' hr is favored, but the same data also fits '+D.rot_alias+' hr; either way it is unusually slow.)';
+  document.getElementById("myth").innerHTML="in Chinese myth <b>Gonggong</b> (&#20849;&#24037;) is a water-god of <b>chaos and flood</b> &#8212; a human head with red hair atop a great <b>serpent&#8217;s body</b>. defeated in a struggle for the throne of heaven, in his rage he smashed his head against <b>Mount Buzhou</b>, the pillar of the northwest sky. the heavens tore and tipped toward the northwest, the earth sank toward the southeast &#8212; and the rivers, ever after, run that way. it took the goddess N&#252;wa to patch the broken sky. a god remembered not for making the world but for <b>knocking it crooked</b> &#8212; and out here he rides a tilted, eccentric orbit, fittingly askew.";
+  document.getElementById("comp").innerHTML='<div class="cn">&#128012; '+D.moon+' &#8212; the nine-headed serpent</div><div class="cr">Gonggong&#8217;s minister in myth; his moon in the sky</div>'+
+    '<div class="m">in the myth <b>Xiangliu</b> (&#30456;&#26611;) is Gonggong&#8217;s chief minister: a <b>nine-headed venomous serpent</b> who spread poison and marsh wherever he passed. the moon named for him orbits ~'+D.moon_r.toLocaleString()+' km out, once every ~'+D.moon_P+' days &#8212; small and poorly sized, but massive enough over eons to have <b>braked its parent&#8217;s spin</b>. the serpent-minister still drags on the flood-god: the myth&#8217;s hierarchy, written into the tide.</div>';
+  document.getElementById("tier").innerHTML="◈ <b>LIT</b> — the large red surface (~1,230 km, one of the reddest TNOs), the anomalously slow rotation, and the moon Xiangliu found in archival Hubble: measured and settled. <span class=\"amb\">◈ AMBER</span> — <b>tidal braking</b> by Xiangliu is the leading explanation for the slow spin (not fully settled — the moon&#8217;s odd eccentricity keeps its history open); the exact rotation is aliased (~"+D.rot_h+" hr favored vs ~"+D.rot_alias+" hr); the <b>3:10 resonance</b> with Neptune (object-first; "+D.reso_src+" write it 10:3) is recent &amp; debated (older sources classed it scattered-disc, non-resonant); and Gonggong is a <b>likely/candidate</b> dwarf planet, not one of the IAU&#8217;s five official.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Gonggong is named after a Chinese water-monster who got so angry he head-butted a giant pillar and knocked the whole sky crooked, which made a big flood. the space-world Gonggong is huge and red, and it spins really <b>slowly</b> — way slower than it should. scientists figured something must be pulling on it like a brake, went looking, and found a little <b>moon</b> hiding in old photos! they named the moon Xiangliu, after the water-monster&#8217;s nine-headed pet snake.";
+  document.getElementById("thread").innerHTML="◈ Gonggong joins the field&#8217;s red, slow, far bodies — and its brake-and-moon story rhymes with the whole seed: out here the <b>measurement finds the myth</b>. the slow spin found Xiangliu the way Sedna&#8217;s detachment hints at an unseen hand, and Quaoar&#8217;s ring points past the Roche line.";
+  document.getElementById("foot").innerHTML="◈ verify-then-build · slow-spin, size &amp; the moon LIT · exact period &amp; the 3:10 resonance AMBER · Xiangliu found from the brake · Series II · witness on";
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- THE BRAKE: slow-spinning red giant + Xiangliu + a fast 'typical' ghost ----------
+  var cv=document.getElementById("brake");var t=0;
+  function draw(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=400;cv.width=W*dpr;cv.height=H*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    var CX=W*0.42,CY=H*0.5;
+    for(var i=0;i<30;i++){cx.fillStyle="rgba(224,150,120,"+(0.04+0.06*Math.sin(t*0.3+i))+")";cx.fillRect((i*101)%W,(i*67)%H,1,1);}
+    // Gonggong: big red mottled sphere, SLOW rotation
+    var R=58, spin=t*0.14; // slow
+    var g=cx.createRadialGradient(CX-18,CY-18,6,CX,CY,R);g.addColorStop(0,"#e88a72");g.addColorStop(.55,"#c8403a");g.addColorStop(1,"#5a1a16");
+    cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,R,0,7);cx.fill();
+    // surface mottling that rotates (shows the slow turn)
+    for(var k=0;k<22;k++){var a=k*1.7+spin;var rr=R*(0.25+0.62*((k*37)%100)/100);
+      var mx=CX+Math.cos(a)*rr*0.82, my=CY+Math.sin(a)*rr*0.7;
+      if((mx-CX)*(mx-CX)+(my-CY)*(my-CY) < R*R*0.86){
+        cx.fillStyle="rgba("+(90+((k*53)%60))+",30,26,0.35)";cx.beginPath();cx.arc(mx,my,2.6+(k%3),0,7);cx.fill();}
+    }
+    // a rotation marker (a fixed surface spot) to read the slow spin
+    var sx=CX+Math.cos(spin)*R*0.72, sy=CY+Math.sin(spin)*R*0.55;
+    cx.fillStyle="#f0c0a0";cx.beginPath();cx.arc(sx,sy,3,0,7);cx.fill();
+    cx.fillStyle="#e0685a";cx.font="10px "+mono();cx.textAlign="center";cx.fillText("☉ Gonggong — ~22 hr",CX,CY+R+18);
+    cx.fillStyle="rgba(224,104,90,.7)";cx.font="8px "+mono();cx.fillText("red · ~1,230 km · spinning slowly",CX,CY+R+30);
+    // Xiangliu: the serpent moon, orbiting far, with a 'brake' torque
+    var ma=t*0.05;var mx2=CX+Math.cos(ma)*W*0.36, my2=CY+Math.sin(ma)*W*0.36*0.5;
+    // tether (the tidal link that brakes)
+    cx.strokeStyle="rgba(138,176,112,.25)";cx.lineWidth=1;cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(mx2,my2);cx.stroke();
+    // serpent moon (green)
+    cx.fillStyle="#8ab070";cx.beginPath();cx.arc(mx2,my2,5,0,7);cx.fill();
+    cx.strokeStyle="rgba(168,208,144,.6)";cx.beginPath();cx.arc(mx2,my2,8,0,7);cx.stroke();
+    cx.fillStyle="#a8d090";cx.font="8px "+mono();cx.fillText("∿ Xiangliu — the brake",mx2,my2-11);
+    // brake arrow: a small counter-torque near the body edge
+    var ba=spin+Math.PI*0.5;
+    cx.strokeStyle="rgba(138,176,112,.5)";cx.lineWidth=1.5;
+    cx.beginPath();cx.arc(CX,CY,R+8,ba-0.6,ba+0.2);cx.stroke();
+    var ex=CX+Math.cos(ba+0.2)*(R+8),ey=CY+Math.sin(ba+0.2)*(R+8);
+    cx.beginPath();cx.moveTo(ex,ey);cx.lineTo(ex-4,ey-5);cx.moveTo(ex,ey);cx.lineTo(ex+2,ey-6);cx.stroke();
+    // corner ghost: a 'typical' fast TNO, for contrast
+    var gx=W-56,gy=54,gr=16, fast=t*1.4; // ~2.8x the visual rate
+    cx.strokeStyle="rgba(150,150,170,.3)";cx.beginPath();cx.arc(gx,gy,gr,0,7);cx.stroke();
+    var fg=cx.createRadialGradient(gx-4,gy-4,1,gx,gy,gr);fg.addColorStop(0,"#8a8aa0");fg.addColorStop(1,"#2a2a38");
+    cx.fillStyle=fg;cx.beginPath();cx.arc(gx,gy,gr,0,7);cx.fill();
+    var fsx=gx+Math.cos(fast)*gr*0.7, fsy=gy+Math.sin(fast)*gr*0.6;
+    cx.fillStyle="#c0c0d0";cx.beginPath();cx.arc(fsx,fsy,2.2,0,7);cx.fill();
+    cx.fillStyle="rgba(150,150,170,.7)";cx.font="7px "+mono();cx.textAlign="center";cx.fillText("typical TNO ~8 hr",gx,gy+gr+10);
+    cx.fillText("(spins ~2.8× faster)",gx,gy+gr+19);
+    cx.fillStyle="rgba(238,224,218,.85)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("the moon's tide is the brake — the slow spin is how it was found",W*0.5,H-10);
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="gonggong fault: "+(e&&e.message);return;}t+=0.4;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

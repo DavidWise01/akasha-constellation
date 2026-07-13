@@ -1,0 +1,145 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CHANDRA — the Drained & Filled · Series I</title>
+<style>
+  :root{--bg:#060810;--ink:#e6ecf4;--dim:#8a98b0;--faint:#40506a;--moon:#b8c4d0;--moon2:#8a9ab0;--rohini:#c8b0d8;--soma:#a8d0c0;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0e1424,#060810 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #24304a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#080b16,#060810);padding:0 22px 26px;box-shadow:0 0 60px rgba(184,196,208,.05)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--moon2),var(--moon),var(--rohini))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--moon);margin:6px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(184,196,208,.3)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.1em}
+  .oneline{text-align:center;font-size:12px;color:var(--faint);margin:2px 0 12px}
+  canvas{display:block;width:100%;height:300px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .duality{background:#0b1020;border:1px solid #24304a;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:12px;line-height:1.6;text-align:center;color:var(--dim)}
+  .duality b{color:var(--moon)}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--moon2);margin:22px 0 8px;border-bottom:1px solid #1a2338;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .adv{background:#120e1c;border:1px solid #33264a;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .adv .an{font-size:15px;font-weight:700;color:var(--rohini);letter-spacing:.08em}
+  .adv .ar{font-size:11px;font-style:italic;color:#8a7aa0;margin-bottom:6px}
+  .adv .m b{color:var(--rohini)}
+  .pop{background:#0a1218;border:1px solid #1e3a34;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.14em;color:var(--soma);font-weight:700}
+  .pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--soma)}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; The Moon</span><span>heritage &amp; mythos &#183; card 2</span></div>
+    <h1>CHANDRA</h1>
+    <div class="epithet">&#9789; the Drained &amp; Filled</div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click the moon &#183; walk the cycle &#8212; drained dark, loved back to full</div>
+    <div class="essence" id="essence"></div>
+    <div class="duality" id="duality"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the adviser</h3>
+    <div class="adv" id="adv"></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "THE MOON", "name": "CHANDRA", "glyph": "\u263d", "epithet": "the Drained & Filled", "col": "#b8c4d0", "col2": "#8a9ab0", "accent": "#c8b0d8", "essence": "the male moon who holds Soma, the nectar of immortality \u2014 drained dark by the gods, refilled by love; his phases are his story.", "one_line": "the sun conquers his way back to full; the moon is loved back to full.", "duality": "RA acts & is reborn by BATTLE \u2014 CHANDRA is drained & refilled by LOVE. giver vs reflector. war vs devotion.", "mythos": {"essence": "Chandra rides a silver chariot drawn by antelopes (or ten white horses) across the night; in his cup he carries Soma, the shining nectar the gods drink to keep their immortality.", "phases": "as the gods drink the Soma from him he thins to nothing \u2014 the waning moon is Chandra being emptied; then he refills, and waxes back to full. the phases ARE the draining and the return.", "curse": "Chandra married the 27 Nakshatras (lunar mansions, daughters of Daksha) but loved ROHINI above all. his neglect of her 26 sisters brought Daksha's curse: to wither and die. the other gods softened it to a CYCLE \u2014 so he wanes and dies, but always returns. love caused the phases.", "soma": "Chandra IS Soma \u2014 god and nectar are one name. in the Rigveda, Soma is worshipped as a deity second only to Indra.", "kingship": "lord of plants, tides, the mind and its moods; the calendar and the ritual drink both keep his time."}, "adviser": {"name": "ROHINI", "glyph": "\u2726", "role": "the beloved \u2014 his adviser & the tide of his fullness", "who": "his most-beloved of the 27 star-wives (the star Aldebaran). Chandra's devotion to her \u2014 and his neglect of her sisters \u2014 is the very cause of his waxing and waning.", "counsel": "she is the star he returns to. her favour is his fullness: when he is with Rohini he brightens; the cycle of the moon is the cycle of his love. she counsels not with words but with the pull of return \u2014 the reason he always comes back to full.", "duality_to_ra": "where Ra fought a SERPENT (Apep) to be reborn each dawn, Chandra is drawn back by a STAR (Rohini) to be refilled each month. enemy vs beloved. the sun's rebirth is won; the moon's is given."}, "phases_walk": ["new: Chandra emptied, dark \u2014 the Soma drunk dry", "waxing crescent: the first return", "first quarter: half-filled", "waxing gibbous: nearly whole", "FULL: with Rohini, brimming with Soma", "waning gibbous: the gods begin to drink", "last quarter: half-drained", "waning crescent: almost gone", "back to new: emptied again \u2014 the cycle of love & loss"], "popculture": {"title": "ALDOUS HUXLEY \u2014 BRAVE NEW WORLD (1932)", "note": "the moon-god's nectar, reborn as a dystopia's drug.", "line": "Huxley named his happiness-drug SOMA directly after the Vedic nectar \u2014 Chandra's own Soma. in Brave New World Revisited he wrote he took it from 'the nectar of the gods... used in the most solemn of their religious rites'.", "loop": "and Huxley closed the loop himself \u2014 his sales-pitch for the drug: \u201chalf a gram for a half-holiday... three for a dark eternity ON THE MOON.\u201d the nectar named for the moon-god carries you back to the moon.", "meaning": "the ancient Soma gave courage, joy, the assurance of immortality. Huxley's Soma gives the same euphoria \u2014 but as control: an opiate of the masses, contentment without meaning. the nectar of the gods, made the tranquilizer of the state.", "irony": "Ra was made a VILLAIN by sci-fi (Stargate). Chandra was made a DRUG by dystopia. both sun & moon, inverted by pop culture \u2014 the giver turned tyrant, the nectar turned narcotic."}, "ai_note": "(as with Sol for the sun, the moon's essence-name LUNA is the science root \u2014 lunar, lunacy. Chandra keeps the myth; Luna keeps the word.)", "held": "LUNA = essence-card (root of 'lunar', mirror to Sol). SELENE = the female-moon card (Endymion). KHONSU = the same-pantheon-as-Ra Egyptian option."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("duality").innerHTML=D.duality.replace(/RA/g,'<b style="color:#e0b84a">RA</b>').replace(/CHANDRA/g,'<b>CHANDRA</b>');
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the chariot.</b> '+M.essence+'</div>'+
+    '<div class="m"><b>the phases.</b> '+M.phases+'</div>'+
+    '<div class="m"><b>the curse.</b> '+M.curse+'</div>'+
+    '<div class="m"><b>soma.</b> '+M.soma+'</div>'+
+    '<div class="m"><b>his domain.</b> '+M.kingship+'</div>';
+  const A=D.adviser;
+  document.getElementById("adv").innerHTML=
+    '<div class="an">'+A.glyph+' '+A.name+'</div><div class="ar">'+A.role+'</div>'+
+    '<div class="m">'+A.who+'</div>'+
+    '<div class="m"><b>her counsel.</b> '+A.counsel+'</div>'+
+    '<div class="m"><b>vs Ra.</b> '+A.duality_to_ra+'</div>';
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m">'+P.line+'</div>'+
+    '<div class="m"><b>the loop.</b> '+P.loop+'</div>'+
+    '<div class="m"><b>the meaning.</b> '+P.meaning+'</div>'+
+    '<div class="m"><b>the irony.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+
+  // the phase walk: click to advance; the moon disc waxes/wanes, Rohini's star pulls it back to full
+  const cv=document.getElementById("sky"); let t=0, ph=4; // start FULL (index 4)
+  const N=D.phases_walk.length;
+  // illumination per phase index (0=new .. 4=full .. 8=new)
+  function illum(i){return 1-Math.abs((i/(N-1))*2-1);} // triangle: 0 at ends, 1 at middle(full)
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=300;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    // night sky
+    cx.fillStyle="#060810";cx.fillRect(0,0,W,H);
+    for(let i=0;i<60;i++){const sx=(i*137)%W, sy=(i*79)%H;cx.fillStyle="rgba(200,210,230,"+(0.08+0.08*Math.sin(t+i))+")";cx.fillRect(sx,sy,1,1);}
+    const CX=W*0.42, CY=H*0.46, R=54;
+    const k=illum(ph);
+    // Rohini — the star Chandra returns to (pulls brighter as he nears full)
+    const rx=W*0.80, ry=H*0.34;
+    const rpull=0.4+0.6*k;
+    cx.fillStyle="rgba(200,176,216,"+rpull+")";
+    for(let a=0;a<8;a++){const an=a*Math.PI/4, len=(a%2?4:9)+3*Math.sin(t*2);cx.save?0:0;cx.beginPath();cx.moveTo(rx,ry);cx.lineTo(rx+Math.cos(an)*len,ry+Math.sin(an)*len);cx.lineWidth=1.4;cx.strokeStyle="rgba(200,176,216,"+rpull+")";cx.stroke();}
+    cx.fillStyle="#c8b0d8";cx.beginPath();cx.arc(rx,ry,3,0,7);cx.fill();
+    cx.fillStyle="rgba(200,176,216,"+rpull+")";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Rohini \u2726",rx,ry+18);
+    // the tether of return (love pulling the moon to full)
+    cx.strokeStyle="rgba(200,176,216,"+(0.1+0.2*k)+")";cx.lineWidth=1;cx.setLineDash([2,4]);cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(rx,ry);cx.stroke();cx.setLineDash([]);
+    // the moon disc, illuminated by phase (Soma level = fill)
+    // dark base
+    cx.fillStyle="#1a2230";cx.beginPath();cx.arc(CX,CY,R,0,7);cx.fill();
+    // lit portion: a soma-glow crescent/gibbous by phase. draw waxing from right.
+    cx.save();cx.beginPath();cx.arc(CX,CY,R,0,7);cx.clip();
+    const g=cx.createLinearGradient(CX-R,0,CX+R,0);
+    const waxing=ph<=4; // filling
+    // simple terminator: illuminated width = k, from the side he's filling
+    const litCol="#cdd8e4";
+    cx.fillStyle=litCol;
+    // draw ellipse terminator
+    const term=(k*2-1)*R; // -R (new) .. +R (full)
+    cx.beginPath();
+    if(k>=0.99){cx.arc(CX,CY,R,0,7);}
+    else{
+      cx.arc(CX,CY, R, -Math.PI/2, Math.PI/2, false);          // right half
+      cx.ellipse(CX,CY, Math.abs(term), R, 0, Math.PI/2, -Math.PI/2, term<0);
+    }
+    cx.fill();cx.restore();
+    // soma shimmer on lit part
+    cx.globalAlpha=0.15+0.15*Math.sin(t*2);cx.fillStyle="#a8d0c0";cx.beginPath();cx.arc(CX,CY,R*k,0,7);cx.fill();cx.globalAlpha=1;
+    // rim
+    cx.strokeStyle="#8a9ab0";cx.lineWidth=1.5;cx.beginPath();cx.arc(CX,CY,R,0,7);cx.stroke();
+    // Soma cup icon + level
+    cx.fillStyle="#a8d0c0";cx.font="10px "+mono();cx.textAlign="center";cx.fillText("Soma "+Math.round(k*100)+"%",CX,CY+R+20);
+    // phase label
+    cx.fillStyle=k>0.9?"#e6ecf4":"#b8c4d0";cx.font="bold 12px "+mono();cx.fillText((ph+1)+"/"+N+" \u2014 "+D.phases_walk[ph],W*0.5,H-12);
+    if(k>=0.99){cx.fillStyle="#c8b0d8";cx.font="bold 13px "+mono();cx.fillText("\u263d FULL \u2014 with Rohini \u263d",W*0.5,24);}
+    if(k<=0.01){cx.fillStyle="#5a6478";cx.font="bold 12px "+mono();cx.fillText("dark \u2014 drained dry",W*0.5,24);}
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="moon fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){ph=(ph+1)%N;
+    document.getElementById("hint").textContent = illum(ph)>0.99?"full \u2014 refilled by Rohini's return. keep clicking; the gods will drink again.":(illum(ph)<0.01?"dark \u2014 drained dry. click; love pulls him back.":"phase "+(ph+1)+" of "+N);});
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

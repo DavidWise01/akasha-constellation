@@ -1,0 +1,162 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NERGAL — the Burner · Series I</title>
+<style>
+  :root{--bg:#120604;--ink:#f0dcd4;--dim:#c08878;--faint:#6a3826;--iron:#c6432a;--iron2:#9a3020;--ember:#e0a838;--death:#8a5a70;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#2a0a06,#120604 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #3a1810;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#180806,#120604);padding:0 22px 26px;box-shadow:0 0 60px rgba(198,67,42,.08)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--iron2),var(--iron),var(--ember))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--iron);margin:6px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(198,67,42,.4)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.06em}
+  .oneline{text-align:center;font-size:12px;color:var(--faint);margin:2px 0 12px}
+  canvas{display:block;width:100%}#sky{height:300px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .double{background:#1a0806;border:1px solid #3a1810;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:12px;line-height:1.6;text-align:center;color:var(--dim)}
+  .double b{color:var(--iron)}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--iron2);margin:22px 0 8px;border-bottom:1px solid #2a120c;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .comp{background:#180a12;border:1px solid #4a2438;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:var(--death);letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#7a5060;margin-bottom:6px}
+  .comp .m b{color:#b87a90}
+  .alch{background:#1a0c06;border:1px solid #3a2210;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .alch .mg{font-size:26px;color:var(--iron)}.alch .mn{font-size:15px;font-weight:700;color:var(--iron);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:var(--ember);letter-spacing:.08em}.alch .m b{color:var(--ember)}
+  .pop{background:#180806;border:1px solid #3a1a12;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.14em;color:var(--iron);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--iron)}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#5a382a;text-align:center;margin-top:6px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Mars</span><span>heritage &amp; mythos &#183; card 5</span></div>
+    <h1>NERGAL</h1>
+    <div class="epithet">&#9794; the Burner &#183; Lord of the Great City</div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; rise as the burning coal, descend the seven gates, wed Lady Death</div>
+    <div class="essence" id="essence"></div>
+    <div class="double" id="double"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; Lady Death, the queen who killed Ishtar</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the alchemy &#8212; his metal</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of iron</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "MARS", "name": "NERGAL", "glyph": "\u2642", "epithet": "the Burner, Lord of the Great City", "col": "#c6432a", "col2": "#9a3020", "ember": "#e0a838", "essence": "war and death as ONE force \u2014 the original red-planet god: pestilence, scorched earth, 'inflicted death', and king of the underworld. not war as glory but war as the plague that kills the crops and empties the cities.", "one_line": "the red star is not the god who wages war \u2014 it is war and death in one body.", "why_original": "Ares is war's rage, Mars is war's honour \u2014 but NERGAL is older and truer to the RED: war, plague, scorched summer, and the grave, bound in a single god. the red planet's real first name.", "mythos": {"burner": "his epithet is sharrapu \u2014 'the burner'. Nergal is the killing heat of high summer, the scorched earth, the season when crops wither and die. death delivered, not death natural: the 'god of inflicted death'.", "descent": "sent to the underworld to answer for an insult, he passes the SEVEN GATES \u2014 the same seven Ishtar passed \u2014 stripped at each. but where Ishtar DIED there, Nergal seizes the throne: he drags Ereshkigal down, raises his axe to behead her \u2014", "marriage": "\u2014 and she offers herself as his QUEEN to save her life. he consents. war marries death; Nergal becomes King of the Underworld beside her. the union of the world above (war) and the world below (the grave).", "cycle": "he cannot stay below \u2014 war & death belong to the living too. so he splits the year: six months in the underworld with Ereshkigal, six months roaming the world above. his return is why war has seasons, why summer scorches then relents.", "worship": "worshipped from Early Dynastic Sumer to Neo-Babylon at his temple E-Meslam in Kutha; prayed to for RELIEF from the very plagues he sent. later his red, chaotic, underworld nature fed the Judeo-Christian image of the Devil."}, "companion": {"name": "ERESHKIGAL", "glyph": "\u2640", "role": "Lady Death \u2014 Queen of the Underworld, his equal & his conquest", "who": "Ereshkigal ruled the Land of No Return alone, cold and absolute, from her palace Ganzir behind the seven gates \u2014 until Nergal came to kill her and she made him her king instead.", "counter": "she is the great card-link: THIS IS THE QUEEN WHO KILLED ISHTAR. when Venus/Ishtar descended the seven gates, it was Ereshkigal who struck her dead. now Mars/Nergal descends the SAME gates \u2014 and instead of dying, marries her. Venus fell to the death-queen; Mars weds her.", "power": "she is no adviser and no sacrifice \u2014 she is his EQUAL. when he later flees her bed, she threatens to fling open the gates and loose the dead upon the living until he is returned. death demands war back."}, "phases_walk": ["the red star rises \u2014 high summer, the burning coal", "scorched earth \u2014 crops wither, plague spreads", "the insult \u2014 Nergal sent down to answer", "the seven gates \u2014 stripped at each (Ishtar's path)", "the throne room \u2014 he drags Ereshkigal down", "the raised axe \u2014 he moves to behead Lady Death", "she offers herself \u2014 war marries death", "KING of the underworld \u2014 crowned beside her", "the split year \u2014 six months below, six above", "the red star returns \u2014 war has its season"], "alchemy": {"metal": "IRON", "glyph": "\u2642", "grounding": "Babylonian \u2192 Greek \u2192 Latin (ancient, multi-culture)", "why": "Mars's metal is IRON \u2014 the war-metal, named for it since antiquity because iron made the weapons. and the tie is CHEMISTRY, not fancy: Mars is the RED planet because its soil is iron OXIDE \u2014 rust. iron bleeds red as it dies; the war-metal literally colours the war-planet. the blood in the sky IS the metal rusting.", "note": "(the seven-metal / seven-planet system is ancient \u2014 Babylonian-Hellenistic, grounded in the metals' real properties. spiritual 'Great Work' stages are later 16th-c. elaboration; only the metal-link is claimed.)"}, "cube": {"note": "the 27-cell colour-space: Nergal's iron family. (0,0,0) black, (2,2,2) white; between is iron \u2014 blood/rust red on one axis, scorched ember on another. the colour of the planet is the colour of the rusting metal."}, "popculture": {"title": "RED RISING \u2014 Pierce Brown (2014)", "note": "war and death, staged on the red planet, in colour-castes.", "setting": "set on a colonised MARS: a rigid COLOUR-CODED caste society \u2014 Golds rule from Olympus, Reds die in the mines. the whole world is sorted by colour, war fought House against House.", "houses": "the war-game Houses are named for the very gods of this series \u2014 House MARS, House Pluto, House Jupiter, House Minerva, House Apollo, House Diana. a planet-god pantheon staged as a battlefield.", "warfromdeath": "and the engine is pure Nergal: the rebellion ignites from a DEATH \u2014 Eo's execution \u2014 and the rebels call themselves the SONS OF ARES. war born from death, death breeding war: Nergal's single-body essence, made a saga.", "irony": "Ra was made a VILLAIN (Stargate), Chandra a DRUG (Huxley), Hermes a MASCOT (the caduceus), Ishtar the ur-DESCENT \u2014 and Nergal is the RED SOIL itself, the planet-as-battlefield where colour decides who lives. the war-death god became the setting."}, "ai_note": "(MARS the essence-name holds the science \u2014 the planet, 'martial'. Nergal keeps the myth; Mars keeps the word; Ares keeps the rage.)", "held": "MARS = essence/title-card. ARES = the raw-rage card (war's bloodlust, lover of Aphrodite/Venus). MANGALA = the living-worship & son-of-EARTH bloodline card. TYR = the honour-war / oath-keeper card."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("double").innerHTML="<b>war</b> and <b>death</b> \u2014 not two gods but one. "+D.why_original;
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the burner.</b> '+M.burner+'</div>'+
+    '<div class="m"><b>the descent.</b> '+M.descent+'</div>'+
+    '<div class="m"><b>the marriage.</b> '+M.marriage+'</div>'+
+    '<div class="m"><b>the split year.</b> '+M.cycle+'</div>'+
+    '<div class="m"><b>worship &amp; after.</b> '+M.worship+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>the card-link.</b> '+C.counter+'</div>'+
+    '<div class="m"><b>her power.</b> '+C.power+'</div>';
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u2642</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="m">'+A.why+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#7a5030">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m">'+P.setting+'</div>'+
+    '<div class="m"><b>the houses.</b> '+P.houses+'</div>'+
+    '<div class="m"><b>war from death.</b> '+P.warfromdeath+'</div>'+
+    '<div class="m"><b>the irony.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("flag").textContent="\u25c8 correspondence filter: only ancient, multi-culture ties admitted. iron/Mars = Babylonian\u2192Greek\u2192Latin \u2713 (and iron-oxide IS why Mars is red). tarot/planet mapping = Golden Dawn 1888, single-source \u2192 REJECTED.";
+
+  // ---- the descent: red star -> scorched -> 7 gates -> throne -> axe -> wed Lady Death -> king ----
+  const cv=document.getElementById("sky"); let t=0, step=0; const N=D.phases_walk.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=300;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#2a0e08");g.addColorStop(0.5,"#180806");g.addColorStop(1,"#0a0404");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    const HY=H*0.30, CX=W*0.5;
+    cx.strokeStyle="rgba(198,67,42,.2)";cx.beginPath();cx.moveTo(0,HY);cx.lineTo(W,HY);cx.stroke();
+    cx.fillStyle="rgba(198,67,42,.55)";cx.font="9px "+mono();cx.textAlign="left";cx.fillText("above \u2014 war, scorched earth",10,16);
+    cx.fillStyle="rgba(138,90,112,.6)";cx.textAlign="right";cx.fillText("below \u2014 the land of no return",W-10,16);
+    // seven gates
+    for(let gt=0;gt<7;gt++){const y=HY+14+gt*((H-HY-34)/7);const passed=step>=3&&(gt<Math.min(step-2,7)||step>=4);
+      cx.strokeStyle=passed?"rgba(198,67,42,.4)":"rgba(90,56,46,.4)";cx.beginPath();cx.moveTo(W*0.30,y);cx.lineTo(W*0.70,y);cx.stroke();
+      cx.fillStyle=passed?"rgba(198,67,42,.5)":"rgba(90,56,46,.5)";cx.font="7px "+mono();cx.textAlign="left";cx.fillText("gate "+(gt+1),W*0.72,y+3);}
+    // Ereshkigal throne (appears at bottom from step 4)
+    if(step>=4){const ex=CX,ey=H-22;cx.fillStyle="rgba(138,90,112,"+(step>=6?0.9:0.6)+")";
+      cx.beginPath();cx.arc(ex,ey,6,0,7);cx.fill();
+      cx.fillStyle="#b87a90";cx.font="8px "+mono();cx.textAlign="center";cx.fillText(step>=7?"\u2640 Ereshkigal \u2014 his queen":"\u2640 Ereshkigal",ex,ey+15);}
+    // Nergal's position
+    let sx,sy,scol;
+    if(step<=1){sx=W*(0.14+step*0.05);sy=HY-28;scol="#e0a838";}          // burning coal, high summer
+    else if(step<=3){const d=(step-2)/1;sx=CX;sy=HY+14+d*(H-HY-60);scol="#c6432a";} // descending gates
+    else if(step<=5){sx=CX;sy=H-40;scol="#c6432a";}                       // throne / axe
+    else{sx=CX+Math.sin(t)*4;sy=H-38;scol="#c6432a";}                     // crowned king
+    const gg=cx.createRadialGradient(sx,sy,1,sx,sy,24);gg.addColorStop(0,"#fff2d0");gg.addColorStop(.4,scol);gg.addColorStop(1,"rgba(0,0,0,0)");
+    cx.fillStyle=gg;cx.beginPath();cx.arc(sx,sy,24,0,7);cx.fill();
+    cx.fillStyle=scol;cx.beginPath();cx.arc(sx,sy,8,0,7);cx.fill();
+    // the axe at step 5
+    if(step===5){cx.strokeStyle="#e0a838";cx.lineWidth=2;cx.beginPath();cx.moveTo(sx+10,sy-14);cx.lineTo(sx+20,sy-24);cx.stroke();cx.fillStyle="#e0a838";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("the raised axe",sx,sy-22);}
+    if(step===7){cx.fillStyle="#e0a838";cx.font="10px "+mono();cx.textAlign="center";cx.fillText("\u2642\u2640 war weds death \u2014 King of the Underworld",CX,HY-4);}
+    if(step<=1){cx.fillStyle="#c6432a";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("the burning coal \u2014 high summer, crops die",CX,HY-4);}
+    cx.fillStyle="#f0dcd4";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+D.phases_walk[step],CX,H-8);
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the red star returns \u2014 war has its season. click to burn again.":"step "+(step+1)+" of "+N;});
+
+  // ---- 27-cell IRON cube ----
+  const IRON=[0.62,0.14,0.10], EMBER=[0.85,0.42,0.12];
+  function cellCol(i,j,k){var L=(i+j+k)/6,bl=i/2,fi=k/2,s=bl+fi;
+    var fam=s>0?[(bl*IRON[0]+fi*EMBER[0])/s,(bl*IRON[1]+fi*EMBER[1])/s,(bl*IRON[2]+fi*EMBER[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.006;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(224,168,120,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#8a5030";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

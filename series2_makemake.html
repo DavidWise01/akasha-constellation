@@ -1,0 +1,98 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES II · MAKEMAKE — the creator</title>
+<style>
+ :root{--bg:#08080a;--ink:#ece8e0;--dim:#a29c90;--faint:#57524a;--make:#e0dcc8;--make2:#c0b088;--dark:#2a2620;--birdman:#b89860;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#14120c,#08080a 70%);color:var(--ink);font-family:var(--mono)}
+ .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #26221a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#100e0a,#08080a);padding:0 22px 26px;box-shadow:0 0 70px rgba(224,220,200,.05)}
+ .topband{height:5px;background:linear-gradient(90deg,var(--make),var(--birdman),var(--dark),var(--make))}
+ .seriesrow{display:flex;justify-content:space-between;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:38px;font-weight:700;color:var(--make);margin:2px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(224,220,200,.3)}
+ .subname{text-align:center;font-size:12px;color:var(--make2);letter-spacing:.3em;margin-top:2px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#100e0a;border:1px solid #221e16;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--make);font-family:var(--mono)}
+ canvas{display:block;width:100%}#pair{height:340px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#100e0a;border:1px solid #221e16;border-radius:8px}
+ .measure b{color:var(--make)}.measure .big{color:var(--birdman);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--make2);margin:22px 0 8px;border-bottom:1px solid #221e16;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .comp{background:#100e0a;border:1px solid #26221a;border-radius:8px;padding:12px 15px;margin-top:6px}
+ .comp .cn{font-size:14px;font-weight:700;color:var(--make)}.comp .cr{font-size:11px;font-style:italic;color:var(--make2);margin-bottom:4px}.comp .m b{color:var(--make)}
+ .pattern{background:#0e0c14;border:1px solid #201c2a;border-left:3px solid #9a8ab0;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .pattern b{color:#b8a8d0}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#100e0a;border:1px dashed #26221a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b0a894;margin:10px 4px;padding:10px 14px;background:#100e0a;border:1px solid #221e16;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--make2);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; Makemake</span><span>the scattered field &#183; the maker</span></div>
+ <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; C R E A T O R</div>
+ <h1>MAKEMAKE</h1>
+ <div class="subname">&#128038; the birdman god &#8212; a maker among the dead</div>
+ <div class="epithet">the bright one, and the dark companion who follows</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the bright &amp; the dark &#8212; the maker and his companion</h3>
+ <canvas id="pair"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">Makemake is among the brightest worlds out there; its moon is nearly charcoal-black</div>
+
+ <div class="pattern" id="pattern"></div>
+
+ <h3>the creator &#8212; the birdman of Rapa Nui</h3>
+ <div class="m" id="myth"></div>
+
+ <h3>the companion &#8212; the shadow the maker casts</h3>
+ <div class="comp" id="comp"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"body": "MAKEMAKE", "glyph": "🐦", "D": 1430, "albedo": 0.82, "rank": "2nd-brightest KBO (after Pluto)", "moon": "MK2", "moon_D": 175, "moon_albedo": 0.04};
+ document.getElementById("corr").innerHTML="among a field of the broken and the cast-out, Makemake is a <b>maker</b>. it is named for the creator god of Rapa Nui \u2014 Easter Island \u2014 the god who made humanity and presided over the <b>birdman</b> cult. found near Easter 2005 (codename \u2018Easterbunny\u2019), it is the <b>second-brightest</b> world of the Kuiper belt after Pluto, wrapped in bright methane frost. and like Eris before it, this brilliant maker keeps one <b>dark companion</b> \u2014 a shadow trailing the light.";
+ document.getElementById("measure").innerHTML='<span>diameter: <b>~'+D.D.toLocaleString()+' km</b></span><span>albedo: <span class="big">~'+D.albedo+'</span> ('+D.rank+')</span><span>moon albedo: <b>~'+D.moon_albedo+'</b> (near-charcoal)</span>';
+ document.getElementById("pattern").innerHTML="<b>the bright-parent, dark-child pattern.</b> this is the second time the field shows it: <b>Eris</b> (albedo 0.96) casts dark <b>Dysnomia</b> (0.04); now <b>Makemake</b> (~0.82) casts its dark moon (~0.04). the brightest bodies of the scattered field each keep a near-black companion \u2014 a shadow that follows the light. it is the same shape you asked after: Xena had her companion, and out here the makers and the discord-queens each keep one too. the companion is not incidental to this field; it is a <b>recurring form</b>.";
+ document.getElementById("myth").innerHTML="on Rapa Nui, <b>Makemake</b> is the chief creator \u2014 the god who made humankind and the birds, and the patron of the annual <b>Tangata manu</b> (birdman) contest: each year young men swam to a islet to bring back the first sooty-tern egg, and the victor\u2019s clan led for the year. Makemake is carved across the island\u2019s petroglyphs as a wide-eyed birdman face. Brown chose the name to honour the world\u2019s discovery near <b>Easter</b> \u2014 an Easter Island creator for a world found at Eastertide. a god of making and of birds, out in the dark where almost nothing is made.";
+ document.getElementById("comp").innerHTML='<div class="cn">\u25cf S/2015 (136472) 1 \u2014 \u201cMK2\u201d</div><div class="cr">the dark moon, discovered 2016</div><div class="m">a small, <b>charcoal-dark</b> moon (~'+D.moon_D+' km), reflecting only ~4% of light beside its brilliant parent \u2014 so faint it hid in Makemake\u2019s glare until 2016. its darkness may be its own doing: too small to hold bright volatile frost, its ice has darkened to tholins over the eons. the maker shines; the child it casts is shadow. (still formally unnamed \u2014 a companion awaiting its myth.)</div>';
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 Makemake\u2019s size, high albedo and second-brightest rank, its methane-frost surface, and the 2016 discovery of a dark moon: all settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the moon\u2019s exact diameter and albedo depend on assumptions (dark-and-large vs. bright-and-small); and whether Makemake holds a thin transient atmosphere is still debated.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Makemake is named after a god from Easter Island who made people and birds \u2014 so it\u2019s the \u2018maker\u2019 of the far-away worlds, and it\u2019s one of the shiniest. but it has a little moon that is almost <b>totally black</b>, hiding in its bright glow. the shiny worlds out there each seem to keep one dark little friend \u2014 just like Xena had Gabrielle.";
+ document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 brightness &amp; dark-moon LIT \u00b7 moon size &amp; atmosphere AMBER \u00b7 the bright/dark companion pattern \u00b7 Series II \u00b7 witness on";
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cv=document.getElementById("pair");var t=0;
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=340;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.42,CY=H*0.5;
+  for(var i=0;i<28;i++){cx.fillStyle="rgba(220,214,200,"+(0.04+0.06*Math.sin(t*0.3+i))+")";cx.fillRect((i*103)%W,(i*71)%H,1,1);}
+  // Makemake bright body, methane frost, faint rotation shimmer
+  var R=58;
+  var g=cx.createRadialGradient(CX-16,CY-16,4,CX,CY,R);g.addColorStop(0,"#fbf8ee");g.addColorStop(.6,"#e0dcc8");g.addColorStop(1,"#b0a888");
+  cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,R,0,7);cx.fill();
+  // glow
+  var gl=cx.createRadialGradient(CX,CY,R,CX,CY,R+22);gl.addColorStop(0,"rgba(236,232,216,.25)");gl.addColorStop(1,"rgba(236,232,216,0)");
+  cx.fillStyle=gl;cx.beginPath();cx.arc(CX,CY,R+22,0,7);cx.fill();
+  // subtle frost mottling
+  for(var k=0;k<20;k++){var a=k*2.0+t*0.02;var rr=R*(0.3+0.6*((k*37)%100)/100);cx.fillStyle="rgba(200,192,168,.25)";cx.beginPath();cx.arc(CX+Math.cos(a)*rr*0.7,CY+Math.sin(a)*rr*0.7,2,0,7);cx.fill();}
+  cx.fillStyle="#e0dcc8";cx.font="10px "+mono();cx.textAlign="center";cx.fillText("\U0001F426 Makemake",CX,CY+R+18);
+  cx.fillStyle="rgba(192,176,136,.8)";cx.font="8px "+mono();cx.fillText("albedo ~0.82 \u2014 methane frost",CX,CY+R+30);
+  // dark moon orbiting, nearly black
+  var ma=t*0.03;var mx=CX+Math.cos(ma)*(W*0.34),my=CY+Math.sin(ma)*(H*0.32);
+  cx.fillStyle="#1a1712";cx.beginPath();cx.arc(mx,my,7,0,7);cx.fill();
+  cx.strokeStyle="rgba(120,112,96,.5)";cx.lineWidth=0.6;cx.beginPath();cx.arc(mx,my,7,0,7);cx.stroke();
+  cx.fillStyle="rgba(150,142,122,.85)";cx.font="8px "+mono();cx.fillText("MK2 \u2014 albedo ~0.04",mx,my-11);
+  cx.fillStyle="rgba(236,232,224,.85)";cx.font="9px "+mono();cx.fillText("the brightest keep the darkest \u2014 a shadow that follows the light",W*0.5,H-10);
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="makemake fault: "+(e&&e.message);return;}t+=0.5;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

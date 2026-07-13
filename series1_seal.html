@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES I · THE RING SEAL — .dlw, self-verifying</title>
+<style>
+  :root{--bg:#04060c;--ink:#e8e4d8;--dim:#9a9484;--faint:#5a5548;--hub:#e0c860;--ok:#5ad0a0;--bad:#e0625a;--ring:#5ad0c0;--warp:#c08a5a;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 18%,#12100a,#04060c 66%);color:var(--ink);font-family:var(--mono)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #2a2418;border-radius:12px;background:linear-gradient(180deg,#0e0c08,#04060c);padding:0 24px 28px;box-shadow:0 0 80px rgba(224,200,96,.06);margin-top:16px}
+  .topband{height:5px;background:linear-gradient(90deg,var(--hub),var(--warp),var(--ring),var(--hub));border-radius:12px 12px 0 0;margin:0 -24px}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:26px;font-weight:700;color:var(--hub);margin:10px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(224,200,96,.25)}
+  .moniker{text-align:center;font-size:17px;color:var(--ink);letter-spacing:.06em;margin:8px 0 2px}
+  .spoken{text-align:center;font-size:12px;font-style:italic;color:var(--dim)}
+  .verdict{text-align:center;font-size:13px;font-weight:700;letter-spacing:.1em;margin:10px 0;padding:8px;border-radius:8px}
+  .verdict.ok{color:var(--ok);border:1px solid #1e5a44;background:#08160f}
+  .verdict.bad{color:var(--bad);border:1px solid #5a2420;background:#160a08}
+  canvas{display:block;width:100%}#ring{height:400px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .controls{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+  .controls button{font-family:var(--mono);font-size:11px;background:#0c1424;color:var(--dim);border:1px solid #24344e;border-radius:6px;padding:6px 13px;cursor:pointer}
+  .controls button:hover{border-color:var(--hub);color:var(--hub)}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--warp);margin:22px 0 8px;border-bottom:1px solid #241e12;padding-bottom:5px}
+  .rows{font-size:11px;line-height:1.6}
+  .row{display:flex;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px solid #100e08}
+  .row .lb{flex:0 0 118px;color:var(--dim)}
+  .row .hx{font-size:10px;color:var(--faint);word-break:break-all;flex:1}
+  .row.hub .lb{color:var(--hub)}
+  .row.close .lb{color:var(--ring)}
+  .tier{font-size:11.5px;line-height:1.7;color:var(--dim)}
+  .tier .tg{display:inline-block;font-size:9px;letter-spacing:.1em;padding:1px 6px;border-radius:3px;margin-right:6px;font-weight:700}
+  .tg.h{background:#1a2410;color:#9ac06a;border:1px solid #3a5020}
+  .tg.t{background:#241a10;color:#c0a060;border:1px solid #503a20}
+  .tg.r{background:#101c24;color:#60a0c0;border:1px solid #204050}
+  .note{font-size:11px;line-height:1.7;color:var(--faint);font-style:italic;margin:10px 4px;padding:10px 14px;background:#0a0a06;border:1px solid #201c12;border-radius:8px;font-family:var(--serif)}
+  .note b{color:var(--hub);font-style:normal}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; MYTHOS</span><span>the .dlw ring-seal &#183; self-verifying &#183; zero network</span></div>
+    <h1>THE RING SEAL</h1>
+    <div class="moniker" id="moniker"></div>
+    <div class="spoken" id="spoken"></div>
+    <div class="verdict" id="verdict">recomputing&#8230;</div>
+    <canvas id="ring"></canvas>
+    <div class="hint" id="hint">the head folds back to Ra &#183; the ring re-derives its own hub</div>
+    <div class="controls">
+      <button id="reverify">re-verify (recompute in your browser)</button>
+      <button id="tamper">tamper a body &#8594; watch it break</button>
+      <button id="restore">restore</button>
+    </div>
+    <div class="note" id="note"></div>
+
+    <h3>the ring &#8212; genesis is Ra, the close returns to Ra</h3>
+    <div class="rows" id="rows"></div>
+
+    <h3>the tiers &#8212; honest labels that travel with the deck</h3>
+    <div class="tier" id="tier"></div>
+
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+// ---- pure-JS SHA-256 (no network; verified against known vectors in the test harness) ----
+function sha256(ascii){
+  function rotr(n,x){return (x>>>n)|(x<<(32-n));}
+  var K=[0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2];
+  var H=[0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+  // utf-8 encode
+  var bytes=[];for(var i=0;i<ascii.length;i++){var c=ascii.charCodeAt(i);
+    if(c<128)bytes.push(c);else if(c<2048){bytes.push(192|(c>>6),128|(c&63));}
+    else if(c<55296||c>=57344){bytes.push(224|(c>>12),128|((c>>6)&63),128|(c&63));}
+    else{i++;var c2=ascii.charCodeAt(i);c=65536+((c&1023)<<10)+(c2&1023);bytes.push(240|(c>>18),128|((c>>12)&63),128|((c>>6)&63),128|(c&63));}}
+  var l=bytes.length*8;bytes.push(0x80);while((bytes.length%64)!=56)bytes.push(0);
+  for(var k=7;k>=0;k--)bytes.push((l/Math.pow(2,8*k))&0xff);
+  var w=new Array(64);
+  for(var j=0;j<bytes.length;j+=64){
+    for(var t=0;t<16;t++)w[t]=(bytes[j+4*t]<<24)|(bytes[j+4*t+1]<<16)|(bytes[j+4*t+2]<<8)|(bytes[j+4*t+3]);
+    for(t=16;t<64;t++){var s0=rotr(7,w[t-15])^rotr(18,w[t-15])^(w[t-15]>>>3);var s1=rotr(17,w[t-2])^rotr(19,w[t-2])^(w[t-2]>>>10);w[t]=(w[t-16]+s0+w[t-7]+s1)|0;}
+    var a=H[0],b=H[1],c=H[2],d=H[3],e=H[4],f=H[5],g=H[6],h=H[7];
+    for(t=0;t<64;t++){var S1=rotr(6,e)^rotr(11,e)^rotr(25,e);var ch=(e&f)^((~e)&g);var t1=(h+S1+ch+K[t]+w[t])|0;var S0=rotr(2,a)^rotr(13,a)^rotr(22,a);var mj=(a&b)^(a&c)^(b&c);var t2=(S0+mj)|0;h=g;g=f;f=e;e=(d+t1)|0;d=c;c=b;b=a;a=(t1+t2)|0;}
+    H[0]=(H[0]+a)|0;H[1]=(H[1]+b)|0;H[2]=(H[2]+c)|0;H[3]=(H[3]+d)|0;H[4]=(H[4]+e)|0;H[5]=(H[5]+f)|0;H[6]=(H[6]+g)|0;H[7]=(H[7]+h)|0;
+  }
+  var out="";for(i=0;i<8;i++){out+=("00000000"+(H[i]>>>0).toString(16)).slice(-8);}return out;
+}
+// key-sorted JSON, matching dlw.py (sort_keys, no whitespace)
+function sealRecord(rec){
+  var keys=Object.keys(rec).sort();
+  var parts=keys.map(function(k){return JSON.stringify(k)+":"+JSON.stringify(rec[k]);});
+  return sha256("{"+parts.join(",")+"}");
+}
+
+(function(){
+  var V={"moniker": "⟦SERIES-I:MYTHOS:025036⟧", "word": "ge-siv-va", "seal": "0250360bdec88e8a0ee9915e53dc42809f24db38cd6126dee402f87f7d6dea24", "hash6": "025036", "genesis": "e3026fc3840435ae430bd42fa63fef6cde99f4053eea33f0b146c8a07ce24729", "chain": [[0, "chandra", "e02c0c2a9d8ff57d78cab0e168576ad0621b728d724cae030b721a314594762a"], [1, "hermes", "f54f08181537d631378a90bc0a832923fde967f4b6c234b0281eb260baa4ec67"], [2, "ishtar", "b4cbe6583be4b648e1a5c8f5c9677e3b694dc56882853325f8891e1cbc9c1caf"], [3, "nergal", "a79895db725e59c4380902d15edfe9182d72b29d81bda346f0c5757cb8f17df0"], [4, "zeus", "76e8ce8fad1a9d0ee3e841c10b1a69c19678541868edf3d16b851e50645ef035"], [5, "cronus", "acd5cfe53bcf6a9d226d3dbff0f9c1e671443b42ad895d2e22bbbfab8f55518c"], [6, "uranus", "62f02e1d488f43a209658dae5b3e5739b78ac4e0bbd61bb43adcf228c000c035"], [7, "neptune", "30f7ba7a8c3fe657d88576939aa478b021be0da9b4db220331181a1ced96322a"], [8, "pluto", "0e0b5caaeaa0e2be7283bf788a432233b4276808ef333aec6407894536981af5"]], "head": "0e0b5caaeaa0e2be7283bf788a432233b4276808ef333aec6407894536981af5", "ring_close": "62f9368da311d6a931f425f99f03009151fba9295594a0697345eb3105796293", "seals": {"ra": "e3026fc3840435ae430bd42fa63fef6cde99f4053eea33f0b146c8a07ce24729", "chandra": "a2ffa955da1a0eddfa6d7ef0c83ba52fcef360ea5bf828e87c4a42e8bb35250b", "hermes": "9497014020a13bd44067bac704c01be802a8c47abfe7d976c929813aa22ab6c0", "ishtar": "0758a722ec836befbd36aee2b332276941a3b6ced750683cb4ed63a5e679e10a", "nergal": "77e5286526847741d2f802e0ca8ca19f7f42b69a98d0772d23afbbbd1e05e1f1", "zeus": "a25c1608673efab5d95142f967f2bbce129a310955773864fc0e6823fcbbe0f8", "cronus": "42036773cca9f890c557c3630fa6d37518e6360f0c9d85d549996673dbc326c1", "uranus": "ff50bf9f45797ff8efc70d41a1782553d973dc54c3c948effdff6fb0e303e02b", "neptune": "4b4fd16d4e2fe47613cd0f7e1f9517da820dffe050628ceeb554768eb17b16c9", "pluto": "d2255c9012e0d4d65f043643ca9ac723331f5530831260737d2b0068e7a7892a"}, "bodies": [["ra", "Sun", "Ra", "gold", "HERITAGE", "—(hub)"], ["chandra", "Moon", "Chandra", "silver", "HERITAGE", "Rohini"], ["hermes", "Mercury", "Hermes", "quicksilver", "HERITAGE", "—(he is the thread)"], ["ishtar", "Venus", "Ishtar", "copper", "HERITAGE", "Dumuzi"], ["nergal", "Mars", "Nergal", "iron", "HERITAGE", "Ereshkigal"], ["zeus", "Jupiter", "Zeus", "tin", "HERITAGE", "Hera"], ["cronus", "Saturn", "Cronus", "lead", "HERITAGE", "Rhea"], ["uranus", "Uranus", "Ouranos", "uranium*", "THRESHOLD", "Gaia"], ["neptune", "Neptune", "Poseidon", "neptunium*", "THRESHOLD", "Amphitrite"], ["pluto", "Pluto", "Hades", "plutonium*", "THRESHOLD", "Persephone"]]};
+  var EXPECT=V; // expected values computed in Python
+  var tampered=false, tamperSlug=null;
+  document.getElementById("moniker").textContent=V.moniker;
+  document.getElementById("spoken").textContent="spoken: "+V.word+"  \u00b7  seal "+V.seal.slice(0,12)+"\u2026";
+  document.getElementById("note").innerHTML="A <b>ring seal</b>, not a line: the genesis is <b>Ra</b> (the hub), the nine rim-bodies chain in ring-order, and the close folds the head back to the Ra-genesis \u2014 <b>ring_close = sha256(head \u2502 genesis)</b>. Pluto's night-journey hands the dawn back to Ra, in the hash. Recomputed live in your browser with a pure-JS SHA-256 (zero network) \u2014 tamper any body and the ring diverges from that link onward and the close stops matching.";
+
+  // rebuild the body records exactly as Python did (so the JS recompute must match)
+  var order=V.bodies; // [slug,body,god,metal,tier,comp]
+  function bodyRec(row, tamper){
+    var comp=row[5]; if(tamper) comp=comp+"~TAMPERED";
+    return {"series":"I","slug":row[0],"body":row[1],"god":row[2],"metal":row[3],"tier":row[4],
+            "companion":comp,"filter":"2+cultures","author":"David Lee Wise / ROOT0 / Bridge-Burners LLC"};
+  }
+  var computed={}; // slug -> {seal, link}
+  function recompute(){
+    var seals={};
+    order.forEach(function(row){seals[row[0]]=sealRecord(bodyRec(row, tampered&&row[0]===tamperSlug));});
+    var genesis=seals["ra"];
+    var rim=order.filter(function(r){return r[0]!=="ra";});
+    var prev=genesis, links=[];
+    rim.forEach(function(row,i){var link=sha256(i+"|"+row[0]+"|"+seals[row[0]]+"|"+prev);links.push([i,row[0],link]);prev=link;});
+    var head=prev, ringClose=sha256(head+"|"+genesis);
+    return {seals:seals,genesis:genesis,links:links,head:head,ringClose:ringClose};
+  }
+  var R;
+  function verify(){
+    R=recompute();
+    var ok = (R.ringClose===EXPECT.ring_close) && (R.genesis===EXPECT.genesis) && (R.head===EXPECT.head);
+    var v=document.getElementById("verdict");
+    if(ok){v.className="verdict ok";v.textContent="\u2713 RING VERIFIED \u2014 the head re-derives Ra, every link matches (recomputed here, zero network)";}
+    else{v.className="verdict bad";v.textContent="\u2715 RING BROKEN \u2014 a body was tampered; the chain diverges and the close no longer returns to Ra";}
+    renderRows();
+    return ok;
+  }
+  function renderRows(){
+    var html='<div class="row hub"><span class="lb">genesis \u00b7 Ra</span><span class="hx">'+R.genesis+'</span></div>';
+    R.links.forEach(function(l){
+      var brk = tampered && R.links.findIndex(function(x){return x[1]===tamperSlug;})>=0 && l[0]>=R.links.findIndex(function(x){return x[1]===tamperSlug;});
+      html+='<div class="row"><span class="lb">link['+l[0]+'] '+l[1]+'</span><span class="hx" style="'+(brk?"color:#e0625a":"")+'">'+l[2]+'</span></div>';
+    });
+    html+='<div class="row"><span class="lb">head</span><span class="hx">'+R.head+'</span></div>';
+    var closeOk=R.ringClose===EXPECT.ring_close;
+    html+='<div class="row close"><span class="lb">ring_close \u21ba Ra</span><span class="hx" style="'+(closeOk?"":"color:#e0625a")+'">'+R.ringClose+'</span></div>';
+    document.getElementById("rows").innerHTML=html;
+  }
+  document.getElementById("reverify").onclick=verify;
+  document.getElementById("tamper").onclick=function(){tampered=true;tamperSlug="zeus";verify();document.getElementById("hint").textContent="tampered Zeus's record \u2014 the ring breaks from link[4] onward, and the close no longer returns to Ra.";};
+  document.getElementById("restore").onclick=function(){tampered=false;tamperSlug=null;verify();document.getElementById("hint").textContent="restored \u2014 the head folds back to Ra, the ring re-derives its own hub.";};
+
+  // tiers
+  document.getElementById("tier").innerHTML=
+    '<div style="margin:5px 0"><span class="tg h">HERITAGE \u00d77</span> ancient god + ancient metal; passes the 2+-culture correspondence filter (Ra, Chandra, Hermes, Ishtar, Nergal, Zeus, Cronus).</div>'+
+    '<div style="margin:5px 0"><span class="tg t">THRESHOLD \u00d73</span> telescopic/modern; no ancient saw it; metal is a flagged-modern element* (Uranus\u2192uranium, Neptune\u2192neptunium, Pluto\u2192plutonium). the honesty is on the card.</div>'+
+    '<div style="margin:5px 0"><span class="tg r">REFERENCE \u00b7 not integration</span> the outer toroid shows real periods at PROPORTIONAL speeds \u2014 a teaching clock, NOT an integrator. downstream of <b>az1</b> for any orbital-physics claim.</div>'+
+    '<div style="margin:8px 0;color:#7a7060"><b style="color:#c08a5a">two-layer honesty:</b> REAL = sourced heritage + verified periods/resonances (1:2:4 Laplace, Charon\u2013Pluto lock, Triton retrograde). FIGURE = the ring/weave/clockwork imagery (pedagogy, not measurement).</div>';
+
+  document.getElementById("foot").innerHTML="\u25c8 seal = sha256(key-sorted UTF-8 JSON) \u00b7 matches dlw.py, recomputable \u00b7 spoken-word method disclosed (not corpus word-gen) \u00b7 correspondence-filter ON \u00b7 David Lee Wise / ROOT0 / Bridge-Burners LLC, with AVAN";
+
+  // ---------- the ring visual: hub Ra + 9 rim, the close arc returning ----------
+  var cv=document.getElementById("ring");var t=0;
+  var rimSlugs=order.filter(function(r){return r[0]!=="ra";}).map(function(r){return r[0];});
+  var glyph={ra:"\u2609",chandra:"\u263d",hermes:"\u263f",ishtar:"\u2640",nergal:"\u2642",zeus:"\u2643",cronus:"\u2644",uranus:"\u26e2",neptune:"\u2646",pluto:"\u2647"};
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=400;cv.width=W*dpr;cv.height=H*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    var CX=W*0.5,CY=H*0.48,Rr=Math.min(W*0.30,140),spin=t*0.06;
+    // the ring
+    cx.strokeStyle="rgba(224,200,96,.18)";cx.lineWidth=1;cx.beginPath();cx.arc(CX,CY,Rr,0,7);cx.stroke();
+    // positions
+    var pos=[];for(var i=0;i<rimSlugs.length;i++){var a=spin-Math.PI/2+i*(2*Math.PI/9);pos.push([CX+Math.cos(a)*Rr,CY+Math.sin(a)*Rr]);}
+    // chain links drawn as arcs between consecutive rim nodes
+    for(var i=0;i<pos.length-1;i++){cx.strokeStyle="rgba(90,208,192,.4)";cx.lineWidth=1.4;cx.beginPath();cx.moveTo(pos[i][0],pos[i][1]);cx.lineTo(pos[i+1][0],pos[i+1][1]);cx.stroke();}
+    // genesis spoke Ra->first, and the RING CLOSE arc (Pluto -> Ra, pulsing gold)
+    cx.strokeStyle="rgba(224,200,96,.3)";cx.setLineDash&&cx.setLineDash([4,4]);cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(pos[0][0],pos[0][1]);cx.stroke();
+    // the close: last rim (pluto) folds back to hub, animated gold pulse
+    var pulse=0.4+0.4*Math.sin(t*2);
+    cx.strokeStyle="rgba(224,200,96,"+pulse+")";cx.lineWidth=2;cx.beginPath();cx.moveTo(pos[pos.length-1][0],pos[pos.length-1][1]);
+    cx.quadraticCurveTo(CX,CY-10,CX,CY);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    // hub Ra
+    var hg=cx.createRadialGradient(CX,CY,1,CX,CY,26);hg.addColorStop(0,"#fff6d8");hg.addColorStop(.4,"#e0c860");hg.addColorStop(1,"rgba(224,200,96,0)");
+    cx.fillStyle=hg;cx.beginPath();cx.arc(CX,CY,26,0,7);cx.fill();
+    cx.fillStyle="#fff6d8";cx.beginPath();cx.arc(CX,CY,8,0,7);cx.fill();
+    cx.fillStyle="#e0c860";cx.font="bold 9px "+mono();cx.textAlign="center";cx.fillText("\u2609 RA",CX,CY+2.5);
+    cx.fillStyle="rgba(224,200,96,.6)";cx.font="7px "+mono();cx.fillText("genesis = close",CX,CY+40);
+    // rim nodes
+    rimSlugs.forEach(function(s,i){var p=pos[i];var thr=(s==="uranus"||s==="neptune"||s==="pluto");
+      cx.fillStyle=thr?"#c0a060":"#b8c4dc";cx.beginPath();cx.arc(p[0],p[1],7,0,7);cx.fill();
+      cx.fillStyle="#0a0e1a";cx.font="8px "+mono();cx.fillText(glyph[s],p[0],p[1]+3);
+      cx.fillStyle=thr?"rgba(192,160,96,.8)":"rgba(184,196,220,.7)";cx.font="8px "+mono();
+      var lx=p[0]+(p[0]-CX)*0.16,ly=p[1]+(p[1]-CY)*0.16;cx.fillText(s,lx,ly);
+    });
+    cx.fillStyle="rgba(224,200,96,.55)";cx.font="8px "+mono();cx.textAlign="center";
+    cx.fillText("the head returns to the hub \u2014 ring_close = sha256(head \u2502 Ra)",CX,H-10);
+    // moniker hash6 in center-top
+    cx.fillStyle="rgba(154,148,132,.5)";cx.font="7px "+mono();cx.fillText(V.moniker,CX,20);
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="seal fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  // boot: self-verify then animate
+  try{verify();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="verify fault: "+(e&&e.message);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

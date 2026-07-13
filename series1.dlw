@@ -1,0 +1,142 @@
+{
+  "moniker": "⟦SERIES-I:MYTHOS:025036⟧",
+  "spoken": "ge-siv-va",
+  "spoken_method": "CV-syllable map over seal bytes (Claude/AVAN-side; NOT corpus dlw.py word-gen — flagged)",
+  "axis": "MYTHOS",
+  "seal": "0250360bdec88e8a0ee9915e53dc42809f24db38cd6126dee402f87f7d6dea24",
+  "seal_method": "sha256(key-sorted UTF-8 JSON of the series record) — matches dlw.py; recomputable",
+  "ring": {
+    "kind": "RING (re-derives the hub) — not append-only",
+    "genesis_ra": "e3026fc3840435ae430bd42fa63fef6cde99f4053eea33f0b146c8a07ce24729",
+    "links": [
+      {
+        "i": 0,
+        "slug": "chandra",
+        "link": "e02c0c2a9d8ff57d78cab0e168576ad0621b728d724cae030b721a314594762a"
+      },
+      {
+        "i": 1,
+        "slug": "hermes",
+        "link": "f54f08181537d631378a90bc0a832923fde967f4b6c234b0281eb260baa4ec67"
+      },
+      {
+        "i": 2,
+        "slug": "ishtar",
+        "link": "b4cbe6583be4b648e1a5c8f5c9677e3b694dc56882853325f8891e1cbc9c1caf"
+      },
+      {
+        "i": 3,
+        "slug": "nergal",
+        "link": "a79895db725e59c4380902d15edfe9182d72b29d81bda346f0c5757cb8f17df0"
+      },
+      {
+        "i": 4,
+        "slug": "zeus",
+        "link": "76e8ce8fad1a9d0ee3e841c10b1a69c19678541868edf3d16b851e50645ef035"
+      },
+      {
+        "i": 5,
+        "slug": "cronus",
+        "link": "acd5cfe53bcf6a9d226d3dbff0f9c1e671443b42ad895d2e22bbbfab8f55518c"
+      },
+      {
+        "i": 6,
+        "slug": "uranus",
+        "link": "62f02e1d488f43a209658dae5b3e5739b78ac4e0bbd61bb43adcf228c000c035"
+      },
+      {
+        "i": 7,
+        "slug": "neptune",
+        "link": "30f7ba7a8c3fe657d88576939aa478b021be0da9b4db220331181a1ced96322a"
+      },
+      {
+        "i": 8,
+        "slug": "pluto",
+        "link": "0e0b5caaeaa0e2be7283bf788a432233b4276808ef333aec6407894536981af5"
+      }
+    ],
+    "head": "0e0b5caaeaa0e2be7283bf788a432233b4276808ef333aec6407894536981af5",
+    "ring_close": "62f9368da311d6a931f425f99f03009151fba9295594a0697345eb3105796293",
+    "closes": "ring_close = sha256(head | genesis_ra) — Pluto's night-journey hands the dawn back to Ra"
+  },
+  "bodies": {
+    "ra": {
+      "body": "Sun",
+      "god": "Ra",
+      "metal": "gold",
+      "tier": "HERITAGE",
+      "seal": "e3026fc3840435ae430bd42fa63fef6cde99f4053eea33f0b146c8a07ce24729"
+    },
+    "chandra": {
+      "body": "Moon",
+      "god": "Chandra",
+      "metal": "silver",
+      "tier": "HERITAGE",
+      "seal": "a2ffa955da1a0eddfa6d7ef0c83ba52fcef360ea5bf828e87c4a42e8bb35250b"
+    },
+    "hermes": {
+      "body": "Mercury",
+      "god": "Hermes",
+      "metal": "quicksilver",
+      "tier": "HERITAGE",
+      "seal": "9497014020a13bd44067bac704c01be802a8c47abfe7d976c929813aa22ab6c0"
+    },
+    "ishtar": {
+      "body": "Venus",
+      "god": "Ishtar",
+      "metal": "copper",
+      "tier": "HERITAGE",
+      "seal": "0758a722ec836befbd36aee2b332276941a3b6ced750683cb4ed63a5e679e10a"
+    },
+    "nergal": {
+      "body": "Mars",
+      "god": "Nergal",
+      "metal": "iron",
+      "tier": "HERITAGE",
+      "seal": "77e5286526847741d2f802e0ca8ca19f7f42b69a98d0772d23afbbbd1e05e1f1"
+    },
+    "zeus": {
+      "body": "Jupiter",
+      "god": "Zeus",
+      "metal": "tin",
+      "tier": "HERITAGE",
+      "seal": "a25c1608673efab5d95142f967f2bbce129a310955773864fc0e6823fcbbe0f8"
+    },
+    "cronus": {
+      "body": "Saturn",
+      "god": "Cronus",
+      "metal": "lead",
+      "tier": "HERITAGE",
+      "seal": "42036773cca9f890c557c3630fa6d37518e6360f0c9d85d549996673dbc326c1"
+    },
+    "uranus": {
+      "body": "Uranus",
+      "god": "Ouranos",
+      "metal": "uranium*",
+      "tier": "THRESHOLD",
+      "seal": "ff50bf9f45797ff8efc70d41a1782553d973dc54c3c948effdff6fb0e303e02b"
+    },
+    "neptune": {
+      "body": "Neptune",
+      "god": "Poseidon",
+      "metal": "neptunium*",
+      "tier": "THRESHOLD",
+      "seal": "4b4fd16d4e2fe47613cd0f7e1f9517da820dffe050628ceeb554768eb17b16c9"
+    },
+    "pluto": {
+      "body": "Pluto",
+      "god": "Hades",
+      "metal": "plutonium*",
+      "tier": "THRESHOLD",
+      "seal": "d2255c9012e0d4d65f043643ca9ac723331f5530831260737d2b0068e7a7892a"
+    }
+  },
+  "tier_label": {
+    "HERITAGE": "ancient god + ancient metal, 2+-culture filter PASS (7 bodies)",
+    "THRESHOLD": "telescopic/modern; no ancient saw it; metal is a flagged-modern element* (3 bodies)",
+    "REFERENCE-not-integration": "outer toroid shows real periods at PROPORTIONAL speeds; it is a teaching clock, NOT an integrator. downstream of az1 for any orbital-physics claim.",
+    "two-layer": "REAL = sourced heritage + verified periods/resonances; FIGURE = the ring/weave/clockwork imagery (pedagogy, not measurement)"
+  },
+  "provenance": "David Lee Wise / ROOT0 / Bridge-Burners LLC, with AVAN — Series I, 2026",
+  "license": "CC-BY-ND-4.0 (heritage text); pop-culture threads discussed not reproduced, © respective holders"
+}

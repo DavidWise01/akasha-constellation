@@ -1,0 +1,78 @@
+================================================================================
+  SERIES I  ·  ASSAY & COLLISION-CHECK
+  what kind of tool it is, and how it sits next to what's already on 0root.ai
+  run through the Orrery Detector (ROOT0-ATTRIBUTION-v1.0) + a live site fetch
+================================================================================
+
+THE ORRERY DETECTOR — four questions, answered for the corpus
+--------------------------------------------------------------------------------
+  Q1  Does any part CLAIM to compute something live?
+      NO. The cards DISPLAY verified facts (periods, ratios, dates, luminance).
+      "calculated" appears only in describing history (Le Verrier finding Neptune),
+      never as a live claim. No false gauge.
+
+  Q2  Delete the animation — does content survive?
+      YES, decisively. The deliverable is the sourced heritage text; the canvas
+      illustrates it. An orrery fails this (kill the motion, nothing remains);
+      Series I survives it. This is the load-bearing distinction.
+
+  Q3  Are two coupled-LOOKING things secretly on separate clocks?
+      NO — and here it EARNS something: the outer toroid animates moons on real
+      relative periods tied to VERIFIED ratios (1:2:4 Laplace, Charon–Pluto lock,
+      Triton retrograde). Where it shows a clock, the clock is honest. The myth-walk
+      cards animate a STORY and don't claim measurement, so no false-coupling sin.
+
+  Q4  Did any part keep its LOOK but lose its JOB?
+      NO. Fail-loud wired in 14/14 files; nothing exposes a fake instrument panel.
+      Visuals are labelled as illustration/heritage throughout.
+
+  VERDICT: NOT an orrery. It is a SOURCED REFERENCE INSTRUMENT / teaching card-deck
+  with a verified structural spine (the one moving part — the orbital clock — is
+  real physics at proportional speed, and is labelled downstream of az1).
+
+  (Two heuristic MISFIRES were caught & corrected during the automated pass, in the
+  witness spirit: a regex flagged "claimsCompute" on the word "calculated" [false
+  positive — it's history, not a live claim]; and a block-counter under-counted the
+  toroids/charter because they use structural class-names, not heritage ones [false
+  negative — they're structural instruments, legitimately not heritage cards]. The
+  audit tool got audited.)
+
+
+COLLISION-CHECK against 0root.ai (live fetch, this session)
+--------------------------------------------------------------------------------
+  The site is UD0 — 1261 spheres, 46 domains, one law. Relevant neighbours:
+
+  · az1 (the physics line): a REAL N-body integrator — Halley as a genuine 10th
+    integrated body (real J2000 elements, the only retrograde orbit), a barycenter
+    witness, Trojan L4/L5 camps, Kuiper belt with the 3:2 resonance, Voyager 1&2,
+    retrograde-motion / stand-on-Earth views. This MEASURES.
+
+  · The honesty discipline is already published: the kana companion 縁 (EN) grades
+    AVAN's own chakra↔planet tethers by "was the anchor documented independently
+    BEFORE the comparison, or invented after to make two things rhyme?" — and gives
+    Uranus & Pluto NO chakra because a forced tie is worse than an honest gap.
+    That is EXACTLY Series I's correspondence-filter + bare-tethers move. Series I
+    re-derived, independently, a rule the lattice already lives by.
+
+  FINDING — no duplication, one boundary to guard:
+    · Series I's CONTENT (body→truest god→real metal→companion-shape→pop afterlife,
+      filter-gated) does NOT exist on the site. None of the 46 domains is a celestial
+      heritage/god-distillation deck. It is a genuine NEW neighbour.
+    · The one overlap that matters: Series I and az1 describe the SAME objects with
+      OPPOSITE honesty claims. az1 INTEGRATES; Series I's outer toroid DISPLAYS real
+      periods at proportional speed. If they sit in the same lattice, the outer
+      toroid MUST wear its REFERENCE-not-integration label loudly, or it becomes the
+      exact orrery-drift the postmortem warns of (a proportional animation mistaken
+      for a real integrator). The tier label (see SERIES1_TIER_LABEL.txt) fixes this.
+
+  DOCKING TIER: Series I docks in the MYTHOS domain (god-distillation) — or OURANOS
+  (sky) as alternate — as a REFERENCE sphere, explicitly downstream of az1 for
+  orbital physics. It carries its own .dlw ring-seal (see series1.dlw + the live
+  self-verifying series1_seal.html).
+
+================================================================================
+  bottom line: a coherent, honest, cross-referenced mythology-and-materials atlas
+  of the solar system — a deck whose spine is a closure-audited ring and whose one
+  moving part is real physics at proportional speed. it passes its maker's harshest
+  test. guard only the tier boundary with az1.
+================================================================================

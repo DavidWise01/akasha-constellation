@@ -1,0 +1,167 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES II · IXION — the oath-breaker on the wheel</title>
+<style>
+ :root{--bg:#0a0806;--ink:#ece2d4;--dim:#a8988a;--faint:#5a4c40;--ix:#c87848;--ix2:#e0925a;--fire:#e86838;--ember:#f0a850;--parch:#e8dcc0;--parchink:#2a2018;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#1a0f08,#0a0806 70%);color:var(--ink);font-family:var(--mono)}
+ .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #34241a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#150d08,#0a0806);padding:0 22px 26px;box-shadow:0 0 70px rgba(232,104,56,.06)}
+ .topband{height:5px;background:linear-gradient(90deg,var(--fire),var(--ember),var(--ix),var(--fire))}
+ .seriesrow{display:flex;justify-content:space-between;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:42px;font-weight:700;color:var(--ix2);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(232,104,56,.4)}
+ .subname{text-align:center;font-size:12px;color:var(--ix);letter-spacing:.3em;margin-top:2px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#150d08;border:1px solid #2a1c12;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--ix2);font-family:var(--mono)}.corr .f{color:var(--fire)}
+ canvas{display:block;width:100%}#wheel{height:400px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#150d08;border:1px solid #2a1c12;border-radius:8px}
+ .measure b{color:var(--ix2)}.measure .big{color:var(--fire);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ix);margin:22px 0 8px;border-bottom:1px solid #2a1c12;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .tarot-wrap{display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start}
+ .tarot{flex:0 0 240px;margin:0 auto}
+ .tarot svg{width:100%;height:auto;display:block;filter:drop-shadow(0 6px 24px rgba(0,0,0,.6))}
+ .tarot-note{flex:1;min-width:240px;font-size:11.5px;line-height:1.7;color:var(--dim)}
+ .tarot-note b{color:var(--ink)}
+ .flag{background:#1a1206;border:1px solid #4a3818;border-left:3px solid var(--amb);border-radius:8px;padding:11px 14px;margin:10px 0;font-size:11.5px;line-height:1.7;color:#c8b088}
+ .flag b{color:var(--amb)}.flag .rej{color:#d07850}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#150d08;border:1px dashed #34241a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b0a08e;margin:10px 4px;padding:10px 14px;background:#150d08;border:1px solid #2a1c12;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--ix);font-style:normal;font-family:var(--mono)}
+ .thread{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; Ixion</span><span>the scattered field &#183; the bound plutino</span></div>
+ <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; O A T H - B R E A K E R</div>
+ <h1>IXION</h1>
+ <div class="subname">&#128293; the ingrate bound to the turning wheel</div>
+ <div class="epithet">the first kin-slayer &#8212; chained to a wheel that never stops</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the wheel &#8212; the measurement: bound to Neptune, turning forever</h3>
+ <canvas id="wheel"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">Ixion is a plutino, locked 2:3 to Neptune &#183; it librates \u2014 bound, oscillating, never escaping the wheel</div>
+
+ <h3>the myth &#8212; the crime and the endless turn</h3>
+ <div class="m" id="myth"></div>
+
+ <h3>the tarot &#8212; Arcana X, the Wheel of Fortune</h3>
+ <div class="tarot-wrap">
+   <div class="tarot" id="tarot"></div>
+   <div class="tarot-note" id="tarotnote"></div>
+ </div>
+ <div class="flag" id="flag"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="thread" id="thread"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"body": "IXION", "glyph": "⚷", "a": 39.6, "e": 0.24, "i": 19.6, "q": 30, "Q": 49, "P": 250, "D": 620, "P_nep": 164.8};
+ document.getElementById("corr").innerHTML="Ixion was the first man to murder his own kin \u2014 and when Zeus, astonishingly, forgave and honoured him, he repaid it by lusting after Zeus\u2019s wife. for that ingratitude he was bound to a <span class=\"f\">winged wheel of fire</span>, to turn through the sky <b>forever</b>. and the world named Ixion is bound too: a <b>plutino</b>, locked 2:3 to Neptune, turning on the same resonant wheel as Pluto and Orcus \u2014 unable, ever, to break free of the cycle. the myth gave him an eternal wheel; the physics gave him one to match.";
+ document.getElementById("measure").innerHTML='<span>class: <b>plutino (2:3 with Neptune)</b></span><span>period: <b>~'+D.P+' yr</b> = 3/2 \u00d7 Neptune</span><span>the lock: <span class="big">librates forever</span> \u2014 bound, never escaping</span>';
+ document.getElementById("myth").innerHTML="<b>Ixion</b>, king of the Lapiths, murdered his father-in-law by pitching him into a bed of fire \u2014 the <b>first kin-slaying</b> in Greek myth, so unheard-of that no one would purify him. Zeus took pity, cleansed him, and raised him to Olympus. Ixion answered by <b>lusting after Hera</b>. Zeus shaped a cloud in Hera\u2019s likeness; Ixion embraced it, fathering the first centaur. for betraying the one who spared him, Zeus lashed him to an ever-turning <b>winged wheel of fire</b> and cast it spinning through the heavens for eternity. the archetype of the <b>oath-breaker</b> \u2014 punished not with an end, but with a <b>turn that never ends</b>.";
+
+ document.getElementById("tarotnote").innerHTML="<b>the Wheel of Fortune (X).</b> the card of the ever-turning wheel \u2014 fate rising and falling, none who ride it able to step off. it fits Ixion more literally than any figure in the deck: he is not <i>near</i> the wheel, he is <b>bound to it</b>. the tarot shows the wheel of fate; Ixion is the man chained to its rim, forever rising and forever thrown down. and the number lands on its own: the Wheel is Arcana <b>X</b> \u2014 the tenth \u2014 and Ixion turns on a resonance that will not release him.";
+ document.getElementById("flag").innerHTML="<b>\u2691 admitted as an exception.</b> the deck\u2019s correspondence filter <span class=\"rej\">rejects tarot</span> \u2014 it is a modern esoteric system (Golden-Dawn era, ~1888), not an ancient cross-cultural tie, and there is <b>no documented historical lineage</b> from Ixion\u2019s wheel to the Rota Fortunae. so this card does <b>not</b> pass the filter, and it is the only tarot card in either series. it is here because you asked, and because the match is too exact to pretend away: a man bound to an eternal turning wheel <b>is</b> the Wheel of Fortune. flagged AMBER, kept honest, kept singular.";
+
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 Ixion\u2019s plutino status, the 2:3 resonance lock, the ~"+D.P+"-yr period, and its reddish surface: measured and settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the tarot correspondence is an <i>admitted exception</i>, not a verified tie; the Wheel of Fortune is a modern card and its link to Ixion is thematic, not historical. the wheel-in-the-orbit is real; the wheel-in-the-tarot is a chosen resonance.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Ixion is named after a man in an old Greek story who did something very bad and was punished by being tied to a magic wheel of fire that spins forever and ever. the space-world Ixion is stuck too \u2014 it\u2019s locked to Neptune and goes around and around on the same track forever, just like Pluto. we even gave it a <b>tarot card</b> \u2014 the Wheel \u2014 because it fits so perfectly. (it\u2019s the only one, and we\u2019re honest that tarot isn\u2019t part of the real rules.)";
+ document.getElementById("thread").innerHTML="\u25c8 Ixion joins the plutinos \u2014 <b>Pluto, Orcus, Ixion</b> \u2014 the three bound to Neptune\u2019s 2:3 wheel. Pluto ruled the dead; Orcus judged them; Ixion is the sinner they judge. the wheel holds all three.";
+ document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 resonance LIT \u00b7 tarot AMBER (admitted exception, filter-rejected) \u00b7 the one tarot card, flagged \u00b7 Series II \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+ // ---------- THE WHEEL (resonance libration = the eternal turn) ----------
+ var cv=document.getElementById("wheel");var t=0;
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=400;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.5;
+  for(var i=0;i<28;i++){cx.fillStyle="rgba(232,150,90,"+(0.04+0.06*Math.sin(t*0.3+i))+")";cx.fillRect((i*103)%W,(i*71)%H,1,1);}
+  // Sun
+  var g=cx.createRadialGradient(CX,CY,1,CX,CY,10);g.addColorStop(0,"#fff6d8");g.addColorStop(.5,"#e0c860");g.addColorStop(1,"rgba(224,200,96,0)");
+  cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,10,0,7);cx.fill();
+  var sc=Math.min(W,H)*0.4/49;
+  // Neptune orbit
+  cx.strokeStyle="rgba(90,122,176,.3)";cx.beginPath();cx.arc(CX,CY,30.1*sc,0,7);cx.stroke();
+  // Ixion orbit (eccentric ellipse) drawn as a flaming wheel-rim
+  var a=D.a,e=D.e, arg=0.3;
+  function pt(th){var r=a*(1-e*e)/(1+e*Math.cos(th));return [CX+r*Math.cos(th+arg)*sc, CY+r*Math.sin(th+arg)*sc*0.9];}
+  // the wheel rim (Ixion's orbit) with fire
+  cx.strokeStyle="rgba(232,104,56,.6)";cx.lineWidth=2;cx.beginPath();
+  for(var k=0;k<=160;k++){var th=k/160*2*Math.PI;var p=pt(th);k?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);}cx.stroke();
+  // flames flickering off the rim
+  for(var k=0;k<40;k++){var th=k/40*2*Math.PI + t*0.02;var p=pt(th);var fl=3+2*Math.sin(t*3+k);cx.fillStyle="rgba("+(240)+","+(120+Math.random()*60|0)+",40,"+(0.2+0.2*Math.sin(t*2+k))+")";cx.beginPath();cx.arc(p[0],p[1],fl,0,7);cx.fill();}
+  // spokes of the wheel (from Sun-ish center of orbit to rim) to make it read as a WHEEL
+  var ox=CX+a*e*Math.cos(arg)*sc, oy=CY+a*e*Math.sin(arg)*sc*0.9; // ellipse center
+  cx.strokeStyle="rgba(200,120,72,.25)";cx.lineWidth=1;
+  for(var s=0;s<8;s++){var th=s/8*2*Math.PI;var p=pt(th);cx.beginPath();cx.moveTo(ox,oy);cx.lineTo(p[0],p[1]);cx.stroke();}
+  // Ixion the body, bound to the rim, turning
+  var M=t*0.15;var E=M;for(var it=0;it<6;it++){E=E-(E-e*Math.sin(E)-M)/(1-e*Math.cos(E));}
+  var th=2*Math.atan2(Math.sqrt(1+e)*Math.sin(E/2),Math.sqrt(1-e)*Math.cos(E/2));
+  var ip=pt(th);
+  cx.fillStyle="#e0925a";cx.beginPath();cx.arc(ip[0],ip[1],5,0,7);cx.fill();
+  cx.strokeStyle="rgba(240,168,80,.9)";cx.lineWidth=1.5;cx.beginPath();cx.arc(ip[0],ip[1],9,0,7);cx.stroke();
+  cx.fillStyle="#e0925a";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("\u26b7 Ixion \u2014 bound to the rim",ip[0],ip[1]-13);
+  // Neptune body
+  var nx=CX+Math.cos(t*0.15*1.5)*30.1*sc,ny=CY+Math.sin(t*0.15*1.5)*30.1*sc*0.9;
+  cx.fillStyle="#5a7ab0";cx.beginPath();cx.arc(nx,ny,4,0,7);cx.fill();cx.fillStyle="#5a7ab0";cx.fillText("Neptune",nx,ny-7);
+  cx.fillStyle="rgba(236,226,212,.85)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText("locked 2:3 to Neptune \u2014 the wheel turns, and Ixion can never step off",W/2,H-10);
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="ixion fault: "+(e&&e.message);return;}t+=0.4;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+
+ // ---------- THE TAROT CARD (SVG, flagged exception) ----------
+ var tarot='<svg viewBox="0 0 240 400" xmlns="http://www.w3.org/2000/svg">'
+  +'<defs>'
+  +'<radialGradient id="parch" cx="50%" cy="42%" r="70%"><stop offset="0%" stop-color="#efe6cf"/><stop offset="100%" stop-color="#d8c8a4"/></radialGradient>'
+  +'<radialGradient id="fireg" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#f0c060"/><stop offset="55%" stop-color="#e86838"/><stop offset="100%" stop-color="#8a2c14"/></radialGradient>'
+  +'</defs>'
+  +'<rect x="3" y="3" width="234" height="394" rx="10" fill="url(#parch)" stroke="#2a2018" stroke-width="2.5"/>'
+  +'<rect x="12" y="12" width="216" height="376" rx="6" fill="none" stroke="#2a2018" stroke-width="1"/>'
+  +'<rect x="16" y="16" width="208" height="368" rx="5" fill="none" stroke="#8a6a3a" stroke-width="0.6"/>'
+  // top numeral
+  +'<text x="120" y="42" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#2a2018" font-style="italic">X</text>'
+  // corner flourishes
+  +'<circle cx="30" cy="30" r="3" fill="#2a2018"/><circle cx="210" cy="30" r="3" fill="#2a2018"/><circle cx="30" cy="370" r="3" fill="#2a2018"/><circle cx="210" cy="370" r="3" fill="#2a2018"/>'
+  // the wheel
+  +'<g transform="translate(120,190)">'
+  +'<circle r="74" fill="none" stroke="#8a2c14" stroke-width="1" opacity="0.4"/>'
+  // flame aura
+  +'<circle r="66" fill="url(#fireg)" opacity="0.28"/>'
+  // rim
+  +'<circle r="60" fill="none" stroke="#2a2018" stroke-width="3.5"/>'
+  +'<circle r="52" fill="none" stroke="#2a2018" stroke-width="1"/>'
+  +'<circle r="16" fill="none" stroke="#2a2018" stroke-width="2"/>'
+  // hub
+  +'<circle r="5" fill="#2a2018"/>';
+ // spokes
+ for(var s=0;s<8;s++){var ang=s*Math.PI/4;var x1=Math.cos(ang)*16,y1=Math.sin(ang)*16,x2=Math.cos(ang)*60,y2=Math.sin(ang)*60;tarot+='<line x1="'+x1.toFixed(1)+'" y1="'+y1.toFixed(1)+'" x2="'+x2.toFixed(1)+'" y2="'+y2.toFixed(1)+'" stroke="#2a2018" stroke-width="1.6"/>';}
+ // flame tongues around rim
+ for(var f=0;f<12;f++){var ang=f*Math.PI/6;var x1=Math.cos(ang)*60,y1=Math.sin(ang)*60,x2=Math.cos(ang)*70,y2=Math.sin(ang)*70;tarot+='<path d="M'+x1.toFixed(1)+','+y1.toFixed(1)+' Q'+(Math.cos(ang+0.15)*68).toFixed(1)+','+(Math.sin(ang+0.15)*68).toFixed(1)+' '+x2.toFixed(1)+','+y2.toFixed(1)+'" stroke="#c04824" stroke-width="1.4" fill="none" opacity="0.7"/>';}
+ // Ixion bound to the rim (a small spread-eagled figure at top of wheel)
+ tarot+='<g transform="translate(0,-60)" stroke="#2a2018" stroke-width="2" fill="none" stroke-linecap="round">'
+  +'<circle cx="0" cy="-7" r="4.5" fill="#2a2018"/>'      // head
+  +'<line x1="0" y1="-3" x2="0" y2="10"/>'                  // torso
+  +'<line x1="0" y1="0" x2="-11" y2="-6"/><line x1="0" y1="0" x2="11" y2="-6"/>' // arms bound out
+  +'<line x1="0" y1="10" x2="-9" y2="20"/><line x1="0" y1="10" x2="9" y2="20"/>' // legs bound out
+  +'</g>';
+ tarot+='</g>'
+  // title
+  +'<text x="120" y="330" text-anchor="middle" font-family="Georgia,serif" font-size="15" letter-spacing="2" fill="#2a2018">THE WHEEL</text>'
+  +'<text x="120" y="348" text-anchor="middle" font-family="Georgia,serif" font-size="8.5" letter-spacing="3" fill="#6a4a2a" font-style="italic">ROTA &#183; FORTVNAE</text>'
+  +'<text x="120" y="366" text-anchor="middle" font-family="monospace" font-size="7" letter-spacing="2" fill="#8a6a3a">&#8226; bound: Ixion &#8226;</text>'
+  +'</svg>';
+ document.getElementById("tarot").innerHTML=tarot;
+})();
+</script></body></html>

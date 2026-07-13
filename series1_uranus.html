@@ -1,0 +1,191 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URANUS — the Primordial Sky · Series I</title>
+<style>
+  :root{--bg:#04100f;--ink:#dcf0ec;--dim:#8ac0b8;--faint:#3a6a62;--cyan:#5ac0c0;--cyan2:#3a9a9a;--pale:#9ad8c8;--modern:#c0a860;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0a2422,#04100f 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #14332e;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#06160f,#04100f);padding:0 22px 26px;box-shadow:0 0 60px rgba(90,192,192,.07)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--pale),var(--cyan),var(--modern))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:42px;font-weight:700;color:var(--cyan);margin:6px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(90,192,192,.35)}
+  .subname{text-align:center;font-size:12px;color:var(--cyan2);letter-spacing:.34em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);letter-spacing:.05em;margin-top:3px}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  canvas{display:block;width:100%}#sky{height:330px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .threshold{background:#0d1a14;border:1px solid #2a4a3e;border-left:3px solid var(--modern);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .threshold .tt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--modern);font-weight:700;margin-bottom:6px}
+  .threshold b{color:var(--cyan)}
+  .naming{font-size:11.5px;line-height:1.6;color:var(--faint);font-style:italic;margin:6px 4px}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan2);margin:22px 0 8px;border-bottom:1px solid #143028;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .comp{background:#0c1614;border:1px solid #2a4238;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:#a0c8b8;letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#7a9a8e;margin-bottom:6px}
+  .comp .m b{color:#a0c8b8}
+  .alch{background:#161206;border:1px solid #3a3018;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+  .alch .mg{font-size:24px;color:var(--modern)}.alch .mn{font-size:15px;font-weight:700;color:var(--modern);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:#a89a5a;letter-spacing:.06em}
+  .alch .warn{font-size:10.5px;color:#d0a040;background:#1a1408;border:1px dashed #6a5420;border-radius:5px;padding:5px 9px;margin:5px 0}
+  .alch .m b{color:var(--modern)}
+  .pop{background:#0a1612;border:1px solid #244038;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.12em;color:var(--cyan);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--cyan)}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#2a4a42;text-align:center;margin-top:6px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Uranus</span><span>heritage &amp; mythos &#183; card 8 &#183; the threshold</span></div>
+    <h1>URANUS</h1>
+    <div class="subname" id="subname"></div>
+    <div class="epithet" id="epithet"></div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; the sky lies on the earth, the sickle rises, the first king falls</div>
+    <div class="essence" id="essence"></div>
+    <div class="threshold" id="threshold"></div>
+    <div class="naming" id="naming"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the Earth, who armed his fall</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the alchemy &#8212; and an honest exception</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of cyan</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "URANUS", "name": "URANUS", "subname": "OURANOS", "glyph": "\u26e2", "epithet": "the Primordial Sky \u2014 the First Father, the First Wound", "col": "#5ac0c0", "col2": "#3a9a9a", "cyan": "#6ad0d0", "pale": "#9ad8c8", "modern": "#c0a860", "essence": "the primordial SKY itself \u2014 Ouranos, the first father, the first king, and the first to fall. from his castration the whole succession the seed has climbed began. the wound at the root of every throne.", "one_line": "Zeus fell his father; Cronus fell his; and here is the first sky, the first father, the first cut \u2014 where the whole succession started.", "threshold": {"title": "THE THRESHOLD \u2014 where heritage ends and naming begins", "text": "the seven before this (Sun\u2192Saturn) were NAKED-EYE wanderers: every ancient culture saw them, named them, gave them gods & metals. that is why those cards carried real HERITAGE. URANUS is different: discovered by WILLIAM HERSCHEL in 1781, through a telescope. no Babylonian, no Greek, no Vedic astronomer ever saw it. so it has NO ancient god-name and NO ancient metal \u2014 the seven-metal system was already full. this card does not pretend otherwise. it documents a MODERN naming, honestly, and the correspondence filter is left ON to prove it."}, "naming": "the modern world CHOSE the name to continue the seed's own logic: above Mars, his elders \u2014 Jupiter (Zeus), then Saturn (Cronus, Zeus's father), then above Saturn, Cronus's OWN father: OURANOS, the primordial sky. (Herschel first wanted 'Georgium Sidus', the Georgian Star, for King George III; 'Uranus' won by ~1850 for consistency with the god-sequence. the only planet named for a GREEK, not Roman, god.)", "mythos": {"sky": "Ouranos is the SKY \u2014 not a god who rules the sky but the sky itself, the first-born canopy over Gaia the Earth. sky lying upon earth; from their union came the Titans, the Cyclopes, the hundred-handed ones. the first generation of everything.", "wound": "but Ouranos hated his children & pushed them back into Gaia's body. in agony she forged a flint SICKLE and asked her children to act. only CRONUS dared: he took the sickle and CASTRATED his father, severing sky from earth forever. the scythe on card 7 was raised HERE first \u2014 against the sky that fathered it.", "birth": "from the blood that fell to earth came the Furies & the Giants; and from the severed flesh cast into the sea rose foam, and from the foam \u2014 APHRODITE, love born from the first wound. (a hidden thread to card 4: Venus is the daughter of this castration.)", "succession": "so Ouranos is the ROOT of the whole succession the seed climbed: Ouranos fell to Cronus, Cronus to Zeus. three sky-kings, three sons, three falls. Uranus is the FIRST \u2014 the original wound that set the pattern of every throne taken from a father.", "tilt": "and the planet keeps the wound in its body: Uranus is tilted 98\u00b0 \u2014 it does not spin upright but ROLLS ON ITS SIDE, knocked over, as if the sky itself were felled and never rose again."}, "companion": {"name": "GAIA", "glyph": "\u2641", "role": "the Earth \u2014 his consort, and the one who armed his fall", "who": "Gaia, the primordial Earth, the ground beneath the sky. the first pair: Sky over Earth, the oldest marriage of all. from them came everything.", "counter": "across the cards: Rohini REFILLS, Dumuzi is SACRIFICED, Ereshkigal the EQUAL, Hera the CONSORT, Rhea the DEFIER \u2014 and Gaia is the ARMORER. she forged the sickle and handed it to her son to cut down her husband. the partner who ENDS the king. (and note the bookend: Gaia gives the blade that starts the succession; Rhea, generations later, defies the same blade to end it.)"}, "alchemy": {"metal": "URANIUM", "glyph": "\u26e2", "grounding": "MODERN \u2014 named 1789, FOR this planet (NOT ancient)", "flag": "\u26a0 this is NOT an ancient heritage-metal. the seven ancient metals were full at Saturn.", "why": "but there IS an honest, truthfully-tied metal: URANIUM \u2014 isolated by Martin Klaproth in 1789 and named DELIBERATELY for the newly-found planet, just eight years after its discovery. it is the modern echo of the ancient gesture: the ancients gave the Sun gold; the moderns, finding a new world, forged its name into a new element. real, really named for it, and honestly MODERN. (and fittingly dark: uranium is the heavy, radioactive element that opened the atomic age \u2014 a primordial power, like the primordial sky.)", "note": "(the ancient seven-metal system is Babylonian\u2192Greek\u2192Latin & filter-passing. uranium is flagged MODERN and included as the honest parallel, not smuggled in as heritage. the filter stays ON.)"}, "cube": {"note": "the 27-cell colour-space: Uranus's cyan family \u2014 and this colour is REAL physics: methane in its atmosphere absorbs red light, so Voyager 2 (1986) found a nearly featureless CYAN ball. (0,0,0) black, (2,2,2) white; between is methane-cyan on one axis, pale ice-green on another."}, "popculture": {"title": "THE PLANET THAT FELL OVER  &  HERSCHEL\u2019S STAR", "note": "the first new world in recorded history, and the one lying on its side.", "discovery": "Uranus was the FIRST planet ever DISCOVERED \u2014 the six inner worlds were always known; Herschel's 1781 find, with a homemade telescope, doubled the size of the known solar system overnight and made him famous. for ~70 years Britain called it 'the Georgian Star' after King George III; the rest of the world chose the god. the name itself is a monument to the moment science started FINDING planets instead of inheriting them.", "fell": "and it is the planet that FELL OVER: an axial tilt of 98\u00b0 means it rolls around the sun on its side, poles where other planets have equators, each pole facing 42 years of sunlight then 42 of dark. the sky-god, knocked flat \u2014 the myth of the felled father written into the physics.", "holst": "Gustav Holst gave him 'Uranus, the Magician' (The Planets, 1916) \u2014 abrupt, lurching, conjuring; the odd one out, as befits the first modern planet in an ancient sequence.", "irony": "Ra villain, Chandra drug, Hermes mascot, Ishtar descent, Nergal red soil, Zeus king, Cronus Time \u2014 and Uranus? Uranus became a PUNCHLINE. the primordial sky, the first father of all the gods, the origin of the whole succession \u2014 reduced by an accident of English pronunciation to a schoolyard joke. the oldest god in the set wears the newest, silliest mask."}, "ai_note": "(URANUS the name is itself the science \u2014 chosen 1782, the only Greek-named planet; uranium named for it 1789. there is no essence/title split here, because there is no ancient face to hold: the modern name IS the whole identity. that honesty is the card.)", "held": "no ancient held-cards \u2014 there is no ancient heritage to hold. the honest 'held' faces are the MODERN alternatives history actually used: GEORGIUM SIDUS (Herschel's royal name) & HERSCHEL (the discoverer's name, still in the \u26e2 symbol). the reverse records that the name was a CHOICE, not an inheritance."};
+  document.getElementById("subname").textContent="\u26e2  "+D.subname;
+  document.getElementById("epithet").textContent=D.epithet;
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("threshold").innerHTML='<div class="tt">\u25c8 '+D.threshold.title+'</div>'+D.threshold.text.replace(/URANUS|HERSCHEL|1781/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("naming").innerHTML="<b>why this name:</b> "+D.naming;
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the sky itself.</b> '+M.sky+'</div>'+
+    '<div class="m"><b>the wound.</b> '+M.wound+'</div>'+
+    '<div class="m"><b>from the wound, love.</b> '+M.birth+'</div>'+
+    '<div class="m"><b>the root of the succession.</b> '+M.succession+'</div>'+
+    '<div class="m"><b>felled, and never risen.</b> '+M.tilt+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>';
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u26e2</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="warn">'+A.flag+'</div>'+
+    '<div class="m">'+A.why+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#6a7060">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the first found.</b> '+P.discovery+'</div>'+
+    '<div class="m"><b>the planet that fell over.</b> '+P.fell+'</div>'+
+    '<div class="m"><b>the magician.</b> '+P.holst+'</div>'+
+    '<div class="m"><b>the punchline.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("flag").textContent="\u25c8 correspondence filter (ON, and biting): NO ancient heritage here \u2014 Uranus is telescopic (1781), unseen by any ancient culture. uranium = MODERN (1789), flagged, not smuggled as heritage. tarot = Golden Dawn 1888 \u2192 REJECTED. the honesty is the card.";
+
+  // ============ the felled sky: Sky on Earth -> sickle -> castration -> fall -> the tilted planet ============
+  const cv=document.getElementById("sky"); let t=0, step=0;
+  const STEPS=["the Sky lies upon the Earth \u2014 the first pair","the children born, then pushed back down",
+    "Gaia forges the flint sickle","Cronus takes the blade \u2014 only he dares",
+    "the castration \u2014 sky severed from earth","from the blood: Furies & Giants; from the foam: Aphrodite",
+    "the sky felled \u2014 the first king falls","three generations: Ouranos \u2039 Cronus \u2039 Zeus",
+    "the planet keeps the wound \u2014 tilted 98\u00b0, on its side"];
+  const N=STEPS.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=330;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0a2e30");g.addColorStop(1,"#04100f");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    const CX=W*0.5, EY=H*0.72;  // earth line
+    // stars
+    for(let i=0;i<26;i++){cx.fillStyle="rgba(180,232,224,"+(0.1+0.14*Math.sin(t+i))+")";cx.fillRect((i*71)%W,(i*43)%(EY-30)+6,1,1);}
+    // EARTH (Gaia) - a dark curve at the bottom
+    cx.fillStyle="#0c1a12";cx.beginPath();cx.moveTo(0,EY);cx.quadraticCurveTo(CX,EY-18,W,EY);cx.lineTo(W,H);cx.lineTo(0,H);cx.closePath();cx.fill();
+    cx.fillStyle="rgba(122,154,142,.6)";cx.font="9px "+mono();cx.textAlign="left";cx.fillText("\u2641 Gaia \u2014 the Earth",10,EY+18);
+    // SKY (Ouranos) - a great cyan arc over the earth; in early steps it lies CLOSE (on) the earth
+    const closeness = step<=1?1:(step<=4?1-(step-1)/3:0.2);
+    const skyY = EY - 40 - (1-closeness)*120;
+    cx.strokeStyle="rgba(90,192,192,"+(step>=6?0.4:0.85)+")";cx.lineWidth=3;
+    cx.beginPath();cx.moveTo(0,skyY+30);cx.quadraticCurveTo(CX,skyY-30,W,skyY+30);cx.stroke();
+    cx.fillStyle="rgba(90,192,192,.7)";cx.textAlign="right";cx.fillText("Ouranos \u2014 the Sky \u26e2",W-10,skyY-8);
+    // children between sky & earth (steps 1-2)
+    if(step>=1&&step<=2){for(let s=0;s<6;s++){cx.fillStyle="rgba(154,216,200,.5)";cx.beginPath();cx.arc(CX-60+s*24,(skyY+EY)/2+Math.sin(t+s)*4,2.5,0,7);cx.fill();}}
+    // the SICKLE (steps 2-4)
+    if(step>=2&&step<=4){cx.save();cx.translate(CX,(skyY+EY)/2);cx.rotate(step>=4?0.5+Math.sin(t*4)*0.1:-0.3);
+      cx.strokeStyle="#c0c8c0";cx.lineWidth=2.2;cx.beginPath();cx.arc(0,0,16,-0.4,Math.PI*0.9);cx.stroke();
+      cx.beginPath();cx.moveTo(0,0);cx.lineTo(-4,20);cx.stroke();cx.restore();
+      cx.fillStyle="#9ad8c8";cx.font="9px "+mono();cx.textAlign="center";cx.fillText(step===2?"Gaia forges the sickle":(step===3?"only Cronus dares":"the cut"),CX,(skyY+EY)/2-24);}
+    // the severing flash (step4-5)
+    if(step===4){cx.strokeStyle="rgba(240,255,250,.8)";cx.lineWidth=1.5;for(let s=0;s<8;s++){const a=s*0.8;cx.beginPath();cx.moveTo(CX,(skyY+EY)/2);cx.lineTo(CX+Math.cos(a)*40,(skyY+EY)/2+Math.sin(a)*40);cx.stroke();}}
+    // from foam, Aphrodite (step5)
+    if(step===5){cx.fillStyle="rgba(230,180,200,.9)";cx.beginPath();cx.arc(CX+70,EY-6,4,0,7);cx.fill();
+      for(let s=0;s<6;s++){cx.fillStyle="rgba(230,180,200,"+(0.5-s*0.07)+")";cx.beginPath();cx.arc(CX+70,EY-6,6+s*4,0,7);cx.stroke?cx.stroke():0;}
+      cx.fillStyle="#e6b4c8";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("\u2640 Aphrodite \u2014 love from the wound",CX,EY-40);}
+    // three-generation stack (step7)
+    if(step===7){cx.fillStyle="#5ac0c0";cx.font="10px "+mono();cx.textAlign="center";
+      cx.fillText("Ouranos \u2039 Cronus \u2039 Zeus",CX,H*0.3);
+      cx.fillStyle="rgba(138,192,184,.7)";cx.font="8px "+mono();cx.fillText("three sky-kings \u2014 three sons \u2014 three falls",CX,H*0.3+14);}
+    // THE TILTED PLANET (step8): a cyan ball on its side with a sideways ring
+    if(step===8){const px=CX,py=H*0.42;
+      const gg=cx.createRadialGradient(px-6,py-6,2,px,py,34);gg.addColorStop(0,"#bfeeee");gg.addColorStop(.6,"#5ac0c0");gg.addColorStop(1,"#2a7a7a");
+      cx.fillStyle=gg;cx.beginPath();cx.arc(px,py,30,0,7);cx.fill();
+      // sideways ring (vertical - the 'fell over' signature)
+      cx.strokeStyle="rgba(200,240,236,.6)";cx.lineWidth=2;cx.save();cx.translate(px,py);cx.rotate(1.4);
+      cx.beginPath();cx.ellipse(0,0,44,10,0,0,7);cx.stroke();cx.restore();
+      cx.fillStyle="#9ad8c8";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("tilted 98\u00b0 \u2014 the sky knocked flat",CX,py+52);}
+    cx.fillStyle="#dcf0ec";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+STEPS[step],CX,H-12);
+    if(step===N-1){cx.fillStyle="#c0a860";cx.font="bold 10px "+mono();cx.fillText("\u26e2 the first father \u2014 telescopic, modern-named, honestly the threshold",CX,24);}
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="sky fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the felled sky \u2014 the first wound, the modern name. click to begin again.":"step "+(step+1)+" of "+N;});
+
+  // ---- 27-cell CYAN cube ----
+  const CYAN=[0.42,0.82,0.86], PALE=[0.60,0.78,0.74];
+  function cellCol(i,j,k){var L=(i+j+k)/6,a=i/2,b=k/2,s=a+b;
+    var fam=s>0?[(a*CYAN[0]+b*PALE[0])/s,(a*CYAN[1]+b*PALE[1])/s,(a*CYAN[2]+b*PALE[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.006;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(160,216,208,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#3a6a62";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

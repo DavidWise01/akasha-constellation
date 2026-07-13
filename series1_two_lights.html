@@ -1,0 +1,104 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Two Lights — Series I</title>
+<style>
+  :root{--bg:#05060c;--ink:#e8e4d8;--dim:#9a9488;--faint:#57503f;--sun:#e0b84a;--moon:#b8c4d0;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 35%,#0b0d1a,#05060c 72%);color:var(--ink);font-family:var(--mono)}
+  .wrap{max-width:900px;margin:0 auto;padding:16px 14px 46px}
+  .seriesno{text-align:center;font-size:10px;letter-spacing:.5em;color:var(--faint);text-transform:uppercase}
+  h1{text-align:center;font-size:24px;font-weight:700;color:#f0e6c8;margin:2px 0 2px;letter-spacing:.1em}
+  .sub{text-align:center;font-size:11px;color:var(--faint);margin-bottom:12px;font-style:italic}
+  .stage{background:#03040a;border:1px solid #1a1c2a;border-radius:10px;position:relative}
+  canvas{display:block;width:100%;height:340px;cursor:pointer}
+  .toggle{display:flex;gap:0;justify-content:center;margin:12px 0 0}
+  .toggle button{background:#0a0c16;color:var(--dim);border:1px solid #1e2030;padding:7px 20px;font-family:var(--mono);font-size:11px;font-weight:700;cursor:pointer;letter-spacing:1px}
+  .toggle button.sun.on{background:#2a2210;color:var(--sun);border-color:var(--sun)}
+  .toggle button.moon.on{background:#141a22;color:var(--moon);border-color:var(--moon)}
+  .toggle button:first-child{border-radius:6px 0 0 6px}.toggle button:last-child{border-radius:0 6px 6px 0}
+  .panel{max-width:700px;margin:12px auto 0;background:#080a14;border:1px solid #1a1c2a;border-radius:10px;padding:16px 20px}
+  .ess{font-size:13px;font-style:italic;color:var(--dim);margin-bottom:12px;line-height:1.6}
+  .row{display:flex;gap:10px;padding:3px 0;border-bottom:1px dotted #1c1e2c;font-size:12px}
+  .row .cult{min-width:130px;font-weight:700}.row .nm{color:var(--ink)}
+  .note{font-size:11px;color:var(--faint);margin-top:10px;font-style:italic}
+  h3{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin:18px 0 6px;text-align:center}
+  .bond{background:#0a0c16;border-left:2px solid #2a3244;border-radius:0 6px 6px 0;padding:8px 12px;margin:6px 0}
+  .bond .bt{font-weight:700;font-size:11px;letter-spacing:.12em;color:#c8b878}
+  .bond .bc{font-size:10px;color:var(--faint);margin:2px 0}
+  .bond .bs{font-size:11.5px;color:var(--dim);line-height:1.5}
+  .why{max-width:680px;margin:16px auto 0;font-size:11.5px;color:var(--dim);line-height:1.7;text-align:center;font-style:italic;border-top:1px solid #1a1c2a;padding-top:12px}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;border-radius:6px;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap">
+  <div class="seriesno">Series &#8544; &#183; the celestial heritage</div>
+  <h1>THE TWO LIGHTS</h1>
+  <div class="sub" id="sub"></div>
+  <div class="stage"><canvas id="sky"></canvas></div>
+  <div class="toggle">
+    <button class="sun on" id="bSun">&#9737; THE SUN</button>
+    <button class="moon" id="bMoon">&#9789; THE MOON</button>
+  </div>
+  <div class="panel" id="panel"></div>
+  <h3>the bond &#8212; why they rarely share the sky</h3>
+  <div id="bonds" style="max-width:700px;margin:0 auto"></div>
+  <div class="why" id="why"></div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series_no": 1, "series_title": "THE TWO LIGHTS", "subtitle": "before the wanderers, before the nine \u2014 only the two the sky turns on", "sun": {"name": "THE SUN", "glyph": "\u2609", "col": "#e0b84a", "essence": "the giver \u2014 light, life, warmth, the active force; the center all else orbits", "gods": {"Roman": "Sol", "Greek": "Helios / Apollo (Phoebus)", "Egyptian": "Ra / Aten (Horus in journey)", "Norse": "Sol / Sunna (flees the wolf Sk\u00f6ll)", "Hindu": "Surya", "Japanese": "Amaterasu (goddess, imperial ancestor)", "Inca": "Inti", "Aztec": "Tonatiuh", "Sumerian": "Utu / Shamash (justice)", "Fon (W.Africa)": "Lisa (in Mawu-Lisa)"}, "mostly": "masculine \u2014 but not always: Amaterasu (Japan) & Aboriginal Australia make the Sun female"}, "moon": {"name": "THE MOON", "glyph": "\u263d", "col": "#b8c4d0", "essence": "the reflector \u2014 night, cycle, tide, reflection, time-keeping; the changing mirror of the sun", "gods": {"Roman": "Luna", "Greek": "Selene / Artemis", "Egyptian": "Thoth (wisdom) / Khonsu", "Norse": "Mani (flees the wolf Hati)", "Hindu": "Chandra / Soma", "Japanese": "Tsukuyomi (god, night & serenity)", "Inca": "Mama Quilla", "Sumerian": "Nanna / Sin", "Fon (W.Africa)": "Mawu (in Mawu-Lisa)", "Lacandon (Maya)": "Akna (moon-wife)"}, "mostly": "often feminine \u2014 but Tsukuyomi (Japan) & Mani (Norse) are male moon-gods; gender is not fixed"}, "bonds": [{"type": "SIBLINGS", "cultures": "Greek (Helios/Selene, Apollo/Artemis), Japanese (Amaterasu/Tsukuyomi), Norse (Sol/Mani)", "story": "born together, set apart to rule day & night \u2014 twins or siblings who cannot share the sky"}, {"type": "PURSUIT", "cultures": "Norse, Inuit", "story": "one endlessly chases the other \u2014 the Norse pair flees ravenous wolves (Sk\u00f6ll & Hati); the Inuit brother-moon forever pursues his sister-sun"}, {"type": "LOVERS", "cultures": "Krachi (W.Africa), Lacandon Maya (Qin & Akna), Etruscan (Catha/\u015auri)", "story": "they fell in love and married \u2014 the Krachi say their children became the stars; the Lacandon moon-wife brightens when she & the sun make love"}, {"type": "RIVALS / ECLIPSE", "cultures": "many; Mesoamerican, Native American", "story": "an eclipse is the two at war \u2014 the moon devouring or battling the sun, a moment of cosmic strife"}, {"type": "ONE BEING", "cultures": "Fon (Mawu-Lisa)", "story": "not two but one \u2014 Mawu (moon, feminine) and Lisa (sun, masculine) merged into a single dual-gender creator"}], "why": "the two lights are the first duality humans read into the sky: day/night, active/reflective, gone/returned. every later planet-story is a variation on this original pair.", "series_note": "#1 of a series. the wanderers (Mercury\u2026Pluto) come later; they are children of this first contrast."};
+  document.getElementById("sub").textContent=D.subtitle;
+  const cv=document.getElementById("sky"); let t=0, focus="sun";
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||820,H=340;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const CY=H*0.5;
+    // the two lights, orbiting a shared centre (their eternal dance)
+    const sep=Math.min(W,H)*0.32, cxm=W*0.5;
+    const ang=t*0.4;
+    const sunX=cxm+Math.cos(ang)*sep, sunY=CY+Math.sin(ang)*sep*0.4;
+    const moonX=cxm-Math.cos(ang)*sep, moonY=CY-Math.sin(ang)*sep*0.4;
+    // faint tether between them (the bond)
+    cx.strokeStyle="rgba(120,120,150,.15)";cx.lineWidth=1;cx.beginPath();cx.moveTo(sunX,sunY);cx.lineTo(moonX,moonY);cx.stroke();
+    // stars (their children, per the Krachi)
+    for(let i=0;i<40;i++){const a=i*2.39, r=40+((i*53)%((W/2)-40)); const sx=cxm+Math.cos(a+t*0.02)*r, sy=CY+Math.sin(a*1.3)*(H*0.42);
+      cx.fillStyle="rgba(200,200,220,"+(0.06+0.06*Math.sin(t+i))+")";cx.fillRect(sx,sy,1,1);}
+    function orb(x,y,col,glyph,big,lit){
+      const R=big?26:17;
+      const g=cx.createRadialGradient(x,y,2,x,y,R*1.8);g.addColorStop(0,lit?"#fff":col);g.addColorStop(.5,col);g.addColorStop(1,"rgba(0,0,0,0)");
+      cx.globalAlpha=lit?1:0.5;cx.fillStyle=g;cx.beginPath();cx.arc(x,y,R*1.8,0,7);cx.fill();cx.globalAlpha=1;
+      cx.fillStyle=lit?"#fff8e0":col;cx.beginPath();cx.arc(x,y,R,0,7);cx.fill();
+      cx.fillStyle=lit?col:"rgba(20,20,30,.5)";cx.font=(big?"22px ":"18px ")+mono();cx.textAlign="center";cx.textBaseline="middle";cx.fillText(glyph,x,y+1);
+      cx.textBaseline="alphabetic";
+    }
+    const sunLit=focus==="sun", moonLit=focus==="moon";
+    // draw far one first
+    if(sunY>moonY){orb(moonX,moonY,"#b8c4d0","\u263d",false,moonLit);orb(sunX,sunY,"#e0b84a","\u2609",true,sunLit);}
+    else{orb(sunX,sunY,"#e0b84a","\u2609",true,sunLit);orb(moonX,moonY,"#b8c4d0","\u263d",false,moonLit);}
+    cx.fillStyle="rgba(87,80,63,.8)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("the eternal dance \u2014 they orbit one centre, forever set apart",cxm,H-12);
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="sky fault: "+(e&&e.message);return;}t+=0.016;requestAnimationFrame(frame);}
+
+  function renderPanel(){
+    const b=focus==="sun"?D.sun:D.moon, col=b.col, p=document.getElementById("panel");
+    let rows="";for(const c in b.gods){rows+='<div class="row"><span class="cult" style="color:'+col+'">'+c+'</span><span class="nm">'+b.gods[c]+'</span></div>';}
+    p.innerHTML='<div style="font-size:17px;font-weight:700;letter-spacing:.06em;color:'+col+'">'+b.glyph+' '+b.name+'</div>'+
+      '<div class="ess">"'+b.essence+'"</div>'+rows+'<div class="note">'+b.mostly+'</div>';
+    document.getElementById("bSun").className="sun"+(focus==="sun"?" on":"");
+    document.getElementById("bMoon").className="moon"+(focus==="moon"?" on":"");
+  }
+  function renderBonds(){
+    document.getElementById("bonds").innerHTML=D.bonds.map(function(b){
+      return '<div class="bond"><div class="bt">'+b.type+'</div><div class="bc">'+b.cultures+'</div><div class="bs">'+b.story+'</div></div>';
+    }).join("");
+    document.getElementById("why").innerHTML="&#8220;"+D.why+"&#8221;<br><span style=\"color:#57503f\">"+D.series_note+"</span>";
+  }
+  renderPanel(); renderBonds();
+  document.getElementById("bSun").onclick=function(){focus="sun";renderPanel();};
+  document.getElementById("bMoon").onclick=function(){focus="moon";renderPanel();};
+  cv.addEventListener("click",function(){focus=(focus==="sun")?"moon":"sun";renderPanel();});
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

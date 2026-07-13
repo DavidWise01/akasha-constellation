@@ -1,0 +1,27 @@
+SERIES II - THE SCATTERED FIELD - ASSAY
+========================================
+moniker : ⟦SERIES-II:MYTHOS:8AB003⟧
+hub     : ERIS (the breaker) -- the ring answers to her (Series I answered to Ra the giver)
+channel : ICE / albedo (Series I ran a metal warp; this field has no ancient metal)
+bridge  : PLUTO -- the shared node; the two seeds are stitched at Pluto, by Eris's hand
+strands : 11 = 9 bodies (Eris, Haumea, Sedna, Orcus, Ceres, Quaoar, Makemake, Gonggong, Ixion)
+          + 2 sub-threads (Lawlessness Women = the matriline; Companions = the moon-layer)
+
+WHAT IT IS: a sourced REFERENCE deck of the dwarf-planet frontier -- the demoted and the
+detached, all modern discoveries, named by IAU convention for creation & underworld gods of
+world mythologies. each strand carries a MEASUREMENT (orbit-misfit, collision-dispersion,
+detachment, anti-phase resonance, clearing-test, Roche-limit, albedo-contrast, tidal-brake,
+resonance-binding) and honest LIT/AMBER tiers. verify-then-build throughout.
+
+ORRERY CHECK: PASS -- not an orrery. delete the animations and the sourced content survives.
+
+THE ONE CORRECTION (sealed): Ixion's tarot card. The tarot DECK is modern (Golden-Dawn ~1888).
+But the WHEEL it depicts -- the eternal wheel of fate/time -- is ancient and cross-cultural
+(Greek Ixion's wheel + Roman Rota Fortunae + Hindu/Buddhist Kalachakra 'wheel of time' /
+Bhavachakra), and PASSES the deck's 2+-ancient-cultures filter. Correspondence upgraded to LIT;
+only the specific tarot imagery stays the modern rendering (AMBER). The witness over-flagged;
+corrected here. The wheel is old; the deck is new.
+
+SEAL: per-strand seal = sha256(ASCII record). chain folds genesis(Eris) through each seal.
+ring_close = sha256(head | genesis) closes the ring back to Eris. Verified 3 ways: Python
+hashlib, in-browser pure-JS SHA-256 (zero-network), and the series2.dlw record. Tamper-evident.

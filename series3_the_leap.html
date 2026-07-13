@@ -1,0 +1,159 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE LEAP — superluminal</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--sub:#7ac0a0;--wall:#e0c060;--ftl:#c060c0;--light:#e8e0d4;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#170a08,#080405 72%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(192,96,192,.05);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--sub),var(--wall),var(--ftl),var(--light));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .tnum{text-align:center;font-size:10px;letter-spacing:.3em;color:var(--faint);margin-top:8px}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:34px;font-weight:700;color:var(--light);margin:3px 0 0;letter-spacing:.14em;text-shadow:0 0 36px rgba(232,224,212,.28)}
+ .subname{text-align:center;font-size:12px;color:var(--ftl);letter-spacing:.24em;margin-top:3px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--light);font-family:var(--mono)}.corr .s{color:var(--sub)}.corr .f{color:var(--ftl)}
+ canvas{display:block;width:100%}#dial{height:340px}#cone{height:330px}
+ .ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:center;margin:10px 0;font-size:11px;color:var(--dim)}
+ input[type=range]{width:300px;accent-color:var(--wall)}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--light)}.measure .s{color:var(--sub)}.measure .w{color:var(--wall)}.measure .f{color:var(--ftl)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .real{background:#0e120f;border:1px solid #1e3828;border-left:3px solid var(--sub);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .real b{color:var(--sub)}
+ .fic{background:#140e14;border:1px solid #322038;border-left:3px solid var(--ftl);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .fic b{color:var(--ftl)}.fic .c{color:var(--wall)}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--light)}
+ .coda{background:linear-gradient(180deg,#140a0d,#0e0810);border:1px solid #3a2030;border-radius:8px;padding:14px 16px;margin:14px 0;font-size:12.5px;line-height:1.85;color:var(--dim);font-family:var(--serif)}
+ .coda b{color:var(--light);font-family:var(--mono)}.coda .ra{color:#e8c860}.coda .er{color:#c8b8e0}.coda .ne{color:var(--nem)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--ftl);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow &#183; finale</span><span>trope 7 of 7 &#183; after Asimov</span></div>
+ <div class="tnum">&#9679; T R O P E &#160; V I I &#160;&#8212;&#160; the last, pulled from <i>Nemesis</i></div>
+ <div class="sii">T H E &#160; L E A P</div>
+ <h1>SUPERLUMINAL</h1>
+ <div class="subname">&#10022; the drive that collapses the dark &#8212; and its price</div>
+ <div class="epithet">near-light is real and costs you time; faster-than-light is fiction and costs you cause</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement &#8212; the light barrier and the crossing</h3>
+ <div class="ctrl">
+   <span>speed &nbsp; <b id="vlab" style="color:var(--light)">0.50 c</b><br><input type="range" id="v" min="1" max="150" value="50"></span>
+ </div>
+ <canvas id="dial"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">a 2-light-year trip &#183; push toward c: ship-time shrinks but energy explodes &#183; past c is off the map of physics</div>
+
+ <div class="real" id="real"></div>
+ <div class="fic" id="fic"></div>
+
+ <h3>the price &#8212; the broken light-cone</h3>
+ <canvas id="cone"></canvas>
+ <div class="hint">sublight worldlines stay inside the cone (cause before effect) &#183; an FTL path leaves it &#8212; and in some frame, arrives before it left</div>
+
+ <h3>the book &#8212; the drive that ended the isolation</h3>
+ <div class="book" id="book"></div>
+
+ <div class="coda" id="coda"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var b=0.5, D=2.0;
+ function gamma(bb){return bb>=1?Infinity:1/Math.sqrt(1-bb*bb);}
+ document.getElementById("corr").innerHTML="the last trope is the one that undoes the rest. Rotor fled on <span class=\"s\">hyper-assistance</span> \u2014 just shy of lightspeed, real physics \u2014 and Earth later builds true <span class=\"f\">superluminal</span> flight, faster than light itself. one is possible and steals your time; the other is fiction and breaks your causes. between them runs the wall that light alone may touch. this is the drive that collapses the two light-years of trope VI, finds the hidden colony of trope V, ends the shadow\u2019s isolation \u2014 and it is the seam where Asimov\u2019s physics finally lets go of the real.";
+ document.getElementById("real").innerHTML="<b>the real part \u2014 near-c.</b> as speed climbs toward light, the traveller\u2019s clock slows (time dilation): a two-year crossing becomes months, days, instants of <i>ship</i>-time. but the energy to push there runs to <b>infinity</b> \u2014 you may approach c, never reach it. and the catch that haunted trope VI: you arrive in the <b>future</b>. cross at near-c and more time has passed for those you left \u2014 the twin-paradox desync. near-light buys distance with time. it is genuine, and it is a ceiling.";
+ document.getElementById("fic").innerHTML="<b>the fiction \u2014 faster than light.</b> past the wall, relativity offers no road: accelerate and the equations go imaginary. true FTL needs exotic physics \u2014 the <b>Alcubierre warp</b> (1994) contracts space ahead and expands it behind, real mathematics but demanding <span class=\"c\">negative energy</span> at scales beyond anything known. Asimov guessed the shape of it in 1989. and its price is <b>causality</b>: a faster-than-light signal is seen, in some frame, to <b>arrive before it left</b> \u2014 chain two and you answer a question before it\u2019s asked. the broken light-cone is why physics holds the wall.";
+ document.getElementById("book").innerHTML="in the novel, Earth\u2019s <b>superluminal</b> breakthrough (built by the physicist Crile attaches himself to) ends Rotor\u2019s hiding: the two light-years fall to nothing, the lost colony is found, the galaxy opens. Janus Pitt\u2019s <b>sole-heir</b> hoard is broken by it; Crile\u2019s severed <b>orbit</b> is closed by it. the shadow \u2014 the hidden star, the hidden colony, the family in the dark \u2014 is undone not by a weapon but by <b>reach</b>.";
+ document.getElementById("coda").innerHTML="<b>the shadow, closed.</b> seven tropes, one book, and a single shape under all of them: things that hide, and the reach that finds them. a hidden star, a hidden mind, a red world, a reader of the concealed, a hoarder of secrets, a severed family \u2014 and the leap that crosses to them all. this completes the third seed. <span class=\"ra\">RA</span> gave the light; <span class=\"er\">ERIS</span> broke the order; <span class=\"ne\">NEMESIS</span> was the shadow \u2014 and the shadow ends the way shadows always end: not by fighting the dark, but by <b>reaching across it</b>. connection is the only drive that beats a shadow. Series III stands built; the ring-seal waits whenever you want to close it.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 special relativity is exact: the Lorentz factor, time dilation, the infinite-energy light barrier, and the causality violation FTL would cause are all rigorous physics. the Alcubierre metric is real published mathematics. <span class=\"amb\">\u25c8 AMBER</span> \u2014 faster-than-light travel is not known to be achievable (needs exotic negative-energy matter); superluminal flight in the book is fiction. the numbers here are exact for the toy 2-ly trip.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> the closer you go to the speed of light, the slower YOUR clock ticks \u2014 you could cross to a far star and barely age! but pushing that fast needs almost infinite fuel, so you can get close to light-speed but never quite reach it. going FASTER than light is only make-believe \u2014 if it were real, you could arrive somewhere before you even left, which breaks how before-and-after works. in the story, a magic faster-than-light ship finally crosses the huge gap and brings everyone back together.";
+ document.getElementById("foot").innerHTML="\u25c8 trope 7/7 \u00b7 FINALE \u00b7 relativity & the light barrier LIT \u00b7 FTL fiction, causality-breaking (AMBER) \u00b7 the shadow ends by reach \u00b7 Series III complete";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ // ---- VELOCITY DIAL ----
+ var cv=document.getElementById("dial");
+ function drawDial(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=340;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=44,X1=W-18,Y0=H-42,Y1=22,VMAX=1.5;
+  function px(v){return X0+v/VMAX*(X1-X0);}function py(f){return Y0-f*(Y0-Y1);}
+  // zones
+  cx.fillStyle="rgba(122,192,160,.05)";cx.fillRect(px(0),Y1,px(1)-px(0),Y0-Y1);
+  cx.fillStyle="rgba(192,96,192,.06)";cx.fillRect(px(1),Y1,px(VMAX)-px(1),Y0-Y1);
+  // the wall at c
+  cx.strokeStyle="rgba(224,192,96,.6)";cx.lineWidth=2;cx.beginPath();cx.moveTo(px(1),Y1);cx.lineTo(px(1),Y0);cx.stroke();
+  cx.fillStyle="rgba(224,192,96,.9)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("c \u2014 the wall",px(1),Y1-6);
+  // zone labels
+  cx.fillStyle="rgba(122,192,160,.6)";cx.font="8px "+mono();cx.fillText("sublight \u2014 real (hyper-assistance)",px(0.5),Y0+14);
+  cx.fillStyle="rgba(192,96,192,.6)";cx.fillText("superluminal \u2014 fiction",px(1.25),Y0+14);
+  // axes
+  cx.strokeStyle="rgba(160,140,138,.3)";cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(160,140,138,.6)";cx.textAlign="center";cx.fillText("speed (v/c) \u2192",(X0+X1)/2,H-6);
+  // gamma curve (energy proxy) rising to wall
+  cx.strokeStyle="rgba(224,192,96,.8)";cx.lineWidth=2;cx.beginPath();
+  for(var i=1;i<100;i++){var v=i/100;var g=gamma(v);var f=Math.min(g/8,1);var x=px(v),y=py(f);i===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();
+  cx.fillStyle="rgba(224,192,96,.7)";cx.font="8px "+mono();cx.textAlign="left";cx.fillText("energy \u2192 \u221e as v\u2192c",px(0.6),py(0.85));
+  // ship-time curve (shrinking)
+  cx.strokeStyle="rgba(122,192,160,.8)";cx.lineWidth=1.6;cx.beginPath();
+  for(var i=1;i<100;i++){var v=i/100;var g=gamma(v);var et=D/v;var st=et/g;var f=Math.min(st/ (D/0.1),1);var x=px(v),y=py(f);i===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();
+  cx.fillStyle="rgba(122,192,160,.7)";cx.fillText("ship-time \u2192 0",px(0.15),py(0.35));
+  // current marker
+  if(b<1){cx.strokeStyle="rgba(232,224,212,.3)";cx.setLineDash&&cx.setLineDash([2,2]);cx.beginPath();cx.moveTo(px(b),Y1);cx.lineTo(px(b),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+   cx.fillStyle="rgba(122,192,160,1)";cx.beginPath();cx.arc(px(b),py(Math.min(gamma(b)/8,1)),4,0,7);cx.fill();}
+  else {cx.strokeStyle="rgba(192,96,192,.6)";cx.setLineDash&&cx.setLineDash([3,3]);cx.beginPath();cx.moveTo(px(b),Y1);cx.lineTo(px(b),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+   cx.fillStyle="rgba(192,96,192,.9)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("beyond the wall \u2014 off the map",px(b),py(0.5));}
+ }
+ // ---- LIGHT-CONE ----
+ var cn=document.getElementById("cone");
+ function drawCone(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cn.clientWidth||700,H=330;cn.width=W*dpr;cn.height=H*dpr;
+  var cx=cn.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.56,S=Math.min(W,H)*0.4;
+  // light cone (45deg)
+  cx.fillStyle="rgba(232,224,212,.05)";
+  cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(CX-S,CY-S);cx.lineTo(CX+S,CY-S);cx.closePath();cx.fill(); // future
+  cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(CX-S,CY+S);cx.lineTo(CX+S,CY+S);cx.closePath();cx.fill(); // past
+  cx.strokeStyle="rgba(232,224,212,.4)";cx.lineWidth=1;
+  cx.beginPath();cx.moveTo(CX-S,CY-S);cx.lineTo(CX+S,CY+S);cx.moveTo(CX+S,CY-S);cx.lineTo(CX-S,CY+S);cx.stroke();
+  cx.fillStyle="rgba(232,224,212,.5)";cx.font="8px "+mono();cx.textAlign="center";
+  cx.fillText("FUTURE",CX,CY-S+10);cx.fillText("PAST",CX,CY+S-4);
+  cx.fillText("light",CX+S-16,CY-S+16);
+  // event
+  cx.fillStyle="#e8e0d4";cx.beginPath();cx.arc(CX,CY,4,0,7);cx.fill();
+  cx.fillStyle="rgba(232,224,212,.7)";cx.textAlign="left";cx.fillText("you, here & now",CX+7,CY+4);
+  // sublight worldline (steep, inside future cone)
+  cx.strokeStyle="rgba(122,192,160,.9)";cx.lineWidth=2;cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(CX+S*0.45,CY-S);cx.stroke();
+  cx.fillStyle="rgba(122,192,160,.9)";cx.textAlign="left";cx.fillText("near-c: inside the cone \u2014 cause before effect \u2713",CX+S*0.30,CY-S+22);
+  // FTL worldline (shallow, leaves cone into 'elsewhere', dips below into past region on the other side)
+  cx.strokeStyle="rgba(192,96,192,.9)";cx.lineWidth=2;cx.setLineDash&&cx.setLineDash([4,3]);cx.beginPath();cx.moveTo(CX,CY);cx.lineTo(CX+S,CY-S*0.35);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(192,96,192,.9)";cx.fillText("FTL: leaves the cone \u2014 in some frame, arrives before it left \u2717",CX-S*0.1,CY-S*0.35-30 <CY-S? CY-S+34: CY-S*0.35-8);
+  cx.fillStyle="rgba(160,140,138,.5)";cx.textAlign="center";cx.font="8px "+mono();cx.fillText("space \u2192",CX+S*0.7,CY+14);
+ }
+ function update(){
+  document.getElementById("vlab").textContent=(b<1?b.toFixed(2):b.toFixed(2))+" c"+(b>1?"  (FTL)":"");
+  if(b<1){var g=gamma(b),et=D/b,st=et/g,en=g-1;
+   document.getElementById("measure").innerHTML='<span class="s">\u03b3: <b>'+g.toFixed(2)+'</b></span><span>Earth time: <b>'+et.toFixed(2)+' yr</b></span><span>ship time: <b>'+st.toFixed(2)+' yr</b></span><span class="w">energy: <b>'+en.toFixed(1)+' mc\u00b2</b></span>';
+  } else {
+   document.getElementById("measure").innerHTML='<span class="f">v > c \u2014 <b>the leap</b></span><span>Earth time: <b>~instant</b></span><span class="f">\u03b3: <b>imaginary</b></span><span class="f">price: <b>causality</b></span>';
+  }
+  try{drawDial();drawCone();}catch(e){var el=document.getElementById("err");el.style.display="block";el.textContent="leap fault: "+(e&&e.message);}
+ }
+ document.getElementById("v").addEventListener("input",function(){b=this.value/100;update();});
+ window.addEventListener("resize",function(){update();});
+ update();
+})();
+</script></body></html>

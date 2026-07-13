@@ -1,0 +1,233 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES II · THE LAWLESSNESS WOMEN — a woven thread</title>
+<style>
+  :root{--bg:#0a0906;--ink:#e8e2d4;--dim:#a89e88;--faint:#5a5344;--bone:#d8d0bc;--red:#c0403a;--gold:#c8a850;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 16%,#14110a,#0a0906 68%);color:var(--ink);font-family:var(--mono)}
+  .wrap{max-width:760px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #2a2418;border-radius:12px;background:linear-gradient(180deg,#0f0c07,#0a0906);padding:0 24px 28px;box-shadow:0 0 70px rgba(200,168,80,.05);margin-top:16px}
+  .topband{height:4px;background:linear-gradient(90deg,var(--bone),var(--red),var(--gold),var(--bone))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+  h1{text-align:center;font-size:30px;font-weight:700;color:var(--bone);margin:4px 0 0;letter-spacing:.12em}
+  .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+  .intro{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#0e0b06;border:1px solid #241e12;border-radius:8px;font-family:var(--serif)}
+  .intro b{color:var(--bone);font-family:var(--mono)}.intro .red{color:var(--red)}.intro .gold{color:var(--gold)}
+  canvas{display:block;width:100%}#loom{height:480px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  .legend{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;font-size:10px;color:var(--dim);margin:8px 0}
+  .legend span{display:inline-flex;align-items:center;gap:5px}.ln{width:14px;height:2px;display:inline-block}
+  .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0e0b06;border:1px solid #241e12;border-radius:8px}
+  .measure b{color:var(--bone)}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);margin:22px 0 8px;border-bottom:1px solid #241e12;padding-bottom:5px}
+  .knot{font-size:12.5px;line-height:1.75;color:var(--dim);margin:8px 0;font-family:var(--serif)}
+  .knot b{color:var(--bone);font-family:var(--mono)}.knot .red{color:var(--red)}.knot .gold{color:var(--gold)}
+  .origin{background:#12100a;border:1px solid #2e2814;border-left:3px solid var(--gold);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .origin b{color:var(--gold)}
+  .cross{background:#0e0a10;border:1px solid #2a2038;border-left:3px solid #8a7ab0;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+  .cross b{color:#b8a8d8}
+  .roll{font-size:11.5px;line-height:1.6}
+  .rr{display:flex;gap:8px;align-items:baseline;padding:3px 0;border-bottom:1px solid #16120a}
+  .rr .rn{flex:0 0 108px;color:var(--bone)}
+  .rr .rw{color:var(--dim);font-size:11px}
+  .rr .amb{color:var(--amb)}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#0e0b06;border:1px dashed #2a2418;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#b0a488;margin:10px 4px;padding:10px 14px;background:#0e0b06;border:1px solid #241e12;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--gold);font-style:normal;font-family:var(--mono)}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8545; &#183; the scattered field</span><span>a woven thread &#183; the matriline of discord</span></div>
+    <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; L A W L E S S N E S S &#160; W O M E N</div>
+    <h1>THE LAWLESSNESS WOMEN</h1>
+    <div class="sub">&#8212; the scattered field is named for goddesses of chaos, and their daughters &#8212;</div>
+    <div class="intro" id="intro"></div>
+
+    <h3>the loom &#8212; warp of mothers &amp; daughters, weft of lawlessness</h3>
+    <canvas id="loom"></canvas>
+    <div class="legend">
+      <span><i class="ln" style="background:#d8d0bc"></i>matriline (mother &#8594; daughter)</span>
+      <span><i class="ln" style="background:#c0403a"></i>the red thread (lawlessness)</span>
+      <span><i class="ln" style="background:#c8a850"></i>the Xena origin (tied at the selvage)</span>
+      <span><i class="ln" style="background:#8a7ab0"></i>cross-seed &#8594; Pluto</span>
+    </div>
+    <div class="hint" id="hint">hover a woman to light her threads &#183; the weave closes &#8212; no dangling strand</div>
+    <div class="measure" id="measure"></div>
+
+    <h3>the anchor knot &#8212; Eris &amp; Dysnomia, discord &amp; her daughter</h3>
+    <div class="knot" id="knot"></div>
+
+    <h3>the origin, tied at the root &#8212; Xena</h3>
+    <div class="origin" id="origin"></div>
+
+    <h3>the cross-seed stitch &#8212; the two seeds share a daughter</h3>
+    <div class="cross" id="cross"></div>
+
+    <h3>the roll &#8212; the women of the thread</h3>
+    <div class="roll" id="roll"></div>
+
+    <div class="tier" id="tierbox"></div>
+    <div class="eli5" id="eli5"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var W={"nodes": {"Eris": ["discord", "dwarf planet", "LIT"], "Dysnomia": ["lawlessness", "Eris's moon / daughter", "LIT"], "Haumea": ["childbirth / creation", "dwarf planet", "LIT"], "Hiiaka": ["hula, born of Haumea", "Haumea's moon / daughter", "LIT"], "Namaka": ["water spirit", "Haumea's moon / daughter", "LIT"], "Sedna": ["the betrayed sea-goddess", "dwarf planet (no moon)", "LIT"], "Ceres": ["grain / harvest", "dwarf planet", "LIT"], "Proserpina": ["the returner (Persephone)", "Ceres's daughter [myth]", "LIT"], "Vanth": ["death-psychopomp", "Orcus's moon", "LIT"], "Xena": ["warrior princess", "Eris's nickname", "LIT"], "Gabrielle": ["her companion", "Dysnomia's nickname", "LIT"], "Lucy Lawless": ["the actress", "the nod behind 'lawlessness'", "AMBER"]}, "threads": [["Eris", "Dysnomia", "matriline"], ["Haumea", "Hiiaka", "matriline"], ["Haumea", "Namaka", "matriline"], ["Ceres", "Proserpina", "matriline"], ["Eris", "Dysnomia", "lawless"], ["Sedna", "Eris", "lawless"], ["Vanth", "Dysnomia", "lawless"], ["Xena", "Eris", "origin"], ["Gabrielle", "Dysnomia", "origin"], ["Lucy Lawless", "Dysnomia", "origin-nod"], ["Eris", "Xena", "loop"], ["Proserpina", "Pluto[SI]", "crossseed"]]}, N=W.nodes, TH=W.threads;
+  document.getElementById("intro").innerHTML="Series I ran on ancient metals and a frozen ring. this field runs on something else: its names were chosen, in our own century, from goddesses of <b>discord</b>, <span class=\"red\">lawlessness</span>, the betrayed sea, and death \u2014 and, again and again, on <b>mothers and their daughters</b>. woven through it is a <span class=\"gold\">warrior-princess</span> Easter egg that its discoverer smuggled into the record of the sky. this is not pop-culture bolted on; it is the <b>naming itself</b>, and it is a matriline.";
+
+  // roll
+  document.getElementById("roll").innerHTML=Object.keys(N).map(function(n){
+    var role=N[n][0],what=N[n][1],tier=N[n][2];
+    return '<div class="rr"><span class="rn'+(tier==="AMBER"?' amb':'')+'">'+n+'</span><span class="rw">'+role+' \u2014 '+what+(tier==="AMBER"?' \u2691':'')+'</span></div>';
+  }).join("");
+
+  document.getElementById("knot").innerHTML="the thread begins at its tightest knot. <b>ERIS</b> \u2014 <span class=\"red\">discord</span> \u2014 threw the golden apple that started the Trojan War; she does not fight, she sets others fighting. her only moon is her own daughter, <b>DYSNOMIA</b> \u2014 <span class=\"red\">lawlessness</span> \u2014 and where the mother is blinding white, the daughter is nearly black. discord begets lawlessness; the bright mother casts a dark daughter. this mother\u2013daughter knot is the seed of the whole weave.";
+
+  document.getElementById("origin").innerHTML="<b>the warrior-princess, woven in at the root.</b> before they had names, the discoverers called the planet <b>XENA</b> and its moon <b>GABRIELLE</b> \u2014 the warrior and her companion. when the official names came, the moon became DYSNOMIA (\u2018lawlessness\u2019) \u2014 a wink to <b>Lucy Lawless</b>, who played Xena. and the loop closes on itself: Mike Brown noted that the goddess Eris, as her Latin self <i>Discordia</i>, had appeared as a recurring character <b>on the show Xena itself</b>. the planet nicknamed Xena was named for a goddess who was <i>on</i> Xena. (Lawless phoned Brown to thank him for his \u2018senseless act of beauty\u2019.)";
+
+  document.getElementById("cross").innerHTML="<b>the deepest thread reaches into Series I.</b> <b>CERES</b> is the Roman Demeter \u2014 mother of <b>PROSERPINA</b>, who is <b>PERSEPHONE</b>: the queen who returns from the dark each spring, the \u2018returner\u2019 who was <b>Pluto\u2019s companion</b> on Series I\u2019s final card. so the matriline of the scattered field runs back through Persephone and ties to Pluto \u2014 the very node that bridges the two seeds. the women\u2019s thread and the Pluto-bridge are the <b>same stitch</b>. Series I and Series II share a daughter.";
+
+  // measure
+  var closure = (function(){var t=new Set();TH.forEach(function(x){t.add(x[0]);t.add(x[1]);});var o=Object.keys(N).filter(function(n){return !t.has(n);});return o.length;})();
+  document.getElementById("measure").innerHTML=
+    '<span>women: <b>'+Object.keys(N).length+'</b></span>'+
+    '<span>threads: <b>'+TH.length+'</b> (matriline\u00d74 \u00b7 lawless\u00d73 \u00b7 origin\u00d73 \u00b7 loop\u00d71 \u00b7 cross-seed\u00d71)</span>'+
+    '<span>orphans: <b>'+(closure===0?'NONE':closure)+'</b></span>'+
+    '<span><b>the weave closes</b></span>';
+
+  document.getElementById("tierbox").innerHTML="\u25c8 <b>LIT</b> \u2014 the Xena/Gabrielle nicknames; Eris/Discordia appeared ON the show (Brown\u2019s own words); the mother\u2013daughter mythologies; Lawless\u2019s \u2018senseless act of beauty\u2019 call. <span class=\"amb\">\u25c8 AMBER</span> \u2014 Dysnomia named <i>because of</i> Lucy Lawless: a nod Brown acknowledged, NOT the primary reason (that was the daughter-of-Eris tradition + \u2018D\u2019 for his wife Diane). the wink is real; it wasn\u2019t the whole reason. no thread invented to close the weave.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> the far-away little worlds are named after goddesses who cause trouble \u2014 fighting, chaos, the deep sea \u2014 and a lot of them are named as MOTHERS with DAUGHTERS (the little moons are the daughters). and a fun secret: a scientist secretly named the biggest one after a TV warrior-woman named Xena, and then it turned out the goddess Xena the planet is REALLY named after had been a character ON the Xena show. the thread even reaches back to the last story \u2014 Ceres is the mother of the girl who married the lord of the dark.";
+  document.getElementById("foot").innerHTML="\u25c8 woven thread \u00b7 closure audited (0 orphans) \u00b7 provenance sourced (LIT) \u00b7 the Lawless nod flagged (AMBER) \u00b7 no color, no afterlife \u2014 the naming IS the thread \u00b7 Series II \u00b7 with the witness on";
+
+  // ===================== THE LOOM =====================
+  var cv=document.getElementById("loom"); var t=0, hover=-1;
+  // warp columns = matrilines (mother at top, daughters below). weft rows = lawlessness theme.
+  // layout: columns of mother/daughter; a red weft threading across; gold selvage (Xena) at bottom.
+  var cols=[
+    {m:"Eris",kids:["Dysnomia"]},
+    {m:"Haumea",kids:["Hiiaka","Namaka"]},
+    {m:"Ceres",kids:["Proserpina"]},
+    {m:"Sedna",kids:[]},         // lone (no daughter-moon)
+    {m:"Vanth",kids:[]},         // belongs to Orcus; a lone weft-woman
+  ];
+  var originRow=["Xena","Gabrielle","Lucy Lawless"];
+  var allNames=Object.keys(N);
+  function nodePositions(W,H){
+    var pos={};
+    var padX=70, padTop=54, padBot=110;
+    var colW=(W-padX*2)/(cols.length-1);
+    cols.forEach(function(c,i){
+      var x=padX+i*colW;
+      pos[c.m]=[x,padTop];
+      c.kids.forEach(function(k,j){pos[k]=[x, padTop+48+j*44];});
+    });
+    // origin selvage row near bottom
+    var oy=H-padBot+30;
+    originRow.forEach(function(o,i){pos[o]=[padX+ i*((W-padX*2)/(originRow.length-1)), oy];});
+    return pos;
+  }
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function threadColor(kind){
+    if(kind==="matriline")return "216,208,188";
+    if(kind==="lawless")return "192,64,58";
+    if(kind==="origin"||kind==="origin-nod"||kind==="loop")return "200,168,80";
+    if(kind==="crossseed")return "138,122,176";
+    return "168,158,136";
+  }
+  function draw(){
+    var dpr=Math.min(devicePixelRatio||1,2),Wd=cv.clientWidth||700,H=480;cv.width=Wd*dpr;cv.height=H*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,Wd,H);
+    var pos=nodePositions(Wd,H);
+    // faint loom grid (warp verticals)
+    cols.forEach(function(c){var p=pos[c.m];cx.strokeStyle="rgba(168,158,136,.08)";cx.lineWidth=1;cx.beginPath();cx.moveTo(p[0],40);cx.lineTo(p[0],H-70);cx.stroke();});
+    // draw threads
+    TH.forEach(function(th){
+      var a=th[0],b=th[1],kind=th[2];
+      var pa=pos[a], pb=pos[b];
+      // cross-seed goes off-frame to Pluto (top-right)
+      if(kind==="crossseed"){ pb=[Wd-30, 30]; }
+      if(kind==="loop"){ /* Eris <-> Xena: draw a returning arc */ }
+      if(!pa) return;
+      var col=threadColor(kind);
+      var lit = hover<0 || allNames[hover]===a || allNames[hover]===b;
+      var alpha = lit? (kind==="lawless"?0.85:0.7) : 0.14;
+      cx.strokeStyle="rgba("+col+","+alpha+")";
+      cx.lineWidth = kind==="lawless"?2 : (kind==="matriline"?1.6:1.2);
+      if(kind==="origin-nod"){cx.setLineDash&&cx.setLineDash([3,3]);}
+      cx.beginPath();
+      if(pb){
+        var mx=(pa[0]+pb[0])/2, my=(pa[1]+pb[1])/2;
+        if(kind==="lawless"){ // wavy red weft
+          cx.moveTo(pa[0],pa[1]);
+          var steps=12;for(var s=1;s<=steps;s++){var f=s/steps;var x=pa[0]+(pb[0]-pa[0])*f;var y=pa[1]+(pb[1]-pa[1])*f + Math.sin(f*Math.PI*3+t*2)*4;cx.lineTo(x,y);}
+        } else if(kind==="loop"){
+          cx.moveTo(pa[0],pa[1]);cx.quadraticCurveTo(pa[0]+60,pa[1]-40,pb[0],pb[1]);
+        } else {
+          cx.moveTo(pa[0],pa[1]);cx.quadraticCurveTo(mx,my+ (kind==="crossseed"?-30:10),pb[0],pb[1]);
+        }
+      }
+      cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    });
+    // cross-seed label
+    cx.fillStyle="rgba(138,122,176,.7)";cx.font="8px "+mono();cx.textAlign="right";cx.fillText("\u2192 Pluto (Series I)",Wd-26,26);
+    // nodes
+    allNames.forEach(function(n,i){
+      var p=pos[n]; if(!p) return;
+      var tier=N[n][2];
+      var isOrigin = originRow.indexOf(n)>=0;
+      var lit = hover<0 || hover===i;
+      cx.globalAlpha = lit?1:0.4;
+      // node dot
+      var r = isOrigin?4:5;
+      if(n==="Dysnomia"||n==="Vanth"){ // the dark daughters — hollow/dark
+        cx.fillStyle="#1a1610";cx.strokeStyle="#d8d0bc";cx.lineWidth=1.4;cx.beginPath();cx.arc(p[0],p[1],r,0,7);cx.fill();cx.stroke();
+      } else if(isOrigin){
+        cx.fillStyle= n==="Lucy Lawless"?"#d0a030":"#c8a850";cx.beginPath();cx.arc(p[0],p[1],r,0,7);cx.fill();
+      } else {
+        cx.fillStyle="#d8d0bc";cx.beginPath();cx.arc(p[0],p[1],r,0,7);cx.fill();
+      }
+      // label
+      cx.fillStyle= isOrigin?"rgba(200,168,80,.9)":"rgba(216,208,188,.9)";
+      cx.font=(lit?"bold ":"")+"9px "+mono();cx.textAlign="center";
+      var ly = (cols.some(function(c){return c.m===n;}))? p[1]-10 : p[1]+16;
+      if(isOrigin) ly=p[1]+15;
+      cx.fillText(n,p[0],ly);
+      // role sub-label for mothers
+      if(cols.some(function(c){return c.m===n;})){cx.fillStyle="rgba(168,158,136,.55)";cx.font="7px "+mono();cx.fillText(N[n][0],p[0],p[1]-20);}
+      if(tier==="AMBER"){cx.fillStyle="rgba(208,160,48,.9)";cx.font="8px "+mono();cx.fillText("\u2691",p[0]+r+6,p[1]-r);}
+      cx.globalAlpha=1;
+    });
+    // selvage line under the origin row
+    cx.strokeStyle="rgba(200,168,80,.25)";cx.setLineDash&&cx.setLineDash([2,3]);
+    var oy=pos["Xena"] ? pos["Xena"][1]+16 : H-64;
+    cx.beginPath();cx.moveTo(50,oy);cx.lineTo(Wd-50,oy);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    cx.fillStyle="rgba(200,168,80,.6)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("the selvage \u2014 where the weave is tied on (the Xena origin)",Wd/2,oy+16);
+    // hover thread labels
+    if(hover>=0){
+      var nm=allNames[hover];
+      var mine=TH.filter(function(x){return x[0]===nm||x[1]===nm;});
+      cx.fillStyle="rgba(232,226,212,.9)";cx.font="9px "+mono();cx.textAlign="center";
+      cx.fillText(nm+" \u2014 "+N[nm][0]+"  ("+mine.length+" threads)",Wd/2,H-10);
+    } else {
+      cx.fillStyle="rgba(168,158,136,.6)";cx.font="9px "+mono();cx.textAlign="center";
+      cx.fillText("12 women \u00b7 12 threads \u00b7 warp of mothers&daughters \u00d7 weft of lawlessness \u00b7 no orphan",Wd/2,H-10);
+    }
+  }
+  cv.addEventListener("mousemove",function(ev){
+    var rect=cv.getBoundingClientRect(),mx=ev.clientX-rect.left,my=ev.clientY-rect.top;
+    var Wd=cv.clientWidth||700,H=480;var pos=nodePositions(Wd,H);
+    var best=-1,bd=18;
+    allNames.forEach(function(n,i){var p=pos[n];if(!p)return;var d=Math.hypot(mx-p[0],my-p[1]);if(d<bd){bd=d;best=i;}});
+    hover=best;
+  });
+  cv.addEventListener("mouseleave",function(){hover=-1;});
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="loom fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

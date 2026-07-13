@@ -1,0 +1,102 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES II · QUAOAR — the impossible ring</title>
+<style>
+ :root{--bg:#05080e;--ink:#dfe6ee;--dim:#8695a8;--faint:#43506a;--quaoar:#8ab0c8;--ring:#c8dce8;--roche:#c06858;--weywot:#7a90b0;--lit:#7ab0a0;--amb:#c89030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 13%,#0a1220,#05080e 70%);color:var(--ink);font-family:var(--mono)}
+ .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #16223a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#070d18,#05080e);padding:0 22px 26px;box-shadow:0 0 70px rgba(138,176,200,.06)}
+ .topband{height:5px;background:linear-gradient(90deg,var(--quaoar),var(--ring),var(--roche),var(--quaoar))}
+ .seriesrow{display:flex;justify-content:space-between;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:42px;font-weight:700;color:var(--ring);margin:2px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(200,220,232,.3)}
+ .subname{text-align:center;font-size:12px;color:var(--quaoar);letter-spacing:.3em;margin-top:2px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#070d18;border:1px solid #12203a;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--ring);font-family:var(--mono)}
+ canvas{display:block;width:100%}#roche{height:400px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#070d18;border:1px solid #12203a;border-radius:8px}
+ .measure b{color:var(--ring)}.measure .big{color:var(--roche);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--quaoar);margin:22px 0 8px;border-bottom:1px solid #10203a;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .puzzle{background:#0a0e1a;border:1px solid #22283e;border-left:3px solid var(--amb);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .puzzle .pt{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:700;margin-bottom:6px}
+ .puzzle b{color:#e0c060}
+ .comp{background:#070d18;border:1px solid #16223a;border-radius:8px;padding:12px 15px;margin-top:6px}
+ .comp .cn{font-size:14px;font-weight:700;color:var(--ring)}.comp .cr{font-size:11px;font-style:italic;color:var(--quaoar);margin-bottom:4px}.comp .m b{color:var(--ring)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#070d18;border:1px dashed #16223a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#96a6bc;margin:10px 4px;padding:10px 14px;background:#070d18;border:1px solid #12203a;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--quaoar);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; Quaoar</span><span>the scattered field &#183; the law-breaker</span></div>
+ <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; I M P O S S I B L E &#160; R I N G</div>
+ <h1>QUAOAR</h1>
+ <div class="subname">&#127908; the creator who sang the world &#8212; and holds a ring that can&#8217;t hold</div>
+ <div class="epithet">a ring where physics says a ring cannot survive</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the Roche limit &#8212; the measurement: a ring on the wrong side of the line</h3>
+ <canvas id="roche"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">inside the Roche limit rings live; outside they should clump into a moon &#183; Quaoar&#8217;s ring is far outside</div>
+
+ <div class="puzzle" id="puzzle"></div>
+
+ <h3>the maker &#8212; who sang the world into being</h3>
+ <div class="m" id="myth"></div>
+
+ <h3>the companion &#8212; Weywot, his son</h3>
+ <div class="comp" id="comp"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"body": "QUAOAR", "glyph": "⚸", "ring_km": 4100, "roche_km": 1780, "ratio": 2.3, "D": 1110, "a_AU": 43.2, "P": 287, "weywot_km": 160, "weywot_sep": 14060, "weywot_P": 12.4};
+ document.getElementById("corr").innerHTML="Quaoar is named for the Tongva creator \u2014 the force that <b>came down and sang and danced the world into being</b>. and Quaoar holds something that, by the rules, <b>should not exist</b>: a ring orbiting <b>far outside its Roche limit</b>, in the zone where loose particles are supposed to gather into a moon, not spread into a ring. it is the first ring ever found to break that line. a creator whose ring defies the law of how things are made.";
+ document.getElementById("measure").innerHTML='<span>ring radius: <b>~'+D.ring_km.toLocaleString()+' km</b></span><span>Roche limit: <b>~'+D.roche_km.toLocaleString()+' km</b></span><span>ring sits at <span class="big">'+D.ratio+'\u00d7</span> the Roche limit \u2014 deep in \u2018moon country\u2019</span>';
+ document.getElementById("puzzle").innerHTML='<div class="pt">\u25c8 the puzzle \u2014 why hasn\u2019t it become a moon?</div>the Roche limit is meant to be a clean rule: <b>inside</b> it, a body is torn to a ring; <b>outside</b> it, loose material clumps into a moon within decades. Quaoar\u2019s ring sits at <b>'+D.ratio+'\u00d7</b> the limit \u2014 well outside \u2014 yet it stays a ring. the candidates (all unconfirmed): a <b>resonance</b> with the moon Weywot or with Quaoar\u2019s spin that shepherds the particles; <b>very bouncy</b> collisions that stop the particles sticking (\u2018a ring of toy-store bouncy balls\u2019); or we caught it in the rare instant <b>just before</b> it coalesces. either the Roche limit needs a rewrite, or something unseen is holding the ring together. <b>the line is no longer a line.</b>';
+ document.getElementById("myth").innerHTML="in Tongva cosmology \u2014 the first people of the Los Angeles basin \u2014 <b>Quaoar</b> is the creation force, formless, who <b>sang and danced</b> the lesser gods into being, and through them the world. it is a maker among a field of the dead and the cast-out: Eris breaks, Sedna is exiled, Orcus judges the dead \u2014 and Quaoar <b>sings things into existence</b>. and the thing it made that we can measure, its ring, is a creation caught in the act \u2014 a moon that will not quite be born, held in a state the rules forbid.";
+ document.getElementById("comp").innerHTML='<div class="cn">\u26b8 Weywot \u2014 his son</div><div class="cr">the sky-god child of Quaoar in Tongva myth</div><div class="m">Quaoar\u2019s moon, ~'+D.weywot_km+' km across, orbiting ~'+D.weywot_sep.toLocaleString()+' km out every ~'+D.weywot_P+' days. in the myth Weywot is Quaoar\u2019s <b>son</b> \u2014 and he may be the key to the impossible ring: a <b>resonance</b> with Weywot\u2019s orbit could be the invisible hand that keeps the ring from clumping. the son may be holding the father\u2019s unfinished creation in place.</div>';
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the ring\u2019s existence and radius (~4,100 km), the Roche limit (~1,780 km), the ring sitting far outside it, and Weywot\u2019s orbit: all measured (Morgado et al., Nature 2023; two rings now known). <span class=\"amb\">\u25c8 AMBER</span> \u2014 <i>why</i> the ring survives is unsolved; resonance, bouncy particles, and caught-in-the-act are all live hypotheses, none confirmed.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> there\u2019s an invisible line around every world. inside the line, bits of stuff spread into a ring; outside the line, bits of stuff clump into a moon. Quaoar has a ring way <b>outside</b> the line \u2014 where it should have become a moon but didn\u2019t! nobody knows why yet. and Quaoar is named after a god who <b>sang the whole world into being</b>, so maybe it\u2019s just still singing.";
+ document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 ring &amp; Roche limit LIT \u00b7 the why AMBER (unsolved) \u00b7 a genuine open problem, kept open \u00b7 Series II \u00b7 witness on";
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cv=document.getElementById("roche");var t=0;
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=400;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.5;
+  var sc=Math.min(W,H)*0.42/4500; // km->px, ring at 4100
+  for(var i=0;i<30;i++){cx.fillStyle="rgba(160,190,220,"+(0.04+0.06*Math.sin(t*0.3+i))+")";cx.fillRect((i*101)%W,(i*67)%H,1,1);}
+  // Quaoar body (elongated)
+  cx.save();cx.translate(CX,CY);cx.rotate(t*0.02);
+  var gg=cx.createRadialGradient(-3,-3,0,0,0,555*sc);gg.addColorStop(0,"#a8c0d0");gg.addColorStop(1,"#5a7080");
+  cx.fillStyle=gg;cx.beginPath();cx.ellipse(0,0,555*sc*1.15,555*sc*0.85,0,0,7);cx.fill();cx.restore();
+  cx.fillStyle="#c8dce8";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("\u26b8 Quaoar",CX,CY+555*sc+14);
+  // Roche limit ring (danger line)
+  cx.strokeStyle="rgba(192,104,88,.5)";cx.setLineDash&&cx.setLineDash([4,4]);cx.beginPath();cx.arc(CX,CY,D.roche_km*sc,0,7);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(200,120,104,.85)";cx.font="8px "+mono();cx.fillText("Roche limit "+D.roche_km+" km",CX,CY-D.roche_km*sc-4);
+  // shaded 'moon country' between roche and ring
+  cx.fillStyle="rgba(122,144,176,.05)";cx.beginPath();cx.arc(CX,CY,D.ring_km*sc,0,7);cx.arc(CX,CY,D.roche_km*sc,0,7,true);cx.fill();
+  cx.fillStyle="rgba(122,144,176,.55)";cx.font="7px "+mono();cx.textAlign="left";cx.fillText("\u2192 moon country: material here should CLUMP into a moon",CX+D.roche_km*sc+4,CY-4);
+  // the impossible ring (particles)
+  for(var k=0;k<90;k++){var a=k/90*2*Math.PI + t*0.03;var rr=D.ring_km*sc*(0.985+0.03*Math.sin(k*1.7));var x=CX+Math.cos(a)*rr,y=CY+Math.sin(a)*rr*0.5;cx.fillStyle="rgba(200,220,232,"+(0.4+0.4*Math.sin(k+t*0.1))+")";cx.beginPath();cx.arc(x,y,1.3,0,7);cx.fill();}
+  cx.strokeStyle="rgba(200,220,232,.4)";cx.beginPath();cx.ellipse(CX,CY,D.ring_km*sc,D.ring_km*sc*0.5,0,0,7);cx.stroke();
+  cx.fillStyle="rgba(200,220,232,.9)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("the ring \u2014 "+D.ring_km.toLocaleString()+" km, a ring where a moon belongs",CX,CY-D.ring_km*sc*0.5-6);
+  // Weywot far out
+  var wa=t*0.04;var wx=CX+Math.cos(wa)*W*0.44,wy=CY+Math.sin(wa)*W*0.44*0.5;
+  cx.fillStyle="#7a90b0";cx.beginPath();cx.arc(wx,wy,3,0,7);cx.fill();cx.fillStyle="#7a90b0";cx.fillText("Weywot",wx,wy-6);
+  cx.fillStyle="rgba(223,230,238,.85)";cx.font="9px "+mono();cx.fillText("the ring sits "+D.ratio+"\u00d7 past the Roche limit \u2014 on the moon side of the line",CX,H-10);
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="quaoar fault: "+(e&&e.message);return;}t+=0.4;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

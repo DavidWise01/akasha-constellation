@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HERMES — Crosser of Worlds · Series I</title>
+<style>
+  :root{--bg:#04100e;--ink:#e4f0ea;--dim:#88b0a4;--faint:#3a5a50;--merc:#8ad0c0;--merc2:#5aa890;--gold:#e0c86a;--under:#9a6ac0;--sky:#7aa8d0;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0a1e1a,#04100e 60%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #1a3830;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#061512,#04100e);padding:0 22px 26px;box-shadow:0 0 60px rgba(138,208,192,.06)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--under),var(--merc),var(--gold))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--merc);margin:6px 0 0;letter-spacing:.14em;text-shadow:0 0 30px rgba(138,208,192,.3)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.08em}
+  .oneline{text-align:center;font-size:12px;color:var(--faint);margin:2px 0 12px}
+  canvas{display:block;width:100%;height:340px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .prog{background:#08201c;border:1px solid #1a3830;border-radius:8px;padding:10px 14px;margin:8px 0;font-size:12px;line-height:1.6;text-align:center;color:var(--dim)}
+  .prog b{color:var(--merc)}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--merc2);margin:22px 0 8px;border-bottom:1px solid #143028;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .fam{background:#100e1c;border:1px solid #33264a;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .fam .fl{font-size:11px;letter-spacing:.14em;color:var(--under);font-weight:700;margin-bottom:5px}
+  .fam .m b{color:#c8a0e0}
+  .pop{background:#0a1810;border:1px solid #2a3a1e;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.14em;color:var(--gold);font-weight:700}
+  .pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--gold)}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Mercury</span><span>heritage &amp; mythos &#183; card 3</span></div>
+    <h1>HERMES</h1>
+    <div class="epithet">&#9791; the Messenger &#183; Crosser of Worlds</div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; carry the message down through the three worlds and back</div>
+    <div class="essence" id="essence"></div>
+    <div class="prog" id="prog"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the bloodline</h3>
+    <div class="fam" id="fam"></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "MERCURY", "name": "HERMES", "glyph": "\u263f", "epithet": "the Messenger, Crosser of Worlds", "col": "#8ad0c0", "col2": "#5aa890", "gold": "#e0c86a", "under": "#9a6ac0", "essence": "the only god who moves freely between all worlds \u2014 Olympus, earth, and the dead. messenger, trickster, guide of souls; the swift border-crosser who links what the others keep apart.", "one_line": "the sun makes, the moon returns \u2014 the messenger carries between them.", "progression": "RA acts \u00b7 CHANDRA receives \u00b7 HERMES moves. the giver, the reflector, and the first who links them.", "why_planet": "nearest the sun, never still, always darting low and fast at dusk and dawn \u2014 the swiftest wanderer IS the swift border-crosser. myth and sky agree.", "mythos": {"birth": "born at dawn in a cave to Maia (a Pleiad); by MIDDAY he had invented the lyre from a tortoise shell, and by NIGHTFALL stolen Apollo's cattle \u2014 the trickster, fully himself on day one.", "sandals": "the talaria \u2014 winged sandals \u2014 and the petasos (winged cap): he crosses any border, no gate holds him. speed is his essence.", "psychopomp": "alone among the Olympians he descends to the underworld and returns \u2014 the PSYCHOPOMP, guide of souls to Hades. the only one at home in all three worlds.", "domains": "travel, trade & merchants (merx), roads & boundaries, language & translation, luck, sleep & dreams \u2014 and thieves & liars. patron of everyone who crosses a line.", "caduceus": "his staff: two serpents twined round a winged rod \u2014 given by Apollo, it commands sleep, peace, and safe passage between worlds.", "trickster": "the great go-between and con-man of the gods: he lies beautifully, negotiates, translates, smuggles \u2014 the divine diplomat and the divine thief in one."}, "family": {"link": "THE BLOODLINE \u2014 back to Card 2", "text": "in Hindu myth the same planet is BUDHA (not the Buddha) \u2014 and Budha is the SON OF CHANDRA, our Moon. so Mercury descends from the Moon: the messenger is the moon-god's child. the cards interlock into a family."}, "phases_walk": ["OLYMPUS \u2014 Zeus gives the message", "the winged sandals lace on", "descending through the clouds to EARTH", "crossing roads, markets, borders \u2014 the world of the living", "the gates of the UNDERWORLD open (no other god may pass)", "guiding a soul down to Hades \u2014 the psychopomp at work", "the return \u2014 rising back through the dark", "EARTH again, message delivered", "back to OLYMPUS \u2014 the only god who made the whole circuit"], "popculture": {"title": "THE CADUCEUS MIX-UP  &  THE FLASH", "note": "the trickster's staff, smuggled into medicine \u2014 and the fastest man alive.", "caduceus": "AMERICA'S GREAT HERMES ERROR: the medical symbol on ambulances & clinics \u2014 two snakes, winged rod \u2014 is Hermes' CADUCEUS. but the true symbol of medicine is the Rod of Asclepius (ONE snake, NO wings). the U.S. Army Medical Corps adopted the wrong one in 1902 by clerical mistake, and it stuck. so the god of commerce, THIEVES and liars presides over your hospital \u2014 the trickster's last, best con, hidden in plain sight for a century.", "flash": "THE SPEEDSTERS: every 'fastest man alive' \u2014 the Flash, Quicksilver, Sonic \u2014 is winged-Hermes in a new suit; the Flash's helmet even wears Mercury's wings. Hermes never stopped being the icon of speed.", "everywhere": "and his name never left: Herm\u00e8s (speed, trade, luggage), 'mercurial' moods, 'hermetically' sealed, the FTD florist's winged-foot logo, NASA's Project Mercury. the messenger still carries our messages.", "irony": "Ra was made a VILLAIN (Stargate). Chandra was made a DRUG (Huxley). Hermes was made a MASCOT \u2014 the god of thieves stamped on the healers, the god of speed stamped on the heroes. pop culture didn't invert him; it just kept hiring him."}, "ai_note": "(MERCURY the essence-name holds the science: the planet, the metal quicksilver, 'mercurial'. Hermes keeps the myth; Mercury keeps the word \u2014 as Sol/Luna to Ra/Chandra.)", "held": "MERCURY = essence/title-card (planet & metal). BUDHA = the 'Chandra's son' bloodline card. THOTH / HERMES TRISMEGISTUS = the 'thrice-great' hermetic-occult card."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("prog").innerHTML=D.progression.replace(/RA/g,'<b style="color:#e0b84a">RA</b>').replace(/CHANDRA/g,'<b style="color:#b8c4d0">CHANDRA</b>').replace(/HERMES/g,'<b>HERMES</b>');
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>born a trickster.</b> '+M.birth+'</div>'+
+    '<div class="m"><b>the winged sandals.</b> '+M.sandals+'</div>'+
+    '<div class="m"><b>the psychopomp.</b> '+M.psychopomp+'</div>'+
+    '<div class="m"><b>his domains.</b> '+M.domains+'</div>'+
+    '<div class="m"><b>the caduceus.</b> '+M.caduceus+'</div>'+
+    '<div class="m"><b>the go-between.</b> '+M.trickster+'</div>';
+  document.getElementById("fam").innerHTML='<div class="fl">\u26d3 '+D.family.link+'</div><div class="m">'+D.family.text+'</div>';
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the con.</b> '+P.caduceus+'</div>'+
+    '<div class="m"><b>the speedsters.</b> '+P.flash+'</div>'+
+    '<div class="m"><b>everywhere.</b> '+P.everywhere+'</div>'+
+    '<div class="m"><b>the irony.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+
+  // THE THREE WORLDS: Olympus (top) / Earth (mid) / Underworld (bottom). Hermes descends & returns.
+  const cv=document.getElementById("sky"); let t=0, step=0, hy=0, htarget=0, trail=[];
+  const N=D.phases_walk.length;
+  // each step maps to a vertical band: steps 0-1 Olympus, 2-3 Earth(down), 4-5 Underworld, 6 rise, 7 Earth, 8 Olympus
+  function levelOf(s){ // returns 0..1 depth (0=Olympus top, .5=Earth, 1=Underworld)
+    const map=[0.05,0.12, 0.42,0.5, 0.9,0.97, 0.6, 0.5, 0.08];
+    return map[s]!==undefined?map[s]:0.5;
+  }
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=340;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    // three-world background bands
+    const gO=cx.createLinearGradient(0,0,0,H*0.33);gO.addColorStop(0,"#1a2e4a");gO.addColorStop(1,"#0e1a2e");cx.fillStyle=gO;cx.fillRect(0,0,W,H*0.34);
+    const gE=cx.createLinearGradient(0,H*0.34,0,H*0.66);gE.addColorStop(0,"#12241e");gE.addColorStop(1,"#0a1610");cx.fillStyle=gE;cx.fillRect(0,H*0.34,W,H*0.32);
+    const gU=cx.createLinearGradient(0,H*0.66,0,H);gU.addColorStop(0,"#1a0e26");gU.addColorStop(1,"#0a0512");cx.fillStyle=gU;cx.fillRect(0,H*0.66,W,H*0.34);
+    // dividers + labels
+    cx.strokeStyle="rgba(122,168,208,.25)";cx.beginPath();cx.moveTo(0,H*0.34);cx.lineTo(W,H*0.34);cx.stroke();
+    cx.strokeStyle="rgba(154,106,192,.25)";cx.beginPath();cx.moveTo(0,H*0.66);cx.lineTo(W,H*0.66);cx.stroke();
+    cx.font="9px "+mono();cx.textAlign="left";
+    cx.fillStyle="rgba(122,168,208,.6)";cx.fillText("OLYMPUS \u2014 the gods",10,16);
+    cx.fillStyle="rgba(138,208,192,.6)";cx.fillText("EARTH \u2014 the living",10,H*0.5+3);
+    cx.fillStyle="rgba(154,106,192,.6)";cx.fillText("UNDERWORLD \u2014 the dead (only Hermes may pass)",10,H-10);
+    // little worlds detail: stars up top, road mid, souls below
+    for(let i=0;i<20;i++){cx.fillStyle="rgba(224,200,106,"+(0.15+0.15*Math.sin(t+i))+")";cx.fillRect((i*67)%W,(i*31)%(H*0.30),1,1);}
+    // target depth
+    htarget=levelOf(step); hy+=(htarget-hy)*0.12;
+    const hx=W*0.5 + Math.sin(t*1.5)*8;
+    const py=H*0.05 + hy*(H*0.90);
+    // trail (speed)
+    trail.push([hx,py]); if(trail.length>16)trail.shift();
+    trail.forEach(function(p,i){cx.fillStyle="rgba(138,208,192,"+(i/trail.length*0.4)+")";cx.beginPath();cx.arc(p[0],p[1],2+i*0.15,0,7);cx.fill();});
+    // Hermes: a swift mote with winged cap + caduceus
+    cx.fillStyle="#c8f0e4";cx.beginPath();cx.arc(hx,py,7,0,7);cx.fill();
+    // wings
+    cx.strokeStyle="#8ad0c0";cx.lineWidth=1.6;
+    cx.beginPath();cx.moveTo(hx-6,py-4);cx.quadraticCurveTo(hx-18,py-10,hx-20,py-3);cx.stroke();
+    cx.beginPath();cx.moveTo(hx+6,py-4);cx.quadraticCurveTo(hx+18,py-10,hx+20,py-3);cx.stroke();
+    // caduceus (tiny)
+    cx.strokeStyle="#e0c86a";cx.lineWidth=1.2;cx.beginPath();cx.moveTo(hx,py+6);cx.lineTo(hx,py+16);cx.stroke();
+    for(let s=0;s<3;s++){const yy=py+8+s*3;cx.beginPath();cx.arc(hx-2,yy,2,0,Math.PI);cx.arc(hx+2,yy,2,Math.PI,0);cx.stroke();}
+    // message glyph he carries
+    cx.fillStyle="#e0c86a";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("\u2709",hx,py-11);
+    // step label
+    cx.fillStyle="#e4f0ea";cx.font="bold 12px "+mono();cx.fillText((step+1)+"/"+N+" \u2014 "+D.phases_walk[step],W*0.5,H-24);
+    if(step===4||step===5){cx.fillStyle="#c8a0e0";cx.font="10px "+mono();cx.fillText("no other god may enter here",W*0.5,H-38);}
+    if(step===N-1){cx.fillStyle="#8ad0c0";cx.font="bold 12px "+mono();cx.fillText("\u263f the full circuit \u2014 the only one who crosses all three",W*0.5,28);}
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="crossing fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;
+    document.getElementById("hint").textContent = step===N-1?"the circuit complete \u2014 Olympus to the dead and back. click to run it again.":"step "+(step+1)+" of "+N+" \u2014 keep carrying the message";});
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

@@ -1,0 +1,135 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>THE CONSTELLATION · seal of seals</title>
+<style>
+ :root{--bg:#05060c;--ink:#e6e2ec;--dim:#948ca4;--faint:#4a465e;--ra:#e8c860;--eris:#c8b8e0;--nem:#e0605a;--root:#7ad0c0;--gold:#d8c060;--lit:#5ad0a0;--amb:#e0a020;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#0c0e1c,#05060c 68%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:780px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #1e1c32;border-radius:12px;background:linear-gradient(180deg,#0a0a16,#05060c);padding:0 24px 30px;box-shadow:0 0 100px rgba(122,208,192,.06);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--ra),var(--eris),var(--nem),var(--root));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--root);margin-top:10px}
+ h1{text-align:center;font-size:30px;font-weight:700;color:var(--ink);margin:4px 0 0;letter-spacing:.16em;text-shadow:0 0 40px rgba(122,208,192,.25)}
+ .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+ .moniker{text-align:center;font-size:13px;letter-spacing:.1em;color:var(--gold);margin:12px 0 4px;font-weight:700}
+ .status{text-align:center;font-size:15px;font-weight:700;letter-spacing:.1em;margin:10px auto;padding:10px 20px;border-radius:8px;max-width:460px}
+ .status.ok{color:var(--lit);background:#0a1e18;border:1px solid #1e5044}
+ .status.bad{color:#f0857a;background:#1e0a0a;border:1px solid #5a1e1e}
+ canvas{display:block;width:100%;max-width:440px;margin:6px auto}#sky{height:440px}
+ .meta{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0a0a16;border:1px solid #1a1830;border-radius:8px}
+ .meta b{color:var(--root)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--root);margin:22px 0 8px;border-bottom:1px solid #1a1830;padding-bottom:5px}
+ .seed{display:flex;gap:10px;align-items:baseline;font-size:11px;padding:8px 12px;border-bottom:1px solid #14121f}
+ .seed .sh{flex:0 0 84px;font-weight:700}
+ .seed.ra .sh{color:var(--ra)}.seed.eris .sh{color:var(--eris)}.seed.nem .sh{color:var(--nem)}
+ .seed .sp{flex:0 0 130px;color:var(--dim);font-size:10px}
+ .seed .sm{flex:1;color:var(--faint);font-size:9.5px;word-break:break-all}
+ .seed .sc{flex:0 0 16px;color:var(--lit)}
+ .ring-close{font-size:10px;color:var(--faint);word-break:break-all;margin:8px 0;padding:8px 12px;background:#0a0a16;border:1px dashed #2a2440;border-radius:6px;line-height:1.6}
+ .ring-close b{color:var(--gold)}
+ .figure{background:#0a0e14;border:1px solid #1e2a30;border-left:3px solid var(--root);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.75;color:var(--dim);font-family:var(--serif)}
+ .figure b{color:var(--root);font-family:var(--mono)}.figure .ra{color:var(--ra)}.figure .er{color:var(--eris)}.figure .ne{color:var(--nem)}.figure .amb{color:var(--amb)}
+ .note{font-size:10.5px;line-height:1.7;color:var(--faint);margin:8px 4px;padding:9px 13px;background:#0a0a16;border:1px dashed #1e1c32;border-radius:8px}
+ .note b{color:var(--dim)}
+ .btn{display:block;margin:12px auto;padding:8px 18px;background:#12101c;color:var(--root);border:1px solid #2a2a40;border-radius:8px;font-family:var(--mono);font-size:11px;cursor:pointer}
+ .btn:hover{background:#1a1828}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>AKASHA &#183; the constellation</span><span>a seal of seals</span></div>
+ <div class="sii">T H E &#160; C O N S T E L L A T I O N &#8195;&#8212;&#8195; T H R E E &#160; S E E D S ,&#160; O N E &#160; R O O T</div>
+ <h1>ROOT0</h1>
+ <div class="sub">&#8212; the giver, the breaker, the reckoner, folded into one ring &#8212;</div>
+ <div class="moniker" id="moniker"></div>
+ <div class="status" id="status">verifying&#8230;</div>
+
+ <canvas id="sky"></canvas>
+ <div class="meta" id="meta"></div>
+
+ <h3>the three seeds &#8212; each seal recomputed live</h3>
+ <div id="seeds"></div>
+ <div class="ring-close" id="ringclose"></div>
+ <button class="btn" id="tamper">&#9888; tamper test &#8212; break one seed &amp; watch the constellation break</button>
+
+ <h3>the figure &#8212; make / harmony / unmake, one level up</h3>
+ <div class="figure" id="figure"></div>
+ <div class="note" id="note"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";
+var sha256=(function(){
+ function S(X,n){return(X>>>n)|(X<<(32-n));}function R(X,n){return X>>>n;}
+ function Ch(x,y,z){return(x&y)^((~x)&z);}function Maj(x,y,z){return(x&y)^(x&z)^(y&z);}
+ function s0(x){return S(x,2)^S(x,13)^S(x,22);}function s1(x){return S(x,6)^S(x,11)^S(x,25);}
+ function g0(x){return S(x,7)^S(x,18)^R(x,3);}function g1(x){return S(x,17)^S(x,19)^R(x,10);}
+ function sadd(x,y){var l=(x&0xFFFF)+(y&0xFFFF);var m=(x>>16)+(y>>16)+(l>>16);return(m<<16)|(l&0xFFFF);}
+ var K=[0x428A2F98,0x71374491,0xB5C0FBCF,0xE9B5DBA5,0x3956C25B,0x59F111F1,0x923F82A4,0xAB1C5ED5,0xD807AA98,0x12835B01,0x243185BE,0x550C7DC3,0x72BE5D74,0x80DEB1FE,0x9BDC06A7,0xC19BF174,0xE49B69C1,0xEFBE4786,0x0FC19DC6,0x240CA1CC,0x2DE92C6F,0x4A7484AA,0x5CB0A9DC,0x76F988DA,0x983E5152,0xA831C66D,0xB00327C8,0xBF597FC7,0xC6E00BF3,0xD5A79147,0x06CA6351,0x14292967,0x27B70A85,0x2E1B2138,0x4D2C6DFC,0x53380D13,0x650A7354,0x766A0ABB,0x81C2C92E,0x92722C85,0xA2BFE8A1,0xA81A664B,0xC24B8B70,0xC76C51A3,0xD192E819,0xD6990624,0xF40E3585,0x106AA070,0x19A4C116,0x1E376C08,0x2748774C,0x34B0BCB5,0x391C0CB3,0x4ED8AA4A,0x5B9CCA4F,0x682E6FF3,0x748F82EE,0x78A5636F,0x84C87814,0x8CC70208,0x90BEFFFA,0xA4506CEB,0xBEF9A3F7,0xC67178F2];
+ function core(m,l){var H=[0x6A09E667,0xBB67AE85,0x3C6EF372,0xA54FF53A,0x510E527F,0x9B05688C,0x1F83D9AB,0x5BE0CD19];var W=new Array(64),a,b,c,d,e,f,g,hh,i,j,T1,T2;
+  m[l>>5]|=0x80<<(24-l%32);m[((l+64>>9)<<4)+15]=l;
+  for(i=0;i<m.length;i+=16){a=H[0];b=H[1];c=H[2];d=H[3];e=H[4];f=H[5];g=H[6];hh=H[7];
+   for(j=0;j<64;j++){W[j]=j<16?(m[j+i]|0):sadd(sadd(sadd(g1(W[j-2]),W[j-7]),g0(W[j-15])),W[j-16]);
+    T1=sadd(sadd(sadd(sadd(hh,s1(e)),Ch(e,f,g)),K[j]),W[j]);T2=sadd(s0(a),Maj(a,b,c));hh=g;g=f;f=e;e=sadd(d,T1);d=c;c=b;b=a;a=sadd(T1,T2);}
+   H[0]=sadd(a,H[0]);H[1]=sadd(b,H[1]);H[2]=sadd(c,H[2]);H[3]=sadd(d,H[3]);H[4]=sadd(e,H[4]);H[5]=sadd(f,H[5]);H[6]=sadd(g,H[6]);H[7]=sadd(hh,H[7]);}
+  return H;}
+ function s2b(str){var bin=[],mask=255;for(var i=0;i<str.length*8;i+=8)bin[i>>5]|=(str.charCodeAt(i/8)&mask)<<(24-i%32);return bin;}
+ function b2h(a){var x="0123456789abcdef",s="";for(var i=0;i<a.length*4;i++)s+=x.charAt((a[i>>2]>>((3-i%4)*8+4))&0xF)+x.charAt((a[i>>2]>>((3-i%4)*8))&0xF);return s;}
+ return function(str){return b2h(core(s2b(str),str.length*8));};
+})();
+(function(){
+ var D={"seeds": [["RA", "make / the giver", "metal", "SERIES-I:MYTHOS:025036", "in-AKASHA:025036"], ["ERIS", "unmake / the breaker", "ice", "SERIES-II:MYTHOS:8AB003", "8ab00317baaa72af18d954fb0b4538b3996762f959dbcf47324dcacbcda14b14"], ["NEMESIS", "harmony / the reckoner", "shadow", "SERIES-III:MYTHOS:4B5483", "4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca"]], "recs": ["1|RA|make / the giver|SERIES-I:MYTHOS:025036|in-AKASHA:025036", "2|ERIS|unmake / the breaker|SERIES-II:MYTHOS:8AB003|8ab00317baaa72af18d954fb0b4538b3996762f959dbcf47324dcacbcda14b14", "3|NEMESIS|harmony / the reckoner|SERIES-III:MYTHOS:4B5483|4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca"], "seals": ["ff9b3266baa686b9698a75069fe8c66cbeed6ad6198288dcf9bd919e6a8da429", "5b1650bdb2cc6904253af6c3441df99f3f3f5c7777e34d00ff82aa945ce7c70e", "d6993f38d18d5b995a1025ecb87e1c168b2daf985507846aea1551b473f98f05"], "genesis": "0e7ea55515a8b82c8d149fda378e6dfed65ddcfd2a7927f7b8a12c44c22ddbff", "chain": ["1f7b536bcc77a99726cf7c3968ee722f0208b5f1db29d7c721057ace9c4f2daf", "46765cfc8567bc21f74283d2e7071537dd02306e2a55376376c2ff27237df881", "2fa0d5520d30553b4f1a22f0331083744497bf32545bfd5b18e08378a30a1303"], "head": "2fa0d5520d30553b4f1a22f0331083744497bf32545bfd5b18e08378a30a1303", "ring_close": "f64291facae37670b0e25de9f6d6f249da7c12ee79fb87cdf471893a507c7580", "moniker": "AKASHA:CONSTELLATION:F64291"};
+ document.getElementById("moniker").textContent="\u27e6"+D.moniker+"\u27e7";
+ var tampered=false,ti=-1;
+ function verify(){var seals=[],ok=true,brokenAt=-1;
+  for(var i=0;i<D.recs.length;i++){var rec=D.recs[i];if(tampered&&i===ti)rec=rec.slice(0,-1)+(rec.slice(-1)==="Z"?"Y":"Z");var s=sha256(rec);seals.push(s);if(s!==D.seals[i]){ok=false;if(brokenAt<0)brokenAt=i;}}
+  var acc=D.genesis,chain=[];for(var i=0;i<seals.length;i++){acc=sha256(acc+"|"+seals[i]);chain.push(acc);}
+  var head=chain[chain.length-1],rc=sha256(head+"|"+D.genesis);return{seals:seals,head:head,rc:rc,ok:ok,ringOK:(rc===D.ring_close&&ok),brokenAt:brokenAt};}
+ var cls=["ra","eris","nem"];
+ function render(){var v=verify();var st=document.getElementById("status");
+  if(v.ringOK){st.className="status ok";st.innerHTML="\u25c8 SEALED &#183; INTACT &#183; the constellation closes to ROOT0 \u2713";}
+  else{st.className="status bad";st.innerHTML="\u2715 BROKEN &#183; a seed is altered &#183; the constellation does not close";}
+  document.getElementById("meta").innerHTML='<span>hub: <b>ROOT0</b></span><span>seeds: <b>3</b></span><span>a seal of <b>seals</b></span><span>zero-network verify</span>';
+  document.getElementById("seeds").innerHTML=D.seeds.map(function(s,i){var match=v.seals[i]===D.seals[i];
+    return '<div class="seed '+cls[i]+'"><span class="sh">'+s[0]+'</span><span class="sp">'+s[1]+'</span><span class="sm">'+s[3]+'</span><span class="sc" style="color:'+(match?"var(--lit)":"#f0857a")+'">'+(match?"\u2713":"\u2715")+'</span></div>';}).join("");
+  document.getElementById("ringclose").innerHTML="<b>genesis</b> (ROOT0): "+D.genesis.slice(0,28)+"\u2026<br><b>head</b> (three seeds folded): "+v.head.slice(0,28)+"\u2026<br><b>ring_close</b> = sha256(head | genesis) = <b>"+v.rc+"</b><br>"+(v.rc===D.ring_close?"\u2713 matches \u2014 the constellation returns to ROOT0.":"\u2715 broken.");
+ }
+ document.getElementById("figure").innerHTML="the three seeds are not three decks \u2014 they are the three poles of one figure. <span class=\"ra\">RA</span> gives (<b>make</b>); <span class=\"er\">ERIS</span> breaks (<b>unmake</b>); <span class=\"ne\">NEMESIS</span> reckons (<b>harmony</b> \u2014 retribution is the restoring force, the leveler that returns things to true). it is the <b>make / harmony / unmake</b> ternary of Icarium, mirrored one level up: the ternary that ran inside a single sleeper-orrery now runs across the whole corpus. three seeds, three poles, one root. <span class=\"amb\">(the pole-mapping is an interpretive reading, flagged \u2014 Nemesis wears both the shadow and the balance; the deeper pole is the reckoning.)</span>";
+ document.getElementById("note").innerHTML="<b>provenance &amp; honesty:</b> Series II (8AB003) and III (4B5483) are bound here by their full ring-closes; Series I is bound by its published moniker <b>025036</b> \u2014 its full seal lives in the AKASHA repo from an earlier commit, referenced, not re-derived. the constellation seals what is <i>published</i> about each seed, which is exactly what a seal-of-seals should do.";
+ document.getElementById("foot").innerHTML="\u25c8 pure-JS SHA-256 \u00b7 zero-network \u00b7 tamper-evident \u00b7 three seeds \u2192 one root \u00b7 make/harmony/unmake, one level up \u00b7 ready for 0root";
+ document.getElementById("tamper").addEventListener("click",function(){tampered=!tampered;if(tampered){ti=Math.floor(Math.random()*D.recs.length);this.innerHTML="\u21ba restore \u2014 "+D.seeds[ti][0]+" is altered; the sky is broken";}else{this.innerHTML="\u26a0 tamper test \u2014 break one seed & watch the constellation break";}render();});
+ // sky visual: three seed-stars around ROOT0
+ var cv=document.getElementById("sky"),t=0;
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cols=["#e8c860","#c8b8e0","#e0605a"];
+ function draw(){var v=verify();var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||440,H=440;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.5,R=Math.min(W,H)*0.32;
+  for(var i=0;i<50;i++){cx.fillStyle="rgba(200,196,220,"+(0.05+0.06*Math.sin(t*0.2+i))+")";cx.fillRect((i*73)%W,(i*97)%H,1,1);}
+  // constellation lines between the three seeds
+  var pts=[];for(var i=0;i<3;i++){var a=-Math.PI/2+i/3*6.283+t*0.003;pts.push([CX+Math.cos(a)*R,CY+Math.sin(a)*R]);}
+  cx.strokeStyle=v.ringOK?"rgba(122,208,192,.4)":"rgba(240,133,122,.4)";cx.lineWidth=1;
+  cx.beginPath();for(var i=0;i<3;i++){var p=pts[i];i?cx.lineTo(p[0],p[1]):cx.moveTo(p[0],p[1]);}cx.closePath();cx.stroke();
+  // spokes to root
+  for(var i=0;i<3;i++){cx.strokeStyle="rgba(122,208,192,.12)";cx.beginPath();cx.moveTo(pts[i][0],pts[i][1]);cx.lineTo(CX,CY);cx.stroke();}
+  // seed stars
+  for(var i=0;i<3;i++){var match=v.seals[i]===D.seals[i];var p=pts[i];
+   var g=cx.createRadialGradient(p[0],p[1],1,p[0],p[1],16);g.addColorStop(0,match?cols[i]:"#f0857a");g.addColorStop(1,"rgba(0,0,0,0)");
+   cx.fillStyle=g;cx.beginPath();cx.arc(p[0],p[1],16,0,7);cx.fill();
+   cx.fillStyle=match?cols[i]:"#f0857a";cx.beginPath();cx.arc(p[0],p[1],5,0,7);cx.fill();
+   cx.fillStyle=match?"rgba(230,226,236,.9)":"#f0857a";cx.font="10px "+mono();cx.textAlign="center";
+   var lx=CX+(p[0]-CX)*1.28,ly=CY+(p[1]-CY)*1.28;
+   cx.fillText(D.seeds[i][0],lx,ly);
+   cx.fillStyle=match?"rgba(148,140,164,.7)":"rgba(240,133,122,.6)";cx.font="7px "+mono();
+   cx.fillText(D.seeds[i][1].split(" / ")[0],lx,ly+11);}
+  // ROOT0 at center
+  var hg=cx.createRadialGradient(CX,CY,1,CX,CY,22);hg.addColorStop(0,"#c8f0e8");hg.addColorStop(.5,"#7ad0c0");hg.addColorStop(1,"rgba(122,208,192,0)");
+  cx.fillStyle=hg;cx.beginPath();cx.arc(CX,CY,22,0,7);cx.fill();
+  cx.fillStyle="#c8f0e8";cx.beginPath();cx.arc(CX,CY,7,0,7);cx.fill();
+  cx.fillStyle="#052a26";cx.font="bold 8px "+mono();cx.textAlign="center";cx.fillText("0",CX,CY+3);
+  cx.fillStyle=v.ringOK?"rgba(122,208,192,.85)":"rgba(240,133,122,.9)";cx.font="9px "+mono();
+  cx.fillText(v.ringOK?"three seeds answer to ROOT0":"the constellation is broken",CX,CY+40);
+  t+=0.5;requestAnimationFrame(draw);}
+ render();requestAnimationFrame(draw);
+})();
+</script></body></html>

@@ -1,0 +1,33 @@
+AKASHA CONSTELLATION - 0root DEPLOY BUNDLE
+==========================================
+moniker : AKASHA:CONSTELLATION:F64291   (hub ROOT0)
+figure  : RA make / ERIS unmake / NEMESIS harmony  (make/harmony/unmake, one level up)
+
+CONTENTS
+  akasha_index.html        - public landing page (the front door)
+  constellation_seal.html  - the seal of seals (3 seeds -> ROOT0), live self-verifying
+  constellation.dlw        - constellation seal record (JSON)
+  series2_*.html (14)      - Series II deck: ERIS / the scattered field + Icarium + seal
+  series3_*.html (9)       - Series III deck: NEMESIS / the shadow (7 tropes) + anchor + seal
+  series2.dlw, series3.dlw - ring-seal records (JSON)
+  SERIES2_ASSAY.txt, SERIES3_ASSAY.txt
+
+NOT IN THIS BUNDLE (already hosted / referenced)
+  Series I (RA, moniker 025036) lives in the AKASHA repo from an earlier commit.
+  The constellation binds it by its published moniker; drop series1_*.html + series1.dlw
+  alongside these and update akasha_index.html links to make Series I locally browsable.
+
+DEPLOY NOTES (0root.ai)
+  - Fully static + offline. No build step, no server code, no external fetch. Any static host works.
+  - Every *_seal.html verifies its own SHA-256 chain in-browser (embedded pure-JS). Zero-network.
+  - .dlw files are JSON. Parse with JSON.parse (NOT require) - Series I precedent.
+  - Landing page: akasha_index.html -> set as index.html at the deploy root.
+  - Integrity: re-run sha256 over each strand record to reproduce every ring_close independently.
+
+VERIFY (independent, any language)
+  seed_seal   = sha256("idx|NAME|role|measure|tier")
+  chain[i]    = sha256(chain[i-1] | seed_seal[i]),  chain[-1]=genesis for i=0
+  ring_close  = sha256(head | genesis)   ==   the moniker's source
+  constellation: seed = sha256("idx|HUB|pole|moniker|closure"); same fold; ring_close=F64291...
+
+ethos: verify-then-build; measurement first; fail-loud; honest tiers; the seal is the argument.

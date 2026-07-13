@@ -1,0 +1,105 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES II · CERES — the first demotion</title>
+<style>
+ :root{--bg:#0a0806;--ink:#ece6d8;--dim:#a89e86;--faint:#5a5240;--grain:#d8b860;--salt:#e8ecf0;--green:#8aa060;--pluto:#c89858;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 14%,#14100a,#0a0806 68%);color:var(--ink);font-family:var(--mono)}
+ .card{max-width:730px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #2a2214;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#100c07,#0a0806);padding:0 22px 26px;box-shadow:0 0 70px rgba(216,184,96,.05)}
+ .topband{height:5px;background:linear-gradient(90deg,var(--grain),var(--green),var(--salt),var(--grain))}
+ .seriesrow{display:flex;justify-content:space-between;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:44px;font-weight:700;color:var(--grain);margin:2px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(216,184,96,.3)}
+ .subname{text-align:center;font-size:12px;color:var(--green);letter-spacing:.3em;margin-top:2px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:3px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#100c07;border:1px solid #241c10;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--grain);font-family:var(--mono)}.corr .pl{color:var(--pluto)}
+ canvas{display:block;width:100%}#belt{height:380px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#100c07;border:1px solid #241c10;border-radius:8px}
+ .measure b{color:var(--grain)}.measure .big{color:var(--salt);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--green);margin:22px 0 8px;border-bottom:1px solid #221c10;padding-bottom:5px}
+ .m{font-size:12.5px;line-height:1.75;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+ .tl{display:flex;flex-direction:column;gap:6px;margin-top:4px}
+ .te{display:flex;gap:12px;align-items:baseline;background:#100c07;border:1px solid #241c10;border-radius:8px;padding:9px 13px}
+ .te .ty{flex:0 0 54px;font-size:14px;font-weight:700;color:var(--grain)}
+ .te .tc{flex:0 0 96px;font-size:10px;letter-spacing:.1em;font-weight:700}
+ .te.p .tc{color:var(--grain)}.te.a .tc{color:var(--dim)}.te.d .tc{color:var(--salt)}
+ .te .tx{font-size:11px;line-height:1.5;color:var(--dim)}
+ .cross{background:#100a12;border:1px solid #2a2038;border-left:3px solid #b8a8d8;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .cross b{color:#c8b8e0}.cross .pl{color:var(--pluto)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#100c07;border:1px dashed #2a2214;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b0a488;margin:10px 4px;padding:10px 14px;background:#100c07;border:1px solid #241c10;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--green);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:12px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; Ceres</span><span>the scattered field &#183; the inner exile</span></div>
+ <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; F I R S T &#160; D E M O T I O N</div>
+ <h1>CERES</h1>
+ <div class="subname">&#127806; the harvest-mother, cast down twice</div>
+ <div class="epithet">the first world ever demoted &#8212; 150 years before Pluto</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the planethood test &#8212; round, but not alone</h3>
+ <canvas id="belt"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">a planet sweeps its lane clean; Ceres is round but shares its lane with thousands &#8212; the exact test Pluto fails</div>
+
+ <h3>the round trip &#8212; planet &#8594; asteroid &#8594; dwarf</h3>
+ <div class="tl" id="timeline"></div>
+
+ <div class="cross" id="cross"></div>
+
+ <h3>the brine beneath &#8212; an ocean world in the belt</h3>
+ <div class="m" id="brine"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"body": "CERES", "glyph": "⚳", "orbit": {"a": 2.77, "peri": 2.55, "aph": 2.98, "P": 4.6, "i": 10.6, "D": 940, "belt_frac": 33}, "timeline": [["1801", "PLANET", "Piazzi finds it on New Year's night; hailed as the long-sought planet between Mars & Jupiter"], ["1850s", "ASTEROID", "as Pallas, Juno, Vesta and thousands more turn up in the same lane, Ceres is demoted to 'asteroid'"], ["2006", "DWARF PLANET", "the same IAU vote that demoted Pluto re-classifies Ceres a dwarf planet — round, but not alone"]]},O=D.orbit;
+ document.getElementById("corr").innerHTML="long before <span class=\"pl\">Pluto</span>, there was Ceres. found on the first night of 1801, it was hailed as a <b>planet</b> \u2014 the missing world between Mars and Jupiter. then the sky filled with its neighbours, and it was cast down to \u2018asteroid\u2019. two centuries later, the very vote that demoted Pluto raised Ceres to <b>dwarf planet</b>. it is the <b>first world ever demoted</b>, and the only dwarf of the inner system \u2014 and it is the <b>mother</b> whose daughter ties this whole field back to the first seed.";
+ document.getElementById("measure").innerHTML='<span>diameter: <b>'+O.D+' km</b> (largest in the belt)</span><span>share of the belt\u2019s mass: <span class="big">~'+O.belt_frac+'%</span></span><span>round? <b>yes \u2713</b> \u00b7 cleared its lane? <span class="big">no \u2717</span> \u2192 dwarf</span>';
+ document.getElementById("timeline").innerHTML=D.timeline.map(function(t){var cls=t[1]==="PLANET"?"p":t[1]==="ASTEROID"?"a":"d";return '<div class="te '+cls+'"><span class="ty">'+t[0]+'</span><span class="tc">'+t[1]+'</span><span class="tx">'+t[2]+'</span></div>';}).join("");
+ document.getElementById("cross").innerHTML="<b>the shared daughter.</b> Ceres is the Roman <b>Demeter</b> \u2014 goddess of grain and the harvest \u2014 and mother of <b>Proserpina</b>, who is <b>Persephone</b>: the queen carried into the dark and returned each spring, <span class=\"pl\">Pluto\u2019s companion</span> on Series I\u2019s final card. so the harvest-mother of the scattered field is the mother of the girl who married the lord of the dead. Ceres \u2192 Proserpina \u2192 <span class=\"pl\">Pluto</span>: the cross-seed stitch on the loom runs through <b>her</b>. the two seeds share a daughter, and Ceres is where that thread is anchored.";
+ document.getElementById("brine").innerHTML="the Dawn spacecraft (2015\u201318) found <b>bright spots</b> in Occator crater \u2014 deposits of <b>sodium carbonate</b>, salt left behind by <b>briny water</b> that welled up from below and froze. Ahuna Mons stands as a likely <b>cryovolcano</b>. together they point to a <b>subsurface reservoir of brine</b> \u2014 an ocean-world candidate hiding in the asteroid belt. the harvest-goddess keeps water beneath her skin: fitting, for the one who makes things grow.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the discovery, the planet\u2192asteroid\u2192dwarf history, the belt-mass share, the round-but-uncleared status, and Dawn\u2019s bright-spot salts: all settled. <span class=\"amb\">\u25c8 AMBER</span> \u2014 whether Ceres holds a present-day liquid brine layer (vs. a frozen remnant) is still studied; \u2018ocean world\u2019 is a candidacy, not a confirmed fact.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> Ceres was the very first \u2018planet\u2019 to get kicked out of the planet club \u2014 way back in the 1800s, long before Pluto. it lives in the crowded asteroid belt with thousands of space rocks, and it\u2019s round but it never cleaned up its lane, so it\u2019s a dwarf planet. and it hides salty water underground! it\u2019s also the mom of the springtime goddess from the very first set of cards.";
+ document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 history &amp; clearing-test LIT \u00b7 present-day ocean AMBER \u00b7 the cross-seed mother \u00b7 Series II \u00b7 witness on";
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ var cv=document.getElementById("belt");var t=0;
+ // seed a fixed belt of asteroids
+ var rocks=[];for(var i=0;i<220;i++){rocks.push([2.1+Math.random()*1.2, Math.random()*2*Math.PI, 0.4+Math.random()*0.9]);}
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||690,H=380;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var CX=W*0.5,CY=H*0.5, sc=Math.min(W,H)*0.44/3.4;
+  // Sun
+  var g=cx.createRadialGradient(CX,CY,1,CX,CY,10);g.addColorStop(0,"#fff6d8");g.addColorStop(.5,"#e0c860");g.addColorStop(1,"rgba(224,200,96,0)");
+  cx.fillStyle=g;cx.beginPath();cx.arc(CX,CY,10,0,7);cx.fill();
+  // Mars orbit (cleared lane, for contrast) at 1.52
+  cx.strokeStyle="rgba(200,120,90,.3)";cx.beginPath();cx.arc(CX,CY,1.52*sc,0,7);cx.stroke();
+  cx.fillStyle="rgba(200,120,90,.5)";cx.font="7px "+mono();cx.textAlign="center";cx.fillText("Mars \u2014 a planet: its lane is swept clean",CX,CY-1.52*sc-4);
+  // the belt (crowded)
+  rocks.forEach(function(r){var a=r[1]+t*0.02/Math.sqrt(r[0]);var x=CX+Math.cos(a)*r[0]*sc,y=CY+Math.sin(a)*r[0]*sc;cx.fillStyle="rgba(168,158,136,"+(0.25+r[2]*0.3)+")";cx.beginPath();cx.arc(x,y,r[2],0,7);cx.fill();});
+  // belt label
+  cx.fillStyle="rgba(216,184,96,.5)";cx.font="8px "+mono();cx.fillText("the asteroid belt \u2014 Ceres\u2019 crowded lane",CX,CY+2.98*sc+16);
+  // Ceres
+  var ca=t*0.02/Math.sqrt(2.77);var cxp=CX+Math.cos(ca)*2.77*sc,cyp=CY+Math.sin(ca)*2.77*sc;
+  var gg=cx.createRadialGradient(cxp-1,cyp-1,0,cxp,cyp,6);gg.addColorStop(0,"#e8dcb0");gg.addColorStop(1,"#a89060");
+  cx.fillStyle=gg;cx.beginPath();cx.arc(cxp,cyp,6,0,7);cx.fill();
+  // bright spot
+  cx.fillStyle="#eef0f4";cx.beginPath();cx.arc(cxp+1.5,cyp-1,1.3,0,7);cx.fill();
+  cx.fillStyle="#e8dcb0";cx.font="9px "+mono();cx.fillText("\u26b3 Ceres",cxp,cyp-11);
+  cx.fillStyle="rgba(236,230,216,.85)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText("round \u2713  but it never cleared its lane \u2717  \u2014  so: a dwarf, not a planet",CX,H-10);
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="ceres fault: "+(e&&e.message);return;}t+=0.5;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

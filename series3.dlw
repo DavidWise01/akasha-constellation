@@ -1,0 +1,95 @@
+{
+  "format": "dlw-ring-seal/1",
+  "moniker": "SERIES-III:MYTHOS:4B5483",
+  "series": "III",
+  "title": "THE SHADOW",
+  "hub": "NEMESIS",
+  "answers_to": "NEMESIS (the shadow)",
+  "channel": "SHADOW/the-hidden",
+  "source": "Isaac Asimov, Nemesis (1989) — tropes pulled, built 1:1; no text reproduced",
+  "bridge_to_series_II": "SEDNA (the cast-out is the doorway to the shadow; a passing star/companion is one candidate for her detached orbit)",
+  "lineage": "RA (giver/light) → ERIS (breaker/discord) → NEMESIS (shadow/reckoning)",
+  "genesis": "00f649a9962634e5f9842a5416635e6586269045ffb33f9b0d1058ac5b40816a",
+  "strands": [
+    {
+      "idx": 1,
+      "name": "THE SHADOW-TWIN",
+      "role": "Nemesis the hidden death-star",
+      "measure": "26-Myr extinction comb + Oort perturbation + WISE non-detection",
+      "tier": "LIT|hypothesis-disfavored-AMBER",
+      "record": "01|THE SHADOW-TWIN|Nemesis the hidden death-star|26-Myr extinction comb + Oort perturbation + WISE non-detection|LIT|hypothesis-disfavored-AMBER",
+      "seal": "923bdc647e64d751730bcb605c79317ec5039bf43d8c0bda34ad7d18bccd2d29",
+      "chain": "a51c8e5d9895fe4017841d80bbe59ca87cf0a4901d6cd5764a5df8f6f9447145"
+    },
+    {
+      "idx": 2,
+      "name": "THE HIDDEN MIND",
+      "role": "Erythro the planetary consciousness",
+      "measure": "quorum-sensing threshold; coordination-not-cognition",
+      "tier": "LIT|consciousness-AMBER",
+      "record": "02|THE HIDDEN MIND|Erythro the planetary consciousness|quorum-sensing threshold; coordination-not-cognition|LIT|consciousness-AMBER",
+      "seal": "4163f4c2a2ca57f31058014cd1a44a26a1a984b05d8638fd71158a82a267bb36",
+      "chain": "cc066b9425678530354dbdc4ab13c034fbf24d03d387b7f9c76fe4264fa8011a"
+    },
+    {
+      "idx": 3,
+      "name": "THE RED WORLD",
+      "role": "Erythro red-lit and tidally locked",
+      "measure": "Wien 502 vs 966nm; 8pct vs 37pct visible; tidal lock",
+      "tier": "LIT|habitability-AMBER",
+      "record": "03|THE RED WORLD|Erythro red-lit and tidally locked|Wien 502 vs 966nm; 8pct vs 37pct visible; tidal lock|LIT|habitability-AMBER",
+      "seal": "7e964f0fa68478fba54278f35fe754660b150116dd98d1a9aadea57b58162f21",
+      "chain": "5cd2499a5a9047a0140eee0c7ceca70829b64ef9b68109dd3045ab3d482f6049"
+    },
+    {
+      "idx": 4,
+      "name": "THE TRUTH-READER",
+      "role": "Marlene who cannot be lied to",
+      "measure": "surface-area of a lie 1-(1-p)^k; human 54pct baseline",
+      "tier": "LIT|microexpression-overstated-AMBER",
+      "record": "04|THE TRUTH-READER|Marlene who cannot be lied to|surface-area of a lie 1-(1-p)^k; human 54pct baseline|LIT|microexpression-overstated-AMBER",
+      "seal": "ff3cfc1e34293736865a249b61579161c4a5503d5e0b0b71b686b1e1f115dd2c",
+      "chain": "8114b50848d5c247b8c2ad175a7cfa5c30abc1cf16d096f09af2d54aa6e6ae40"
+    },
+    {
+      "idx": 5,
+      "name": "THE SEED-HOARDER",
+      "role": "Janus Pitt secrecy as hubris",
+      "measure": "survival 1-(1-s)^N; control traded for robustness",
+      "tier": "LIT|values-illustrative-AMBER",
+      "record": "05|THE SEED-HOARDER|Janus Pitt secrecy as hubris|survival 1-(1-s)^N; control traded for robustness|LIT|values-illustrative-AMBER",
+      "seal": "4944af9c4af2e5b6578edf9279fa034d0ee71f77fd8277907a7622caafb176af",
+      "chain": "beb13e19aa5d5d1f56f02877a8b0a125fdfa9250f6affb9026a4d7092d521941"
+    },
+    {
+      "idx": 6,
+      "name": "THE ONE WHO LEFT",
+      "role": "Crile severed by two light-years",
+      "measure": "light-lag 2yr one-way; no real-time contact",
+      "tier": "LIT|orbit-metaphor-flagged",
+      "record": "06|THE ONE WHO LEFT|Crile severed by two light-years|light-lag 2yr one-way; no real-time contact|LIT|orbit-metaphor-flagged",
+      "seal": "730601fcb321d0b84603c458e95586140e381b8586308f3d325c87abd8b81016",
+      "chain": "6e65542357ff972e32ea4f3968c6de9681f01b47b87a7b60fdc5b4ce2646f984"
+    },
+    {
+      "idx": 7,
+      "name": "THE LEAP",
+      "role": "superluminal ends the isolation",
+      "measure": "light-barrier gamma; near-c real, FTL breaks causality",
+      "tier": "LIT|FTL-fiction-AMBER",
+      "record": "07|THE LEAP|superluminal ends the isolation|light-barrier gamma; near-c real, FTL breaks causality|LIT|FTL-fiction-AMBER",
+      "seal": "0a5cf8acdda8ba596150ae86dcb4f0a44c994063f9f26c231cffad21d6dc732f",
+      "chain": "b139e1f7c5116ae409a657098e4879b7c5b3f1fdddf8cf78321ac7a58afc4b32"
+    }
+  ],
+  "head": "b139e1f7c5116ae409a657098e4879b7c5b3f1fdddf8cf78321ac7a58afc4b32",
+  "ring_close": "4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca",
+  "hash": "sha256",
+  "note": "per-strand seal=sha256(record); chain folds genesis(Nemesis) through each seal; ring_close=sha256(head|genesis) closes the ring back to Nemesis. ASCII-canonical.",
+  "honesty_ledger": {
+    "pattern": "each trope pulls a real, measurable phenomenon from under Asimov's fiction and marks the line where extrapolation begins.",
+    "LIT": "the death-star hypothesis & WISE non-detection; quorum sensing; Wien's law & tidal locking; the leakage-of-a-lie model & the 54pct human baseline; the survival probability; the finite speed of light; special relativity & the light barrier.",
+    "AMBER": "planet-scale consciousness, red-world habitability, micro-expression lie-detection accuracy, and faster-than-light travel are all fiction or disfavored; flagged in-strand.",
+    "orrery_check": "NOT an orrery — sourced reference deck; delete the animations and the content survives."
+  }
+}

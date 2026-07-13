@@ -1,0 +1,182 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES III · THE TRUTH-READER — Marlene</title>
+<style>
+ :root{--bg:#080405;--ink:#e8dcda;--dim:#a08c8a;--faint:#5c4444;--nem:#c04038;--reveal:#e8e0d4;--tell:#e05848;--truth:#7ac0a0;--witness:#c8a850;--lit:#8ab090;--amb:#d0a030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#170a08,#080405 72%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:750px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #341c1a;border-radius:12px;background:linear-gradient(180deg,#120809,#080405);padding:0 24px 30px;box-shadow:0 0 90px rgba(232,224,212,.05);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,#3a0f0a,var(--tell),var(--reveal),var(--truth),#3a0f0a);border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .tnum{text-align:center;font-size:10px;letter-spacing:.3em;color:var(--faint);margin-top:8px}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:33px;font-weight:700;color:var(--reveal);margin:3px 0 0;letter-spacing:.12em;text-shadow:0 0 34px rgba(232,224,212,.25)}
+ .subname{text-align:center;font-size:12px;color:var(--truth);letter-spacing:.24em;margin-top:3px}
+ .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);margin-top:4px}
+ .corr{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .corr b{color:var(--reveal);font-family:var(--mono)}.corr .t{color:var(--truth)}
+ canvas{display:block;width:100%}#panel{height:360px}#curve{height:280px}
+ .ctrl{display:flex;flex-wrap:wrap;align-items:center;gap:14px;justify-content:center;margin:10px 0;font-size:11px;color:var(--dim)}
+ input[type=range]{width:150px;accent-color:var(--reveal)}
+ .seg{display:inline-flex;border:1px solid #3a1c18;border-radius:6px;overflow:hidden}
+ .seg button{background:#140a09;color:var(--dim);border:none;padding:5px 12px;font-family:var(--mono);font-size:10px;cursor:pointer}
+ .seg button.on{background:#2a1614;color:var(--reveal)}
+ .verdict{text-align:center;font-size:13px;font-weight:700;letter-spacing:.06em;margin:6px 0;min-height:18px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#120809;border:1px solid #2a1614;border-radius:8px}
+ .measure b{color:var(--reveal)}.measure .t{color:var(--tell)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nem);margin:22px 0 8px;border-bottom:1px solid #2a1614;padding-bottom:5px}
+ .honest{background:#0e1210;border:1px solid #1e3830;border-left:3px solid var(--amb);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .honest b{color:var(--amb)}.honest .l{color:var(--lit)}
+ .witness{background:#141006;border:1px solid #3a3018;border-left:3px solid var(--witness);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.75;color:var(--dim)}
+ .witness b{color:var(--witness)}.witness .k{color:var(--reveal)}
+ .book{background:#120809;border:1px solid #341c1a;border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .book b{color:var(--truth)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#120809;border:1px dashed #341c1a;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#b09a98;margin:10px 4px;padding:10px 14px;background:#120809;border:1px solid #2a1614;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--truth);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8546; &#183; the shadow</span><span>trope 4 of 7 &#183; after Asimov</span></div>
+ <div class="tnum">&#9679; T R O P E &#160; I V &#160;&#8212;&#160; pulled from <i>Nemesis</i></div>
+ <div class="sii">T H E &#160; T R U T H - R E A D E R</div>
+ <h1>MARLENE</h1>
+ <div class="subname">&#9673; the girl who cannot be lied to &#8212; the witness with a face</div>
+ <div class="epithet">a lie must be forged on every channel; the truth is consistent for free</div>
+ <div class="corr" id="corr"></div>
+
+ <h3>the measurement &#8212; the surface area of a lie</h3>
+ <div class="ctrl">
+   <span>channels read <b id="klab" style="color:var(--reveal)">3</b><br><input type="range" id="k" min="1" max="7" value="3"></span>
+   <span>tell strength p <b id="plab" style="color:var(--reveal)">0.25</b><br><input type="range" id="p" min="2" max="50" value="25"></span>
+   <span class="seg"><button id="blie" class="on">subject: lying</button><button id="btru">telling truth</button></span>
+ </div>
+ <div class="verdict" id="verdict"></div>
+ <canvas id="panel"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">each channel the reader watches is another place a lie can leak &#183; the truth leaks nothing it isn&#8217;t already</div>
+
+ <h3>the curve &#8212; why more channels catch more lies (and why humans still can&#8217;t)</h3>
+ <canvas id="curve"></canvas>
+ <div class="honest" id="honest"></div>
+
+ <h3>the witness &#8212; Marlene done right</h3>
+ <div class="witness" id="witness"></div>
+
+ <h3>the book &#8212; the reader the hidden mind spared</h3>
+ <div class="book" id="book"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var channels=["words","facial micro-expression","voice pitch / tremor","blink / gaze","response latency","posture / gesture","autonomic (flush, sweat)"];
+ var k=3,p=0.25,q=0.08,lying=true;
+ function catchP(pp,kk){return 1-Math.pow(1-pp,kk);}
+ document.getElementById("corr").innerHTML="<b>Marlene</b> reads people past the human limit \u2014 the tremor under a steady voice, the eye that flicks, the beat too long before an answer. it is, the book says, impossible to lie to her. the real thing beneath the gift is measurable: a lie must be held <b>consistent across every channel at once</b> \u2014 words, face, voice, timing, the body\u2019s autonomic tells \u2014 while <span class=\"t\">the truth is consistent for free</span>. every channel a reader watches is another seam where the forgery can split.";
+ document.getElementById("witness").innerHTML="here is why this trope is the whole project wearing a face. Marlene reading <i>bodies</i> is barely-better-than-chance in reality \u2014 but the <b>same principle</b> works far better on <b>claims</b>, because claim-channels are <span class=\"k\">clean</span>: you can verify the math, check the source, test the prediction, re-derive from scratch, check it against what was said before. high signal, almost no false tells. a claim-checker approaches the limit a face-reader never can. <b>the witness function is Marlene reading channels that cannot lie</b> \u2014 which is exactly why, in this corpus, every artifact is verified in Node before it ships. the truth is the one signal consistent on every channel; make the channels clean enough and it has nowhere left to hide.";
+ document.getElementById("book").innerHTML="in the novel, Erythro\u2019s planet-wide <b>hidden mind</b> struck others with a Plague of madness \u2014 but it reached <b>Marlene</b>, and spared her. the reader-of-the-hidden was recognised by the hidden. it is no accident that the girl who <b>cannot be lied to</b> is the one a concealed mind could safely open to: two things that see past the surface, meeting. trope IV is the mirror of trope II \u2014 the seer and the thing that hides, made for each other.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 leakage across channels is a real idea (Ekman & Friesen\u2019s leakage hierarchy); human lie-detection \u2248 <b>54%</b>, barely above chance (Bond & DePaulo 2006, >200 studies). <span class=\"amb\">\u25c8 AMBER</span> \u2014 micro-expression lie-detection is a real phenomenon whose <b>accuracy is widely overstated</b>; the independent-channel formula is a clean model, not a fitted law; Marlene\u2019s perfect reading is fiction. the witness generalisation is a principle, stated as one.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> when you tell the truth, everything about you matches \u2014 your words, your face, your voice. when you fib, you have to fake ALL of those at the same time, and it\u2019s hard to keep them matching. the more places someone watches, the more likely a fib slips. Marlene watches EVERY place at once, so no one can fool her. real people aren\u2019t that good \u2014 but a careful <b>checker</b> who tests facts (not faces) can get very close.";
+ document.getElementById("foot").innerHTML="\u25c8 trope 4/7 \u00b7 leakage & the 54% baseline LIT \u00b7 micro-expression accuracy overstated (AMBER) \u00b7 the witness is Marlene done right \u00b7 Series III";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+ // ---- PANEL ----
+ var cv=document.getElementById("panel"),t=0,tells=[];
+ function reseed(){tells=channels.map(function(_,i){ var rate = lying?p:q; return {leak: Math.random()<rate, read: i<k, ph:Math.random()*6};});}
+ reseed();
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=360;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  // subject glyph left
+  var SX=70,SY=H*0.42;
+  cx.strokeStyle="rgba(232,224,212,.5)";cx.lineWidth=1.5;
+  cx.beginPath();cx.arc(SX,SY,22,0,7);cx.stroke();
+  cx.beginPath();cx.moveTo(SX,SY+22);cx.lineTo(SX,SY+70);cx.moveTo(SX,SY+34);cx.lineTo(SX-18,SY+52);cx.moveTo(SX,SY+34);cx.lineTo(SX+18,SY+52);cx.stroke();
+  cx.fillStyle="rgba(232,224,212,.6)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText(lying?"lying":"truthful",SX,SY-30);
+  // reader's gaze beam
+  var beam=cx.createLinearGradient(SX+22,SY,W-30,SY);beam.addColorStop(0,"rgba(232,224,212,.12)");beam.addColorStop(1,"rgba(232,224,212,0)");
+  // channel rows on right
+  var RX0=170,RX1=W-24,rowH=(H-40)/channels.length;
+  channels.forEach(function(name,i){
+   var y=24+i*rowH+rowH/2;
+   var tl=tells[i];
+   // row baseline
+   cx.strokeStyle="rgba(90,68,68,.3)";cx.beginPath();cx.moveTo(RX0,y);cx.lineTo(RX1,y);cx.stroke();
+   // read indicator
+   var isRead=i<k;
+   cx.fillStyle=isRead?"rgba(232,224,212,.9)":"rgba(90,68,68,.5)";cx.font="10px "+mono();cx.textAlign="left";
+   cx.fillText((isRead?"\u25c9 ":"\u25cb ")+name,RX0,y-6);
+   // signal trace: a wavy line; a tell = a red spike (only visible if leaking AND being read)
+   cx.strokeStyle=isRead?"rgba(200,190,180,.35)":"rgba(120,100,100,.2)";cx.lineWidth=1;cx.beginPath();
+   for(var x=RX0;x<RX1;x+=4){var yy=y+8+Math.sin((x*0.06)+t*2+tl.ph)*2.2;(x===RX0)?cx.moveTo(x,yy):cx.lineTo(x,yy);}cx.stroke();
+   if(tl.leak && isRead){
+     var sx=RX0+((t*40+i*57)% (RX1-RX0-40))+20;
+     var flash=0.5+0.5*Math.sin(t*6+i);
+     cx.strokeStyle="rgba(224,88,72,"+(0.5+0.5*flash)+")";cx.lineWidth=2;cx.beginPath();cx.moveTo(sx,y+8);cx.lineTo(sx,y+8-10-flash*6);cx.stroke();
+     cx.fillStyle="rgba(224,88,72,.9)";cx.font="7px "+mono();cx.textAlign="left";cx.fillText("tell",sx+3,y+2);
+   }
+  });
+  t+=0.02;
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="reader fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+
+ // ---- CURVE ----
+ var cc=document.getElementById("curve");
+ function drawCurve(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cc.clientWidth||700,H=280;cc.width=W*dpr;cc.height=H*dpr;
+  var cx=cc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=44,X1=W-18,Y0=H-34,Y1=18,KMAX=7;
+  function px(kk){return X0+(kk-1)/(KMAX-1)*(X1-X0);}function py(v){return Y0-v*(Y0-Y1);}
+  cx.strokeStyle="rgba(160,140,138,.3)";cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(160,140,138,.6)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("channels read \u2192",(X0+X1)/2,H-6);
+  cx.textAlign="right";[0,0.5,1].forEach(function(v){cx.fillText((v*100)+"%",X0-4,py(v)+3);});
+  // 50% chance line + 54% human baseline
+  cx.strokeStyle="rgba(160,140,138,.25)";cx.setLineDash&&cx.setLineDash([2,3]);cx.beginPath();cx.moveTo(X0,py(0.5));cx.lineTo(X1,py(0.5));cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(160,140,138,.5)";cx.textAlign="left";cx.fillText("coin flip 50%",X0+4,py(0.5)-3);
+  cx.strokeStyle="rgba(224,160,48,.4)";cx.beginPath();cx.moveTo(X0,py(0.54));cx.lineTo(X1,py(0.54));cx.stroke();
+  cx.fillStyle="rgba(224,160,48,.7)";cx.fillText("real human accuracy ~54%",X0+4,py(0.54)-13);
+  // catch curve (current p)
+  cx.strokeStyle="rgba(122,192,160,.9)";cx.lineWidth=2;cx.beginPath();
+  for(var kk=1;kk<=KMAX;kk++){var x=px(kk),y=py(catchP(p,kk));kk===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();
+  cx.fillStyle="rgba(122,192,160,.9)";cx.font="8px "+mono();cx.fillText("P(catch a lie), p="+p.toFixed(2),px(4),py(catchP(p,4))-6);
+  // false-accuse curve (q)
+  cx.strokeStyle="rgba(224,88,72,.7)";cx.lineWidth=1.5;cx.setLineDash&&cx.setLineDash([4,3]);cx.beginPath();
+  for(var kk=1;kk<=KMAX;kk++){var x=px(kk),y=py(catchP(q,kk));kk===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(224,88,72,.8)";cx.fillText("P(falsely accuse the honest), q="+q,px(4),py(catchP(q,4))+12);
+  // Marlene limit curve (p=0.5)
+  cx.strokeStyle="rgba(232,224,212,.35)";cx.lineWidth=1;cx.beginPath();
+  for(var kk=1;kk<=KMAX;kk++){var x=px(kk),y=py(catchP(0.5,kk));kk===1?cx.moveTo(x,y):cx.lineTo(x,y);}cx.stroke();
+  cx.fillStyle="rgba(232,224,212,.5)";cx.fillText("Marlene's limit (p=0.5)",px(5),py(catchP(0.5,5))-6);
+  // current k marker
+  cx.strokeStyle="rgba(232,224,212,.3)";cx.setLineDash&&cx.setLineDash([2,2]);cx.beginPath();cx.moveTo(px(k),Y1);cx.lineTo(px(k),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(122,192,160,1)";cx.beginPath();cx.arc(px(k),py(catchP(p,k)),4,0,7);cx.fill();
+ }
+
+ function update(){
+  document.getElementById("klab").textContent=k;
+  document.getElementById("plab").textContent=p.toFixed(2);
+  var pc=catchP(p,k), fa=catchP(q,k);
+  var v=document.getElementById("verdict");
+  if(lying){ var caught=tells.slice(0,k).some(function(x){return x.leak;});
+    v.innerHTML=caught?'<span style="color:var(--tell)">\u2715 a tell leaked \u2014 the lie is caught</span>':'<span style="color:var(--dim)">\u2014 no tell in these '+k+' channels; the lie held (this time)</span>';
+  } else { var acc=tells.slice(0,k).some(function(x){return x.leak;});
+    v.innerHTML=acc?'<span style="color:var(--tell)">\u26a0 a false tell \u2014 the honest one is wrongly accused</span>':'<span style="color:var(--truth)">\u2713 clean \u2014 the truth reads as truth</span>';
+  }
+  document.getElementById("measure").innerHTML='<span>channels read: <b>'+k+'</b> of 7</span><span>P(catch a lie): <b>'+(pc*100).toFixed(0)+'%</b></span><span class="t">P(false-accuse): '+(fa*100).toFixed(0)+'%</span>';
+  drawCurve();
+ }
+ document.getElementById("k").addEventListener("input",function(){k=+this.value;reseed();update();});
+ document.getElementById("p").addEventListener("input",function(){p=this.value/100;update();});
+ document.getElementById("blie").addEventListener("click",function(){lying=true;this.classList.add("on");document.getElementById("btru").classList.remove("on");reseed();update();});
+ document.getElementById("btru").addEventListener("click",function(){lying=false;this.classList.add("on");document.getElementById("blie").classList.remove("on");reseed();update();});
+ setInterval(function(){reseed();update();},2600);
+ update();
+})();
+</script></body></html>

@@ -1,0 +1,189 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SERIES II · THE COMPANIONS — a woven measurement of the moons</title>
+<style>
+ :root{--bg:#06070c;--ink:#e4e6ee;--dim:#8a90a4;--faint:#464c60;--bright:#e8e4d4;--dark:#2a2830;--ice:#a8d0e0;--guide:#b09a70;--charon:#8a7ab0;--lit:#7aa8a0;--amb:#c89030;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 13%,#0c0e1a,#06070c 70%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:770px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #191d30;border-radius:12px;background:linear-gradient(180deg,#080a14,#06070c);padding:0 24px 28px;box-shadow:0 0 80px rgba(138,122,176,.06);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--bright),var(--dark),var(--charon),var(--ice));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.4em;color:var(--dim);margin-top:8px}
+ h1{text-align:center;font-size:29px;font-weight:700;color:var(--bright);margin:4px 0 0;letter-spacing:.1em}
+ .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+ .place{font-size:11px;line-height:1.7;color:var(--faint);margin:10px 4px;padding:9px 13px;background:#080a14;border:1px dashed #1a1e30;border-radius:8px}
+ .place b{color:var(--dim)}
+ .intro{font-size:12.5px;line-height:1.8;color:var(--dim);margin:12px 4px;padding:12px 16px;background:#080a14;border:1px solid #161a2c;border-radius:8px;font-family:var(--serif)}
+ .intro b{color:var(--bright);font-family:var(--mono)}
+ canvas{display:block;width:100%}#weave{height:420px}#scatter{height:400px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .legend{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;font-size:10px;color:var(--dim);margin:8px 0}
+ .legend span{display:inline-flex;align-items:center;gap:5px}.dot{width:9px;height:9px;border-radius:50%}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#080a14;border:1px solid #161a2c;border-radius:8px}
+ .measure b{color:var(--bright)}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--charon);margin:22px 0 8px;border-bottom:1px solid #141828;padding-bottom:5px}
+ .find{background:#080a14;border:1px solid #191d30;border-radius:8px;padding:11px 15px;margin:7px 0}
+ .find .ft{font-size:11px;font-weight:700;color:var(--bright);letter-spacing:.03em}
+ .find .fx{font-size:11.5px;line-height:1.6;color:var(--dim);margin-top:3px;font-family:var(--serif)}
+ .find.f3{border-left:3px solid var(--charon)}.find.f1{border-left:3px solid var(--bright)}.find.f2{border-left:3px solid var(--ice)}
+ .roll{font-size:11px;line-height:1.5}
+ .rr{display:flex;gap:8px;align-items:baseline;padding:4px 0;border-bottom:1px solid #12141f}
+ .rr .rn{flex:0 0 92px;color:var(--bright)}.rr .rp{flex:0 0 74px;color:var(--faint);font-size:10px}
+ .rr .rx{color:var(--dim);font-size:10.5px}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#080a14;border:1px dashed #191d30;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .eli5{font-size:11.5px;line-height:1.7;color:#98a0b8;margin:10px 4px;padding:10px 14px;background:#080a14;border:1px solid #161a2c;border-radius:8px;font-family:var(--serif)}
+ .eli5 b{color:var(--ice);font-style:normal;font-family:var(--mono)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; the moon-layer</span><span>a woven measurement of the moons</span></div>
+ <div class="sii">S E R I E S &#160; I I &#8195;&#8212;&#8195; T H E &#160; C O M P A N I O N S</div>
+ <h1>THE COMPANIONS</h1>
+ <div class="sub">&#8212; the moons of the scattered field, tethered to their makers and measured &#8212;</div>
+ <div class="place" id="place"></div>
+ <div class="intro" id="intro"></div>
+
+ <h3>the weave &#8212; each moon tethered to its parent</h3>
+ <canvas id="weave"></canvas>
+ <div class="legend">
+   <span><i class="dot" style="background:#2a2830;border:1px solid #666"></i>dark companion</span>
+   <span><i class="dot" style="background:#a8d0e0"></i>ice companion (born of the body)</span>
+   <span><i class="dot" style="background:#b09a70"></i>the psychopomp (near-binary)</span>
+ </div>
+ <div class="hint">size of each disc is true-to-scale against its parent &#183; brightness is its real albedo</div>
+
+ <h3>the measurement &#8212; size-ratio &#215; brightness</h3>
+ <canvas id="scatter"></canvas>
+ <div class="measure" id="measure"></div>
+ <div class="hint">x = moon/parent diameter (how binary-like) &#183; y = albedo (dark &#8594; bright) &#183; hover a moon</div>
+
+ <h3>what the two axes reveal</h3>
+ <div class="find f1" id="find1"></div>
+ <div class="find f2" id="find2"></div>
+ <div class="find f3" id="find3"></div>
+
+ <h3>the roll &#8212; the companions</h3>
+ <div class="roll" id="roll"></div>
+
+ <div class="tier" id="tier"></div>
+ <div class="eli5" id="eli5"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var C=[{"n": "Dysnomia", "Dm": 700, "am": 0.04, "par": "Eris", "Dp": 2326, "ap": 0.96, "role": "daughter — lawlessness (nick. Gabrielle)", "orig": "collision/capture (debated)", "ratio": 0.301, "contrast": 24.0, "lock": true}, {"n": "Vanth", "Dm": 460, "am": 0.08, "par": "Orcus", "Dp": 910, "ap": 0.23, "role": "the psychopomp — anti-Charon", "orig": "distinct spectrum → capture?", "ratio": 0.505, "contrast": 2.9, "lock": true}, {"n": "Weywot", "Dm": 160, "am": 0.04, "par": "Quaoar", "Dp": 1110, "ap": 0.12, "role": "the son — ring-shepherd?", "orig": "unclear", "ratio": 0.144, "contrast": 3.0, "lock": false}, {"n": "MK2", "Dm": 175, "am": 0.04, "par": "Makemake", "Dp": 1430, "ap": 0.82, "role": "the unnamed shadow", "orig": "unclear", "ratio": 0.122, "contrast": 20.5, "lock": false}, {"n": "Hi'iaka", "Dm": 350, "am": 0.5, "par": "Haumea", "Dp": 1430, "ap": 0.5, "role": "daughter — hula", "orig": "born-from-body (collision)", "ratio": 0.245, "contrast": 1.0, "lock": false}, {"n": "Namaka", "Dm": 170, "am": 0.5, "par": "Haumea", "Dp": 1430, "ap": 0.5, "role": "daughter — water spirit", "orig": "born-from-body (collision)", "ratio": 0.119, "contrast": 1.0, "lock": false}, {"n": "Charon", "Dm": 1212, "am": 0.38, "par": "Pluto", "Dp": 2377, "ap": 0.52, "role": "the ferryman [Series I archetype]", "orig": "giant impact", "ratio": 0.51, "contrast": 1.4, "lock": true}];
+ // classify
+ function kind(m){ if(m.n==="Charon"||m.n==="Vanth") return "guide"; if(m.orig.indexOf("born")>=0) return "ice"; return "dark"; }
+ function col(m){var k=kind(m); return k==="guide"?"#b09a70":k==="ice"?"#a8d0e0":"#3a3844";}
+ function edge(m){var k=kind(m); return k==="guide"?"#d8c090":k==="ice"?"#c8e4f0":"#7a7688";}
+ document.getElementById("place").innerHTML="<b>where this sits:</b> a structural <b>sub-thread of Series II</b> \u2014 the moon-layer, the analog of Series I\u2019s outer toroid. it overlaps the Lawlessness-Women loom (Dysnomia, Vanth, Hi\u02bbiaka, Namaka already hang there) but measures the moons <b>as moons</b>: their size, their light, and how they were made.";
+ document.getElementById("intro").innerHTML="you asked whether Xena had a companion \u2014 she did, and the question opened a rule. the scattered field\u2019s worlds keep <b>companions</b>, and once you gather and measure them, the moons stop being footnotes and become a pattern of their own: who is bright and who is dark, who is a near-twin and who a speck, who is a <b>child</b> and who a <b>ferryman of the dead</b>. six moons, four makers, one archetype borrowed from the first seed.";
+
+ // ROLL
+ document.getElementById("roll").innerHTML=C.map(function(m){
+   var mk=kind(m)==="guide"?"\u26b4":kind(m)==="ice"?"\u2744":"\u25cf";
+   var tag=m.n==="Charon"?" [Series I]":"";
+   return '<div class="rr"><span class="rn">'+mk+' '+m.n+'</span><span class="rp">of '+m.par+tag+'</span><span class="rx">'+m.role+' \u00b7 ratio '+m.ratio+' \u00b7 albedo '+m.am+'</span></div>';
+ }).join("");
+
+ document.getElementById("measure").innerHTML='<span>companions: <b>6</b> (+ Charon, the archetype)</span><span>brightest\u2192darkest contrast: <b>up to 24\u00d7</b></span><span>near-binaries: <b>2</b> (Vanth, Charon)</span>';
+
+ document.getElementById("find1").innerHTML='<div class="ft">\u2460 the bright keep the darkest</div><div class="fx">the two brightest parents keep the two darkest moons: <b style="color:var(--bright)">Eris (0.96) \u2192 Dysnomia (0.04)</b>, a 24\u00d7 contrast, and <b style="color:var(--bright)">Makemake (0.82) \u2192 MK2 (0.04)</b>, 20\u00d7. this is the recurring <i>companion form</i> \u2014 a shadow trailing the light.</div>';
+ document.getElementById("find2").innerHTML='<div class="ft">\u2461 but it splits by origin \u2014 the honest exception</div><div class="fx">it isn\u2019t universal. <b style="color:var(--ice)">Haumea\u2019s Hi\u02bbiaka & Namaka</b> are as bright as their mother (~1\u00d7 contrast) \u2014 because they are <b>collision fragments of her own body</b>: same world, same ice. born-from-the-body moons share the parent\u2019s light; the others, differently made, wear the dark. the pattern is real, and its exception is the reason.</div>';
+ document.getElementById("find3").innerHTML='<div class="ft">\u2462 the biggest companions are the ferrymen of the dead</div><div class="fx">the two largest companions across <i>both</i> seeds are near-binaries at ratio <b>0.51</b>: <b style="color:var(--guide)">Vanth</b> (of Orcus) and <b style="color:var(--guide)">Charon</b> (of Pluto) \u2014 and both are <b>guides of the dead</b>. Vanth leads souls under; Charon ferries them across. a measurement of size alone lands exactly on a myth: the closest companions are the psychopomps \u2014 and in Etruscan art Vanth already stands beside Charun.</div>';
+
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the size ratios, the dark-moon albedos (~0.04), the near-binary status of Vanth & Charon, and Haumea\u2019s moons being water-ice collision fragments: all measured. <span class=\"amb\">\u25c8 AMBER</span> \u2014 exact ice-moon albedos and MK2\u2019s size carry real uncertainty (dark-large vs. bright-small degeneracy); some origins (Dysnomia capture vs. collision) are still argued. the findings hold at the level of the pattern, not every decimal.";
+ document.getElementById("eli5").innerHTML="<b>toddler corner:</b> the far-away worlds each have little moons. when we lined them all up and measured them, we found neat secrets: the <b>shiniest</b> worlds have the <b>darkest</b> little moons (like a bright lamp casting a dark shadow) \u2014 except Haumea\u2019s moons, which are bright because they\u2019re actually chips off Haumea herself. and the <b>biggest</b> moons belong to the two \u2018lords of the dead\u2019, and both those moons are the helpers who lead spirits to the underworld.";
+ document.getElementById("foot").innerHTML="\u25c8 woven measurement \u00b7 ratios &amp; dark albedos LIT \u00b7 ice-albedos &amp; some origins AMBER \u00b7 three findings from two axes \u00b7 Series II sub-thread \u00b7 witness on";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+ // ============ THE WEAVE (parents in a row, moons tethered/orbiting) ============
+ var cv=document.getElementById("weave"); var t=0, hoverW=-1;
+ // group by parent
+ var parents={};C.forEach(function(m){ if(!parents[m.par])parents[m.par]={D:m.Dp,ap:m.ap,moons:[]}; parents[m.par].moons.push(m);});
+ var pOrder=["Eris","Makemake","Orcus","Quaoar","Haumea","Pluto"];
+ function draw1(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||720,H=420;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  for(var i=0;i<34;i++){cx.fillStyle="rgba(170,182,210,"+(0.04+0.06*Math.sin(t*0.3+i))+")";cx.fillRect((i*97)%W,(i*61)%H,1,1);}
+  var cols=pOrder.length, cw=W/cols;
+  pOrder.forEach(function(pn,i){
+   var p=parents[pn]; if(!p)return;
+   var px=cw*(i+0.5), py=H*0.42;
+   var pr=Math.max(10, p.D/2326*26); // parent radius scaled
+   // parent disc (brightness = albedo)
+   var g=Math.round(60+p.ap*180);
+   var grd=cx.createRadialGradient(px-pr*0.3,py-pr*0.3,1,px,py,pr);grd.addColorStop(0,"rgba("+(g+30)+","+(g+28)+","+(g+18)+",1)");grd.addColorStop(1,"rgba("+Math.round(g*0.5)+","+Math.round(g*0.5)+","+Math.round(g*0.45)+",1)");
+   cx.fillStyle=grd;cx.beginPath();cx.arc(px,py,pr,0,7);cx.fill();
+   cx.fillStyle="rgba(228,230,238,.85)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText(pn,px,py-pr-6);
+   cx.fillStyle="rgba(138,144,164,.6)";cx.font="7px "+mono();cx.fillText("alb "+p.ap,px,py-pr-16);
+   if(pn==="Pluto"){cx.fillStyle="rgba(138,122,176,.6)";cx.fillText("[Series I]",px,py+pr+26);}
+   // moons orbiting, tethered
+   p.moons.forEach(function(m,j){
+     var orb=pr+18+j*15;
+     var a=t*0.03*(1+j*0.3)+j*2.2+i;
+     var mx=px+Math.cos(a)*orb, my=py+Math.sin(a)*orb*0.6;
+     // tether
+     var lit = hoverW<0 || C[hoverW].n===m.n;
+     cx.strokeStyle="rgba(150,150,170,"+(lit?0.3:0.08)+")";cx.lineWidth=0.8;cx.beginPath();cx.moveTo(px,py);cx.lineTo(mx,my);cx.stroke();
+     var mr=Math.max(3, m.Dm/2326*26);
+     cx.globalAlpha=lit?1:0.4;
+     cx.fillStyle=col(m);cx.beginPath();cx.arc(mx,my,mr,0,7);cx.fill();
+     cx.strokeStyle=edge(m);cx.lineWidth=0.8;cx.beginPath();cx.arc(mx,my,mr,0,7);cx.stroke();
+     cx.fillStyle=edge(m);cx.font="7px "+mono();cx.fillText(m.n,mx,my-mr-3);
+     cx.globalAlpha=1;
+   });
+  });
+  cx.fillStyle="rgba(228,230,238,.85)";cx.font="9px "+mono();cx.textAlign="center";
+  cx.fillText("six companions, tethered to their makers \u2014 bright worlds, dark moons; and two ice-daughters of Haumea",W/2,H-10);
+ }
+
+ // ============ THE SCATTER (size-ratio x albedo) ============
+ var cvs=document.getElementById("scatter"); var hover=-1;
+ function draw2(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cvs.clientWidth||720,H=400;cvs.width=W*dpr;cvs.height=H*dpr;
+  var cx=cvs.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=54,X1=W-24,Y0=H-42,Y1=26;
+  function px(r){return X0+(r/0.6)*(X1-X0);}
+  function py(a){return Y0-(a/1.0)*(Y0-Y1);}
+  // axes
+  cx.strokeStyle="rgba(140,144,164,.3)";cx.lineWidth=1;cx.beginPath();cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.moveTo(X0,Y0);cx.lineTo(X0,Y1);cx.stroke();
+  cx.fillStyle="rgba(140,144,164,.6)";cx.font="8px "+mono();cx.textAlign="center";
+  [0.1,0.2,0.3,0.4,0.5].forEach(function(r){cx.fillText(r,px(r),Y0+13);});
+  cx.fillText("moon / parent diameter  (near-binary \u2192)",(X0+X1)/2,H-6);
+  cx.save();cx.translate(X0-38,(Y0+Y1)/2);cx.rotate(-Math.PI/2);cx.fillText("albedo (dark \u2192 bright)",0,0);cx.restore();
+  [0.0,0.5,1.0].forEach(function(a){cx.textAlign="right";cx.fillText(a.toFixed(1),X0-6,py(a)+3);});
+  // near-binary line at 0.5
+  cx.strokeStyle="rgba(176,154,112,.25)";cx.setLineDash&&cx.setLineDash([3,3]);cx.beginPath();cx.moveTo(px(0.5),Y1);cx.lineTo(px(0.5),Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(176,154,112,.6)";cx.font="7px "+mono();cx.textAlign="center";cx.fillText("near-binary",px(0.5),Y1-2);
+  // bright band
+  cx.fillStyle="rgba(168,208,224,.05)";cx.fillRect(X0,py(0.6),X1-X0,py(0.4)-py(0.6));
+  cx.fillStyle="rgba(168,208,224,.4)";cx.textAlign="left";cx.fillText("ice moons (born of the body)",X0+6,py(0.5)-3);
+  // points
+  C.forEach(function(m,i){
+    var x=px(m.ratio),y=py(m.am);
+    var lit=hover<0||hover===i;
+    cx.globalAlpha=lit?1:0.4;
+    var r=Math.max(4,m.Dm/2326*16);
+    cx.fillStyle=col(m);cx.beginPath();cx.arc(x,y,r,0,7);cx.fill();
+    cx.strokeStyle=edge(m);cx.lineWidth=1;cx.beginPath();cx.arc(x,y,r,0,7);cx.stroke();
+    cx.fillStyle=edge(m);cx.font=(hover===i?"bold ":"")+"8px "+mono();cx.textAlign="center";
+    cx.fillText(m.n+(m.n==="Charon"?"*":""),x,y-r-4);
+    cx.globalAlpha=1;
+  });
+  // annotate the two guides
+  cx.fillStyle="rgba(176,154,112,.7)";cx.font="7px "+mono();cx.textAlign="center";
+  cx.fillText("\u2191 the two ferrymen of the dead", px(0.5), py(0.45)+3);
+  if(hover>=0){var m=C[hover];cx.fillStyle="rgba(228,230,238,.9)";cx.font="9px "+mono();cx.fillText(m.n+" of "+m.par+" \u2014 "+m.role,W/2,H-22);}
+  cx.fillStyle="rgba(140,144,164,.5)";cx.font="7px "+mono();cx.textAlign="right";cx.fillText("*Charon borrowed from Series I as the archetype",X1,Y1-4);
+ }
+ cvs.addEventListener("mousemove",function(ev){var r=cvs.getBoundingClientRect(),mx=ev.clientX-r.left,my=ev.clientY-r.top;var W=cvs.clientWidth||720,H=400,X0=54,X1=W-24,Y0=H-42,Y1=26;var best=-1,bd=20;C.forEach(function(m,i){var x=X0+(m.ratio/0.6)*(X1-X0),y=Y0-(m.am/1.0)*(Y0-Y1);var d=Math.hypot(mx-x,my-y);if(d<bd){bd=d;best=i;}});hover=best;hoverW=best;});
+ cvs.addEventListener("mouseleave",function(){hover=-1;hoverW=-1;});
+
+ function frame(){try{draw1();draw2();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="companions fault: "+(e&&e.message);return;}t+=0.5;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+})();
+</script></body></html>

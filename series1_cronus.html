@@ -1,0 +1,199 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CRONUS — the Devourer · Series I</title>
+<style>
+  :root{--bg:#0a0a0c;--ink:#dcdce0;--dim:#9a9a90;--faint:#4a4a46;--lead:#8a8a92;--lead2:#5a5a62;--blade:#c0c8d0;--red:#c63a2a;--gold:#c0a860;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#161618,#0a0a0c 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #26262a;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#101012,#0a0a0c);padding:0 22px 26px;box-shadow:0 0 60px rgba(138,138,146,.06)}
+  .topband{height:5px;background:linear-gradient(90deg,#2a2a30,var(--lead),var(--red))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--lead);margin:6px 0 0;letter-spacing:.18em;text-shadow:0 0 30px rgba(138,138,146,.3)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.06em}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  canvas{display:block;width:100%}#sky{height:340px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .phase{background:#121214;border:1px solid #2a2a30;border-left:3px solid var(--red);border-radius:8px;padding:11px 15px;margin:8px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .phase b{color:var(--lead)}.phase .rd{color:var(--red);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--lead2);margin:22px 0 8px;border-bottom:1px solid #202024;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .comp{background:#121012;border:1px solid #33262c;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:#c8a0a8;letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#8a7076;margin-bottom:6px}
+  .comp .m b{color:#c8a0a8}
+  .alch{background:#100f12;border:1px solid #2a2830;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .alch .mg{font-size:26px;color:var(--lead)}.alch .mn{font-size:15px;font-weight:700;color:var(--lead);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:#9a9aa0;letter-spacing:.08em}.alch .m b{color:#b0b0b8}
+  .pop{background:#100f10;border:1px solid #2a2620;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.12em;color:var(--gold);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--gold)}.pop .m .rd{color:var(--red);font-weight:700}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#3a3a3e;text-align:center;margin-top:6px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Saturn</span><span>heritage &amp; mythos &#183; card 7</span></div>
+    <h1>CRONUS</h1>
+    <div class="epithet">&#9796; the Devourer &#183; Time that Eats</div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; the devourer holds the center &#183; the succession turns around him</div>
+    <div class="essence" id="essence"></div>
+    <div class="phase" id="phase"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the one who defied him</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the alchemy &#8212; his metal</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of lead</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "SATURN", "name": "CRONUS", "glyph": "\u2644", "epithet": "the Devourer \u2014 Time that Eats", "col": "#8a8a72", "col2": "#6a6a55", "lead": "#5a5a66", "blade": "#c0c8d0", "red": "#c63a2a", "essence": "time itself, and the appetite of it \u2014 the old king who castrated his father to take the sky, then DEVOURED his own children to keep it. not time's abundance but time's blade: the order that eats what it made.", "one_line": "Zeus was the sapling; here is the old king he climbed out of \u2014 and the scythe that waits at the end of every reign.", "phase_note": "THE PHASE-CHANGE. the six cards before rose toward the throne. Cronus is the turn DOWNWARD \u2014 into age, limit, ending, the devourer at the still point of the wheel. after the peak, time.", "succession": "he is the father Zeus overthrew. card 6 ended 'the Titans cast down' \u2014 this is the Titan king himself, looking UP at the son who buried him. the two cards lock as succession: the sapling and the buried root of kingship.", "mythos": {"castration": "the first violence: at his mother Gaia's urging, Cronus took a flint sickle and castrated his father URANUS, the sky \u2014 severing heaven from earth to seize the throne. the scythe was there from the beginning.", "devour": "warned that his own child would overthrow him as he had his father, Cronus DEVOURED each baby the moment it was born \u2014 Hestia, Demeter, Hera, Hades, Poseidon \u2014 swallowed whole to keep the crown. time eating its own children: nothing it makes is allowed to outlast it.", "stone": "but Rhea, his sister-wife, hid the sixth \u2014 Zeus \u2014 and gave Cronus a STONE wrapped in swaddling to swallow instead. the devourer, for once, was fed a lie. the future was smuggled past the appetite.", "fall": "Zeus grew, freed his swallowed siblings, and cast the Titans into Tartarus. the eater was overthrown by the one child he failed to eat. every reign ends; even time's king has a last day.", "fathertime": "and so Cronus became FATHER TIME \u2014 the scythe, the hourglass, the old man of the year's end. the Greeks blurred Kronos the Titan with Chronos 'time' itself, and the devourer of children became the devourer of all things, of hours, of everyone."}, "companion": {"name": "RHEA", "glyph": "\u2640", "role": "the one who defied the devourer \u2014 saved the future with a stone", "who": "Rhea, his sister-wife and Titaness of flow & generation. she watched five children vanish down his throat \u2014 and with the sixth, she refused. she hid Zeus and fed Cronus a swaddled stone.", "counter": "across the cards: Rohini REFILLS, Dumuzi is SACRIFICED, Ereshkigal is the EQUAL, Hera is the CONSORT \u2014 and Rhea is the DEFIER. the only companion who works AGAINST her partner: love that cheats time to save what comes next. the mother who out-waits the eater.", "irony": "her defiance is the whole series' hinge \u2014 without Rhea's stone there is no Zeus, no throne, none of the cards that pivot on him. the devourer's wife saved the sapling."}, "phases_walk": ["the sickle \u2014 Cronus severs the sky (his father)", "the throne taken \u2014 the old king crowned", "the prophecy \u2014 'your own child will unseat you'", "the first child born \u2014 and swallowed whole", "five devoured \u2014 time eats what it makes", "Rhea's stone \u2014 the sixth child smuggled past", "Zeus grows \u2014 hidden, waiting", "the swallowed freed \u2014 the Titans fall", "Cronus cast down \u2014 the eater overthrown", "the scythe remains \u2014 he becomes Father Time"], "alchemy": {"metal": "LEAD", "glyph": "\u2644", "grounding": "Babylonian \u2192 Greek \u2192 Latin (ancient, multi-culture)", "why": "Saturn's metal is LEAD \u2014 the heaviest, densest, basest, SLOWEST of the seven, for the slowest, outermost, oldest wanderer. and in the alchemists' Great Work, lead is the PRIMA MATERIA: the base, dark starting-matter that the whole journey (lead \u2192 gold) begins from. the end-metal and the origin-metal at once \u2014 time's weight, and time's beginning.", "note": "(the seven-metal / seven-planet system is ancient \u2014 Babylonian-Hellenistic, grounded in the metals' real properties. spiritual 'Great Work' stages are later 16th-c. elaboration; only the metal-link is claimed here \u2014 though lead-as-prima-materia is that elaboration's own root.)"}, "cube": {"note": "the 27-cell colour-space: Saturn's lead family. (0,0,0) black, (2,2,2) white; between is lead \u2014 dull cold grey on one axis, leaden near-black shadow on another. the heavy slow metal of the end, and of the base beginning."}, "popculture": {"title": "HYPERION \u2014 Dan Simmons (1989)  &  THE SHRIKE", "note": "the Titan-fall named a universe; and time itself was given a body of blades.", "keats": "the deepest tie in the whole series. Simmons named his novel HYPERION after KEATS'S POEM \u2014 which is ABOUT the Titans overthrown by the Olympians. in Keats's fragment the fallen Titans mourn their defeat and brood on fighting the usurpers. that is CRONUS'S EXACT MYTH: the buried old king looking up at the son who cast him down. the book is named for this card's story.", "shrike": "and at Hyperion's heart is the SHRIKE \u2014 a four-armed thing of chrome, razorwire and thorns that guards the TIME TOMBS (structures moving BACKWARD through time) and impales its victims on a great metal Tree of Pain. it is Father Time's scythe made into a whole creature: the time-devourer as a machine of blades, striking from the future. Cronus in chrome.", "everywhere": "and the scythe never left: the GRIM REAPER carries Cronus's sickle; Father Time and the New Year's old man are him; 'saturnine' means gloomy & slow; and Saturn's RINGS are his crown \u2014 the one planet you know at a glance, the ringed lord of endings & the 'Saturn return'.", "irony": "Ra villain, Chandra drug, Hermes mascot, Ishtar descent, Nergal red soil, Zeus stayed king \u2014 and Cronus? Cronus became TIME. the devourer didn't get shrunk; he got promoted to the thing that eats everyone, forever. the reaper at the end of every story is this card."}, "ai_note": "(SATURN the essence-name holds the science \u2014 the ringed planet, 'saturnine', dies Saturni. Cronus keeps the myth & the scythe; Saturn keeps the word & the rings; Shani keeps the cold judge; Chronos keeps Time's own name.)", "held": "SATURN = essence/title-card (the rings, the Golden Age, Saturnalia). SHANI = the cold Judge / karma & Sun-link (son of Surya) card. CHRONOS = Time-itself / Father-Time / the scythe. RHEA-line \u2192 Zeus (card 6): the succession the two cards share."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("phase").innerHTML="<span class='rd'>\u2193</span> "+D.phase_note.replace(/Cronus/g,'<b>Cronus</b>')+"<br><br>"+D.succession.replace(/Cronus|Titan king/g,function(m){return '<b>'+m+'</b>';});
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the sickle.</b> '+M.castration+'</div>'+
+    '<div class="m"><span style="color:#c63a2a;font-weight:700">the devouring.</span> '+M.devour+'</div>'+
+    '<div class="m"><b>the stone.</b> '+M.stone+'</div>'+
+    '<div class="m"><b>the fall.</b> '+M.fall+'</div>'+
+    '<div class="m"><b>Father Time.</b> '+M.fathertime+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>'+
+    '<div class="m"><b>the hinge.</b> '+C.irony+'</div>';
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u2644</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="m">'+A.why+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#6a6a70">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the deepest tie.</b> '+P.keats+'</div>'+
+    '<div class="m"><span class="rd">the Shrike.</span> '+P.shrike+'</div>'+
+    '<div class="m"><b>the scythe never left.</b> '+P.everywhere+'</div>'+
+    '<div class="m"><b>the promotion.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("flag").textContent="\u25c8 correspondence filter: only ancient, multi-culture ties admitted. lead/Saturn = Babylonian\u2192Greek\u2192Latin \u2713 . tarot/planet mapping = Golden Dawn 1888, single-source \u2192 REJECTED.";
+
+  // ================= THE SHRIKE at center, succession orbiting =================
+  const cv=document.getElementById("sky"); let t=0, step=0; const N=D.phases_walk.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  function drawShrike(cx,cx0,cy0,scale,glow){
+    // MY OWN geometric line-figure: four arms, thorn-spikes, red multifaceted eyes, on a thorn-tree.
+    // NOT a copy of any cover/sculpture — evokes the blades-and-thorns/time-devourer idea.
+    cx.save();cx.translate(cx0,cy0);cx.scale(scale,scale);
+    // thorn-tree behind (the Tree of Pain) - vertical spine with barbs
+    cx.strokeStyle="rgba(150,160,170,"+(0.25*glow)+")";cx.lineWidth=2;
+    cx.beginPath();cx.moveTo(0,60);cx.lineTo(0,-70);cx.stroke();
+    for(let y=-60;y<=50;y+=14){const s=(y%28===0)?1:-1;cx.beginPath();cx.moveTo(0,y);cx.lineTo(s*16,y-8);cx.stroke();}
+    // body core
+    cx.strokeStyle="rgba(192,200,208,"+glow+")";cx.fillStyle="rgba(40,44,50,"+glow+")";cx.lineWidth=2.2;
+    // torso (angular chrome)
+    cx.beginPath();cx.moveTo(0,-34);cx.lineTo(9,-20);cx.lineTo(7,18);cx.lineTo(0,34);cx.lineTo(-7,18);cx.lineTo(-9,-20);cx.closePath();cx.fill();cx.stroke();
+    // head (faceted) + red eyes
+    cx.beginPath();cx.moveTo(0,-52);cx.lineTo(8,-40);cx.lineTo(0,-30);cx.lineTo(-8,-40);cx.closePath();cx.fill();cx.stroke();
+    cx.fillStyle="rgba(198,58,42,"+glow+")";
+    cx.beginPath();cx.arc(-3.5,-41,2.1,0,7);cx.fill();cx.beginPath();cx.arc(3.5,-41,2.1,0,7);cx.fill();
+    // FOUR arms - blades
+    cx.strokeStyle="rgba(192,200,208,"+glow+")";cx.lineWidth=2;
+    const arms=[[-9,-16,-30,-30,-40,-14],[9,-16,30,-30,40,-14],[-8,4,-28,10,-42,26],[8,4,28,10,42,26]];
+    arms.forEach(function(a){cx.beginPath();cx.moveTo(a[0],a[1]);cx.lineTo(a[2],a[3]);cx.lineTo(a[4],a[5]);cx.stroke();
+      // fingerblades
+      cx.beginPath();cx.moveTo(a[4],a[5]);cx.lineTo(a[4]+(a[4]<0?-6:6),a[5]+8);cx.stroke();
+      cx.beginPath();cx.moveTo(a[4],a[5]);cx.lineTo(a[4]+(a[4]<0?-9:9),a[5]+2);cx.stroke();});
+    // legs w/ curved toe-blades
+    cx.beginPath();cx.moveTo(-5,32);cx.lineTo(-10,52);cx.lineTo(-18,58);cx.stroke();
+    cx.beginPath();cx.moveTo(5,32);cx.lineTo(10,52);cx.lineTo(18,58);cx.stroke();
+    // thorn-spikes on throat/knees/wrists
+    cx.strokeStyle="rgba(220,228,236,"+glow+")";cx.lineWidth=1.2;
+    [[0,-28,0,-36],[-9,-2,-15,-4],[9,-2,15,-4],[-6,20,-12,22],[6,20,12,22]].forEach(function(sp){cx.beginPath();cx.moveTo(sp[0],sp[1]);cx.lineTo(sp[2],sp[3]);cx.stroke();});
+    cx.restore();
+  }
+
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=340;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#141416");g.addColorStop(1,"#08080a");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    const CX=W*0.5, CY=H*0.46, R=Math.min(W*0.34,120);
+    // faint clock-ticks around (time), running BACKWARD
+    cx.strokeStyle="rgba(120,120,130,.18)";cx.lineWidth=1;
+    for(let i=0;i<24;i++){const a=-t*0.4 + i*Math.PI/12;cx.beginPath();cx.moveTo(CX+Math.cos(a)*(R+18),CY+Math.sin(a)*(R+18));cx.lineTo(CX+Math.cos(a)*(R+24),CY+Math.sin(a)*(R+24));cx.stroke();}
+    // the 10 succession beats placed around the ring; the current one lit
+    for(let i=0;i<N;i++){
+      const a=-Math.PI/2 + i*(2*Math.PI/N);       // clockwise placement
+      const px=CX+Math.cos(a)*R, py=CY+Math.sin(a)*R;
+      const on=(i<=step);
+      cx.fillStyle=on?"rgba(192,200,208,.85)":"rgba(90,90,98,.4)";
+      cx.beginPath();cx.arc(px,py,i===step?5:3,0,7);cx.fill();
+      if(i===step){cx.strokeStyle="rgba(198,58,42,.7)";cx.lineWidth=1.5;cx.beginPath();cx.arc(px,py,8,0,7);cx.stroke();}
+    }
+    // orbit connecting arcs up to current step (the succession turning, backward-time feel)
+    cx.strokeStyle="rgba(138,138,146,.3)";cx.lineWidth=1;cx.beginPath();
+    for(let i=0;i<=step;i++){const a=-Math.PI/2+i*(2*Math.PI/N);const px=CX+Math.cos(a)*R,py=CY+Math.sin(a)*R;i?cx.lineTo(px,py):cx.moveTo(px,py);}cx.stroke();
+    // devoured children as small dots being pulled toward center on the 'eat' beats
+    if(step>=3&&step<=4){for(let s=0;s<5;s++){const pr=R*(1-((t*0.3+s*0.2)%1));const a=s*1.3+t;cx.fillStyle="rgba(200,180,190,.5)";cx.beginPath();cx.arc(CX+Math.cos(a)*pr,CY+Math.sin(a)*pr,2,0,7);cx.fill();}}
+    // the stone (step5): one dot deflects AWAY from center
+    if(step===5){const a=t*1.5;cx.fillStyle="rgba(192,200,208,.9)";cx.beginPath();cx.arc(CX+Math.cos(a)*(R*0.5),CY+Math.sin(a)*(R*0.5),3,0,7);cx.fill();
+      cx.fillStyle="#c0c8d0";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("the stone \u2014 the future smuggled past",CX,CY+R+38);}
+    // THE SHRIKE at the still center
+    const glow = step>=8?0.55:1.0;   // fades slightly when 'overthrown', but the scythe/time remains
+    drawShrike(cx,CX,CY,Math.min(1,W/680)*1.0,glow);
+    // center caption
+    cx.fillStyle="rgba(198,58,42,.8)";cx.font="8px "+mono();cx.textAlign="center";
+    cx.fillText("the devourer at the still point",CX,CY+R+2);
+    // step label
+    cx.fillStyle="#dcdce0";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+D.phases_walk[step],CX,H-14);
+    if(step===N-1){cx.fillStyle="#c0a860";cx.font="bold 11px "+mono();cx.fillText("\u2644 the reign ended; the scythe remained \u2014 he became Time",CX,26);}
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="devour fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the scythe remains. click to turn the wheel again.":"step "+(step+1)+" of "+N+" \u2014 the succession turns around the devourer";});
+
+  // ---- 27-cell LEAD cube ----
+  const LEAD=[0.36,0.38,0.44], DARK=[0.20,0.20,0.26];
+  function cellCol(i,j,k){var L=(i+j+k)/6,a=i/2,b=k/2,s=a+b;
+    var fam=s>0?[(a*LEAD[0]+b*DARK[0])/s,(a*LEAD[1]+b*DARK[1])/s,(a*LEAD[2]+b*DARK[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.005;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(150,150,160,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#5a5a62";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

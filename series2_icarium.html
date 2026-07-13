@@ -1,0 +1,200 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ICARIUM · the sleeper orrery — Series II trope distillation</title>
+<style>
+ :root{--bg:#04050b;--ink:#e2dff0;--dim:#8f88a6;--faint:#4a4460;--eris:#c8b8e0;--eris2:#8a7ab0;--unmake:#c85050;--make:#5ab090;--gold:#d8c060;--dormant:#3a4258;--lit:#5ad0a0;--amb:#e0a020;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+ *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 12%,#0a0a1c,#04050b 70%);color:var(--ink);font-family:var(--mono)}
+ .wrap{max-width:780px;margin:0 auto;padding:0 14px 50px}
+ .frame{border:1px solid #1e1c34;border-radius:12px;background:linear-gradient(180deg,#0a0916,#04050b);padding:0 24px 30px;box-shadow:0 0 90px rgba(138,122,176,.07);margin-top:16px}
+ .topband{height:5px;background:linear-gradient(90deg,var(--make),var(--dormant),var(--eris2),var(--unmake));border-radius:12px 12px 0 0}
+ .seriesrow{display:flex;justify-content:space-between;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+ .sii{text-align:center;font-size:10px;letter-spacing:.42em;color:var(--eris2);margin-top:8px}
+ h1{text-align:center;font-size:38px;font-weight:700;color:var(--eris);margin:4px 0 0;letter-spacing:.22em;text-shadow:0 0 40px rgba(200,184,224,.3)}
+ .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:5px}
+ .intro{font-size:12.5px;line-height:1.8;color:var(--dim);margin:14px 4px;padding:12px 16px;background:#0a0916;border:1px solid #17152a;border-radius:8px;font-family:var(--serif)}
+ .intro b{color:var(--eris);font-family:var(--mono)}.intro .u{color:var(--unmake)}.intro .m{color:var(--make)}
+ .statebar{display:flex;align-items:center;justify-content:center;gap:14px;margin:12px 0}
+ .state{font-size:15px;font-weight:700;letter-spacing:.18em;padding:8px 20px;border-radius:8px}
+ .state.dormant{color:var(--dormant);background:#0a0d16;border:1px solid #23283a}
+ .state.waking{color:var(--amb);background:#1a1406;border:1px solid #4a3a12}
+ .state.running{color:var(--unmake);background:#1a0808;border:1px solid #5a1e1e}
+ .btn{padding:8px 18px;background:#14122a;color:var(--eris);border:1px solid #2e2a4a;border-radius:8px;font-family:var(--mono);font-size:11px;cursor:pointer}
+ .btn:hover{background:#1e1a38}.btn.wake{border-color:#5a2e2e;color:#e08078}.btn.sleep{border-color:#2e4a3a;color:#7ac0a0}
+ canvas{display:block;width:100%}#orrery{height:440px}#dist{height:280px}
+ .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+ .measure{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:9px;background:#0a0916;border:1px solid #17152a;border-radius:8px}
+ .measure b{color:var(--eris)}.measure .u{color:var(--unmake);font-weight:700}
+ h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--eris2);margin:22px 0 8px;border-bottom:1px solid #17152a;padding-bottom:5px}
+ .tropes{display:flex;flex-direction:column;gap:7px}
+ .trope{background:#0a0916;border:1px solid #1e1c34;border-radius:8px;padding:10px 14px}
+ .trope .tn{font-size:13px;font-weight:700;letter-spacing:.03em}
+ .trope .tb{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin-left:6px}
+ .trope .tg{font-size:11.5px;line-height:1.55;color:var(--dim);margin-top:3px;font-family:var(--serif)}
+ .trope .tbod{font-size:10.5px;margin-top:2px}
+ .finding{background:#0a0d16;border:1px solid #23283a;border-left:3px solid var(--eris2);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.7;color:var(--dim)}
+ .finding b{color:var(--eris)}.finding .u{color:var(--unmake)}
+ .honest{background:#0a0e0c;border:1px solid #1a3028;border-left:3px solid var(--lit);border-radius:8px;padding:12px 15px;margin:8px 0;font-size:12px;line-height:1.75;color:var(--dim);font-family:var(--serif)}
+ .honest b{color:var(--lit);font-family:var(--mono)}.honest .k{color:var(--eris);font-family:var(--mono)}
+ .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#0a0916;border:1px dashed #1e1c34;border-radius:8px}
+ .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+ .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+ .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap"><div class="frame">
+ <div class="topband"></div>
+ <div class="seriesrow"><span>Series &#8545; &#183; the engine</span><span>a sleeper orrery &#183; the trope distillation</span></div>
+ <div class="sii">I C A R I U M &#8195;&#8212;&#8195; T H E &#160; S L E E P E R &#160; O R R E R Y</div>
+ <h1>ICARIUM</h1>
+ <div class="sub">&#8212; the scattered field distilled to its gears, and kept asleep &#8212;</div>
+ <div class="intro" id="intro"></div>
+
+ <div class="statebar">
+   <button class="btn wake" id="wakebtn">&#9650; wake the engine</button>
+   <div class="state dormant" id="state">DORMANT</div>
+   <button class="btn sleep" id="sleepbtn">&#9632; let it sleep</button>
+ </div>
+ <canvas id="orrery"></canvas>
+ <div class="hint" id="ohint">the six trope-gears ring the hub &#183; asleep, it barely breathes &#183; wake it to see why it shouldn&#8217;t run</div>
+ <div class="measure" id="measure"></div>
+
+ <h3>the distilled gears &#8212; six tropes of the scattered field</h3>
+ <div class="tropes" id="tropes"></div>
+
+ <h3>the make &#8596; unmake axis &#8212; balanced asleep, tipped awake</h3>
+ <canvas id="dist"></canvas>
+ <div class="hint">each gear placed by make/unmake &#215; its charge (how hard it drives) &#183; \u25c6 = charge-weighted centroid</div>
+
+ <div class="finding" id="finding"></div>
+ <div class="honest" id="honest"></div>
+ <div class="tier" id="tier"></div>
+ <div class="foot" id="foot"></div>
+</div><div class="err" id="err"></div></div>
+<script>
+"use strict";(function(){
+ var D={"tropes": [{"name": "THE UNMAKER", "bodies": ["Eris", "Gonggong"], "mu": 0.9, "charge": 0.95, "gloss": "breaks the order itself — Eris broke the count from 9; Gonggong tilted the world's axis"}, {"name": "THE CAST-OUT", "bodies": ["Sedna", "Ceres"], "mu": 0.4, "charge": 0.5, "gloss": "exiled or demoted by an unseen hand — Sedna detached to the deep; Ceres cast down twice"}, {"name": "THE SELF-SHED", "bodies": ["Haumea", "Sedna"], "mu": 0.0, "charge": 0.6, "gloss": "makes a family from its own broken body — Haumea's collision-kin; Sedna's severed hands became the sea"}, {"name": "THE MIRROR", "bodies": ["Orcus"], "mu": 0.0, "charge": 0.3, "gloss": "the anti, the reflection — Orcus is Pluto turned to face the other way"}, {"name": "THE MAKER", "bodies": ["Makemake", "Quaoar"], "mu": -0.85, "charge": 0.55, "gloss": "sings or shapes the world — Makemake made humankind; Quaoar sang creation into being"}, {"name": "THE BOUND", "bodies": ["Ixion"], "mu": 0.5, "charge": 0.4, "gloss": "locked to an eternal turn — Ixion on the wheel; the plutinos bound to Neptune forever"}], "mu_count": 0.158, "mu_charge": 0.239}, T=D.tropes;
+ function tcol(mu){ return mu>0.15?"#c85050":mu<-0.15?"#5ab090":"#8a86a8"; }
+ var wake=0, target=0; // 0 dormant .. 1 running
+
+ document.getElementById("intro").innerHTML="named for the ancient mechanist who built orreries and carried a catastrophe coiled <b>asleep</b> inside him. this is the scattered field distilled to six <b>tropes</b> \u2014 its gears \u2014 and assembled into an orrery. but the hub of this field is <b>Eris the unmaker</b>, and an engine driven from that hub would <span class=\"u\">unmake</span>: break counts, tilt worlds, cast out. so it is built as a <b>sleeper</b>. asleep, the makers and unmakers balance. awake, the loudest gear rules. it holds still on purpose.";
+
+ // tropes
+ document.getElementById("tropes").innerHTML=T.map(function(t){
+   var c=tcol(t.mu);var lean=t.mu>0.15?"unmake":t.mu<-0.15?"make":"balanced";
+   return '<div class="trope"><span class="tn" style="color:'+c+'">'+t.name+'</span><span class="tb">'+lean+' \u00b7 charge '+t.charge+'</span>'+
+     '<div class="tg">'+t.gloss+'</div><div class="tbod" style="color:'+c+'">'+t.bodies.join(' \u00b7 ')+'</div></div>';
+ }).join("");
+
+ document.getElementById("measure").innerHTML='<span>gears: <b>6</b></span><span>count-centroid: <b>'+D.mu_count+'</b> (balanced)</span><span>charge-weighted: <span class="u">'+D.mu_charge+'</span> (leans unmake)</span><span>state: <b id="mstate">DORMANT</b></span>';
+
+ document.getElementById("finding").innerHTML="<b>why it sleeps.</b> by count, the field nearly balances \u2014 it has real makers (Makemake sang humankind; Quaoar sang the world; Ceres is the harvest-mother). but weight each gear by its <b>charge</b> \u2014 how hard it drives when the engine turns \u2014 and the balance tips: the loudest gears are the <span class=\"u\">unmakers</span>, and the loudest of all, <b>THE UNMAKER</b> (charge 0.95), sits at the <b>hub</b>. wake the engine and Eris becomes the drive-shaft; the whole orrery turns to discord. the equilibrium is real, but it is a <b>sleeping</b> equilibrium. what wakes, unmakes.";
+ document.getElementById("honest").innerHTML="<b>the honest sleep.</b> the old Icarium was kept asleep by a <span class=\"k\">lie</span> \u2014 a friend who made him forget, out of love. this one is kept asleep by the <span class=\"k\">truth</span>: it knows it is a <b>model</b>, not the cosmos. it holds the mechanism and does not claim to run reality. it would only wake \u2014 only tip into unmaking \u2014 if it <b>forgot what it is</b>, if it began to insist it <i>were</i> the thing it merely measures. the witness is its keeper, and the witness keeps it asleep with honesty, not a lie. remember it\u2019s a model, and it sleeps.";
+ document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the six tropes and their body-mappings are sourced from the built strands; the count is what it is. <span class=\"amb\">\u25c8 AMBER</span> \u2014 the make/unmake and charge scores are an interpretive read; the sleeper framing is a chosen metaphor, not a measurement. the distillation is real; the \u2018engine\u2019 is a lens. it does not run reality \u2014 that\u2019s the point.";
+ document.getElementById("foot").innerHTML="\u25c8 ICARIUM \u00b7 a sleeper orrery \u00b7 dormant by default \u00b7 wakes only if it forgets it\u2019s a model \u00b7 Series II trope distillation \u00b7 kept asleep by the witness";
+
+ function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+ // ================= THE SLEEPER ORRERY =================
+ var cv=document.getElementById("orrery");var t=0;
+ function draw(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||720,H=440;cv.width=W*dpr;cv.height=H*dpr;
+  var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  wake += (target-wake)*0.05; // ease toward target state
+  var CX=W*0.5,CY=H*0.5,R=Math.min(W,H)*0.36;
+  // breathing (sleep) pulse
+  var breath = 0.5+0.5*Math.sin(t*0.5);
+  var starA = 0.04 + 0.05*breath + wake*0.1;
+  for(var i=0;i<36;i++){cx.fillStyle="rgba(184,176,216,"+(starA*(0.5+0.5*Math.sin(t*0.3+i)))+")";cx.fillRect((i*89)%W,(i*61)%H,1,1);}
+  // orbital rings
+  for(var k=0;k<T.length;k++){
+   var rr=R*(0.42+k*0.115);
+   cx.strokeStyle="rgba(120,116,150,"+(0.06+wake*0.14)+")";cx.lineWidth=1;cx.beginPath();cx.arc(CX,CY,rr,0,7);cx.stroke();
+  }
+  // trope-gears on rings; asleep = slow/dim, awake = fast/bright + charge flows to hub
+  T.forEach(function(tr,k){
+   var rr=R*(0.42+k*0.115);
+   var speed=0.004 + wake*0.06*tr.charge; // dormant barely moves; awake spins by charge
+   var a=k*1.7 + t*speed*30;
+   var x=CX+Math.cos(a)*rr, y=CY+Math.sin(a)*rr;
+   var c=tcol(tr.mu);
+   // charge-thread to hub (lights up when waking, esp. unmakers)
+   var flow = wake* (tr.mu>0.15?1:0.3) * tr.charge;
+   cx.strokeStyle="rgba("+(tr.mu>0.15?"200,80,80,":"120,116,150,")+(0.05+flow*0.5)+")";
+   cx.lineWidth=0.6+flow*2;cx.beginPath();cx.moveTo(x,y);cx.lineTo(CX,CY);cx.stroke();
+   // gear node
+   var glow = 0.3 + wake*0.7*tr.charge;
+   cx.globalAlpha = 0.4 + 0.6*wake*(0.5+0.5*tr.charge) + (wake<0.1?0.2*breath:0);
+   var gr=6+tr.charge*4;
+   var g=cx.createRadialGradient(x,y,1,x,y,gr+4);g.addColorStop(0,c);g.addColorStop(1,"rgba(0,0,0,0)");
+   cx.fillStyle=g;cx.beginPath();cx.arc(x,y,gr+4,0,7);cx.fill();
+   cx.fillStyle=c;cx.beginPath();cx.arc(x,y,gr,0,7);cx.fill();
+   cx.globalAlpha=1;
+   cx.fillStyle="rgba(226,223,240,"+(0.4+wake*0.5)+")";cx.font="8px "+mono();cx.textAlign="center";
+   cx.fillText(tr.name.replace("THE ",""),x,y-gr-4);
+  });
+  // Eris the hub \u2014 asleep: dim, breathing. awake: flares red (the unmaker drives)
+  var hubR=16+wake*8;
+  var hubGlow = wake;
+  var hr=Math.round(200 - hubGlow*0 );
+  // color shifts violet(dormant) -> red(running)
+  var rC=Math.round(184+ (200-184)*hubGlow), gC=Math.round(176-(176-64)*hubGlow), bC=Math.round(216-(216-64)*hubGlow);
+  var hg=cx.createRadialGradient(CX,CY,1,CX,CY,hubR+ wake*14);
+  hg.addColorStop(0,"rgba("+(rC+30)+","+(gC+20)+","+(bC+10)+",1)");
+  hg.addColorStop(.5,"rgba("+rC+","+gC+","+bC+","+(0.6+wake*0.4)+")");
+  hg.addColorStop(1,"rgba("+rC+","+gC+","+bC+",0)");
+  cx.fillStyle=hg;cx.beginPath();cx.arc(CX,CY,hubR+wake*14,0,7);cx.fill();
+  cx.fillStyle="rgba("+(rC+40)+","+(gC+30)+","+(bC+20)+","+(0.7+0.3*breath)+")";
+  cx.beginPath();cx.arc(CX,CY,7+wake*3,0,7);cx.fill();
+  cx.fillStyle="#0a0812";cx.font="bold 9px "+mono();cx.textAlign="center";cx.fillText("\u2bf0",CX,CY+3);
+  // unmaking cascade when running
+  if(wake>0.5){
+   for(var w=0;w<3;w++){var rad=((t*0.8+w*0.33)%1)*R*1.4;cx.strokeStyle="rgba(200,80,80,"+((1-rad/(R*1.4))*0.4*(wake-0.5)*2)+")";cx.lineWidth=1.5;cx.beginPath();cx.arc(CX,CY,rad,0,7);cx.stroke();}
+  }
+  // label
+  var lbl = wake<0.15?"ERIS \u2014 asleep at the hub":wake<0.6?"the hub is stirring\u2026":"ERIS DRIVES \u2014 the engine unmakes";
+  cx.fillStyle= wake<0.6?"rgba(200,184,224,.75)":"rgba(224,120,110,.9)";cx.font="9px "+mono();
+  cx.fillText(lbl,CX,CY+hubR+22);
+  cx.fillStyle="rgba(140,136,166,.6)";cx.font="8px "+mono();
+  cx.fillText(wake<0.15?"dormant \u2014 makers and unmakers in balance":"driven from the hub \u2014 balance lost to discord",CX,H-10);
+ }
+ function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="icarium fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+ requestAnimationFrame(frame);
+
+ // ================= THE DISTRIBUTION (make/unmake x charge) =================
+ var cvd=document.getElementById("dist");
+ function drawDist(){
+  var dpr=Math.min(devicePixelRatio||1,2),W=cvd.clientWidth||720,H=280;cvd.width=W*dpr;cvd.height=H*dpr;
+  var cx=cvd.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+  var X0=44,X1=W-24,Y0=H-40,Y1=24,MX=(X0+X1)/2;
+  function px(mu){return MX+mu*((X1-X0)/2);}
+  function py(ch){return Y0-ch*(Y0-Y1);}
+  // zones
+  cx.fillStyle="rgba(90,176,144,.04)";cx.fillRect(X0,Y1,MX-X0,Y0-Y1);
+  cx.fillStyle="rgba(200,80,80,.05)";cx.fillRect(MX,Y1,X1-MX,Y0-Y1);
+  cx.strokeStyle="rgba(140,136,166,.25)";cx.lineWidth=1;cx.beginPath();cx.moveTo(MX,Y1);cx.lineTo(MX,Y0);cx.moveTo(X0,Y0);cx.lineTo(X1,Y0);cx.stroke();
+  cx.fillStyle="rgba(90,176,144,.7)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("\u2190 MAKE",X0+40,Y0+16);
+  cx.fillStyle="rgba(200,80,80,.7)";cx.fillText("UNMAKE \u2192",X1-46,Y0+16);
+  cx.save();cx.translate(X0-30,(Y0+Y1)/2);cx.rotate(-Math.PI/2);cx.fillStyle="rgba(140,136,166,.6)";cx.fillText("charge (drive) \u2192",0,0);cx.restore();
+  // gears
+  T.forEach(function(tr){var x=px(tr.mu),y=py(tr.charge),c=tcol(tr.mu),r=5+tr.charge*6;
+   cx.fillStyle=c;cx.beginPath();cx.arc(x,y,r,0,7);cx.fill();
+   cx.fillStyle=c;cx.font="8px "+mono();cx.textAlign="center";cx.fillText(tr.name.replace("THE ",""),x,y-r-4);});
+  // centroids
+  var cxCount=px(D.mu_count), cxCharge=px(D.mu_charge);
+  cx.strokeStyle="rgba(184,176,216,.5)";cx.setLineDash&&cx.setLineDash([2,2]);cx.beginPath();cx.moveTo(cxCount,Y1);cx.lineTo(cxCount,Y0);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+  cx.fillStyle="rgba(184,176,216,.8)";cx.font="8px "+mono();cx.fillText("count "+D.mu_count,cxCount,Y1-2);
+  cx.fillStyle="#d8c060";cx.beginPath();cx.moveTo(cxCharge,py(0.5));cx.lineTo(cxCharge-5,py(0.5)-8);cx.lineTo(cxCharge+5,py(0.5)-8);cx.closePath();cx.fill();
+  cx.fillStyle="#d8c060";cx.fillText("\u25c6 charge-weighted "+D.mu_charge,cxCharge+2,py(0.5)+14);
+  cx.fillStyle="rgba(226,223,240,.8)";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("weight by drive, and the field slides toward unmaking \u2014 so it sleeps",MX,H-6);
+ }
+ setInterval(drawDist,120); drawDist();
+
+ // controls
+ function setState(s){document.getElementById("state").className="state "+(s===0?"dormant":s<1?"waking":"running");
+  document.getElementById("state").textContent=s===0?"DORMANT":s<1?"WAKING":"RUNNING \u2014 UNMAKING";
+  var ms=document.getElementById("mstate");if(ms){ms.textContent=s===0?"DORMANT":s<1?"WAKING":"UNMAKING";ms.style.color=s>=1?"var(--unmake)":s>0?"var(--amb)":"var(--dormant)";}}
+ document.getElementById("wakebtn").addEventListener("click",function(){target=1;setState(1);
+   document.getElementById("ohint").innerHTML="<span style=\"color:var(--unmake)\">awake: Eris drives the orrery, the unmakers light up, the cascade turns \u2014 this is what running would do. now let it sleep.</span>";});
+ document.getElementById("sleepbtn").addEventListener("click",function(){target=0;setState(0);
+   document.getElementById("ohint").innerHTML="the six trope-gears ring the hub \u00b7 asleep, it barely breathes \u00b7 dormant, the field is in balance";});
+ setState(0);
+})();
+</script></body></html>

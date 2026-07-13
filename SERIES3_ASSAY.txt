@@ -1,0 +1,29 @@
+SERIES III - THE SHADOW - ASSAY
+================================
+moniker : ⟦SERIES-III:MYTHOS:4B5483⟧
+hub     : NEMESIS (the shadow) -- the ring answers to it
+lineage : RA (giver/light) -> ERIS (breaker/discord) -> NEMESIS (shadow/reckoning)
+channel : SHADOW / the hidden   (Series I = metal, II = ice, III = shadow)
+bridge  : SEDNA -- the cast-out of the scattered field is the doorway to the shadow
+source  : Isaac Asimov, NEMESIS (1989). Tropes pulled and built 1:1. No book text reproduced.
+strands : 7 tropes -- Shadow-Twin, Hidden Mind, Red World, Truth-Reader, Seed-Hoarder,
+          One Who Left, The Leap.
+
+WHAT IT IS: a sourced reference deck that takes each trope of Asimov's Nemesis, finds the REAL
+measurable phenomenon under the fiction, and marks the line where extrapolation begins:
+ - Shadow-Twin  : the Nemesis death-star hypothesis (26-Myr extinctions, Oort perturbation, WISE=empty)
+ - Hidden Mind  : quorum sensing (real coordination) vs planet-scale consciousness (fiction)
+ - Red World    : Wien's law (502 vs 966 nm) + tidal locking; the galaxy is mostly red
+ - Truth-Reader : the surface-area of a lie, 1-(1-p)^k, vs the ~54% human baseline; the witness with a face
+ - Seed-Hoarder : survival = 1-(1-s)^N; control traded for robustness, and called survival
+ - One Who Left : the light-lag of two light-years; no real-time contact
+ - The Leap     : special relativity & the light barrier; near-c real, FTL breaks causality
+
+THEME: every trope is a HIDING; the finale (the Leap) is the REACH. the shadow ends not by force
+but by connection. the third seed resolves on the least shadowy idea there is.
+
+ORRERY CHECK: PASS -- delete the animations and the sourced content survives.
+
+SEAL: per-strand seal=sha256(ASCII record); chain folds genesis(Nemesis) through each seal;
+ring_close=sha256(head|genesis) closes the ring back to Nemesis. Verified 3 ways: Python hashlib,
+in-browser pure-JS SHA-256 (zero-network), and the series3.dlw record. Tamper-evident.

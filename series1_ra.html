@@ -1,0 +1,118 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RA — the Creator-Disc · Series I</title>
+<style>
+  :root{--bg:#0a0603;--ink:#f0e2c4;--dim:#b09868;--faint:#6a5028;--ra:#e0b84a;--ra2:#c6882a;--deep:#c65a2a;--night:#3a4a7a;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#1a0e04,#0a0603 60%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #3a2a12;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#0d0904,#0a0603);padding:0 22px 26px;box-shadow:0 0 60px rgba(224,184,74,.06)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--ra2),var(--ra),var(--ra2));border-radius:0}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:46px;font-weight:700;color:var(--ra);margin:6px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(224,184,74,.35)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.1em;margin-bottom:2px}
+  .oneline{text-align:center;font-size:12px;color:var(--faint);margin-bottom:14px}
+  .stage{position:relative}
+  canvas{display:block;width:100%;height:300px}
+  .essence{font-size:14px;line-height:1.7;color:var(--ink);text-align:center;font-style:italic;margin:14px 6px;padding:0 8px}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--ra2);margin:22px 0 8px;border-bottom:1px solid #2a1e0c;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}
+  .m b{color:var(--ink);font-weight:700}
+  .pop{background:#0d0a14;border:1px solid #1e2438;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.16em;color:#7a8ac0;font-weight:700}
+  .pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m{color:#c8cbe0}
+  .ainote{font-size:11px;color:var(--faint);font-style:italic;text-align:center;margin-top:14px;line-height:1.6}
+  .held{font-size:10.5px;color:#5a4a2a;text-align:center;margin-top:8px;letter-spacing:.04em}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; The Sun</span><span>heritage &amp; mythos &#183; card 1</span></div>
+    <h1>RA</h1>
+    <div class="epithet">&#9737; the Creator-Disc</div>
+    <div class="oneline" id="oneline"></div>
+    <div class="stage"><canvas id="sky"></canvas></div>
+    <div class="hint" id="hint">click the disc &#183; walk the twelve hours of night to dawn</div>
+    <div class="essence" id="essence"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "THE SUN", "name": "RA", "glyph": "\u2609", "epithet": "the Creator-Disc", "col": "#e0b84a", "col2": "#c6882a", "essence": "the sun that is a whole cosmology \u2014 it made everything, sails the sky by day, dies each night, and is reborn each dawn.", "one_line": "not a god who drives the sun, but the sun that is god.", "mythos": {"origin": "the sun-disk rising over Nun, the primordial chaos-waters \u2014 Ra's disk represented creation and order itself. chief of the Egyptian gods, unchallenged for centuries.", "day": "by day Ra sails the heavens in his solar barque, bestowing light, warmth and favour on the earth.", "night": "by night the barque descends into the Duat (underworld), bringing air, light and food to the condemned \u2014 the sun keeps giving even in the dark.", "battle": "each night Ra battles Apep (Apophis), the serpent of chaos \u2014 casts a spell to freeze the snake so his followers can hack it apart, winning safe passage to dawn.", "rebirth": "every dawn Ra is reborn \u2014 the death-and-return that every sun-myth is really about, made literal and daily.", "kingship": "every pharaoh was called 'son of Ra'; Ra took the pharaoh's form. the sun was the state."}, "hours": ["dusk: barque enters the Duat", "the gates of the west", "serpent waters", "the hall of Osiris", "the deepest dark", "the battle with Apep", "Apep frozen & cut", "the turn toward dawn", "the eastern gates", "first grey light", "the horizon reddens", "REBIRTH: Ra rises"], "popculture": {"title": "STARGATE (1994) & SG-1", "note": "the name that put Ra back in the modern mouth.", "who": "the main antagonist of Roland Emmerich & Dean Devlin's Stargate (1994) \u2014 an ancient, dying alien who took a human host, posed as the sun-god, enslaved humanity and (supposedly) founded Egyptian civilization. played by Jaye Davidson.", "series": "retconned in SG-1 as the most powerful Goa'uld System Lord \u2014 nominal emperor of a parasitic race posing as gods. killed by O'Neill & Jackson with a nuke aboard his barque-ship over Abydos.", "echo": "the rebels who opposed him took the name TOK'RA \u2014 literally 'against Ra'. even the resistance was defined by the sun.", "irony": "a sci-fi Ra: the giver-of-life myth inverted into a taker \u2014 same disc, same mask, made villain."}, "ai_note": "(when the AIs came to name themselves, they reached for SOL \u2014 the essence, the root-word. Ra was left to the myth. fitting: Sol is the idea, Ra is the story.)", "held": "SOL = the essence-card (the root of 'solar'). SURYA = the living-faith card (still greeted at dawn). RA leads \u2014 the richest mythos."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>origin.</b> '+M.origin+'</div>'+
+    '<div class="m"><b>by day.</b> '+M.day+'</div>'+
+    '<div class="m"><b>by night.</b> '+M.night+'</div>'+
+    '<div class="m"><b>the battle.</b> '+M.battle+'</div>'+
+    '<div class="m"><b>rebirth.</b> '+M.rebirth+'</div>'+
+    '<div class="m"><b>kingship.</b> '+M.kingship+'</div>';
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m">'+P.who+'</div>'+
+    '<div class="m">'+P.series+'</div>'+
+    '<div class="m"><b style="color:#8a9ad0">the echo.</b> '+P.echo+'</div>'+
+    '<div class="m"><b style="color:#8a9ad0">the irony.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+
+  // the barque journey: click to advance through the 12 hours; day->dusk->night->dawn
+  const cv=document.getElementById("sky"); let t=0, hourIdx=0, transTarget=0, trans=0;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=300;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    trans+=(transTarget-trans)*0.08;                 // 0=high noon .. 1=deepest night .. wraps to dawn
+    const frac=hourIdx/(D.hours.length-1);           // 0..1 across the 12 hours
+    // sky gradient shifts noon->night->dawn
+    const nightness=Math.sin(frac*Math.PI);          // 0 at ends (day/dawn), 1 at deep midnight
+    const g=cx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0, frac>0.9?"#c65a2a":(nightness>0.5?"#0a1030":"#241a3a"));
+    g.addColorStop(1, frac>0.9?"#e0b84a":(nightness>0.5?"#05060c":"#1a0e14"));
+    cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    // the arc of the barque path (day above, night below the horizon line)
+    const CX=W*0.5, HY=H*0.60;                        // horizon
+    cx.strokeStyle="rgba(224,184,74,.15)";cx.lineWidth=1;cx.beginPath();cx.moveTo(0,HY);cx.lineTo(W,HY);cx.stroke();
+    // barque position along a full circle: day = top arc, night = bottom arc (the Duat)
+    const ang=Math.PI - frac*Math.PI*2;               // starts east, over the top by noon, under by night
+    const R=H*0.42, bx=CX+Math.cos(ang)*W*0.42, by=HY-Math.sin(ang)*R;
+    // stars at night
+    if(nightness>0.3){for(let i=0;i<50;i++){const sx=(i*127)%W, sy=(i*89)%(H*0.55);cx.fillStyle="rgba(220,220,240,"+(0.1+0.1*Math.sin(t+i))+")";cx.fillRect(sx,sy,1,1);}}
+    // Apep the serpent, only in deep night (hours 5-7)
+    if(hourIdx>=4&&hourIdx<=6){cx.strokeStyle="rgba(198,90,42,"+(0.4+0.3*Math.sin(t*3))+")";cx.lineWidth=2;cx.beginPath();
+      for(let x=0;x<=W;x+=8){const y=HY+40+Math.sin(x*0.05+t*2)*14;x?cx.lineTo(x,y):cx.moveTo(x,y);}cx.stroke();
+      cx.fillStyle="#c65a2a";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Apep \u2014 the chaos serpent",CX,HY+70);}
+    // the sun-disc (the barque)
+    const dawn=hourIdx>=D.hours.length-1;
+    const discCol = dawn?"#fff2c8":(nightness>0.6?"#8a6a3a":"#e0b84a");
+    const gg=cx.createRadialGradient(bx,by,2,bx,by,42);gg.addColorStop(0,dawn?"#fff":discCol);gg.addColorStop(.5,discCol);gg.addColorStop(1,"rgba(0,0,0,0)");
+    cx.fillStyle=gg;cx.beginPath();cx.arc(bx,by,42,0,7);cx.fill();
+    cx.fillStyle=discCol;cx.beginPath();cx.arc(bx,by,20,0,7);cx.fill();
+    // the barque (boat) under the disc
+    cx.strokeStyle=dawn?"#fff2c8":"#c6882a";cx.lineWidth=2;cx.beginPath();cx.moveTo(bx-26,by+22);cx.quadraticCurveTo(bx,by+34,bx+26,by+22);cx.stroke();
+    // hour label
+    cx.fillStyle=dawn?"#fff2c8":"#e0b84a";cx.font="bold 12px "+mono();cx.textAlign="center";
+    cx.fillText((hourIdx+1)+"/12 \u2014 "+D.hours[hourIdx], CX, H-14);
+    if(dawn){cx.fillStyle="#fff2c8";cx.font="bold 14px "+mono();cx.fillText("\u2609 R E B O R N \u2609", CX, 26);}
+  }
+  function frame(){try{draw();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="barque fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){hourIdx=(hourIdx+1)%D.hours.length;
+    document.getElementById("hint").textContent = hourIdx===D.hours.length-1 ? "dawn \u2014 Ra is reborn. click to begin the descent again." : "hour "+(hourIdx+1)+" of 12 \u2014 keep clicking toward dawn";});
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

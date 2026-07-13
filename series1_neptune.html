@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEPTUNE — the Deep · Series I</title>
+<style>
+  :root{--bg:#04081a;--ink:#dce6f4;--dim:#8aa0c8;--faint:#3a4e78;--nep:#4a78d8;--nep2:#3a5aaa;--storm:#6a94e8;--modern:#c0a860;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0a1440,#04081a 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #16264e;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#060c26,#04081a);padding:0 22px 26px;box-shadow:0 0 60px rgba(74,120,216,.08)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--nep2),var(--nep),var(--modern))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:42px;font-weight:700;color:var(--nep);margin:6px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(74,120,216,.4)}
+  .subname{text-align:center;font-size:12px;color:var(--nep2);letter-spacing:.34em;margin-top:2px}
+  .epithet{text-align:center;font-size:12.5px;font-style:italic;color:var(--dim);letter-spacing:.05em;margin-top:3px}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  canvas{display:block;width:100%}#sky{height:330px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .pull{background:#0a1230;border:1px solid #24386a;border-left:3px solid var(--nep);border-radius:8px;padding:11px 15px;margin:8px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .pull b{color:var(--nep)}
+  .threshold{background:#0d1636;border:1px solid #2a3e6e;border-left:3px solid var(--modern);border-radius:8px;padding:12px 15px;margin:10px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .threshold .tt{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--modern);font-weight:700;margin-bottom:6px}
+  .threshold b{color:var(--nep)}
+  .naming{font-size:11.5px;line-height:1.6;color:var(--faint);font-style:italic;margin:6px 4px}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--nep2);margin:22px 0 8px;border-bottom:1px solid #14264a;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .comp{background:#0a1230;border:1px solid #243a6a;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:#9ab4e0;letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#7a90b8;margin-bottom:6px}
+  .comp .m b{color:#9ab4e0}
+  .alch{background:#161206;border:1px solid #3a3018;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+  .alch .mg{font-size:24px;color:var(--modern)}.alch .mn{font-size:15px;font-weight:700;color:var(--modern);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:#a89a5a;letter-spacing:.06em}
+  .alch .warn{font-size:10.5px;color:#d0a040;background:#1a1408;border:1px dashed #6a5420;border-radius:5px;padding:5px 9px;margin:5px 0}
+  .alch .m b{color:var(--modern)}
+  .pop{background:#08122c;border:1px solid #223a68;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.12em;color:var(--nep);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--nep)}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#2a3e68;text-align:center;margin-top:6px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Neptune</span><span>heritage &amp; mythos &#183; card 9 &#183; the threshold holds</span></div>
+    <h1>NEPTUNE</h1>
+    <div class="subname" id="subname"></div>
+    <div class="epithet" id="epithet"></div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; watch Uranus wobble, calculate the unseen, point the telescope, find the deep</div>
+    <div class="essence" id="essence"></div>
+    <div class="pull" id="pull"></div>
+    <div class="threshold" id="threshold"></div>
+    <div class="naming" id="naming"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the sea-queen, courted back</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the alchemy &#8212; and the table that echoes the sky</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of deep blue</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "NEPTUNE", "name": "NEPTUNE", "subname": "POSEIDON", "glyph": "\u2646", "epithet": "the Deep \u2014 the Earth-Shaker, Found by His Pull", "col": "#3a6ad0", "col2": "#2a4a9a", "deep": "#2a50c0", "storm": "#4a78d8", "modern": "#c0a860", "essence": "the DEEP \u2014 the sea and all beneath it, and the earthquake that shakes the land; the unseen force felt as MOTION. the middle brother, trident in hand, who took the ocean when the cosmos was divided.", "one_line": "the sky was overthrown, the old king became Time \u2014 and the brothers divided what was left: this one took the deep.", "found_by_pull": "NEPTUNE IS THE GOD OF 'FELT BEFORE SEEN' \u2014 and that is literally how the planet was found. it was never seen by any ancient; it was CALCULATED. Uranus wobbled in its orbit; astronomers reasoned an unseen mass must be pulling it, did the mathematics, and told the telescope exactly where to look. the sea-god of the unseen pull, discovered BY his pull. myth and method are one.", "threshold": {"title": "THE THRESHOLD HOLDS \u2014 modern, and honest about it", "text": "like Uranus, NEPTUNE is telescopic (1846) \u2014 no Babylonian, no Greek, no ancient culture ever saw it. NO ancient god-name, NO ancient metal (the seven were full at Saturn). this is MODERN naming, documented as such. but Neptune's discovery is unique in all history: it was found by MATHEMATICS FIRST. Le Verrier & Adams independently calculated the unseen planet's place; Galle found it within 1\u00b0 of Le Verrier's prediction the SAME NIGHT (23 Sept 1846). the only world predicted by pure gravity before it was ever observed."}, "naming": "the planet showed a deep BLUE disc \u2192 the sea \u2192 NEPTUNE (Roman) / POSEIDON (Greek). (Le Verrier first tried to name it after himself; that failed.) and it slots into the seed's succession exactly: Zeus, Poseidon & Hades are the THREE SONS OF CRONUS who drew lots for the cosmos \u2014 Zeus the sky, Poseidon the sea, Hades the underworld. Neptune is card 6 Zeus's brother.", "mythos": {"deep": "Poseidon rules the SEA and everything in it \u2014 storms, calm, drowning & safe passage; sailors prayed to him first. with his TRIDENT he raises waves or stills them. the moodiest of the brothers, quick to wrath, vast and cold as the deep itself.", "shaker": "but he is also 'ENOSICHTHON' \u2014 the EARTH-SHAKER, god of EARTHQUAKES: strike the trident and the ground itself heaves. the unseen force under the solid world. (and god of HORSES too \u2014 he made the first horse, and the white-capped waves were called his 'horses'.)", "brothers": "when Cronus fell, the three sons drew lots: Zeus won the SKY, Hades the UNDERWORLD, and POSEIDON the SEA \u2014 the middle realm, neither heaven nor hell but the vast between. the earth was left common to all three. so Neptune is the brother of card 6 (Zeus/sky) and card 10-to-come (Hades/underworld): the outer three planets are the three who split creation.", "felt": "he is the god you know by MOTION, not by sight: the wave that lifts you, the quake underfoot, the current that pulls. you feel Poseidon before you see him \u2014 exactly as the planet was felt (in Uranus's wobble) before it was seen. the essence and the discovery are the same fact."}, "companion": {"name": "AMPHITRITE", "glyph": "\u2640", "role": "the sea-queen \u2014 the reluctant bride, courted back by a messenger", "who": "Amphitrite, a Nereid of the sea. when Poseidon sought her she FLED to the ends of the ocean; he sent a dolphin, Delphinus, who found her and pleaded his case so well she relented and became Queen of the Sea. (the dolphin was set among the stars as reward.)", "counter": "across the cards: Rohini REFILLS, Dumuzi SACRIFICED, Ereshkigal the EQUAL, Hera the CONSORT, Rhea the DEFIER, Gaia the ARMORER \u2014 and Amphitrite is the RELUCTANT, won not by force but by a go-between's persuasion. the only queen COURTED back rather than seized. (her Roman name: Salacia.)"}, "alchemy": {"metal": "NEPTUNIUM", "glyph": "\u2646", "grounding": "MODERN \u2014 synthesised 1940, named FOR this planet (NOT ancient)", "flag": "\u26a0 NOT an ancient heritage-metal. the seven ancient metals ended at Saturn.", "why": "the honest modern parallel is NEPTUNIUM \u2014 element 93, first synthesised in 1940 and named for the planet, exactly as uranium was named for Uranus. and there is a perfect echo: neptunium sits immediately AFTER uranium on the periodic table \u2014 just as Neptune sits immediately after Uranus in the sky. the discoverers named the new elements in the SAME ORDER as the planets. the pattern in the heavens was copied into the pattern of matter. (neptunium: a heavy, silvery, radioactive transuranic \u2014 a made thing, fitting a world made of calculation.)", "note": "(the ancient seven-metal system is Babylonian\u2192Greek\u2192Latin & filter-passing. neptunium is flagged MODERN (1940) and included as the honest parallel \u2014 with the lovely true fact of the table echoing the sky. the filter stays ON.)"}, "cube": {"note": "the 27-cell colour-space: Neptune's deep-blue family \u2014 real physics: methane plus an unidentified extra blue give it a vivid azure. Voyager 2 (1989) found a deep-blue world with a Great Dark Spot and the FASTEST winds in the solar system (~2100 km/h). (0,0,0) black, (2,2,2) white; between is deep azure on one axis, brighter storm-blue on another."}, "popculture": {"title": "THE PLANET MATH FOUND  &  HOLST\u2019S FADE TO SILENCE", "note": "a world found by pure reason, and the music that vanishes.", "math": "Neptune is the great triumph of NEWTONIAN GRAVITY: not stumbled upon but PREDICTED. that a pencil, paper, and the law of gravity could say 'a planet is HERE, look' \u2014 and be right within 1\u00b0 the same night \u2014 was the 19th century's proof that the cosmos runs on mathematics. the sea-god of the unseen was pulled into view by equations.", "holst": "Gustav Holst closed The Planets with 'NEPTUNE, THE MYSTIC' (1916) \u2014 quiet, drifting, unresolved; it ends with a wordless women's choir singing offstage as a door slowly closes on them, the sound fading to nothing. it is widely credited as the FIRST FADE-OUT in the history of music: the mystic deep, dissolving into silence.", "everywhere": "and the sea-king never left: Poseidon in Percy Jackson & every myth retelling; the TRIDENT as the universal sign of the sea (and of Maserati, and Ukraine's coat of arms); 'Neptune' for anything oceanic; the blue planet with the black storm & the screaming winds.", "irony": "Ra villain, Chandra drug, Hermes mascot, Ishtar descent, Nergal red soil, Zeus king, Cronus Time, Uranus punchline \u2014 and Neptune? Neptune became PROOF. the unseen god of the deep became the moment humanity trusted its own mathematics enough to find a world it could not see. the mystic, made a theorem."}, "ai_note": "(NEPTUNE the name is the science \u2014 chosen 1846 for the blue; neptunium named for it 1940, next to uranium as Neptune is next to Uranus. no ancient face to hold: the modern name is the whole identity. honest, like Uranus.)", "held": "no ancient held-cards \u2014 no ancient heritage exists to hold. the honest alternatives history used: 'LE VERRIER' (the name its calculator wanted) & JANUS/OCEANUS (other proposals). the reverse records that this name, too, was a choice \u2014 but a choice the sea itself seemed to make, by turning up blue."};
+  document.getElementById("subname").textContent="\u2646  "+D.subname;
+  document.getElementById("epithet").textContent=D.epithet;
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("pull").innerHTML="<b>felt before seen.</b> "+D.found_by_pull.replace(/NEPTUNE|CALCULATED/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("threshold").innerHTML='<div class="tt">\u25c8 '+D.threshold.title+'</div>'+D.threshold.text.replace(/NEPTUNE|MATHEMATICS FIRST|1846/g,function(m){return '<b>'+m+'</b>';});
+  document.getElementById("naming").innerHTML="<b>why this name:</b> "+D.naming;
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the deep.</b> '+M.deep+'</div>'+
+    '<div class="m"><b>the earth-shaker.</b> '+M.shaker+'</div>'+
+    '<div class="m"><b>the three brothers.</b> '+M.brothers+'</div>'+
+    '<div class="m"><b>known by motion.</b> '+M.felt+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>';
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u2646</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="warn">'+A.flag+'</div>'+
+    '<div class="m">'+A.why+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#6a7080">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the planet math found.</b> '+P.math+'</div>'+
+    '<div class="m"><b>the first fade-out.</b> '+P.holst+'</div>'+
+    '<div class="m"><b>everywhere.</b> '+P.everywhere+'</div>'+
+    '<div class="m"><b>the mystic, made a theorem.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("flag").textContent="\u25c8 correspondence filter (ON): NO ancient heritage \u2014 Neptune is telescopic (1846), unseen by any ancient culture, found by math. neptunium = MODERN (1940), flagged. tarot = Golden Dawn 1888 \u2192 REJECTED. the honesty is the card.";
+
+  // ========== the discovery-by-pull visual: Uranus wobbles -> calc the unseen -> point -> find Neptune ==========
+  const cv=document.getElementById("sky"); let t=0, step=0;
+  const STEPS=["Uranus orbits \u2014 but not quite as it should","the wobble \u2014 something unseen is pulling it",
+    "Le Verrier & Adams calculate \u2014 the unseen mass must be HERE","the prediction \u2014 a point on the sky, from pure math",
+    "Galle points the telescope at the spot","NEPTUNE \u2014 found within 1\u00b0, the same night",
+    "the deep-blue world \u2014 the sea-god, seen at last","the three brothers: sky \u00b7 sea \u00b7 underworld"];
+  const N=STEPS.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=330;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    const g=cx.createLinearGradient(0,0,0,H);g.addColorStop(0,"#0a1236");g.addColorStop(1,"#04081a");cx.fillStyle=g;cx.fillRect(0,0,W,H);
+    const CX=W*0.5, CY=H*0.44;
+    for(let i=0;i<26;i++){cx.fillStyle="rgba(180,200,240,"+(0.1+0.13*Math.sin(t+i))+")";cx.fillRect((i*73)%W,(i*41)%(H-40)+6,1,1);}
+    // the sun at center-left, Uranus orbit
+    const sx=W*0.28, sy=CY;
+    cx.fillStyle="#e8c860";cx.beginPath();cx.arc(sx,sy,7,0,7);cx.fill();
+    const oR=90;
+    cx.strokeStyle="rgba(120,140,200,.25)";cx.beginPath();cx.ellipse(sx,sy,oR,oR*0.55,0,0,7);cx.stroke();
+    // Uranus on its orbit; wobble grows steps 0-1
+    const ua=t*0.6, wob=(step>=1)?Math.sin(t*5)*6:0;
+    const ux=sx+Math.cos(ua)*(oR+wob), uy=sy+Math.sin(ua)*(oR*0.55+wob*0.5);
+    cx.fillStyle="#6ad0d0";cx.beginPath();cx.arc(ux,uy,5,0,7);cx.fill();
+    cx.fillStyle="rgba(106,208,208,.7)";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("Uranus",ux,uy-9);
+    if(step===1){cx.strokeStyle="rgba(200,160,80,.6)";cx.lineWidth=1;for(let s=0;s<3;s++){cx.beginPath();cx.arc(ux,uy,8+s*3,0,7);cx.stroke();}
+      cx.fillStyle="#c0a860";cx.fillText("the wobble",ux,uy+16);}
+    // the unseen pull: an arrow from a hidden point tugging Uranus (steps 1-3)
+    const npx=sx+Math.cos(ua+0.9)*(oR*1.7), npy=sy+Math.sin(ua+0.9)*(oR*0.55*1.7);
+    if(step>=2&&step<=4){
+      // calculation: dashed line to the predicted spot
+      cx.strokeStyle="rgba(74,120,216,.7)";cx.setLineDash&&cx.setLineDash([4,4]);cx.beginPath();cx.moveTo(ux,uy);cx.lineTo(npx,npy);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+      cx.strokeStyle="rgba(200,168,96,.8)";cx.lineWidth=1;cx.strokeRect(npx-14,npy-14,28,28);
+      cx.fillStyle="#c0a860";cx.font="8px "+mono();cx.fillText(step===2?"must be HERE (by math)":(step===3?"the predicted point":"telescope \u2192 here"),npx,npy-20);
+      // equations floating
+      if(step===2||step===3){cx.fillStyle="rgba(138,160,200,.5)";cx.font="7px "+mono();cx.fillText("\u2211F = ma  \u00b7  gravity",npx,npy+24);}
+    }
+    // Neptune appears at the predicted point (step5+)
+    if(step>=5){
+      const gg=cx.createRadialGradient(npx-3,npy-3,1,npx,npy,16);gg.addColorStop(0,"#8ab0f0");gg.addColorStop(.6,"#3a6ad0");gg.addColorStop(1,"#1a2a6a");
+      cx.fillStyle=gg;cx.beginPath();cx.arc(npx,npy,step>=6?15:9,0,7);cx.fill();
+      cx.fillStyle="#6a94e8";cx.font="8px "+mono();cx.fillText("\u2646 Neptune",npx,npy+ (step>=6?26:18));
+      if(step===5){cx.fillStyle="#4a78d8";cx.font="9px "+mono();cx.fillText("found within 1\u00b0 \u2014 the same night",CX,H*0.82);}
+    }
+    // Great Dark Spot on the bigger disc
+    if(step===6){cx.fillStyle="rgba(20,30,80,.8)";cx.beginPath();cx.ellipse(npx-3,npy-2,5,3.5,0.3,0,7);cx.fill();
+      cx.fillStyle="#8aa0c8";cx.font="8px "+mono();cx.fillText("Great Dark Spot \u00b7 winds ~2100 km/h",CX,H*0.82);}
+    // three brothers (step7)
+    if(step===7){
+      const bx=[W*0.30,W*0.5,W*0.70], by=H*0.30, lbl=["Zeus \u2014 SKY","Poseidon \u2014 SEA","Hades \u2014 UNDERWORLD"], col=["#6a8ac6","#4a78d8","#9a6ac0"];
+      for(let b=0;b<3;b++){cx.fillStyle=col[b];cx.beginPath();cx.arc(bx[b],by,7,0,7);cx.fill();
+        cx.fillStyle=col[b];cx.font="8px "+mono();cx.fillText(lbl[b],bx[b],by+18);}
+      cx.strokeStyle="rgba(138,160,200,.4)";cx.beginPath();cx.moveTo(bx[0],by);cx.lineTo(bx[2],by);cx.stroke();
+      cx.fillStyle="#8aa0c8";cx.font="8px "+mono();cx.fillText("three sons of Cronus drew lots for the cosmos",CX,by+36);}
+    cx.fillStyle="#dce6f4";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+STEPS[step],CX,H-12);
+    if(step===N-1){cx.fillStyle="#4a78d8";cx.font="bold 10px "+mono();cx.fillText("\u2646 the deep \u2014 felt before seen, found by pure gravity",CX,24);}
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="deep fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the deep, found by reason. click to run the discovery again.":"step "+(step+1)+" of "+N;});
+
+  // ---- 27-cell DEEP-BLUE cube ----
+  const DEEP=[0.16,0.30,0.72], STORM=[0.30,0.50,0.85];
+  function cellCol(i,j,k){var L=(i+j+k)/6,a=i/2,b=k/2,s=a+b;
+    var fam=s>0?[(a*DEEP[0]+b*STORM[0])/s,(a*DEEP[1]+b*STORM[1])/s,(a*DEEP[2]+b*STORM[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.006;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(140,170,230,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#3a4e78";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

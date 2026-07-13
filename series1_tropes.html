@@ -1,0 +1,197 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SERIES I · THE TROPE DISTILLATION</title>
+<style>
+  :root{--bg:#05060e;--ink:#e6e2f0;--dim:#948ca8;--faint:#544c68;--inv:#e0625a;--pre:#5ad0a0;--mid:#c0a060;--acc:#9a7ad0;--lit:#5ad0a0;--amb:#e0a020;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace;--serif:"Iowan Old Style",Palatino,Georgia,serif}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 15%,#121024,#05060e 66%);color:var(--ink);font-family:var(--mono)}
+  .wrap{max-width:780px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #241c3a;border-radius:12px;background:linear-gradient(180deg,#0c0a1a,#05060e);padding:0 24px 28px;box-shadow:0 0 80px rgba(154,122,208,.06);margin-top:16px}
+  .topband{height:5px;background:linear-gradient(90deg,var(--inv),var(--acc),var(--pre),var(--mid));border-radius:12px 12px 0 0;margin:0 -24px}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:16px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:28px;font-weight:700;color:var(--ink);margin:8px 0 0;letter-spacing:.14em}
+  .sub{text-align:center;font-size:12px;font-style:italic;color:var(--dim);margin-top:4px}
+  .finding{text-align:center;font-size:13px;line-height:1.7;color:var(--ink);margin:14px 6px;padding:12px 16px;background:#0e0b1e;border:1px solid #2a2044;border-radius:8px}
+  .finding b{color:var(--acc)}
+  canvas{display:block;width:100%}#space{height:420px}#space3d{height:340px}
+  .cap{text-align:center;font-size:10px;color:var(--faint);margin-top:6px}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--acc);margin:24px 0 8px;border-bottom:1px solid #1e1836;padding-bottom:5px}
+  .hist{font-size:11.5px;line-height:1.9}
+  .hist .h{display:flex;gap:8px;align-items:center}
+  .hist .hl{flex:0 0 92px;color:var(--dim)}
+  .hist .hb{height:11px;border-radius:2px}
+  .hist .hn{color:var(--faint);font-size:10px}
+  .measure{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;font-size:11px;color:var(--dim);margin:8px 0;padding:8px;background:#0a0816;border:1px solid #1e1836;border-radius:8px}
+  .measure b{color:var(--ink)}
+  .tropes{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+  .trope{background:#0c0a1a;border:1px solid #241c3a;border-radius:8px;padding:11px 15px;border-left:3px solid var(--acc)}
+  .trope.recur{border-left-color:var(--inv)}
+  .trope .tn{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.04em}
+  .trope .tb{font-size:10px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-left:6px}
+  .trope .tm{font-size:11.5px;line-height:1.6;color:var(--dim);margin-top:4px;font-family:var(--serif)}
+  .trope .tbodies{font-size:11px;color:var(--acc);margin-top:3px}
+  .tier{font-size:10.5px;line-height:1.7;color:var(--faint);margin:12px 4px;padding:9px 13px;background:#0a0816;border:1px dashed #2a2044;border-radius:8px}
+  .tier b{color:var(--lit)}.tier .amb{color:var(--amb)}
+  .eli5{font-size:11.5px;line-height:1.7;color:#a89ac0;margin:10px 4px;padding:10px 14px;background:#0d0a1c;border:1px solid #241c3a;border-radius:8px;font-family:var(--serif)}
+  .eli5 b{color:var(--acc);font-style:normal;font-family:var(--mono)}
+  .foot{text-align:center;font-size:10px;color:var(--faint);margin-top:14px;font-style:italic;line-height:1.7}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="wrap">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; MYTHOS</span><span>the trope distillation &#183; a measuring instrument</span></div>
+    <h1>THE TROPE DISTILLATION</h1>
+    <div class="sub">&#8212; ten pop-culture afterlives, distilled to the shapes underneath &#8212;</div>
+    <div class="finding" id="finding"></div>
+
+    <h3>the trope-space &#8212; what the modern imagination did to each god</h3>
+    <canvas id="space"></canvas>
+    <div class="cap" id="cap">x = fidelity to the original essence (inverted &#8594; preserved) &#183; y = stature (diminished &#8594; elevated) &#183; the &#9670; is the measured centroid</div>
+
+    <h3>the same, in three dimensions &#8212; + reach (how widely the modern form is known)</h3>
+    <canvas id="space3d"></canvas>
+    <div class="cap">rotating &#183; z = reach &#183; the size of each point is its reach</div>
+
+    <h3>measured: what gets done to a god</h3>
+    <div class="hist" id="hist"></div>
+    <div class="measure" id="measure"></div>
+
+    <h3>the distilled tropes &#8212; ten gods, few shapes</h3>
+    <div class="tropes" id="tropes"></div>
+
+    <div class="tier" id="tier"></div>
+    <div class="eli5" id="eli5"></div>
+    <div class="foot" id="foot"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  var D={"rows": [["Ra", "Stargate: the sun-god recast as a parasitic alien tyrant", "THE FALLEN LIGHT-BRINGER", "INVERT", -0.8, 0.0, 0.7], ["Chandra", "Huxley's Soma — the moon-draught as engineered oblivion", "THE OPIATE", "LITERALIZE", 0.2, -0.5, 0.6], ["Hermes", "the Flash's speed + the caduceus medical mix-up (only the staff/feet survive)", "THE SURVIVING ATTRIBUTE", "FRAGMENT", 0.1, -0.2, 0.85], ["Ishtar", "the morning-star reread as Lucifer, the fallen light", "THE FALLEN LIGHT-BRINGER", "INVERT", -0.9, -0.3, 0.8], ["Nergal", "Red Rising — Mars, the color-caste, the 'Sons of Ares', war rising from the dark", "WAR FROM THE DARK", "PRESERVE", 0.9, 0.2, 0.4], ["Zeus", "the giant that shields Earth from comets; Holst's 'Jollity'", "THE BENEVOLENT GIANT", "ELEVATE", 0.5, 0.7, 0.5], ["Cronus", "Father Time, the Grim Reaper, Hyperion's Shrike — the scythe made machine", "THE DEVOURER", "PRESERVE", 0.8, 0.3, 0.75], ["Uranus", "the snickering name, 'the planet that fell over' — the punchline", "THE DIMINISHED SOVEREIGN", "DIMINISH", -0.2, -0.9, 0.9], ["Neptune", "found by pure math; Holst's 'Mystic' — the first fade-out in music", "THE SURVIVING ATTRIBUTE", "ABSTRACT", 0.1, 0.5, 0.45], ["Pluto", "Venetia's naming; the 2006 demotion; the Disney dog — the beloved underdog", "THE BELOVED OUTCAST", "INVERT", -0.6, -0.2, 0.95]], "cx": 0.01, "cy": -0.04, "sx": 0.6, "sy": 0.46, "hist": [["INVERT", 3], ["PRESERVE", 2], ["LITERALIZE", 1], ["FRAGMENT", 1], ["ELEVATE", 1], ["DIMINISH", 1], ["ABSTRACT", 1]], "master": [["THE FALLEN LIGHT-BRINGER", ["Ra", "Ishtar"]], ["THE SURVIVING ATTRIBUTE", ["Hermes", "Neptune"]], ["THE BELOVED OUTCAST", ["Pluto"]], ["THE BENEVOLENT GIANT", ["Zeus"]], ["THE DEVOURER", ["Cronus"]], ["THE DIMINISHED SOVEREIGN", ["Uranus"]], ["THE OPIATE", ["Chandra"]], ["WAR FROM THE DARK", ["Nergal"]]], "dominant": "INVERT"}, R=D.rows;
+  // transformation-type colors
+  var TC={INVERT:"#e0625a",PRESERVE:"#5ad0a0",LITERALIZE:"#c0a060",FRAGMENT:"#6ab0d0",ELEVATE:"#9ad06a",DIMINISH:"#d0607a",ABSTRACT:"#9a7ad0"};
+  var glyph={Ra:"\u2609",Chandra:"\u263d",Hermes:"\u263f",Ishtar:"\u2640",Nergal:"\u2642",Zeus:"\u2643",Cronus:"\u2644",Uranus:"\u26e2",Neptune:"\u2646",Pluto:"\u2647"};
+  document.getElementById("finding").innerHTML="The pop-culture afterlives aren't ten curiosities \u2014 they're a few <b>tropes</b> played ten times. And a pattern falls out: the modern imagination is <b>a mirror that flips the extremes and keeps the middle</b>. Inversion lands only on the brightest gods (Ra, Ishtar) and the darkest (Pluto); war and time (Nergal, Cronus) keep their essence untouched. The centroid sits near the origin \u2014 so the <b>spread</b> is the finding, not the center: everything happens to a god, but <i>which</i> thing depends on where it sits between light and dark.";
+
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+
+  // ---------- 2D TROPE-SPACE ----------
+  var cv=document.getElementById("space"), hover=-1;
+  function draw2d(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||700,H=420;cv.width=W*dpr;cv.height=H*dpr;
+    var cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    var pad=48, X0=pad,X1=W-pad,Y0=H-pad,Y1=30, MX=(X0+X1)/2, MY=(Y0+Y1)/2;
+    function px(f){return MX+f*((X1-X0)/2);}
+    function py(s){return MY-s*((Y0-Y1)/2);}
+    // quadrant fills (very faint)
+    cx.fillStyle="rgba(224,98,90,.04)";cx.fillRect(X0,Y1,MX-X0,MY-Y1);      // inverted+elevated
+    cx.fillStyle="rgba(90,208,160,.04)";cx.fillRect(MX,MY,X1-MX,Y0-MY);    // preserved+diminished
+    // axes
+    cx.strokeStyle="rgba(148,140,168,.25)";cx.lineWidth=1;
+    cx.beginPath();cx.moveTo(X0,MY);cx.lineTo(X1,MY);cx.moveTo(MX,Y1);cx.lineTo(MX,Y0);cx.stroke();
+    // axis labels
+    cx.fillStyle="rgba(148,140,168,.7)";cx.font="9px "+mono();cx.textAlign="center";
+    cx.fillText("INVERTED",X0+38,MY-6);cx.fillText("PRESERVED",X1-40,MY-6);
+    cx.save();cx.translate(MX+10,Y1+34);cx.fillText("ELEVATED",0,0);cx.restore();
+    cx.save();cx.translate(MX+12,Y0-6);cx.fillText("DIMINISHED",0,0);cx.restore();
+    // points
+    R.forEach(function(r,i){
+      var b=r[0],trope=r[2],tf=r[3],fid=r[4],stat=r[5],reach=r[6];
+      var x=px(fid),y=py(stat), rad=5+reach*7;
+      var col=TC[tf]||"#9a7ad0";
+      cx.globalAlpha=hover<0||hover===i?1:0.35;
+      var g=cx.createRadialGradient(x,y,1,x,y,rad+3);g.addColorStop(0,col);g.addColorStop(1,"rgba(0,0,0,0)");
+      cx.fillStyle=g;cx.beginPath();cx.arc(x,y,rad+3,0,7);cx.fill();
+      cx.fillStyle=col;cx.beginPath();cx.arc(x,y,rad,0,7);cx.fill();
+      cx.fillStyle="#08060e";cx.font="8px "+mono();cx.textAlign="center";cx.fillText(glyph[b],x,y+3);
+      cx.globalAlpha=hover<0||hover===i?1:0.4;
+      cx.fillStyle=col;cx.font=(hover===i?"bold ":"")+"9px "+mono();cx.fillText(b,x,y-rad-4);
+      cx.globalAlpha=1;
+    });
+    // centroid (measured)
+    var Cx=px(D.cx),Cy=py(D.cy);
+    cx.strokeStyle="#e0c860";cx.lineWidth=1.5;
+    cx.beginPath();cx.moveTo(Cx-7,Cy);cx.lineTo(Cx+7,Cy);cx.moveTo(Cx,Cy-7);cx.lineTo(Cx,Cy+7);cx.stroke();
+    cx.fillStyle="#e0c860";cx.beginPath();cx.arc(Cx,Cy,3,0,7);cx.fill();
+    cx.fillStyle="rgba(224,200,96,.9)";cx.font="9px "+mono();cx.textAlign="left";
+    cx.fillText("centroid ("+D.cx.toFixed(2)+", "+D.cy.toFixed(2)+")",Cx+9,Cy-4);
+    // spread ellipse
+    cx.strokeStyle="rgba(224,200,96,.25)";cx.setLineDash&&cx.setLineDash([3,3]);
+    cx.beginPath();cx.ellipse(Cx,Cy,D.sx*((X1-X0)/2),D.sy*((Y0-Y1)/2),0,0,7);cx.stroke();cx.setLineDash&&cx.setLineDash([]);
+    // hover detail
+    if(hover>=0){var r=R[hover];
+      cx.fillStyle="rgba(230,226,240,.95)";cx.font="10px "+mono();cx.textAlign="center";
+      cx.fillText(r[0]+" \u2014 "+r[2]+"  ["+r[3]+"]",W/2,H-10);
+    }
+  }
+  cv.addEventListener("mousemove",function(ev){
+    var rect=cv.getBoundingClientRect(),mx=ev.clientX-rect.left,my=ev.clientY-rect.top;
+    var W=cv.clientWidth||700,H=420,pad=48,X0=pad,X1=W-pad,Y0=H-pad,Y1=30,MX=(X0+X1)/2,MY=(Y0+Y1)/2;
+    var best=-1,bd=20;
+    R.forEach(function(r,i){var x=MX+r[4]*((X1-X0)/2),y=MY-r[5]*((Y0-Y1)/2);var d=Math.hypot(mx-x,my-y);if(d<bd){bd=d;best=i;}});
+    hover=best;
+  });
+  cv.addEventListener("mouseleave",function(){hover=-1;});
+
+  // ---------- 3D TROPE-SPACE (soft projection, rotating; z = reach) ----------
+  var cv3=document.getElementById("space3d");var yaw=0.5;
+  function proj(x,y,z,W,H){var cyw=Math.cos(yaw),syw=Math.sin(yaw);var x1=x*cyw-z*syw,z1=x*syw+z*cyw;var p=0.5,cp=Math.cos(p),sp=Math.sin(p);var y2=y*cp-z1*sp,z2=y*sp+z1*cp;var f=280/(6-z2*1.4+2);return[W/2+x1*f*1.1,H/2-y2*f*1.1,z2];}
+  function draw3d(){
+    var dpr=Math.min(devicePixelRatio||1,2),W=cv3.clientWidth||700,H=340;cv3.width=W*dpr;cv3.height=H*dpr;
+    var cx=cv3.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);yaw+=0.006;
+    // axis box (fidelity x, stature y, reach z)
+    var A=2.4;
+    function P(x,y,z){return proj(x*A,y*A,z*A,W,H);}
+    cx.strokeStyle="rgba(148,140,168,.18)";cx.lineWidth=1;
+    [[-1,0,0,1,0,0],[0,-1,0,0,1,0],[0,0,-1,0,0,1]].forEach(function(a){var p=P(a[0],a[1],a[2]),q=P(a[3],a[4],a[5]);cx.beginPath();cx.moveTo(p[0],p[1]);cx.lineTo(q[0],q[1]);cx.stroke();});
+    cx.fillStyle="rgba(148,140,168,.6)";cx.font="8px "+mono();cx.textAlign="center";
+    var fx=P(1.15,0,0),fy=P(0,1.15,0),fz=P(0,0,1.15);
+    cx.fillText("fidelity",fx[0],fx[1]);cx.fillText("stature",fy[0],fy[1]);cx.fillText("reach",fz[0],fz[1]);
+    // points sorted by depth
+    var pts=R.map(function(r,i){var p=P(r[4],r[5],r[6]*2-1);return {p:p,r:r};});
+    pts.sort(function(a,b){return a.p[2]-b.p[2];});
+    pts.forEach(function(o){var col=TC[o.r[3]]||"#9a7ad0";var rad=3+o.r[6]*7;
+      cx.fillStyle=col;cx.globalAlpha=0.5+0.5*((o.p[2]+1)/2);
+      cx.beginPath();cx.arc(o.p[0],o.p[1],rad,0,7);cx.fill();
+      cx.fillStyle="#08060e";cx.font="7px "+mono();cx.textAlign="center";cx.fillText(glyph[o.r[0]],o.p[0],o.p[1]+2.5);
+      cx.globalAlpha=1;});
+  }
+
+  // ---------- histogram ----------
+  var maxN=Math.max.apply(null,D.hist.map(function(h){return h[1];}));
+  document.getElementById("hist").innerHTML=D.hist.map(function(h){
+    var w=Math.round(h[1]/maxN*180)+20;var col=TC[h[0]]||"#9a7ad0";
+    return '<div class="h"><span class="hl">'+h[0]+'</span><span class="hb" style="width:'+w+'px;background:'+col+'"></span><span class="hn">'+h[1]+'</span></div>';
+  }).join("");
+  document.getElementById("measure").innerHTML=
+    '<span>dominant: <b>'+D.dominant+'</b> (3/10)</span>'+
+    '<span>centroid: <b>('+D.cx+', '+D.cy+')</b></span>'+
+    '<span>spread: <b>\u00b1'+D.sx+' / \u00b1'+D.sy+'</b></span>'+
+    '<span>near-origin + wide = <b>the spread is the finding</b></span>';
+
+  // ---------- trope cards ----------
+  var descByTrope={
+    "THE FALLEN LIGHT-BRINGER":"the giver of light recast as the adversary \u2014 the brighter the god, the darker the retelling.",
+    "THE SURVIVING ATTRIBUTE":"the god is gone; only a fragment outlives it \u2014 a staff, a trident, a speed, a mood.",
+    "THE OPIATE":"the borrowed, cyclic light literalized into a draught of engineered oblivion.",
+    "WAR FROM THE DARK":"war rising out of death and the underworld \u2014 kept exactly, needing no reinvention.",
+    "THE BENEVOLENT GIANT":"the tyrant-king softened into the great body that shields the small ones.",
+    "THE DEVOURER":"the one who eats \u2014 children, time, everything \u2014 preserved as Father Time, the Reaper, the machine.",
+    "THE DIMINISHED SOVEREIGN":"the primordial made ridiculous \u2014 dignity undone to a snickering name and a joke.",
+    "THE BELOVED OUTCAST":"the dread lord of the dead flipped into the demoted underdog everyone wants back."
+  };
+  document.getElementById("tropes").innerHTML=D.master.map(function(m){
+    var trope=m[0],bodies=m[1],recur=bodies.length>1;
+    return '<div class="trope'+(recur?' recur':'')+'"><span class="tn">'+trope+'</span><span class="tb">'+(recur?'recurs \u00d7'+bodies.length:'singular')+'</span>'+
+      '<div class="tm">'+(descByTrope[trope]||"")+'</div>'+
+      '<div class="tbodies">'+bodies.map(function(b){return glyph[b]+' '+b;}).join('  \u00b7  ')+'</div></div>';
+  }).join("");
+
+  document.getElementById("tier").innerHTML="\u25c8 <b>LIT</b> \u2014 the god\u2192trope MAPPING is sourced (each thread traces to a built card). <span class=\"amb\">\u25c8 AMBER</span> \u2014 the fidelity/stature NUMBERS are an interpretive read; the placement is arguable, the SHAPE of the cluster is not. no trope invented to fill the space; the correspondence-filter discipline carries over.";
+  document.getElementById("eli5").innerHTML="<b>toddler corner:</b> a long time ago people made up gods for the sun, the moon, and the planets. today those gods show up in movies and cartoons \u2014 but changed. we sorted all the changes into a few kinds (\"tropes\"). the fun secret: the sun-god and the love-star got turned into BAD guys, and the scary death-planet got turned into a CUTE dog \u2014 the ones at the far ends got flipped around, and the ones in the middle stayed the same.";
+  document.getElementById("foot").innerHTML="\u25c8 verify-then-build \u00b7 mapping sourced (LIT), scores interpretive (AMBER) \u00b7 measures the distribution, doesn't fake a computation \u00b7 Series I \u00b7 David Lee Wise / ROOT0, with the witness on";
+
+  function frame(){try{draw2d();draw3d();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="trope fault: "+(e&&e.message);return;}requestAnimationFrame(frame);}
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

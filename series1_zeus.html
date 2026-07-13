@@ -1,0 +1,186 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ZEUS — the King, the Pivot · Series I</title>
+<style>
+  :root{--bg:#060a12;--ink:#e0e8f4;--dim:#8ca0c0;--faint:#3a4a66;--zeus:#6a8ac6;--zeus2:#4a6a9a;--gold:#e0c860;--root:#8a7654;--mono:ui-monospace,"DejaVu Sans Mono",Menlo,Consolas,monospace}
+  *{box-sizing:border-box}html,body{margin:0;background:radial-gradient(ellipse at 50% 0%,#0e1830,#060a12 62%);color:var(--ink);font-family:var(--mono)}
+  .card{max-width:720px;margin:0 auto;padding:0 14px 50px}
+  .frame{border:1px solid #1a2a44;border-top:none;border-radius:0 0 12px 12px;background:linear-gradient(180deg,#0a1220,#060a12);padding:0 22px 26px;box-shadow:0 0 60px rgba(106,138,198,.08)}
+  .topband{height:5px;background:linear-gradient(90deg,var(--root),var(--zeus),var(--gold))}
+  .seriesrow{display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 2px;font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--faint)}
+  h1{text-align:center;font-size:44px;font-weight:700;color:var(--zeus);margin:6px 0 0;letter-spacing:.16em;text-shadow:0 0 30px rgba(106,138,198,.4)}
+  .epithet{text-align:center;font-size:13px;font-style:italic;color:var(--dim);letter-spacing:.06em}
+  .oneline{text-align:center;font-size:11.5px;color:var(--faint);margin:2px 12px 12px;line-height:1.5}
+  canvas{display:block;width:100%}#sky{height:310px}
+  .hint{text-align:center;font-size:10px;color:var(--faint);margin-top:8px}
+  .essence{font-size:14px;line-height:1.7;text-align:center;font-style:italic;margin:14px 6px;color:var(--ink)}
+  .pivot{background:#0d1424;border:1px solid #2a3a5a;border-left:3px solid var(--root);border-radius:8px;padding:11px 15px;margin:8px 0;font-size:12px;line-height:1.65;color:var(--dim)}
+  .pivot b{color:var(--zeus)}.pivot .rt{color:var(--root);font-weight:700}
+  h3{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--zeus2);margin:22px 0 8px;border-bottom:1px solid #16243c;padding-bottom:5px}
+  .m{font-size:12.5px;line-height:1.7;color:var(--dim);margin:7px 0}.m b{color:var(--ink)}
+  .m .rt{color:var(--root);font-weight:700}
+  .comp{background:#0d1322;border:1px solid #2a3a56;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .comp .cn{font-size:15px;font-weight:700;color:#c0a0c8;letter-spacing:.06em}
+  .comp .cr{font-size:11px;font-style:italic;color:#8a7090;margin-bottom:6px}
+  .comp .m b{color:#c0a0c8}
+  .alch{background:#0c1220;border:1px solid #24344e;border-radius:8px;padding:13px 16px;margin-top:6px}
+  .alch .metal{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+  .alch .mg{font-size:26px;color:var(--zeus)}.alch .mn{font-size:15px;font-weight:700;color:var(--zeus);letter-spacing:.1em}
+  .alch .grd{font-size:10px;color:#8ca8c0;letter-spacing:.08em}.alch .m b{color:#9ab8d8}
+  .pop{background:#0c1424;border:1px solid #243450;border-radius:8px;padding:14px 16px;margin-top:6px}
+  .pop .pt{font-size:11px;letter-spacing:.14em;color:var(--gold);font-weight:700}.pop .pn{font-size:11px;color:var(--faint);font-style:italic;margin-bottom:6px}
+  .pop .m b{color:var(--gold)}
+  .cube-wrap{display:flex;gap:16px;align-items:center;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  #cube{width:200px;height:200px}
+  .cube-cap{font-size:10.5px;color:var(--faint);line-height:1.6;max-width:300px;font-style:italic}
+  .ainote,.held{font-size:10.5px;color:var(--faint);text-align:center;font-style:italic;margin-top:10px;line-height:1.6}
+  .flagnote{font-size:9.5px;color:#2a3a52;text-align:center;margin-top:6px;font-style:italic}
+  .err{color:#f0b9a0;background:#160a08;border:1px dashed #e05a4a;padding:12px;font-size:12px;margin-top:10px;display:none}
+</style></head>
+<body><div class="card">
+  <div class="frame">
+    <div class="topband"></div>
+    <div class="seriesrow"><span>Series &#8544; &#183; Jupiter</span><span>heritage &amp; mythos &#183; card 6</span></div>
+    <h1>ZEUS</h1>
+    <div class="epithet">&#9795; the King &#183; Sky-Father &#183; the Pivot</div>
+    <div class="oneline" id="oneline"></div>
+    <canvas id="sky"></canvas>
+    <div class="hint" id="hint">click &#183; end the devouring, take the throne, then look down to the buried root</div>
+    <div class="essence" id="essence"></div>
+    <div class="pivot" id="pivot"></div>
+
+    <h3>the mythos</h3>
+    <div id="mythos"></div>
+
+    <h3>the companion &#8212; the Queen</h3>
+    <div class="comp" id="comp"></div>
+
+    <h3>the alchemy &#8212; his metal</h3>
+    <div class="alch" id="alch"></div>
+
+    <h3>the colour-space &#8212; 27 cells of tin</h3>
+    <div class="cube-wrap"><canvas id="cube"></canvas><div class="cube-cap" id="cubecap"></div></div>
+
+    <h3>pop-culture life</h3>
+    <div class="pop" id="pop"></div>
+
+    <div class="ainote" id="ainote"></div>
+    <div class="held" id="held"></div>
+    <div class="flagnote" id="flag"></div>
+  </div>
+  <div class="err" id="err"></div>
+</div>
+<script>
+"use strict";
+(function(){
+  const D={"series": "I", "body": "JUPITER", "name": "ZEUS", "glyph": "\u2643", "epithet": "the King, Sky-Father, the Pivot", "col": "#6a8ac6", "col2": "#4a6a9a", "gold": "#e0c860", "root": "#7a6a4a", "essence": "the KING of the gods \u2014 sky-father, thunderbolt, lord of the throne itself; enforcer of oaths, host-law, and order. not a diminished face but the fullest king: everything after answers to him.", "one_line": "the giver made, the reflector returned, the messenger carried, love & war descended \u2014 and here is the throne they all answer to.", "root_framing": "roots burrow so saplings can sprout. Zeus is the PIVOT \u2014 the \u2039, where the ancient king-god branches into all the ruler-gods after. but the root that fed him went underground first: MARDUK.", "why_pivot": "unlike Ishtar/Nergal \u2014 who won as ORIGINALS because their Greek faces were DIMINISHED \u2014 Zeus is NOT a lesser Marduk. he is the fuller, undiminished king. so here the root doesn't replace the face; it FEEDS it. Marduk burrowed; Zeus sprouted in the same shape.", "mythos": {"throne": "king of Olympus, wielder of the thunderbolt, sky-father who enforces the deepest law \u2014 the sanctity of oaths and the sacred bond between host and guest. the god who guarantees ORDER itself.", "succession": "he took the throne by overthrowing his father CRONUS (Saturn) \u2014 who had swallowed his children to keep it. Zeus, hidden and saved, freed his siblings and cast the Titans down. the king who ENDS the devouring.", "the_root": "but this exact story is OLDER than Greece: in Babylon, MARDUK \u2014 a third-generation god, like Zeus \u2014 rose to kingship by slaying the chaos-dragon TIAMAT and MAKING heaven & earth from her split body. scholars place Marduk & Zeus in the same pattern: the young king who kills the primordial and founds the ordered world. Jupiter WAS Marduk before it was Zeus.", "chaoskampf": "the pattern buries deep and sprouts everywhere: Marduk vs Tiamat, Zeus vs Typhon, Odin vs Ymir, Indra vs Vritra, Baal vs Yamm. one root, many saplings \u2014 the king who founds order by defeating the deep. Zeus is simply the branch that grew tallest.", "domain": "rain, storm, the gathered clouds; justice and kingship; the father of gods and many heroes. 'jovial' is his temperament; the week's fifth day is his (dies Jovis / Thursday)."}, "companion": {"name": "HERA", "glyph": "\u2640", "role": "the Queen \u2014 his sister-wife, sovereign in her own right", "who": "Hera, goddess of marriage and the sky-queen; not an adviser and not a sacrifice but a QUEEN \u2014 crowned beside him, jealous of his endless affairs, powerful enough to scheme against the king himself.", "counter": "across the cards the pairings have been: Rohini who REFILLS (love that saves), Dumuzi who is SENT DOWN (love that devours), Ereshkigal the EQUAL wed in the dark. Hera is the SOVEREIGN CONSORT \u2014 love as a contested throne shared between two powers. the marriage that is itself a balance of rule.", "root_consort": "(in the buried root, Marduk's queen is Sarpanit; in the Hindu branch, Jupiter is Brihaspati, whose wife TARA was stolen by CHANDRA the Moon \u2014 a hidden thread to card 2, held on the reverse.)"}, "phases_walk": ["the ordered heavens \u2014 the throne of the sky", "CRONUS devours his children to keep the crown", "the hidden child \u2014 Zeus saved, raised in secret", "the return \u2014 he frees his swallowed siblings", "the Titans cast down \u2014 the devouring ends", "crowned KING of the gods \u2014 the thunderbolt taken up", "\u2039 the pivot \u2014 look down to the buried root", "MARDUK slays Tiamat, makes the world from her body", "one root, many saplings \u2014 the king-pattern branches", "the throne all the other cards answer to"], "alchemy": {"metal": "TIN", "glyph": "\u2643", "grounding": "Babylonian \u2192 Greek \u2192 Latin (ancient, multi-culture)", "why": "Jupiter's metal is TIN \u2014 and the fit is kingly: tin's ancient power was to ALLOY. tin + copper = BRONZE, the metal that built the first civilisations, armed the first armies, cast the first thrones. tin is the binder \u2014 soft alone, but it makes other metals into something greater and harder. the king-metal is the one that UNITES the rest into order.", "note": "(the seven-metal / seven-planet system is ancient \u2014 Babylonian-Hellenistic, grounded in the metals' real properties. spiritual 'Great Work' stages are later 16th-c. elaboration; only the metal-link is claimed.)"}, "cube": {"note": "the 27-cell colour-space: Jupiter's tin family. (0,0,0) black, (2,2,2) white; between is tin \u2014 pale pewter on one axis, jovian storm-blue on another. the king of the bright sky, in metal."}, "popculture": {"title": "THE GIANT PROTECTOR  &  HOLST\u2019S KING", "note": "the planet that shields us, and the music that crowned him.", "protector": "astronomy made Jupiter literally the KING-PROTECTOR: the solar system's giant, its immense gravity catching or flinging away comets & asteroids that might otherwise strike Earth. the sky-father still guards the lesser worlds \u2014 the myth and the physics agree that Jupiter keeps order.", "holst": "Gustav Holst's 'Jupiter, the Bringer of Jollity' (The Planets, 1916) gave him his modern anthem \u2014 broad, noble, joyous; its central hymn ('I Vow to Thee, My Country') is sung at coronations & funerals of state. 'jovial' itself is just Jove's name become a mood.", "spot": "and his eye is real: the GREAT RED SPOT, a storm twice Earth's width, raging for centuries \u2014 the thunder-king with a literal storm for a face.", "irony": "Ra was made a VILLAIN, Chandra a DRUG, Hermes a MASCOT, Ishtar the DESCENT, Nergal the RED SOIL \u2014 and Zeus? Zeus stayed KING. the one card pop culture didn't invert or shrink; he is still the throne, still 'jovial', still the giant that guards the sky. the pivot held."}, "ai_note": "(JUPITER the essence-name holds the science \u2014 the planet, 'jovial', dies Jovis. Zeus keeps the throne; Jupiter keeps the word; MARDUK keeps the buried root the whole king-pattern grew from.)", "held": "JUPITER = essence/title-card. MARDUK = the BURIED ROOT \u2014 creator-king, made the world from Tiamat (the origin the pattern sprouted from). BRIHASPATI = the wise-king & card-link (wife Tara stolen by Chandra=Moon; father of Budha=Mercury). THOR = the thunder-branch (huge reach, but protector not king)."};
+  document.getElementById("oneline").textContent="\u201c"+D.one_line+"\u201d";
+  document.getElementById("essence").textContent=D.essence;
+  document.getElementById("pivot").innerHTML="<span class='rt'>\u2039</span> "+D.root_framing.replace(/MARDUK/g,'<span class="rt">MARDUK</span>').replace(/Zeus/g,'<b>Zeus</b>')+"<br><br>"+D.why_pivot.replace(/Marduk/g,'<span class="rt">Marduk</span>').replace(/Zeus/g,'<b>Zeus</b>');
+  const M=D.mythos;
+  document.getElementById("mythos").innerHTML=
+    '<div class="m"><b>the throne.</b> '+M.throne+'</div>'+
+    '<div class="m"><b>the succession.</b> '+M.succession+'</div>'+
+    '<div class="m"><span class="rt">the buried root.</span> '+M.the_root.replace(/MARDUK/g,'<span class="rt">MARDUK</span>').replace(/TIAMAT/g,'<span class="rt">TIAMAT</span>')+'</div>'+
+    '<div class="m"><b>one root, many saplings.</b> '+M.chaoskampf+'</div>'+
+    '<div class="m"><b>his domain.</b> '+M.domain+'</div>';
+  const C=D.companion;
+  document.getElementById("comp").innerHTML=
+    '<div class="cn">'+C.glyph+' '+C.name+'</div><div class="cr">'+C.role+'</div>'+
+    '<div class="m">'+C.who+'</div>'+
+    '<div class="m"><b>across the cards.</b> '+C.counter+'</div>'+
+    '<div class="m" style="font-size:11px;color:#6a7a96">'+C.root_consort+'</div>';
+  const A=D.alchemy;
+  document.getElementById("alch").innerHTML=
+    '<div class="metal"><span class="mg">\u2643</span><span class="mn">'+A.metal+'</span><span class="grd">'+A.grounding+'</span></div>'+
+    '<div class="m">'+A.why+'</div>'+
+    '<div class="m" style="font-size:10.5px;color:#5a6a82">'+A.note+'</div>';
+  document.getElementById("cubecap").textContent=D.cube.note;
+  const P=D.popculture;
+  document.getElementById("pop").innerHTML=
+    '<div class="pt">'+P.title+'</div><div class="pn">'+P.note+'</div>'+
+    '<div class="m"><b>the giant protector.</b> '+P.protector+'</div>'+
+    '<div class="m"><b>Holst\u2019s king.</b> '+P.holst+'</div>'+
+    '<div class="m"><b>his eye.</b> '+P.spot+'</div>'+
+    '<div class="m"><b>the pivot held.</b> '+P.irony+'</div>';
+  document.getElementById("ainote").textContent=D.ai_note;
+  document.getElementById("held").textContent=D.held;
+  document.getElementById("flag").textContent="\u25c8 correspondence filter: only ancient, multi-culture ties admitted. tin/Jupiter = Babylonian\u2192Greek\u2192Latin \u2713 . tarot/planet mapping = Golden Dawn 1888, single-source \u2192 REJECTED.";
+
+  // ---- the pivot visual: throne above, roots below; end devouring -> crown -> descend to Marduk root ----
+  const cv=document.getElementById("sky"); let t=0, step=0; const N=D.phases_walk.length;
+  function mono(){return getComputedStyle(document.body).getPropertyValue("--mono");}
+  function draw(){
+    const dpr=Math.min(devicePixelRatio||1,2),W=cv.clientWidth||680,H=310;
+    cv.width=W*dpr;cv.height=H*dpr;const cx=cv.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);
+    // sky above (throne), soil below (root) - the pivot line
+    const PY=H*0.52, CX=W*0.5;
+    const gs=cx.createLinearGradient(0,0,0,PY);gs.addColorStop(0,"#16264a");gs.addColorStop(1,"#0a1424");cx.fillStyle=gs;cx.fillRect(0,0,W,PY);
+    const gr=cx.createLinearGradient(0,PY,0,H);gr.addColorStop(0,"#12100a");gr.addColorStop(1,"#080604");cx.fillStyle=gr;cx.fillRect(0,PY,W,H-PY);
+    // the pivot line itself (the '<')
+    cx.strokeStyle="rgba(138,118,84,.4)";cx.beginPath();cx.moveTo(0,PY);cx.lineTo(W,PY);cx.stroke();
+    cx.fillStyle="rgba(106,138,198,.55)";cx.font="9px "+mono();cx.textAlign="left";cx.fillText("above \u2014 the throne of the sky",10,16);
+    cx.fillStyle="rgba(138,118,84,.6)";cx.fillText("below \u2014 the buried root (Marduk)",10,H-10);
+    // stars above
+    for(let i=0;i<24;i++){cx.fillStyle="rgba(200,214,240,"+(0.1+0.15*Math.sin(t*1.5+i))+")";cx.fillRect((i*79)%W,(i*47)%(PY-20)+6,1,1);}
+    const focusAbove = step<=6;
+    // THRONE (above): a bright throne-point, thunderbolt
+    const tx=CX, ty=PY-70;
+    if(step>=5){ // crowned
+      const gg=cx.createRadialGradient(tx,ty,1,tx,ty,30);gg.addColorStop(0,"#fff");gg.addColorStop(.4,"#6a8ac6");gg.addColorStop(1,"rgba(0,0,0,0)");
+      cx.fillStyle=gg;cx.beginPath();cx.arc(tx,ty,30,0,7);cx.fill();
+      // thunderbolt
+      cx.strokeStyle="#e0c860";cx.lineWidth=2;cx.beginPath();cx.moveTo(tx-6,ty-14);cx.lineTo(tx+2,ty-2);cx.lineTo(tx-3,ty+1);cx.lineTo(tx+6,ty+14);cx.stroke();
+    }
+    // CRONUS devouring (steps 1) - a dark maw above swallowing dots
+    if(step===1){cx.fillStyle="#3a2a4a";cx.beginPath();cx.arc(tx,ty,20,0,7);cx.fill();
+      cx.fillStyle="#c0a0c8";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Cronus swallows his children",CX,ty-28);
+      for(let s=0;s<4;s++){cx.fillStyle="rgba(200,180,210,.6)";cx.beginPath();cx.arc(tx-14+s*9,ty+2,2,0,7);cx.fill();}}
+    // freeing siblings (step 3)
+    if(step===3){for(let s=0;s<5;s++){const a=t+s;cx.fillStyle="rgba(160,200,240,.7)";cx.beginPath();cx.arc(tx+Math.cos(a)*22,ty+Math.sin(a)*14,2.5,0,7);cx.fill();}
+      cx.fillStyle="#8ca0c0";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("the swallowed freed",CX,ty-28);}
+    // Titans cast down (step 4) - dots falling past pivot
+    if(step===4){for(let s=0;s<5;s++){cx.fillStyle="rgba(120,100,90,.6)";cx.beginPath();cx.arc(tx-20+s*10,PY-30+((t*30+s*20)%80),2,0,7);cx.fill();}
+      cx.fillStyle="#8a7654";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("the Titans cast down",CX,PY-6);}
+    // THE ROOT (below): appears from step 6 - Marduk & Tiamat
+    if(step>=6){
+      const rx=CX, ry=PY+70;
+      // Tiamat as a split serpent form; Marduk as a root-point
+      cx.strokeStyle="rgba(138,118,84,"+(step>=7?0.8:0.4)+")";cx.lineWidth=2;
+      cx.beginPath();for(let a=-3;a<=3;a+=0.2){cx.lineTo(rx+a*22,ry+Math.sin(a*1.5+t)*10);}cx.stroke();
+      if(step>=7){
+        const gg=cx.createRadialGradient(rx,ry,1,rx,ry,22);gg.addColorStop(0,"#e0c860");gg.addColorStop(.5,"#8a7654");gg.addColorStop(1,"rgba(0,0,0,0)");
+        cx.fillStyle=gg;cx.beginPath();cx.arc(rx,ry,22,0,7);cx.fill();
+        cx.fillStyle="#c0a878";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("Marduk splits Tiamat \u2014 makes the world",CX,ry+34);
+      }
+      // roots reaching UP from Marduk to the throne (the feeding)
+      if(step>=8){cx.strokeStyle="rgba(138,118,84,.35)";cx.lineWidth=1;
+        for(let s=-2;s<=2;s++){cx.beginPath();cx.moveTo(rx+s*8,ry-10);cx.quadraticCurveTo(CX+s*20,PY,tx+s*6,ty+24);cx.stroke();}
+        cx.fillStyle="#8a7654";cx.font="9px "+mono();cx.textAlign="center";cx.fillText("one root feeds many saplings",CX,PY+14);}
+    }
+    // the pivot marker
+    if(step===6){cx.fillStyle="#8a7654";cx.font="bold 14px "+mono();cx.textAlign="center";cx.fillText("\u2039",CX,PY+4);
+      cx.font="9px "+mono();cx.fillText("the pivot \u2014 look down",CX,PY+20);}
+    cx.fillStyle="#e0e8f4";cx.font="bold 12px "+mono();cx.textAlign="center";cx.fillText((step+1)+"/"+N+" \u2014 "+D.phases_walk[step],CX,H-26);
+    if(step===N-1){cx.fillStyle="#6a8ac6";cx.font="bold 12px "+mono();cx.fillText("\u2643 the throne all the cards answer to",CX,26);}
+  }
+  function frame(){try{draw();drawCube();}catch(e){document.getElementById("err").style.display="block";document.getElementById("err").textContent="throne fault: "+(e&&e.message);return;}t+=0.03;requestAnimationFrame(frame);}
+  cv.addEventListener("click",function(){step=(step+1)%N;document.getElementById("hint").textContent=step===N-1?"the pivot held \u2014 the king still reigns. click to begin the succession again.":"step "+(step+1)+" of "+N;});
+
+  // ---- 27-cell TIN cube ----
+  const TIN=[0.66,0.70,0.74], SKY=[0.42,0.56,0.78];
+  function cellCol(i,j,k){var L=(i+j+k)/6,pw=i/2,sk=k/2,s=pw+sk;
+    var fam=s>0?[(pw*TIN[0]+sk*SKY[0])/s,(pw*TIN[1]+sk*SKY[1])/s,(pw*TIN[2]+sk*SKY[2])/s]:[.5,.5,.5];
+    var c;if(L<=0.5){c=fam.map(function(v){return v*(L/0.5);});}else{c=fam.map(function(v){return v+(1-v)*((L-0.5)/0.5);});}
+    return c.map(function(v){return Math.max(0,Math.min(1,v));});}
+  function hxc(c){return '#'+c.map(function(v){return ('0'+Math.round(v*255).toString(16)).slice(-2);}).join('');}
+  const cvc=document.getElementById("cube");var cyaw=0.6;
+  function projc(x,y,z,W,H){var cy=Math.cos(cyaw),sy=Math.sin(cyaw),x1=x*cy-z*sy,z1=x*sy+z*cy,p=0.5,cp=Math.cos(p),sp=Math.sin(p),y2=y*cp-z1*sp,z2=y*sp+z1*cp,f=150,s=f/(6-z2);return[W/2+x1*s,H/2-y2*s,z2];}
+  function drawCube(){var dpr=Math.min(devicePixelRatio||1,2),W=200,H=200;cvc.width=W*dpr;cvc.height=H*dpr;var cx=cvc.getContext("2d");cx.setTransform(dpr,0,0,dpr,0,0);cx.clearRect(0,0,W,H);cyaw+=0.006;
+    var cells=[];for(var i=0;i<3;i++)for(var j=0;j<3;j++)for(var k=0;k<3;k++){cells.push({p:projc((i-1),(j-1),(k-1),W,H),col:hxc(cellCol(i,j,k))});}
+    cells.sort(function(a,b){return a.p[2]-b.p[2];});
+    cells.forEach(function(c){var r=Math.max(3,6+c.p[2]*1.5);cx.fillStyle=c.col;cx.strokeStyle="rgba(150,180,210,.15)";cx.beginPath();cx.arc(c.p[0],c.p[1],r,0,7);cx.fill();cx.stroke();});
+    cx.fillStyle="#5a6a82";cx.font="8px "+mono();cx.textAlign="center";cx.fillText("(0,0,0) black \u2192 (2,2,2) white",W/2,H-4);
+  }
+  requestAnimationFrame(frame);
+})();
+</script></body></html>

@@ -1,0 +1,132 @@
+{
+  "format": "dlw-ring-seal/1",
+  "moniker": "SERIES-II:MYTHOS:8AB003",
+  "series": "II",
+  "title": "THE SCATTERED FIELD",
+  "hub": "ERIS",
+  "answers_to": "ERIS (the breaker)",
+  "channel": "ICE/albedo",
+  "bridge_to_series_I": "PLUTO (shared node; the two seeds stitched at Pluto, by Eris's hand)",
+  "genesis": "aaab32db44a8cf986893d3aba2c4316729844fabd4e647f7ff6f0ddac86a1919",
+  "strands": [
+    {
+      "idx": 1,
+      "name": "ERIS",
+      "role": "hub / the breaker",
+      "measure": "orbit-misfit e=0.44 i=44deg outside planet envelope",
+      "tier": "LIT",
+      "record": "01|ERIS|hub / the breaker|orbit-misfit e=0.44 i=44deg outside planet envelope|LIT",
+      "seal": "f0ea207a9d6be0e81f1a1f6b6844c3384674f848a1b78c7412682f4781d56685",
+      "chain": "f20406fb31bcbbae5d219d1813811a77d18effdab648837e8a3d77eeda6e4054"
+    },
+    {
+      "idx": 2,
+      "name": "HAUMEA",
+      "role": "the collision-mother",
+      "measure": "spin 3.92hr triaxial; family dv<150 = 0.19x vesc",
+      "tier": "LIT|mechanism-AMBER",
+      "record": "02|HAUMEA|the collision-mother|spin 3.92hr triaxial; family dv<150 = 0.19x vesc|LIT|mechanism-AMBER",
+      "seal": "a757824a1b9c9f6236db3aaad233426d0d4b83942e0fe2cf68abbf54da10846f",
+      "chain": "9fbf8bf852c0ee6963c89460acf85ec22a8e35cf57664de6e23d9a57044d72c1"
+    },
+    {
+      "idx": 3,
+      "name": "SEDNA",
+      "role": "the cast-out",
+      "measure": "perihelion 76AU = 2x scatter-wall; 2.6pct inside heliopause",
+      "tier": "LIT|perturber-AMBER",
+      "record": "03|SEDNA|the cast-out|perihelion 76AU = 2x scatter-wall; 2.6pct inside heliopause|LIT|perturber-AMBER",
+      "seal": "d3729135422d807a5dfbd5ae0379a3403accb4a39da07a52a0f2119e3131bc11",
+      "chain": "dea346c20477cf59211a2a66b2876e77174ef21ec3e708e4cd436cc7f674eafa"
+    },
+    {
+      "idx": 4,
+      "name": "ORCUS",
+      "role": "the anti-Pluto",
+      "measure": "2:3 resonance opposite-phase to Pluto; Vanth anti-Charon",
+      "tier": "LIT",
+      "record": "04|ORCUS|the anti-Pluto|2:3 resonance opposite-phase to Pluto; Vanth anti-Charon|LIT",
+      "seal": "4647a0f5783aee9282f834774b6d9cd8beef464d3a17eba14cfdf4e390cb8d8c",
+      "chain": "62be1d618e8b1134ed860c3d46b9c1bccfd67719a4f5f06f052cd73ea30ebc64"
+    },
+    {
+      "idx": 5,
+      "name": "CERES",
+      "role": "the first demotion",
+      "measure": "round-yes cleared-no; planet1801 asteroid dwarf2006",
+      "tier": "LIT|ocean-AMBER",
+      "record": "05|CERES|the first demotion|round-yes cleared-no; planet1801 asteroid dwarf2006|LIT|ocean-AMBER",
+      "seal": "8bf7944e10c4613ff4b6cde511fc4d544a56e6b05f8f1d658b6005ecb2218b7d",
+      "chain": "ad0055d98101f96e811f3c0a2b95a0cd5c398daa854c21c34addccf0179376e2"
+    },
+    {
+      "idx": 6,
+      "name": "QUAOAR",
+      "role": "the impossible ring",
+      "measure": "ring 4100km = 2.3x Roche 1780km; why unsolved",
+      "tier": "LIT|why-AMBER",
+      "record": "06|QUAOAR|the impossible ring|ring 4100km = 2.3x Roche 1780km; why unsolved|LIT|why-AMBER",
+      "seal": "0ec8e207340efba794109a7a46a9ad041d289d702c425e3064e6aff3d0578e06",
+      "chain": "b97c85d4020d4fae4b62f8dc331b813878a08be24bbfbd8cc3a0b0717acd6b3d"
+    },
+    {
+      "idx": 7,
+      "name": "MAKEMAKE",
+      "role": "the creator",
+      "measure": "albedo 0.82 2nd-brightest; dark moon MK2 0.04",
+      "tier": "LIT|moon-size-AMBER",
+      "record": "07|MAKEMAKE|the creator|albedo 0.82 2nd-brightest; dark moon MK2 0.04|LIT|moon-size-AMBER",
+      "seal": "282fa0df703d8515b88757ff279d32dce3d4c4aac7e07c1273babb705738e388",
+      "chain": "e2550403a8f55f91c1a7bd28ed5ef876a75ae133b2b2a13858df1ded0e960691"
+    },
+    {
+      "idx": 8,
+      "name": "GONGGONG",
+      "role": "the chaos-flood",
+      "measure": "spin 22hr = 2.8x slow; Xiangliu found from the brake",
+      "tier": "LIT|cause-AMBER",
+      "record": "08|GONGGONG|the chaos-flood|spin 22hr = 2.8x slow; Xiangliu found from the brake|LIT|cause-AMBER",
+      "seal": "4975f4ca4483fb07fa3247a4a8754539cd7fdd57e07f120ff5fc1b06355b3dae",
+      "chain": "d3571ed095be4a011581d2e7f21dd78bdc89764fae48eeba6c1138a5c8fdde17"
+    },
+    {
+      "idx": 9,
+      "name": "IXION",
+      "role": "the oath-breaker",
+      "measure": "plutino 2:3 bound; WHEEL ancient-crosscultural=LIT tarot-deck=modern",
+      "tier": "LIT|tarot-rendering-AMBER",
+      "record": "09|IXION|the oath-breaker|plutino 2:3 bound; WHEEL ancient-crosscultural=LIT tarot-deck=modern|LIT|tarot-rendering-AMBER",
+      "seal": "d0340df6850eb2dcb59e20f990cd36fa8b825295ab29c565cb7cf98e79fd7a67",
+      "chain": "ef6257c4ecffded8a1f48dc426102f9eec9aa0dcf2596690a1de2f46fab2bec5"
+    },
+    {
+      "idx": 10,
+      "name": "LAWLESSNESS-WOMEN",
+      "role": "sub-thread: the matriline",
+      "measure": "12 women 12 threads 0 orphans; Xena-origin; cross-seed Pluto",
+      "tier": "LIT|lawless-nod-AMBER",
+      "record": "10|LAWLESSNESS-WOMEN|sub-thread: the matriline|12 women 12 threads 0 orphans; Xena-origin; cross-seed Pluto|LIT|lawless-nod-AMBER",
+      "seal": "80f66e7928dd126dcdb15aeae8739eaa236741426e87278bb004d8e1bd3399a5",
+      "chain": "d90602aca832ac02b1071fc51bd4dbcdb24b3cb0f3b6c78211c267cb6f97d454"
+    },
+    {
+      "idx": 11,
+      "name": "COMPANIONS",
+      "role": "sub-thread: the moon-layer",
+      "measure": "size-ratio x albedo; bright-parent/dark-child; Vanth+Charon binaries",
+      "tier": "LIT|ice-albedo-AMBER",
+      "record": "11|COMPANIONS|sub-thread: the moon-layer|size-ratio x albedo; bright-parent/dark-child; Vanth+Charon binaries|LIT|ice-albedo-AMBER",
+      "seal": "303638ee33027720ed927cfb30d07ab53894058ee7106c7c1e0e8a015bea9815",
+      "chain": "21ba31cc23fed88356acc06c54f2551137970f18aca91c21e4d3375a4f91bc68"
+    }
+  ],
+  "head": "21ba31cc23fed88356acc06c54f2551137970f18aca91c21e4d3375a4f91bc68",
+  "ring_close": "8ab00317baaa72af18d954fb0b4538b3996762f959dbcf47324dcacbcda14b14",
+  "hash": "sha256",
+  "note": "per-strand seal = sha256(record). chain folds genesis(Eris) through each seal. ring_close = sha256(head|genesis) closes the ring back to Eris. ASCII-canonical for cross-verifier parity.",
+  "honesty_ledger": {
+    "tiers": "each strand carries LIT (measured/settled) and AMBER (interpretive/unsolved) flags in its record.",
+    "the_one_exception": "IXION carried a tarot card (Wheel of Fortune X). ON REVIEW (correctly prompted): the WHEEL it depicts — the eternal wheel of fate/time — is ancient and cross-cultural (Greek Ixion's wheel + Roman Rota Fortunae + Hindu/Buddhist Kalachakra 'wheel of time' / Bhavachakra) and PASSES the deck's own 2+-ancient-cultures filter → UPGRADED to LIT. only the specific tarot-DECK imagery (Golden-Dawn ~1888) is the modern rendering (AMBER). the witness over-flagged the correspondence; corrected here. the wheel is old; the deck is new.",
+    "orrery_check": "NOT an orrery — delete the animation and the sourced content survives. classified: sourced REFERENCE deck."
+  }
+}

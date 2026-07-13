@@ -1,0 +1,53 @@
+{
+  "format": "dlw-constellation-seal/1",
+  "moniker": "AKASHA:CONSTELLATION:F64291",
+  "kind": "constellation (seal of seals)",
+  "hub": "ROOT0",
+  "answers_to": "ROOT0 (the zero-root)",
+  "figure": "the three seeds resonate with the make/harmony/unmake triad: RA=make (giver), ERIS=unmake (breaker), NEMESIS=harmony/balance (the reckoner; retribution restores equilibrium). INTERPRETIVE reading, flagged — the ternary of Icarium mirrored at the series level.",
+  "genesis": "0e7ea55515a8b82c8d149fda378e6dfed65ddcfd2a7927f7b8a12c44c22ddbff",
+  "seeds": [
+    {
+      "idx": 1,
+      "hub": "RA",
+      "pole": "make / the giver",
+      "channel": "metal",
+      "moniker": "SERIES-I:MYTHOS:025036",
+      "closure": "in-AKASHA:025036",
+      "record": "1|RA|make / the giver|SERIES-I:MYTHOS:025036|in-AKASHA:025036",
+      "seal": "ff9b3266baa686b9698a75069fe8c66cbeed6ad6198288dcf9bd919e6a8da429",
+      "chain": "1f7b536bcc77a99726cf7c3968ee722f0208b5f1db29d7c721057ace9c4f2daf"
+    },
+    {
+      "idx": 2,
+      "hub": "ERIS",
+      "pole": "unmake / the breaker",
+      "channel": "ice",
+      "moniker": "SERIES-II:MYTHOS:8AB003",
+      "closure": "8ab00317baaa72af18d954fb0b4538b3996762f959dbcf47324dcacbcda14b14",
+      "record": "2|ERIS|unmake / the breaker|SERIES-II:MYTHOS:8AB003|8ab00317baaa72af18d954fb0b4538b3996762f959dbcf47324dcacbcda14b14",
+      "seal": "5b1650bdb2cc6904253af6c3441df99f3f3f5c7777e34d00ff82aa945ce7c70e",
+      "chain": "46765cfc8567bc21f74283d2e7071537dd02306e2a55376376c2ff27237df881"
+    },
+    {
+      "idx": 3,
+      "hub": "NEMESIS",
+      "pole": "harmony / the reckoner",
+      "channel": "shadow",
+      "moniker": "SERIES-III:MYTHOS:4B5483",
+      "closure": "4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca",
+      "record": "3|NEMESIS|harmony / the reckoner|SERIES-III:MYTHOS:4B5483|4b54835ae5b161107c00aa05b96c1999e988264c085e07485fb7394c7a5c82ca",
+      "seal": "d6993f38d18d5b995a1025ecb87e1c168b2daf985507846aea1551b473f98f05",
+      "chain": "2fa0d5520d30553b4f1a22f0331083744497bf32545bfd5b18e08378a30a1303"
+    }
+  ],
+  "head": "2fa0d5520d30553b4f1a22f0331083744497bf32545bfd5b18e08378a30a1303",
+  "ring_close": "f64291facae37670b0e25de9f6d6f249da7c12ee79fb87cdf471893a507c7580",
+  "hash": "sha256",
+  "note": "seed seal=sha256(record); chain folds genesis(ROOT0) through each seed seal; ring_close=sha256(head|genesis) closes to ROOT0. Series I bound by its published moniker 025036 (full closure in the AKASHA repo); II & III bound by full ring_close.",
+  "provenance": {
+    "series_I": "AKASHA / earlier commit — moniker 025036, hub RA, channel metal",
+    "series_II": "series2.dlw — moniker 8AB003, hub ERIS, channel ice",
+    "series_III": "series3.dlw — moniker 4B5483, hub NEMESIS, channel shadow"
+  }
+}
